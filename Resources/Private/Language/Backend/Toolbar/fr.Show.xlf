@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="fr">
+        <header/>
+        <body>
+
+            <!--##################################-->
+            <!--###  BACKEND MODULE - TOOLBAR  ###-->
+            <!--##################################-->
+
+            <trans-unit id="title">
+                <target>Information NotiZ</target>
+            </trans-unit>
+
+            <trans-unit id="body.show_definition">
+                <target>Montrer la définition actuelle</target>
+            </trans-unit>
+
+            <trans-unit id="body.description_notifications">
+                <target>Il y a actuellement %s notification(s) activée(s) :</target>
+            </trans-unit>
+            <trans-unit id="body.description_notifications_none">
+                <target>Aucune notification n'est actuellement activée.</target>
+            </trans-unit>
+            <trans-unit id="body.notification_label">
+                <target>%s notification(s)</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

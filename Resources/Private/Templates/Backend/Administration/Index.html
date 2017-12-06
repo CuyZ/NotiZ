@@ -1,0 +1,19 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+
+<f:layout name="Backend/Default" />
+
+<f:section name="Content">
+    <f:be.infobox title="{nz:t(key: 'Backend/Module/Administration/Index/Index:tmp.title')}" state="-1">
+        <p>
+            <nz:t key="Backend/Module/Administration/Index/Index:tmp.description_1" />
+        </p>
+
+        <p>
+            <nz:t key="Backend/Module/Administration/Index/Index:tmp.description_2" />
+        </p>
+
+        <p>
+            <nz:t key="Backend/Module/Administration/Index/Index:tmp.description_3" args="{0: '{f:uri.action(action: \'showDefinition\')}'}" />
+        </p>
+    </f:be.infobox>
+</f:section>

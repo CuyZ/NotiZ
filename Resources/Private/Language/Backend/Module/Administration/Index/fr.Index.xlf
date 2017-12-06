@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="fr">
+        <header/>
+        <body>
+
+            <!--##########################################-->
+            <!--###       BACKEND MODULE - INDEX       ###-->
+            <!--##########################################-->
+
+            <trans-unit id="tmp.title">
+                <target>Module à venir</target>
+            </trans-unit>
+            <trans-unit id="tmp.description_1">
+                <target>Ce module n'est pas encore disponible et sera livré avec la version stable de l'extension.</target>
+            </trans-unit>
+            <trans-unit id="tmp.description_2">
+                <target>Il permettra d'ajouter et d'éditer des notifications avec une interface claire.</target>
+            </trans-unit>
+            <trans-unit id="tmp.description_3">
+                <target><![CDATA[Vous pouvez toujours accéder au <a href="%s">module d'arbre de définition</a>.]]></target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

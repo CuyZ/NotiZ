@@ -1,0 +1,19 @@
+config {
+    tx_notiz {
+        channels {
+            email {
+                typo3 {
+                    className = CuyZ\Notiz\Domain\Channel\Email\TYPO3\EmailChannel
+                    label = Channel/Email/TYPO3-Email:title
+                }
+            }
+
+            logs {
+                typo3 {
+                    className = CuyZ\Notiz\Domain\Channel\Log\Typo3LogChannel
+                    label = Channel/Log/TYPO3-Log:title
+                }
+            }
+        }
+    }
+}

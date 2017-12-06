@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+            <!--##########################################-->
+            <!--###       BACKEND MODULE - INDEX       ###-->
+            <!--##########################################-->
+
+            <trans-unit id="tmp.title">
+                <source>Module incoming</source>
+            </trans-unit>
+            <trans-unit id="tmp.description_1">
+                <source>This module is not available yet and will be delivered for the stable release of the extension.</source>
+            </trans-unit>
+            <trans-unit id="tmp.description_2">
+                <source>It will allow adding and editing notifications with a beautiful interface.</source>
+            </trans-unit>
+            <trans-unit id="tmp.description_3">
+                <source><![CDATA[You can still access the <a href="%s">definition tree module</a>.]]></source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,13 @@
+config.tx_extbase.persistence.classes {
+    CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification {
+        mapping {
+            tableName = tx_notiz_domain_model_entityemailnotification
+        }
+    }
+
+    CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\EntityLogNotification {
+        mapping {
+            tableName = tx_notiz_domain_model_entitylognotification
+        }
+    }
+}

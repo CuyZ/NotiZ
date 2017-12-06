@@ -1,0 +1,16 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+charset = utf-8
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{php,html,js,css,txt}]
+indent_size = 4
+indent_style = space
+
+[*.{json,yml,md,sql}]
+indent_size = 2
+indent_style = space

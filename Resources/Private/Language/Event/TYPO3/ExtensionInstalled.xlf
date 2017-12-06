@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+            <trans-unit id="title">
+                <source>Extension installed</source>
+            </trans-unit>
+
+            <trans-unit id="marker.key">
+                <source>Key of the extension, for instance `my_extension`.</source>
+            </trans-unit>
+            <trans-unit id="marker.title">
+                <source>Title of the extension, for instance `My extension`.</source>
+            </trans-unit>
+            <trans-unit id="marker.description">
+                <source>Description of the extension.</source>
+            </trans-unit>
+            <trans-unit id="marker.version">
+                <source>Version of the extension, for instance `1.4.2`.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

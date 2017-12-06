@@ -1,0 +1,40 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Event: scheduler task was executed / scheduler task execution failed</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <doFilterTasks>
+                        <TCEforms>
+                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/Scheduler/SchedulerTask.xlf:flex_form.filter_tasks.label</label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </doFilterTasks>
+
+                    <filteredTasks>
+                        <TCEforms>
+                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/Scheduler/SchedulerTask.xlf:flex_form.filtered_tasks.label</label>
+                            <displayCond>FIELD:doFilterTasks:=:1</displayCond>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectMultipleSideBySide</renderType>
+                                <itemsProcFunc>CuyZ\Notiz\Service\Scheduler\SchedulerService->getTasksListForTca</itemsProcFunc>
+                                <maxitems>999</maxitems>
+                                <enableMultiSelectFilterTextfield>1</enableMultiSelectFilterTextfield>
+                            </config>
+                        </TCEforms>
+                    </filteredTasks>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

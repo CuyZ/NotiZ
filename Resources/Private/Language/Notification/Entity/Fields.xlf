@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+            <trans-unit id="field.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="field.event">
+                <source>Event</source>
+            </trans-unit>
+            <trans-unit id="field.event_configuration">
+                <source>Event configuration</source>
+            </trans-unit>
+            <trans-unit id="field.channel">
+                <source>Channel</source>
+            </trans-unit>
+
+            <trans-unit id="field.markers">
+                <source>Markers</source>
+            </trans-unit>
+            <trans-unit id="field.markers.description">
+                <source>These markers are provided by the event “%s”.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

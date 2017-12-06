@@ -1,0 +1,27 @@
+{namespace core=TYPO3\CMS\Core\ViewHelpers}
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+
+<f:layout name="Backend/ToolBar/Item/{f:if(condition: legacyLayout, then: 'Legacy', else: 'Default')}" />
+
+<f:section name="Icon">
+    <span title="{nz:t(key: 'Backend/Toolbar/Show:title')}">
+        <f:comment>
+            Change as inline code when https://review.typo3.org/#/c/54212/ is merged.
+        </f:comment>
+        <f:if condition="{result.flattenedErrors}">
+            <f:then>
+                <core:icon identifier="tx-notiz-icon-toolbar"
+                           alternativeMarkupIdentifier="inline"
+                           overlay="overlay-missing" />
+            </f:then>
+            <f:else>
+                <core:icon identifier="tx-notiz-icon-toolbar"
+                           alternativeMarkupIdentifier="inline" />
+            </f:else>
+        </f:if>
+    </span>
+</f:section>
+
+<f:section name="Title">
+    <nz:t key="Backend/Toolbar/Show:title" />
+</f:section>

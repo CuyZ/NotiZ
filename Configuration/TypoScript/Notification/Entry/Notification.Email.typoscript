@@ -1,0 +1,49 @@
+config {
+    tx_notiz {
+        notifications {
+            entityEmail {
+                label = Notification/Email/Entity:title
+
+                className = CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification
+
+                iconPath = EXT:notiz/Resources/Public/Icon/Notification/notification-email-entity-typo3.svg
+
+                channels < config.tx_notiz.channels.email
+
+                settings {
+                    defaultSender = no-reply@example.org
+
+                    /*
+                     * Global recipients will be available for every mail
+                     * notification.
+                     *
+                     * It should contain a list of administrators or mailing
+                     * lists.
+                     *
+                     * See examples below.
+                     */
+                    globalRecipients {
+                        # 10 = John Smith <john.smith@example.com>
+                        # 20 = jane.smith@example.com
+                    }
+
+                    view {
+                        /*
+                         * List of layouts that can be used by email
+                         * notifications.
+                         */
+                        layouts {
+                            htmlDefault {
+                                label = Notification/Email/Entity:definition.view.layout.default.label
+                                path = Mail/Html/Default
+                            }
+                        }
+
+                        layoutRootPaths.0 = EXT:notiz/Resources/Private/Layouts/
+                        partialRootPaths.0 = EXT:notiz/Resources/Private/Partials/
+                    }
+                }
+            }
+        }
+    }
+}

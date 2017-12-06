@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="fr">
+        <header/>
+        <body>
+
+            <!--##########################################-->
+            <!--###  BACKEND MODULE - SHOW DEFINITION  ###-->
+            <!--##########################################-->
+
+            <trans-unit id="refresh">
+                <target>Rafraîchir</target>
+            </trans-unit>
+
+            <trans-unit id="definition_tree.root">
+                <target>Définition de NotiZ</target>
+            </trans-unit>
+            <trans-unit id="definition_tree.empty_value">
+                <target>vide</target>
+            </trans-unit>
+            <trans-unit id="definition_tree.label_show_full_path">
+                <target>Montrer le chemin complet jusqu'à cette valeur de définition.</target>
+            </trans-unit>
+            <trans-unit id="definition_tree.message_code">
+                <target>Code : %s</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

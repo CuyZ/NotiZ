@@ -1,0 +1,51 @@
+{
+  "name": "cuyz/notiz",
+  "type": "typo3-cms-extension",
+  "description": "Handle any type of notification in TYPO3 with ease: emails, SMS, Slack and more. Listen to your own events or provided ones (scheduler task finishing, extension installed, etc…).",
+  "keywords": [
+    "typo3",
+    "notification",
+    "event",
+    "mails",
+    "logs",
+    "slack"
+  ],
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Romain Canon",
+      "email": "romain.hydrocanon@gmail.com"
+    },
+    {
+      "name": "Nathan Boiron",
+      "email": "nathan.boiron@gmail.com"
+    }
+  ],
+  "require": {
+    "typo3/cms": "^7.6.0 || ^8.7.0",
+    "romm/configuration-object": "^1.10"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.7 || ^5.6",
+    "satooshi/php-coveralls": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "CuyZ\\Notiz\\": "Classes/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "CuyZ\\Notiz\\Tests\\": "Tests"
+    }
+  },
+  "replace": {
+    "notiz": "self.version",
+    "typo3-ter/notiz": "self.version"
+  },
+  "extra": {
+    "typo3/cms": {
+      "cms-package-dir": "{$vendor-dir}/typo3/cms"
+    }
+  }
+}
