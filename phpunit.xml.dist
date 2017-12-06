@@ -1,0 +1,29 @@
+<phpunit
+        bootstrap="vendor/nimut/testing-framework/res/Configuration/UnitTestsBootstrap.php"
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertWarningsToExceptions="true"
+        forceCoversAnnotation="false"
+        processIsolation="false"
+        stopOnError="true"
+        stopOnFailure="false"
+        stopOnIncomplete="false"
+        stopOnSkipped="false"
+        verbose="false"
+>
+
+    <testsuites>
+        <testsuite name="extension">
+            <directory suffix=".php">Tests/Unit/</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">Classes/</directory>
+        </whitelist>
+    </filter>
+
+</phpunit>

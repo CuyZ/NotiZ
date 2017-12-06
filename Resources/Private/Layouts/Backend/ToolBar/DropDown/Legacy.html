@@ -1,0 +1,62 @@
+<f:comment>
+    Layout used for TYPO3 7.6
+</f:comment>
+
+<ul class="dropdown-list">
+    <li class="dropdown-header">
+        <f:render section="BodyTitle" />
+    </li>
+
+    <li class="divider"></li>
+
+    <f:if condition="{result.flattenedErrors}">
+        <f:then>
+            <li class="text-danger">
+                <f:render section="BodyErrorsDescription" />
+            </li>
+
+            <li class="divider"></li>
+
+            <li>
+                <f:render section="BodyErrorsLink" />
+
+            </li>
+        </f:then>
+        <f:else>
+            <f:if condition="{filledNotifications}">
+                <f:then>
+                    <li class="dropdown-intro">
+                        <f:render section="BodyDescriptionNotification" />
+                    </li>
+
+                    <li>
+                        <dl class="dl-horizontal">
+                            <f:for each="{filledNotifications}" as="notification">
+                                <dt title="{notification.label}">
+                                    <f:render section="BodyNotificationIcon" arguments="{notification: notification}" />
+                                    <f:render section="BodyNotificationIdentifier" arguments="{notification: notification}" />
+                                </dt>
+                                <dd>
+                                    <f:render section="BodyNotificationLabel" arguments="{notification: notification}" />
+                                </dd>
+                            </f:for>
+                        </dl>
+                    </li>
+                </f:then>
+                <f:else>
+                    <li class="dropdown-intro">
+                        <span class="text-warning">
+                            <f:render section="BodyDescriptionNoNotification" />
+                        </span>
+                    </li>
+                </f:else>
+            </f:if>
+
+            <li class="divider"></li>
+
+            <li>
+                <f:render section="BodyDefinitionLink" />
+            </li>
+        </f:else>
+    </f:if>
+</ul>

@@ -1,0 +1,23 @@
+{namespace core=TYPO3\CMS\Core\ViewHelpers}
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+
+<f:be.infobox title="{nz:t(key: 'Backend/Module/Administration/Definition/Error:info_box.title')}" state="2">
+    <p>
+        <b>
+            <nz:t key="Backend/Module/Administration/Definition/Error:info_box.error.header" />
+        </b>
+    </p>
+
+    <p>
+        <nz:t key="Backend/Module/Administration/Definition/Error:info_box.error.body" />
+    </p>
+
+    <p>
+        <f:alias map="{label: '{nz:t(key: \'Backend/Module/Administration/Definition/Error:errors_link.label\', args: {0: \'{result.flattenedErrors -> f:count()}\'})}'}">
+            <a href="{showDefinitionUri}" title="{label}">
+                <core:icon identifier="actions-system-extension-configure" />
+                {label}
+            </a>
+        </f:alias>
+    </p>
+</f:be.infobox>

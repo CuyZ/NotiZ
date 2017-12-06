@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+            <!--######################################-->
+            <!--###     LOG NOTIFICATION RECORD    ###-->
+            <!--######################################-->
+            <trans-unit id="title">
+                <source>Log</source>
+            </trans-unit>
+
+            <!-- TABS -->
+            <trans-unit id="tab.log">
+                <source>Log configuration</source>
+            </trans-unit>
+
+            <!-- PALETTES -->
+            <trans-unit id="palette.content">
+                <source>Log message</source>
+            </trans-unit>
+            <trans-unit id="palette.levels">
+                <source>Log level</source>
+            </trans-unit>
+
+            <!-- FIELDS -->
+            <trans-unit id="field.logger">
+                <source>Logger</source>
+            </trans-unit>
+
+            <trans-unit id="field.message">
+                <source>Message</source>
+            </trans-unit>
+
+            <trans-unit id="field.level">
+                <source>Level</source>
+            </trans-unit>
+
+            <trans-unit id="field.levels_descriptions_title">
+                <source>Levels descriptions</source>
+            </trans-unit>
+
+            <!-- Log levels descriptions -->
+            <trans-unit id="levels.more_info">
+                <source>More information on levels</source>
+            </trans-unit>
+
+            <trans-unit id="level.DEBUG">
+                <source>Detailed debug information.</source>
+            </trans-unit>
+            <trans-unit id="level.INFO">
+                <source>Interesting events (user logs in, SQL logs).</source>
+            </trans-unit>
+            <trans-unit id="level.NOTICE">
+                <source>Normal but significant events.</source>
+            </trans-unit>
+            <trans-unit id="level.WARNING">
+                <source>Exceptional occurrences that are not errors (use of deprecated APIs, poor use of an API, undesirable things that are not necessarily wrong).</source>
+            </trans-unit>
+            <trans-unit id="level.ERROR">
+                <source>Runtime errors that do not require immediate action but should typically be logged and monitored.</source>
+            </trans-unit>
+            <trans-unit id="level.CRITICAL">
+                <source>Critical conditions (application component unavailable, unexpected exception).</source>
+            </trans-unit>
+            <trans-unit id="level.ALERT">
+                <source>Action must be taken immediately (entire website down, database unavailable, etc…). This should trigger the SMS alerts and wake you up.</source>
+            </trans-unit>
+            <trans-unit id="level.EMERGENCY">
+                <source>System is unusable.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

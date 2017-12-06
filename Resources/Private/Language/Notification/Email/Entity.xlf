@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+            <!--######################################-->
+            <!--###    EMAIL NOTIFICATION RECORD   ###-->
+            <!--######################################-->
+            <trans-unit id="title">
+                <source>Email</source>
+            </trans-unit>
+
+            <!-- DEFINITION -->
+            <trans-unit id="definition.view.layout.default.label">
+                <source>Default HTML layout (provided by NotiZ)</source>
+            </trans-unit>
+
+            <!-- TABS -->
+            <trans-unit id="tab.mail_configuration">
+                <source>Mail configuration</source>
+            </trans-unit>
+            <trans-unit id="tab.mail_recipients">
+                <source>Mail recipients</source>
+            </trans-unit>
+            <trans-unit id="tab.mail_sender">
+                <source>Mail sender</source>
+            </trans-unit>
+
+            <!-- PALETTES -->
+            <trans-unit id="palette.mail">
+                <source>Mail</source>
+            </trans-unit>
+            <trans-unit id="palette.mail_recipients_to">
+                <source>Mail recipients (To)</source>
+            </trans-unit>
+            <trans-unit id="palette.mail_recipients_cc">
+                <source>Mail recipients (Cc)</source>
+            </trans-unit>
+            <trans-unit id="palette.mail_recipients_bcc">
+                <source>Mail recipients (Bcc)</source>
+            </trans-unit>
+
+            <!-- FIELDS -->
+            <trans-unit id="field.mailer">
+                <source>Mailer</source>
+            </trans-unit>
+
+            <trans-unit id="field.layout">
+                <source>Layout</source>
+            </trans-unit>
+            <trans-unit id="field.layout.undefined_label">
+                <source>%s (undefined label)</source>
+            </trans-unit>
+
+            <trans-unit id="field.subject">
+                <source>Mail subject</source>
+            </trans-unit>
+            <trans-unit id="field.body">
+                <source>Mail body</source>
+            </trans-unit>
+
+            <trans-unit id="field.sender_custom">
+                <source>Use custom sender?</source>
+            </trans-unit>
+            <trans-unit id="field.sender_default">
+                <source>Current sender</source>
+            </trans-unit>
+            <trans-unit id="field.sender">
+                <source>Sender</source>
+            </trans-unit>
+
+            <trans-unit id="field.send_to">
+                <source>Send to</source>
+            </trans-unit>
+            <trans-unit id="field.send_to_provided">
+                <source>Send to (provided by the event)</source>
+            </trans-unit>
+            <trans-unit id="field.send_cc">
+                <source>Send copy to</source>
+            </trans-unit>
+            <trans-unit id="field.send_cc_provided">
+                <source>Send copy to (provided by the event)</source>
+            </trans-unit>
+            <trans-unit id="field.send_bcc">
+                <source>Send blind copy to</source>
+            </trans-unit>
+            <trans-unit id="field.send_bcc_provided">
+                <source>Send blind copy to (provided by the event)</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

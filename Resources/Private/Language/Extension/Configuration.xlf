@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+            <!--#################################-->
+            <!--###  EXTENSION CONFIGURATION  ###-->
+            <!--#################################-->
+
+            <trans-unit id="dispatch.graceful_mode">
+                <source>Graceful mode: If this mode is activated, the errors thrown during the dispatch of a notification will be catch. Please note that this feature should be used with caution; if you activate it, you should consider setting up a log service or something else to prevent losing all data related to the notification (see `\CuyZ\Notiz\Event\Runner\EventRunner::SIGNAL_EVENT_DISPATCH_ERROR`).</source>
+            </trans-unit>
+            <trans-unit id="events.typo3">
+                <source>Enable TYPO3 events: Will load all TYPO3 related events that can be used to dispatch notifications.</source>
+            </trans-unit>
+            <trans-unit id="toolbar.enable">
+                <source>Enable backend toolbar: Will add a toolbar to the header of the TYPO3 backend.</source>
+            </trans-unit>
+            <trans-unit id="toolbar.index">
+                <source>Toolbar index: Position index for the tool bar. Must be between 0 (left position) and 100 (right position).</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

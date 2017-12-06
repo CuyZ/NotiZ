@@ -1,0 +1,58 @@
+config {
+    tx_notiz {
+        eventGroups {
+            /*
+             * List of events that are part of the TYPO3 core and may be fired
+             * in any default TYPO3 instance.
+             */
+            typo3 {
+                label = TYPO3
+
+                events {
+                    /*
+                     * EXTENSION INSTALLED
+                     * -------------------
+                     *
+                     * Event firing whenever a TYPO3 extension is installed.
+                     */
+                    extensionInstalled {
+                        label = Event/TYPO3/ExtensionInstalled:title
+
+                        className = CuyZ\Notiz\Domain\Event\TYPO3\ExtensionInstalledEvent
+
+                        connection {
+                            type = signal
+
+                            className = TYPO3\CMS\Extensionmanager\Service\ExtensionManagementService
+                            name = hasInstalledExtensions
+                        }
+                    }
+
+                    /*
+                     * CACHES CLEARED
+                     * --------------
+                     *
+                     * Event firing whenever the TYPO3 caches are cleared.
+                     */
+                    cachesCleared {
+                        label = Event/TYPO3/CacheCleared:title
+
+                        className = CuyZ\Notiz\Domain\Event\TYPO3\CachesClearedEvent
+
+                        configuration {
+                            flexForm {
+                                file = EXT:notiz/Configuration/FlexForm/Event/TYPO3/CachesClearedEventFlexForm.xml
+                            }
+                        }
+
+                        connection {
+                            type = hook
+
+                            path = t3lib/class.t3lib_tcemain.php|clearCachePostProc
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

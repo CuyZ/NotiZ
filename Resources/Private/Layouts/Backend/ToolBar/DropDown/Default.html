@@ -1,0 +1,59 @@
+<h3 class="dropdown-headline">
+    <f:render section="BodyTitle" />
+</h3>
+
+<hr />
+
+<f:if condition="{result.flattenedErrors}">
+    <f:then>
+        <p class="dropdown-text">
+            <span class="text-danger">
+                <f:render section="BodyErrorsDescription" />
+            </span>
+        </p>
+
+        <hr />
+
+        <p class="dropdown-text">
+            <f:render section="BodyErrorsLink" />
+        </p>
+    </f:then>
+    <f:else>
+        <f:if condition="{filledNotifications}">
+            <f:then>
+                <p class="dropdown-text">
+                    <f:render section="BodyDescriptionNotification" />
+                </p>
+
+                <div class="dropdown-table">
+                    <f:for each="{filledNotifications}" as="notification">
+                        <div class="dropdown-table-row">
+                            <div class="dropdown-table-column dropdown-table-icon">
+                                <f:render section="BodyNotificationIcon" arguments="{notification: notification}" />
+                            </div>
+                            <div class="dropdown-table-column dropdown-table-title">
+                                <f:render section="BodyNotificationIdentifier" arguments="{notification: notification}" />
+                            </div>
+                            <div class="dropdown-table-column dropdown-table-value">
+                                <f:render section="BodyNotificationLabel" arguments="{notification: notification}" />
+                            </div>
+                        </div>
+                    </f:for>
+                </div>
+            </f:then>
+            <f:else>
+                <p class="dropdown-text">
+                    <span class="text-warning">
+                        <f:render section="BodyDescriptionNoNotification" />
+                    </span>
+                </p>
+            </f:else>
+        </f:if>
+
+        <hr />
+
+        <p class="dropdown-text">
+            <f:render section="BodyDefinitionLink" />
+        </p>
+    </f:else>
+</f:if>

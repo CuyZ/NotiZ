@@ -1,0 +1,10 @@
+# cat=basic/enable; type=boolean; label=LLL:EXT:notiz/Resources/Private/Language/Extension/Configuration.xlf:dispatch.graceful_mode
+dispatch.graceful_mode = 0
+
+# cat=events/enable; type=boolean; label=LLL:EXT:notiz/Resources/Private/Language/Extension/Configuration.xlf:events.typo3
+events.typo3 = 1
+
+# cat=toolbar/toolbar; type=boolean; label=LLL:EXT:notiz/Resources/Private/Language/Extension/Configuration.xlf:toolbar.enable
+toolbar.enable = 1
+# cat=toolbar/toolbar; type=int+; label=LLL:EXT:notiz/Resources/Private/Language/Extension/Configuration.xlf:toolbar.index
+toolbar.index = 50
