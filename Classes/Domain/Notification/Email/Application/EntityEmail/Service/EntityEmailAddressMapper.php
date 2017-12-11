@@ -243,9 +243,7 @@ class EntityEmailAddressMapper
             if (empty($recipient['name'])) {
                 $emails[] = $recipient['email'];
             } else {
-                $emails[] = [
-                    $recipient['email'] => $recipient['name'],
-                ];
+                $emails[$recipient['email']] = $recipient['name'];
             }
         }
 
