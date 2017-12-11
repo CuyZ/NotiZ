@@ -214,7 +214,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
                 throw ClassNotFoundException::notificationSettingsClassNotFound($settingsClassName);
             }
 
-            if (!class_implements($settingsClassName, NotificationSettings::class)) {
+            if (!in_array(NotificationSettings::class, class_implements($settingsClassName))) {
                 throw InvalidClassException::notificationSettingsMissingInterface($settingsClassName);
             }
 

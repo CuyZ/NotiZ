@@ -86,9 +86,9 @@ class Hook extends AbstractDefinitionComponent implements Connection
     }
 
     /**
-     * @param Closure $closure
+     * @param Closure|string $closure
      */
-    protected function injectHookInGlobalArray(Closure $closure)
+    protected function injectHookInGlobalArray($closure)
     {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'] = ArrayUtility::setValueByPath(
             $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'],
@@ -99,9 +99,9 @@ class Hook extends AbstractDefinitionComponent implements Connection
     }
 
     /**
-     * @param Closure $closure
+     * @param Closure|string $closure
      */
-    protected function injectHookInFrontendController(Closure $closure)
+    protected function injectHookInFrontendController($closure)
     {
         $tsfe = $this->getTypoScriptFrontendController();
 

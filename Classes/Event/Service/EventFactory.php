@@ -61,7 +61,7 @@ class EventFactory implements SingletonInterface
             throw ClassNotFoundException::eventClassNotFound($className);
         }
 
-        if (!class_implements($className, Event::class)) {
+        if (!in_array(Event::class, class_implements($className))) {
             throw InvalidClassException::eventHasMissingInterface($className);
         }
 

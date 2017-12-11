@@ -21,7 +21,7 @@ use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
-use TYPO3\CMS\Scheduler\Scheduler;
+use TYPO3\CMS\Scheduler\Scheduler as CoreScheduler;
 use TYPO3\CMS\Scheduler\Task\AbstractTask;
 
 /**
@@ -31,7 +31,7 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
 class SchedulerService implements SingletonInterface
 {
     /**
-     * @var Scheduler
+     * @var CoreScheduler
      */
     protected $scheduler;
 
@@ -40,7 +40,7 @@ class SchedulerService implements SingletonInterface
      */
     public function __construct()
     {
-        $this->scheduler = GeneralUtility::makeInstance(Scheduler::class);
+        $this->scheduler = GeneralUtility::makeInstance(CoreScheduler::class);
     }
 
     /**
