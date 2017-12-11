@@ -16,6 +16,7 @@
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\GlobalRecipients;
 
 use CuyZ\Notiz\Definition\Tree\AbstractDefinitionComponent;
+use CuyZ\Notiz\Service\StringService;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessor;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessorInterface;
 use Romm\ConfigurationObject\Traits\ConfigurationObject\StoreArrayIndexTrait;
@@ -92,17 +93,11 @@ class Recipient extends AbstractDefinitionComponent implements DataPreProcessorI
             ? $data
             : [];
 
-        if (preg_match('#([^<]+) <([^>]+)>#', $data['recipient'], $matches)) {
-            $name = $matches[1];
-            $email = $matches[2];
-        } else {
-            $name = null;
-            $email = $data['recipient'];
-        }
+        $formattedEmail = StringService::get()->formatEmailAddress($data['recipient']);
 
         $processor->setData([
-            'email' => $email,
-            'name' => $name,
+            'email' => $formattedEmail['email'],
+            'name' => $formattedEmail['name'],
             'rawValue' => $data['recipient'],
         ]);
     }

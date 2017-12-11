@@ -20,6 +20,7 @@ use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNoti
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\EntityEmailSettings;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\GlobalRecipients\Recipient;
 use CuyZ\Notiz\Domain\Property\Email;
+use CuyZ\Notiz\Service\StringService;
 
 class EntityEmailAddressMapper
 {
@@ -151,27 +152,9 @@ class EntityEmailAddressMapper
 
     /**
      * This method takes an array of recipient strings and returns them as
-     * arrays.
+     * formatted email list arrays.
      *
-     * The format can be:
-     *
-     * - `John Smith <john.smith@example.com>`
-     * - `jane.smith@example.com`
-     *
-     * It will return an array of arrays:
-     *
-     * ```
-     * [
-     *     [
-     *         'email' => 'john.smith@example.com',
-     *         'name' => 'John Smith'
-     *     ],
-     *     [
-     *         'email' => 'jane.smith@example.com',
-     *         'name' => null
-     *     ]
-     * ]
-     * ```
+     * @see \CuyZ\Notiz\Service\StringService::formatEmailAddress
      *
      * @param array $recipients
      * @return array
@@ -179,17 +162,7 @@ class EntityEmailAddressMapper
     protected function parseRecipientsStrings(array $recipients)
     {
         return array_map(
-            function ($recipient) {
-                if (preg_match('#([^<]+) <([^>]+)>#', $recipient, $matches)) {
-                    $name = $matches[1];
-                    $email = $matches[2];
-                } else {
-                    $name = null;
-                    $email = $recipient;
-                }
-
-                return compact('name', 'email');
-            },
+            [StringService::get(), 'formatEmailAddress'],
             $recipients
         );
     }
