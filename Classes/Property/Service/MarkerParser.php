@@ -1,5 +1,6 @@
 <?php
-/**
+
+/*
  * Copyright (C) 2017
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
