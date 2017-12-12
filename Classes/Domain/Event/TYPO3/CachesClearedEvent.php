@@ -27,7 +27,7 @@ class CachesClearedEvent extends AbstractEvent
     /**
      * @label Event/TYPO3/CacheCleared:marker.cache_command
      * @marker
-
+     *
      * @var string
      */
     protected $cacheCommand;

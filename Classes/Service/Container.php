@@ -41,7 +41,7 @@ class Container implements SingletonInterface
 
     /**
      * @param string $className
-     * @param array ...$arguments
+     * @param mixed ...$arguments
      * @return object
      */
     public static function get($className, ...$arguments)
