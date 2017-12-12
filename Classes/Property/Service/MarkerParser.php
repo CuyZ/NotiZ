@@ -24,7 +24,7 @@ use CuyZ\Notiz\Domain\Property\Marker;
 class MarkerParser
 {
     /**
-     * @param $string
+     * @param string $string
      * @param Marker[] $markers
      * @return string
      */
