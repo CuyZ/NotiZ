@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2017
  * Nathan Boiron <nathan.boiron@gmail.com>
@@ -17,5 +18,4 @@ namespace CuyZ\Notiz\Notification\Settings;
 
 class EmptyNotificationSettings implements NotificationSettings
 {
-
 }
