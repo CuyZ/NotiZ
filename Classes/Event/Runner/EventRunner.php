@@ -38,11 +38,6 @@ class EventRunner
     const SIGNAL_EVENT_DISPATCH_ERROR = 'eventDispatchError';
 
     /**
-     * @var callable
-     */
-    protected $callable;
-
-    /**
      * @var EventDefinition
      */
     protected $eventDefinition;
@@ -56,6 +51,16 @@ class EventRunner
      * @var ExtensionConfigurationService
      */
     protected $extensionConfigurationService;
+
+    /**
+     * @var NotificationDispatcher
+     */
+    protected $notificationDispatcher;
+
+    /**
+     * @var EventFactory
+     */
+    protected $eventFactory;
 
     /**
      * @param EventDefinition $eventDefinition
@@ -74,30 +79,36 @@ class EventRunner
         $this->eventDefinition = $eventDefinition;
         $this->signalDispatcher = $signalDispatcher;
         $this->extensionConfigurationService = $extensionConfigurationService;
+        $this->notificationDispatcher = $notificationDispatcher;
+        $this->eventFactory = $eventFactory;
+    }
 
-        $this->callable = function (...$arguments) use ($eventFactory, $eventDefinition, $notificationDispatcher) {
-            $notifications = $notificationDispatcher->fetchNotifications($eventDefinition);
+    /**
+     * @param mixed ...$arguments
+     */
+    public function process(...$arguments)
+    {
+        $notifications = $this->notificationDispatcher->fetchNotifications($this->eventDefinition);
 
-            foreach ($notifications as $notification => $dispatchCallback) {
-                $event = $eventFactory->create($eventDefinition, $notification);
-                $doDispatch = true;
+        foreach ($notifications as $notification => $dispatchCallback) {
+            $event = $this->eventFactory->create($this->eventDefinition, $notification);
+            $doDispatch = true;
 
-                if (is_callable([$event, 'run'])) {
-                    try {
-                        /** @noinspection PhpUndefinedMethodInspection */
-                        $event->run(...$arguments);
-                    } catch (CancelEventDispatch $exception) {
-                        $doDispatch = false;
-                    }
+            if (is_callable([$event, 'run'])) {
+                try {
+                    /** @noinspection PhpUndefinedMethodInspection */
+                    $event->run(...$arguments);
+                } catch (CancelEventDispatch $exception) {
+                    $doDispatch = false;
                 }
-
-                if ($doDispatch) {
-                    $this->dispatchEvent($dispatchCallback, $event, $notification);
-                }
-
-                unset($event);
             }
-        };
+
+            if ($doDispatch) {
+                $this->dispatchEvent($dispatchCallback, $event, $notification);
+            }
+
+            unset($event);
+        }
     }
 
     /**
@@ -152,7 +163,7 @@ class EventRunner
      */
     public function getCallable()
     {
-        return $this->callable;
+        return [$this, 'process'];
     }
 
     /**
@@ -161,5 +172,20 @@ class EventRunner
     public function getEventDefinition()
     {
         return $this->eventDefinition;
+    }
+
+    /**
+     * This object should never be serialized, because it contains services that
+     * can have properties filled with closures (a closure can't be serialized).
+     *
+     * We need to make sure it won't happen, because there are cases where TYPO3
+     * can serialize this object, because the TYPO3 slot dispatcher contains a
+     * reference to it; if a closure is registered, an exception is thrown.
+     *
+     * @return array
+     */
+    public function __sleep()
+    {
+        return [];
     }
 }
