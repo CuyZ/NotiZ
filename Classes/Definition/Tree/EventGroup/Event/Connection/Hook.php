@@ -101,6 +101,8 @@ class Hook extends AbstractDefinitionComponent implements Connection
 
     /**
      * @param Closure|string $closure
+     *
+     * @deprecated Must be removed when TYPO3 v7 is not supported anymore.
      */
     protected function injectHookInFrontendController($closure)
     {

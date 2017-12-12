@@ -60,7 +60,7 @@ class Signal extends AbstractDefinitionComponent implements Connection
         $signalSlotDispatcher->connect(
             $this->className,
             $this->name,
-            $eventRunner->getCallable()
+            ...$eventRunner->getCallable()
         );
     }
 

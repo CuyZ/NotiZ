@@ -59,4 +59,44 @@ class StringService implements SingletonInterface
             $content
         );
     }
+
+    /**
+     * Takes an email address that can have the following format:
+     *
+     * - `John Smith <john.smith@example.com>`
+     * - `jane.smith@example.com`
+     *
+     * It will return an array:
+     *
+     * ```
+     * // `John Smith <john.smith@example.com>` becomes :
+     * [
+     *     'email' => 'john.smith@example.com',
+     *     'name' => 'John Smith'
+     * ]
+     *
+     * // `jane.smith@example.com` becomes:
+     * [
+     *     'email' => 'jane.smith@example.com',
+     *     'name' => null
+     * ]
+     * ```
+     *
+     * @param string $email
+     * @return array
+     */
+    public function formatEmailAddress($email)
+    {
+        if (preg_match('#([^<]+) <([^>]+)>#', $email, $matches)) {
+            return [
+                'name' => $matches[1],
+                'email' => $matches[2],
+            ];
+        } else {
+            return [
+                'name' => null,
+                'email' => $email,
+            ];
+        }
+    }
 }
