@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2017
  * Nathan Boiron <nathan.boiron@gmail.com>
@@ -142,7 +143,7 @@ class LocalizationService implements SingletonInterface
     protected function getPossiblePaths($file, $key)
     {
         return array_map(
-            function($extensionKey) use ($file, $key) {
+            function ($extensionKey) use ($file, $key) {
                 return 'LLL:EXT:' . $extensionKey . '/Resources/Private/Language/' . $file . '.xlf:' . $key;
             },
             $this->extensionKeys
