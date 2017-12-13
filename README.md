@@ -5,6 +5,7 @@
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Software License][ico-license]](LICENSE.md)
+[![Scrutinizer Code Quality][ico-scrutinizer]][link-scrutinizer]
 
 > :heavy_exclamation_mark: *This library has been developed for ![TYPO3](Documentation/Images/TYPO3.svg)[TYPO3 CMS](https://typo3.org).*
 
@@ -37,6 +38,8 @@ See [LICENSE](LICENSE.MD) for more information.
 [ico-version]: https://img.shields.io/packagist/v/cuyz/notiz.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/cuyz/notiz.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-GPL3-brightgreen.svg?style=flat-square
+[ico-scrutinizer]: https://scrutinizer-ci.com/g/CuyZ/NotiZ/badges/quality-score.png?b=master
 
 [link-packagist]: https://packagist.org/packages/cuyz/notiz
 [link-downloads]: https://packagist.org/packages/cuyz/notiz
+[link-scrutinizer]: https://scrutinizer-ci.com/g/CuyZ/NotiZ/?branch=master
