@@ -225,6 +225,15 @@ HTML;
     }
 
     /**
+     * @param array $array
+     * @param $label
+     */
+    protected function appendOptionGroup(array &$array, $label)
+    {
+        array_unshift($array, ['label' => "––– $label –––", 'value' => '--div--']);
+    }
+
+    /**
      * @return string
      */
     public function getNotificationIconPath()
