@@ -22,7 +22,9 @@ use CuyZ\Notiz\Definition\Tree\Definition;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\EntityEmailSettings;
 use CuyZ\Notiz\Domain\Property\Marker;
+use CuyZ\Notiz\Event\Event;
 use CuyZ\Notiz\Property\Service\MarkerParser;
+use CuyZ\Notiz\Service\StringService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
@@ -39,6 +41,11 @@ class EntityEmailTemplateBuilder
     protected $notificationSettings;
 
     /**
+     * @var Event
+     */
+    protected $event;
+
+    /**
      * @var Definition
      */
     protected $definition;
@@ -49,6 +56,11 @@ class EntityEmailTemplateBuilder
     protected $markerParser;
 
     /**
+     * @var StringService
+     */
+    protected $stringService;
+
+    /**
      * @var Marker[]
      */
     protected $markers = [];
@@ -57,14 +69,18 @@ class EntityEmailTemplateBuilder
      * @param Payload $payload
      * @param DefinitionService $definitionService
      * @param MarkerParser $markerParser
+     * @param StringService $stringService
      */
-    public function __construct(Payload $payload, DefinitionService $definitionService, MarkerParser $markerParser)
+    public function __construct(Payload $payload, DefinitionService $definitionService, MarkerParser $markerParser, StringService $stringService)
     {
         $this->notification = $payload->getNotification();
         $this->notificationSettings = $payload->getNotificationDefinition()->getSettings();
 
+        $this->event = $payload->getEvent();
+
         $this->definition = $definitionService->getDefinition();
         $this->markerParser = $markerParser;
+        $this->stringService = $stringService;
 
         $this->markers = $payload->getEvent()->getProperties(Marker::class);
     }
@@ -91,11 +107,14 @@ class EntityEmailTemplateBuilder
         $viewSettings = $this->notificationSettings->getView();
 
         $view->setLayoutRootPaths($viewSettings->getLayoutRootPaths());
+        $view->setTemplateRootPaths($viewSettings->getTemplateRootPaths());
         $view->setPartialRootPaths($viewSettings->getPartialRootPaths());
 
-        $view->setTemplatePathAndFilename(
-            GeneralUtility::getFileAbsFileName('EXT:notiz/Resources/Private/Templates/Mail/Default.html')
-        );
+        $view->setTemplate($this->getTemplatePath());
+        
+        if (!$view->hasTemplate()) {
+            $view->setTemplate('Default');
+        }
 
         $layout = $viewSettings->getLayout($this->notification->getLayout());
 
@@ -109,5 +128,25 @@ class EntityEmailTemplateBuilder
         $view->assign('markers', $this->markers);
 
         return $view->render();
+    }
+
+    /**
+     * Returns the calculated template path, based on the identifiers of both
+     * the dispatched event and its group. The identifiers will be sanitized to
+     * match the UpperCamelCase format.
+     *
+     * For instance, the template path for the event `myEvent` from the group
+     * `my_company` will be located at `MyCompany/MyEvent.html`.
+     *
+     * @return string
+     */
+    protected function getTemplatePath()
+    {
+        $eventDefinition = $this->event->getDefinition();
+
+        $groupPath = $this->stringService->upperCamelCase($eventDefinition->getGroup()->getIdentifier());
+        $eventPath = $this->stringService->upperCamelCase($eventDefinition->getIdentifier());
+
+        return "$groupPath/$eventPath";
     }
 }

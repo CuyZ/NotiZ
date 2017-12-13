@@ -90,10 +90,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
      */
     public function getFullIdentifier()
     {
-        /** @var EventGroup $eventGroup */
-        $eventGroup = $this->getFirstParent(EventGroup::class);
-
-        return $eventGroup->getIdentifier() . '.' . $this->identifier;
+        return $this->getGroup()->getIdentifier() . '.' . $this->identifier;
     }
 
     /**
@@ -126,6 +123,17 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     public function getConnection()
     {
         return $this->connection;
+    }
+
+    /**
+     * @return EventGroup
+     */
+    public function getGroup()
+    {
+        /** @var EventGroup $eventGroup */
+        $eventGroup = $this->getFirstParent(EventGroup::class);
+
+        return $eventGroup;
     }
 
     /**

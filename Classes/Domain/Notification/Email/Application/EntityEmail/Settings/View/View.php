@@ -36,6 +36,11 @@ class View extends AbstractDefinitionComponent implements DataPreProcessorInterf
     /**
      * @var array
      */
+    protected $templateRootPaths;
+
+    /**
+     * @var array
+     */
     protected $partialRootPaths;
 
     /**
@@ -76,6 +81,14 @@ class View extends AbstractDefinitionComponent implements DataPreProcessorInterf
     public function getLayoutRootPaths()
     {
         return $this->layoutRootPaths;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTemplateRootPaths()
+    {
+        return $this->templateRootPaths;
     }
 
     /**
