@@ -7,6 +7,7 @@
 [![Software License][ico-license]](LICENSE.md)
 [![Scrutinizer Code Quality][ico-scrutinizer]][link-scrutinizer]
 [![StyleCI check][ico-styleci]][link-styleci]
+[![Maintainability][ico-codeclimate]][link-codeclimate]
 
 > :heavy_exclamation_mark: *This library has been developed for ![TYPO3](Documentation/Images/TYPO3.svg)[TYPO3 CMS](https://typo3.org).*
 
@@ -41,8 +42,10 @@ See [LICENSE](LICENSE.MD) for more information.
 [ico-license]: https://img.shields.io/badge/license-GPL3-brightgreen.svg
 [ico-scrutinizer]: https://scrutinizer-ci.com/g/CuyZ/NotiZ/badges/quality-score.png?b=master
 [ico-styleci]: https://styleci.io/repos/113041297/shield?style=flat&branch=master
+[ico-codeclimate]: https://api.codeclimate.com/v1/badges/bee13dc7e268cb6ac7b9/maintainability
 
 [link-packagist]: https://packagist.org/packages/cuyz/notiz
 [link-downloads]: https://packagist.org/packages/cuyz/notiz
 [link-scrutinizer]: https://scrutinizer-ci.com/g/CuyZ/NotiZ/?branch=master
 [link-styleci]: https://styleci.io/repos/113041297
+[link-codeclimate]: https://codeclimate.com/github/CuyZ/NotiZ/maintainability
