@@ -106,6 +106,7 @@ class EntityEmailTemplateBuilder
 
         $view->assign('body', $body);
         $view->assign('layout', $layout->getPath());
+        $view->assign('markers', $this->markers);
 
         return $view->render();
     }
