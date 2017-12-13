@@ -35,9 +35,9 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 See [LICENSE](LICENSE.MD) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/cuyz/notiz.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/cuyz/notiz.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-GPL3-brightgreen.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/cuyz/notiz.svg
+[ico-downloads]: https://img.shields.io/packagist/dt/cuyz/notiz.svg
+[ico-license]: https://img.shields.io/badge/license-GPL3-brightgreen.svg
 [ico-scrutinizer]: https://scrutinizer-ci.com/g/CuyZ/NotiZ/badges/quality-score.png?b=master
 
 [link-packagist]: https://packagist.org/packages/cuyz/notiz
