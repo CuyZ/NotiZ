@@ -18,6 +18,7 @@ namespace CuyZ\Notiz\Service;
 
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class StringService implements SingletonInterface
 {
@@ -98,5 +99,14 @@ class StringService implements SingletonInterface
                 'email' => $email,
             ];
         }
+    }
+
+    /**
+     * @param string $string
+     * @return string
+     */
+    public function upperCamelCase($string)
+    {
+        return GeneralUtility::underscoredToUpperCamelCase(GeneralUtility::camelCaseToLowerCaseUnderscored($string));
     }
 }
