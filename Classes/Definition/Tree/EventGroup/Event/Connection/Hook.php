@@ -23,6 +23,7 @@ use CuyZ\Notiz\Event\Runner\EventRunnerContainer;
 use CuyZ\Notiz\Exception\ClassNotFoundException;
 use CuyZ\Notiz\Exception\WrongFormatException;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 class Hook extends AbstractDefinitionComponent implements Connection
@@ -83,7 +84,10 @@ class Hook extends AbstractDefinitionComponent implements Connection
         }
 
         $this->injectHookInGlobalArray($closure);
-        $this->injectHookInFrontendController($closure);
+
+        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')) {
+            $this->injectHookInFrontendController($closure);
+        }
     }
 
     /**
