@@ -144,7 +144,10 @@ class NotificationTcaService implements SingletonInterface
 
         // We check if the record already exists in the database...
         if (MathUtility::canBeInterpretedAsInteger($row['uid'])) {
-            $eventValue = $row['event'][0];
+            // @PHP7
+            $eventValue = is_array($row['event'])
+                ? $row['event'][0]
+                : $row['event'];
 
             list($eventGroupIdentifier, $eventIdentifier) = GeneralUtility::trimExplode('.', $eventValue);
 
