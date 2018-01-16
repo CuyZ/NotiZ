@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="de">
+        <header/>
+        <body>
+
+            <trans-unit id="title">
+                <target>Caches geleert</target>
+            </trans-unit>
+
+            <trans-unit id="flex_form.allowed_commands.label">
+                <target>Erlaubte Kommandos</target>
+            </trans-unit>
+
+            <trans-unit id="marker.cache_command">
+                <target>Name des Cache-Leeren-Kommandos (übliche Werte sind `system`, `page`, …).</target>
+            </trans-unit>
+            <trans-unit id="marker.page_uid">
+                <target>Wenn das ausgeführte Cache-Kommando `page` ist, enthält dieser Marker die UID der Seite, deren Cache geleert wurde.</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

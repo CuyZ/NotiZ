@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="de">
+        <header/>
+        <body>
+
+            <!--###########################################-->
+            <!--###  BACKEND MODULE - DEFINITION ERROR  ###-->
+            <!--###########################################-->
+
+            <trans-unit id="info_box.title">
+                <target>NotiZ Definitionsfehler</target>
+            </trans-unit>
+
+            <trans-unit id="info_box.error.header">
+                <target>Einer oder mehrere Definitionsfehler wurden gefunden.</target>
+            </trans-unit>
+            <trans-unit id="info_box.error.body">
+                <target>Sie müssen diese Fehler beheben, damit NotiZ korrekt funktioniert.</target>
+            </trans-unit>
+
+            <trans-unit id="info_box.exception.header">
+                <target>Während des Erstellungsprozesses für Definitionen ist ein PHP-Fehler aufgetreten.</target>
+            </trans-unit>
+            <trans-unit id="info_box.exception.body">
+                <target>Sie müssen diese Fehler beheben, damit NotiZ korrekt funktioniert. Haben Sie bereits:</target>
+            </trans-unit>
+            <trans-unit id="info_box.exception.body.help_1">
+                <target>die TYPO3-Caches geleert?</target>
+            </trans-unit>
+            <trans-unit id="info_box.exception.body.help_2">
+                <target>die TYPO3-Caches im Install Tool geleert?</target>
+            </trans-unit>
+            <trans-unit id="info_box.exception.body.help_3">
+                <target>den unten stehenden Fehler analysiert und versucht, ihn selbst zu beheben?</target>
+            </trans-unit>
+            <trans-unit id="info_box.exception.body.help_4">
+                <target><![CDATA[unter <a href="https://github.com/CuyZ/NotiZ/issues" target="_blank">https://github.com/CuyZ/NotiZ/issues</a> um Hilfe gebeten? Bitte geben Sie dabei so viele Informationen wie möglich an.]]></target>
+            </trans-unit>
+            <trans-unit id="info_box.exception.body.help_5">
+                <target>zum TYPO3-Gott gebetet?</target>
+            </trans-unit>
+
+            <trans-unit id="info_box.exception.details">
+                <target>Details zur Exception</target>
+            </trans-unit>
+            <trans-unit id="info_box.exception.details.code">
+                <target>Exception-Code</target>
+            </trans-unit>
+            <trans-unit id="info_box.exception.details.message">
+                <target>Exception-Nachricht</target>
+            </trans-unit>
+
+            <trans-unit id="info_box.exception.details_advanced">
+                <target>Detailinformationen</target>
+            </trans-unit>
+            <trans-unit id="info_box.exception.open_in_new_tab">
+                <target>Im neuen Tab öffnen</target>
+            </trans-unit>
+
+            <trans-unit id="errors_link.label">
+                <target>%s Fehler anzeigen</target>
+            </trans-unit>
+            <trans-unit id="errors_count">
+                <target>%s Fehler</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="de">
+        <header/>
+        <body>
+
+            <!--########################################-->
+            <!--###  BACKEND MODULE - TOOLBAR ERROR  ###-->
+            <!--########################################-->
+
+            <trans-unit id="exception">
+                <target>Ein Fehler ist aufgetreten, die Toolbar kann nicht angezeigt werden.</target>
+            </trans-unit>
+            <trans-unit id="exception.code">
+                <target>Exception-Code</target>
+            </trans-unit>
+            <trans-unit id="exception.message">
+                <target>Exception-Nachricht</target>
+            </trans-unit>
+
+            <trans-unit id="body.errors_description">
+                <target>Definitionsfehler wurden gefunden. Sie müssen diese Fehler beheben, damit NotiZ korrekt funktioniert. Klicken Sie auf den Button unten, um weitere Informationen zu erhalten.</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
