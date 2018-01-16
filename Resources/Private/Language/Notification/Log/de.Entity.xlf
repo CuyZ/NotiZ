@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="de">
+        <header/>
+        <body>
+            <!--######################################-->
+            <!--###     LOG NOTIFICATION RECORD    ###-->
+            <!--######################################-->
+            <trans-unit id="title">
+                <target>Log</target>
+            </trans-unit>
+
+            <!-- TABS -->
+            <trans-unit id="tab.log">
+                <target>Log-Konfiguration</target>
+            </trans-unit>
+
+            <!-- PALETTES -->
+            <trans-unit id="palette.content">
+                <target>Log-Meldung</target>
+            </trans-unit>
+            <trans-unit id="palette.levels">
+                <target>Log-Level</target>
+            </trans-unit>
+
+            <!-- FIELDS -->
+            <trans-unit id="field.logger">
+                <target>Logger</target>
+            </trans-unit>
+
+            <trans-unit id="field.message">
+                <target>Meldung</target>
+            </trans-unit>
+
+            <trans-unit id="field.level">
+                <target>Level</target>
+            </trans-unit>
+
+            <trans-unit id="field.levels_descriptions_title">
+                <target>Beschreibung der Levels</target>
+            </trans-unit>
+
+            <!-- Log levels descriptions -->
+            <trans-unit id="levels.more_info">
+                <target>Mehr Information zu den Levels</target>
+            </trans-unit>
+
+            <trans-unit id="level.DEBUG">
+                <target>Detaillierte Debug-Information</target>
+            </trans-unit>
+            <trans-unit id="level.INFO">
+                <target>Interessante Ereignisse (Benutzer loggt sich ein, SQL-Logs).</target>
+            </trans-unit>
+            <trans-unit id="level.NOTICE">
+                <target>Normale, aber wichtige Ereignisse</target>
+            </trans-unit>
+            <trans-unit id="level.WARNING">
+                <target>Außergewöhnliche Vorkommnisse, die keine Fehler sind (Nutzung einer API, die deprecated ist, falsche Nutzung einer API, unerwünschte Dinge, die aber nicht unbedingt falsch sind).</target>
+            </trans-unit>
+            <trans-unit id="level.ERROR">
+                <target>Laufzeitfehler, die keine sofortige Reaktion erfordern, aber geloggt und beobachtet werden sollten.</target>
+            </trans-unit>
+            <trans-unit id="level.CRITICAL">
+                <target>Kritische Zustände (Komponenten der Anwendungen nicht verfügbar, unerwartete Exception)</target>
+            </trans-unit>
+            <trans-unit id="level.ALERT">
+                <target>Sofortige Reaktion ist erforderlich (komplette Website ist down, Datenbank ist nicht verfügbar, etc…). Dies sollte die SMS-Benachrichtigung auslösen und Sie aufwecken.</target>
+            </trans-unit>
+            <trans-unit id="level.EMERGENCY">
+                <target>System ist unbenutzbar.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
