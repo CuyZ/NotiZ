@@ -87,6 +87,13 @@
             <trans-unit id="field.send_bcc_provided">
                 <target>Blindkopie senden an (bereitgestellt vom Ereignis)</target>
             </trans-unit>
+
+            <trans-unit id="field.recipients.event_recipients">
+                <target>Ereignis-Empfänger</target>
+            </trans-unit>
+            <trans-unit id="field.recipients.global_recipients">
+                <target>Globale Empfänger</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

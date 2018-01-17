@@ -21,7 +21,6 @@ use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\Global
 use CuyZ\Notiz\Domain\Property\Email;
 use CuyZ\Notiz\Notification\Service\NotificationTcaService;
 use CuyZ\Notiz\Service\LocalizationService;
-use TYPO3\CMS\Core\Utility\ArrayUtility;
 use CuyZ\Notiz\Notification\Settings\NotificationSettings;
 
 class EntityEmailTcaService extends NotificationTcaService
@@ -60,9 +59,17 @@ class EntityEmailTcaService extends NotificationTcaService
             $this->getNotificationSettings()->getGlobalRecipients()->getRecipients()
         );
 
-        ArrayUtility::mergeRecursiveWithOverrule($globalRecipients, $eventRecipients);
+        if (!empty($eventRecipients)) {
+            $this->appendOptionGroup($eventRecipients, LocalizationService::localize('Notification/Email/Entity:field.recipients.event_recipients'));
+        }
 
-        foreach ($globalRecipients as $recipient) {
+        if (!empty($globalRecipients)) {
+            $this->appendOptionGroup($globalRecipients, LocalizationService::localize('Notification/Email/Entity:field.recipients.global_recipients'));
+        }
+
+        $recipients = array_merge_recursive($eventRecipients, $globalRecipients);
+
+        foreach ($recipients as $recipient) {
             $parameters['items'][] = [
                 $recipient['label'],
                 $recipient['value'],
