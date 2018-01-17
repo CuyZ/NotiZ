@@ -35,12 +35,13 @@ config {
                         layouts {
                             htmlDefault {
                                 label = Notification/Email/Entity:definition.view.layout.default.label
-                                path = Mail/Html/Default
+                                path = Html/Default
                             }
                         }
 
-                        layoutRootPaths.0 = EXT:notiz/Resources/Private/Layouts/
-                        partialRootPaths.0 = EXT:notiz/Resources/Private/Partials/
+                        layoutRootPaths.0 = EXT:notiz/Resources/Private/Layouts/Mail/
+                        templateRootPaths.0 = EXT:notiz/Resources/Private/Templates/Mail/
+                        partialRootPaths.0 = EXT:notiz/Resources/Private/Partials/Mail/
                     }
                 }
             }

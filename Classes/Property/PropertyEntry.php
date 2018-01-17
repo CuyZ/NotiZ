@@ -126,4 +126,12 @@ abstract class PropertyEntry
     {
         $this->frozen = true;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getValue();
+    }
 }

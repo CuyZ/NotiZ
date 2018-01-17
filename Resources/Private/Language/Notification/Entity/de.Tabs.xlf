@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="de">
+        <header/>
+        <body>
+            <trans-unit id="tab.event">
+                <target>Ereignis</target>
+            </trans-unit>
+            <trans-unit id="tab.channel">
+                <target>Kanal</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

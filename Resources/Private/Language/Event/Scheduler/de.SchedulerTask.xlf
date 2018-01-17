@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="de">
+        <header/>
+        <body>
+
+            <!--#########################-->
+            <!--###  SCHEDULER TYPO3  ###-->
+            <!--#########################-->
+
+            <trans-unit id="flex_form.filter_tasks.label">
+                <target>Bestimmte Tasks auswählen?</target>
+            </trans-unit>
+            <trans-unit id="flex_form.filtered_tasks.label">
+                <target>Gefilterte Tasks</target>
+            </trans-unit>
+
+            <trans-unit id="flex_form.invalid_task">
+                <target>Ungültiger Task</target>
+            </trans-unit>
+
+            <!--#########################-->
+            <!--### EXECUTION FAILED  ###-->
+            <!--#########################-->
+
+            <trans-unit id="execution_failed.marker.exception">
+                <target>Die Nachricht der Exception, die während des Task-Durchlaufs geworfen wird.</target>
+            </trans-unit>
+
+            <!--#########################-->
+            <!--### EXECUTION DONE    ###-->
+            <!--#########################-->
+
+            <trans-unit id="execution_done.marker.result">
+                <target>Ergebnis des Task-Durchlaufs (sollte ein boolescher Wert sein).</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
