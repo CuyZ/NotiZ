@@ -87,6 +87,13 @@
             <trans-unit id="field.send_bcc_provided">
                 <source>Send blind copy to (provided by the event)</source>
             </trans-unit>
+
+            <trans-unit id="field.recipients.event_recipients">
+                <source>Event recipients</source>
+            </trans-unit>
+            <trans-unit id="field.recipients.global_recipients">
+                <source>Global recipients</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>
