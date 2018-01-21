@@ -14,5 +14,9 @@ In those records, you will have access to data specific to the selected event.
 
 NotiZ provides two types of notifications out of the box: [emails][email-notification] and [logs][log-notification].
 
+---
+
+[:books: Documentation index](../README.md)
+
 [email-notification]: Email-notification.md
 [log-notification]: Log-notification.md
