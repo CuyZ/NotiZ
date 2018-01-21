@@ -7,3 +7,7 @@ If this error occurs, you need to go into the Install Tool.
 Then, go in the `All configuration` menu and search for `setDBinit`.
 
 In the `[SYS][setDBinit]` textarea, put `SET SESSION sql_mode=''` and save.
+
+---
+
+[:books: Documentation index](README.md)

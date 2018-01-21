@@ -6,16 +6,6 @@ They can contain variables that will be made available in the dispatched
 notification.
 An event class is bound to either a TYPO3 signal or a hook.
 
-An event should extend `\CuyZ\Notiz\Event\AbstractEvent`.
-
-In addition to the required methods, the event must implement the `run` method.
-This method takes the signal/hook arguments as parameters.
-
-If you need a more specific implementation for your event, you can instead
-implement the interface `\CuyZ\Notiz\Event\Event`.
-
-Once your event is created, you will have to register it into NotiZ.
-
 ## Provided events
 
 NotiZ comes with several events out of the box. You can use them directly after
@@ -50,3 +40,7 @@ With this event, you will have access to the extension title, key, description a
 ## Create a custom event
 
 You can read the documentation on how to [create a custom event](./Create-a-custom-event.md).
+
+---
+
+[:books: Documentation index](../README.md)

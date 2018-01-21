@@ -1,6 +1,14 @@
 # Create a custom event
 
-Events are implemented using a class.
+An event is a class that should extend `\CuyZ\Notiz\Event\AbstractEvent`.
+
+In addition to the required methods, the event must implement the `run` method.
+This method takes the signal/hook arguments as parameters.
+
+If you need a more specific implementation for your event, you can instead
+implement the interface `\CuyZ\Notiz\Event\Event`.
+
+Once your event is created, you will have to register it into NotiZ.
 
 Here is an example event that will listen to a TYPO3 signal:
 
@@ -15,9 +23,9 @@ use Acme\MyExtension\Form\ContactForm;
 class ContactFormSentEvent extends AbstractEvent
 {
     /**
-     * @label LLL:EXT:my_extension/Resources/Private/Language/locallang.xlf:message
+     * @label The message sent by the user
      * @marker
-     * 
+     *
      * @var string
      */
     private $message;
@@ -25,7 +33,7 @@ class ContactFormSentEvent extends AbstractEvent
     /**
      * @label LLL:EXT:my_extension/Resources/Private/Language/locallang.xlf:name
      * @marker
-     * 
+     *
      * @var string
      */
     private $name;
@@ -77,3 +85,7 @@ config {
     }
 }
 ```
+
+---
+
+[:books: Documentation index](../README.md)

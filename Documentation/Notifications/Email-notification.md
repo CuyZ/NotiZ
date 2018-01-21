@@ -52,6 +52,16 @@ Some events provide dynamic recipient emails. For instance, a contact form
 asking for the user's email address can provide it as a recipient "User that
 filled the form".
 
+### Global recipients
+
+You can also define globally available recipients that you can then use in
+any of your notifications.
+
+They are configurable in TypoScript at the path:
+`config.tx_notiz.notifications.entityEmail.settings.globalRecipients`.
+
+This is usefull for recipients that are shared between several notifications.
+
 ![Recipients tab][tab-recipients]
 
 
@@ -62,6 +72,10 @@ The default sender is configurable in TypoScript at the path:
 You can also override it by notification.
 
 ![Sender tab][tab-sender]
+
+---
+
+[:books: Documentation index](../README.md)
 
 [tab-general]: /Documentation/Images/EmailNotification/email-general.png
 [tab-event]: /Documentation/Images/EmailNotification/email-event.png
