@@ -81,7 +81,7 @@ abstract class PropertyEntry
     }
 
     /**
-     * @param string $value
+     * @param mixed $value
      * @return $this
      *
      * @throws PropertyNotAccessibleException

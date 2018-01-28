@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Property\Service;
 
 use CuyZ\Notiz\Domain\Property\Marker;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
  * Helper class to parse markers and replace them in a given string.
@@ -30,10 +31,54 @@ class MarkerParser
      */
     public function replaceMarkers($string, array $markers)
     {
+        if (empty($markers)) {
+            return $string;
+        }
+
+        $aux = [];
+
+        // This will avoid looping on markers for each variable
+        foreach ($markers as $marker) {
+            $aux[$marker->getName()] = $marker;
+        }
+
+        $markers = $aux;
+
+        preg_match_all(
+            '/{
+                        (
+                            ([a-z]+[a-z0-1]*)           # The root variable
+                            (?:\.[a-z]+[a-z0-1]*)*      # The other parts
+                        )
+                    }/xi',
+            $string,
+            $matches
+        );
+
+        if (empty($matches[0])) {
+            return $string;
+        }
+
+        $identifiers = $matches[0];
+        $variables = $matches[1];
+        $roots = $matches[2];
+
         $replacePairs = [];
 
-        foreach ($markers as $marker) {
-            $replacePairs[$marker->getFormattedName()] = $marker->getValue();
+        foreach ($variables as $index => $variable) {
+            $identifier = $identifiers[$index];
+            $root = $roots[$index];
+            $marker = $markers[$root];
+
+            // We need to have the root name to allow the ObjectAccess class to
+            // retrieve the value.
+            $target = [
+                $root => $marker->getValue(),
+            ];
+
+            $value = ObjectAccess::getPropertyPath($target, $variable);
+
+            $replacePairs[$identifier] = $value;
         }
 
         return strtr($string, $replacePairs);
