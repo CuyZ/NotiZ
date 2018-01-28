@@ -35,6 +35,38 @@ class MarkerParser
             return $string;
         }
 
+        $markers = $this->keyMarkersByName($markers);
+        $matches = $this->matchMarkers($string);
+
+        if (empty($matches[0])) {
+            return $string;
+        }
+
+        list($identifiers, $variables, $roots) = $matches;
+
+        $replacePairs = [];
+
+        foreach ($variables as $index => $variable) {
+            $identifier = $identifiers[$index];
+            $root = $roots[$index];
+            $marker = $markers[$root];
+
+            $value = $this->getVariableValue($variable, $root, $marker);
+
+            $replacePairs[$identifier] = $value;
+        }
+
+        return strtr($string, $replacePairs);
+    }
+
+    /**
+     * This will set each marker's name as the array key
+     *
+     * @param array $markers
+     * @return array
+     */
+    private function keyMarkersByName(array $markers)
+    {
         $aux = [];
 
         // This will avoid looping on markers for each variable
@@ -42,8 +74,17 @@ class MarkerParser
             $aux[$marker->getName()] = $marker;
         }
 
-        $markers = $aux;
+        return $aux;
+    }
 
+    /**
+     * This method will find all markers in the string
+     *
+     * @param $string
+     * @return mixed
+     */
+    private function matchMarkers($string)
+    {
         preg_match_all(
             '/{
                         (
@@ -55,32 +96,23 @@ class MarkerParser
             $matches
         );
 
-        if (empty($matches[0])) {
-            return $string;
-        }
+        return $matches;
+    }
 
-        $identifiers = $matches[0];
-        $variables = $matches[1];
-        $roots = $matches[2];
+    /**
+     * @param string $variable
+     * @param string $root
+     * @param Marker $marker
+     * @return mixed
+     */
+    protected function getVariableValue($variable, $root, Marker $marker)
+    {
+        // We need to have the root name to allow the ObjectAccess class to
+        // retrieve the value.
+        $target = [
+            $root => $marker->getValue(),
+        ];
 
-        $replacePairs = [];
-
-        foreach ($variables as $index => $variable) {
-            $identifier = $identifiers[$index];
-            $root = $roots[$index];
-            $marker = $markers[$root];
-
-            // We need to have the root name to allow the ObjectAccess class to
-            // retrieve the value.
-            $target = [
-                $root => $marker->getValue(),
-            ];
-
-            $value = ObjectAccess::getPropertyPath($target, $variable);
-
-            $replacePairs[$identifier] = $value;
-        }
-
-        return strtr($string, $replacePairs);
+        return ObjectAccess::getPropertyPath($target, $variable);
     }
 }
