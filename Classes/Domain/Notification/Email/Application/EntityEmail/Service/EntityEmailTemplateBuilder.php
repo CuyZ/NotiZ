@@ -26,6 +26,7 @@ use CuyZ\Notiz\Event\Event;
 use CuyZ\Notiz\Property\Service\MarkerParser;
 use CuyZ\Notiz\Service\StringService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class EntityEmailTemplateBuilder
@@ -110,8 +111,15 @@ class EntityEmailTemplateBuilder
         $view->setTemplateRootPaths($viewSettings->getTemplateRootPaths());
         $view->setPartialRootPaths($viewSettings->getPartialRootPaths());
 
-        $view->setTemplate($this->getTemplatePath());
-        
+        try {
+            $view->setTemplate($this->getTemplatePath());
+        } catch (InvalidTemplateResourceException $exception) {
+            /**
+             * @deprecated This try/catch block can be removed when TYPO3 v7 is
+             *             not supported anymore.
+             */
+        }
+
         if (!$view->hasTemplate()) {
             $view->setTemplate('Default');
         }
