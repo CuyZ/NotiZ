@@ -37,6 +37,61 @@ In here you can configure the mail subject and body.
 Depending on the selected event, you have access to markers with dynamic values.
 These markers can be used in both the subject and the body.
 
+### Use a custom Fluid template
+
+By default, NotiZ uses the basic template located at 
+`EXT:notiz/Resources/Private/Templates/Mail/Default.html`.
+
+However, you may want to have more logic in the template for a given event. You 
+can easily override it, the only thing to do is to create a template file that 
+matches the event identifier (including the event group). The identifier needs 
+to be transformed to the UpperCamelCase syntax.
+
+For instance, let's take the example below:
+
+```typoscript
+config {
+    tx_notiz {
+        eventGroups {
+            contactEvents {
+                label = Events related to contact forms
+
+                events {
+                    messageSent {
+                        label = Contact form sent
+
+                        // Other stuf…
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+We can see the event `messageSent` that is inside the group `contactEvents`. If 
+we want to override the template for this event, a file named 
+`ContactEvents/MessageSent.html` must be created.
+
+Also remember to register the template paths to your extension. You can do so in
+the definition of the mail notification:
+
+```typoscript
+config {
+    tx_notiz {
+        notifications {
+            entityEmail {
+                view {
+                    layoutRootPaths.50 = EXT:my_extension/Resources/Private/Layouts/Mail/
+                    templateRootPaths.50 = EXT:my_extension/Resources/Private/Templates/Mail/
+                    partialRootPaths.50 = EXT:my_extension/Resources/Private/Partials/Mail/
+                }
+            }
+        }
+    }
+}
+```
+
 ![Configuration tab][tab-configuration]
 
 
