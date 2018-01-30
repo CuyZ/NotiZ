@@ -36,13 +36,12 @@ class MarkerParser
         }
 
         $markers = $this->keyMarkersByName($markers);
-        $matches = $this->matchMarkers($string);
 
-        if (empty($matches[0])) {
+        list($identifiers, $variables, $roots) = $this->matchMarkers($string);
+
+        if (empty($identifiers)) {
             return $string;
         }
-
-        list($identifiers, $variables, $roots) = $matches;
 
         $replacePairs = [];
 
@@ -81,17 +80,17 @@ class MarkerParser
      * This method will find all markers in the string
      *
      * @param $string
-     * @return mixed
+     * @return array
      */
     private function matchMarkers($string)
     {
         preg_match_all(
-            '/{
-                        (
-                            ([a-z]+[a-z0-1]*)           # The root variable
-                            (?:\.[a-z]+[a-z0-1]*)*      # The other parts
-                        )
-                    }/xi',
+    '/{
+                (
+                    ([a-z]+[a-z0-1]*)           # The root variable
+                    (?:\.[a-z]+[a-z0-1]*)*      # The other parts
+                )
+            }/xi',
             $string,
             $matches
         );
