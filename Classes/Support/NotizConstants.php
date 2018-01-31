@@ -78,5 +78,5 @@ final class NotizConstants
      *
      * @see \CuyZ\Notiz\Event\Event
      */
-    const DEFAULT_MARKER_FORMAT = '#%s#';
+    const DEFAULT_MARKER_FORMAT = '{%s}';
 }
