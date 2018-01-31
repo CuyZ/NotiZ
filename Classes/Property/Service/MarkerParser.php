@@ -85,12 +85,12 @@ class MarkerParser
     private function matchMarkers($string)
     {
         preg_match_all(
-    '/{
-                (
-                    ([a-z]+[a-z0-1]*)           # The root variable
-                    (?:\.[a-z]+[a-z0-1]*)*      # The other parts
-                )
-            }/xi',
+            '/{
+                        (
+                            ([a-z]+[a-z0-1]*)           # The root variable
+                            (?:\.[a-z]+[a-z0-1]*)*      # The other parts
+                        )
+                    }/xi',
             $string,
             $matches
         );
