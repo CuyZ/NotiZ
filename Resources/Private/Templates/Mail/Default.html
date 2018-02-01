@@ -1,10 +1,26 @@
-<html data-namespace-typo3-fluid="true"
-      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers">
+{namespace nz=CuyZ\Notiz\ViewHelpers}
 
 <f:layout name="{layout}"/>
 
-<f:section name="body">
-    {body->f:format.html()}
+--------------------------------------------------------------------------------
+The section below defines which slots can be used inside the `Body` section of
+this template.
+
+The following variables can be accessed within this section:
+
+ - {event} – Contains the event definition selected in the notification.
+ - {definition} – The full NotiZ definition.
+--------------------------------------------------------------------------------
+<f:section name="Slots">
+    <nz:slot.text name="Default"
+                      label="LLL:EXT:notiz/Resources/Private/Language/Notification/Email/Entity:field.body.slot.default" />
 </f:section>
 
-</html>
+--------------------------------------------------------------------------------
+The section below is used by the layout of this template. It will render the
+actual body of the template: the slots defined in the section above will be
+rendered here, after they have been processed with the marker replacement.
+--------------------------------------------------------------------------------
+<f:section name="Body">
+    <nz:slot.render name="Default" />
+</f:section>
