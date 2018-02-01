@@ -111,7 +111,7 @@ class LocalizationService implements SingletonInterface
         foreach ($possiblePaths as $possiblePath) {
             $value = $this->localizeInternal($possiblePath, $arguments);
 
-            if ($value) {
+            if ($value && $value !== $possiblePath) {
                 return $value;
             }
         }
