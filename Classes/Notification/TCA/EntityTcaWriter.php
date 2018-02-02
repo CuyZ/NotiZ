@@ -319,6 +319,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                     'renderType' => 'selectSingle',
                     'size' => 8,
                     'itemsProcFunc' => NotificationTcaService::class . '->getEventsList',
+                    'eval' => 'required',
                 ],
             ],
 
@@ -335,6 +336,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                     'type' => 'select',
                     'renderType' => 'selectSingle',
                     'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getChannelsList',
+                    'eval' => 'required',
                 ],
             ],
 
