@@ -17,12 +17,13 @@
 namespace CuyZ\Notiz\Property\Service;
 
 use CuyZ\Notiz\Domain\Property\Marker;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
  * Helper class to parse markers and replace them in a given string.
  */
-class MarkerParser
+class MarkerParser implements SingletonInterface
 {
     /**
      * @param string $string
