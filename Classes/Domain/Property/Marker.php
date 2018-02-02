@@ -38,9 +38,7 @@ class Marker extends PropertyEntry
     {
         return sprintf(
             NotizConstants::DEFAULT_MARKER_FORMAT,
-            strtoupper(
-                GeneralUtility::camelCaseToLowerCaseUnderscored($this->getName())
-            )
+            $this->getName()
         );
     }
 }
