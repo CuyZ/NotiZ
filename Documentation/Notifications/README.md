@@ -18,5 +18,5 @@ NotiZ provides two types of notifications out of the box: [emails][email-notific
 
 [:books: Documentation index](../README.md)
 
-[email-notification]: Email-notification.md
+[email-notification]: Email/README.md
 [log-notification]: Log-notification.md

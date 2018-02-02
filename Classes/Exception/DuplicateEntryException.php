@@ -26,6 +26,10 @@ class DuplicateEntryException extends NotizException
 
     const TAG_SERVICE_IDENTIFIER_DUPLICATION = 'The identifier `%s` is already used by the property `%s` (trying to assign it to the property `%s`).';
 
+    const SLOT_CONTAINER_DUPLICATION = 'A slot with the identifier `%s` was already added to the container.';
+
+    const MARKER_ALREADY_DEFINED = 'Trying to override an existing marker named `%s` to the slot `%s`.';
+
     /**
      * @param string $identifier
      * @param string $className
@@ -81,6 +85,33 @@ class DuplicateEntryException extends NotizException
             self::TAG_SERVICE_IDENTIFIER_DUPLICATION,
             1504168501,
             [$identifier, $propertyType, $assignedPropertyType]
+        );
+    }
+
+    /**
+     * @param string $name
+     * @return static
+     */
+    public static function slotContainerDuplication($name)
+    {
+        return self::makeNewInstance(
+            self::SLOT_CONTAINER_DUPLICATION,
+            1517344431,
+            [$name]
+        );
+    }
+
+    /**
+     * @param string $marker
+     * @param string $slot
+     * @return static
+     */
+    public static function markerAlreadyDefined($marker, $slot)
+    {
+        return self::makeNewInstance(
+            self::MARKER_ALREADY_DEFINED,
+            1517410553,
+            [$marker, $slot]
         );
     }
 }

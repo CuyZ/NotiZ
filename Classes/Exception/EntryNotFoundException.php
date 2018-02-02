@@ -42,6 +42,8 @@ class EntryNotFoundException extends NotizException
 
     const EVENT_CONNECTION_TYPE_MISSING = 'The property `type` must be filled with one of these values: `%s`.';
 
+    const SLOT_NOT_FOUND = 'The slot named `%s` was not found, please register it in the `Slots` section of your template.';
+
     /**
      * @param string $identifier
      * @return static
@@ -172,6 +174,19 @@ class EntryNotFoundException extends NotizException
             self::EVENT_CONNECTION_TYPE_MISSING,
             1509630193,
             [implode('`, `', $allowedTypes)]
+        );
+    }
+
+    /**
+     * @param string $name
+     * @return static
+     */
+    public static function slotNotFound($name)
+    {
+        return self::makeNewInstance(
+            self::SLOT_NOT_FOUND,
+            1517410382,
+            [$name]
         );
     }
 }

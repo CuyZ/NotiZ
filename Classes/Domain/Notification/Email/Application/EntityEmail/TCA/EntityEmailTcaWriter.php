@@ -23,6 +23,11 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     const EMAIL_LLL = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Email/Entity.xlf';
 
     /**
+     * @var EntityEmailTcaService
+     */
+    protected $service;
+
+    /**
      * @return string
      */
     protected function getNotificationTcaServiceClass()
@@ -123,7 +128,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                     'l10n_display' => 'defaultAsReadonly',
                     'config' => [
                         'type' => 'select',
-                        'itemsProcFunc' => EntityEmailTcaService::class . '->getLayoutList',
+                        'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getLayoutList',
                         'size' => 1,
                         'maxitems' => 1,
                         'eval' => 'required'
@@ -145,10 +150,14 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                 'body' => [
                     'exclude' => 1,
                     'label' => "$lll:field.body",
+                    'displayCond' => $this->service->getMailBodyDisplayCond(),
                     'config' => [
-                        'type' => 'text',
-                        'cols' => 40,
-                        'rows' => 15
+                        'type' => 'flex',
+                        'ds_pointerField' => 'event',
+                        'ds' => $this->service->getMailBodyFlexFormList(),
+                        'behaviour' => [
+                            'allowLanguageSynchronization' => true,
+                        ],
                     ]
                 ],
 
@@ -169,7 +178,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                     'displayCond' => 'FIELD:sender_custom:=:0',
                     'config' => [
                         'type' => 'user',
-                        'userFunc' => EntityEmailTcaService::class . '->getDefaultSender',
+                        'userFunc' => $this->getNotificationTcaServiceClass() . '->getDefaultSender',
                     ],
                 ],
 
@@ -204,10 +213,10 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                 'send_to_provided' => [
                     'exclude' => 1,
                     'label' => "$lll:field.send_to_provided",
-                    'displayCond' => 'USER:' . EntityEmailTcaService::class . '->shouldShowProvidedRecipientsSelect',
+                    'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->shouldShowProvidedRecipientsSelect',
                     'config' => [
                         'type' => 'select',
-                        'itemsProcFunc' => EntityEmailTcaService::class . '->getRecipientsList',
+                        'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getRecipientsList',
                         'renderType' => 'selectMultipleSideBySide',
                         'size' => 5,
                         'maxitems' => 128,
@@ -228,10 +237,10 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                 'send_cc_provided' => [
                     'exclude' => 1,
                     'label' => "$lll:field.send_cc_provided",
-                    'displayCond' => 'USER:' . EntityEmailTcaService::class . '->shouldShowProvidedRecipientsSelect',
+                    'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->shouldShowProvidedRecipientsSelect',
                     'config' => [
                         'type' => 'select',
-                        'itemsProcFunc' => EntityEmailTcaService::class . '->getRecipientsList',
+                        'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getRecipientsList',
                         'renderType' => 'selectMultipleSideBySide',
                         'size' => 5,
                         'maxitems' => 128,
@@ -252,10 +261,10 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                 'send_bcc_provided' => [
                     'exclude' => 1,
                     'label' => "$lll:field.send_bcc_provided",
-                    'displayCond' => 'USER:' . EntityEmailTcaService::class . '->shouldShowProvidedRecipientsSelect',
+                    'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->shouldShowProvidedRecipientsSelect',
                     'config' => [
                         'type' => 'select',
-                        'itemsProcFunc' => EntityEmailTcaService::class . '->getRecipientsList',
+                        'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getRecipientsList',
                         'renderType' => 'selectMultipleSideBySide',
                         'size' => 5,
                         'maxitems' => 128,

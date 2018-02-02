@@ -61,7 +61,7 @@ available markers.
 
 Here you can specify the email address to send the notification to.
 
-For more info on recipients see: [Email notifications](../Notifications/Email-notification.md#recipients)
+For more info on recipients see: [Email notifications](../Notifications/Email/README.md#recipients)
 
 ![Notification tab recipients][tab-recipients]
 
