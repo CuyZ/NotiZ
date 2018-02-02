@@ -28,7 +28,7 @@ $dispatcher->connect(
 
 Now you need to create the actual definition component service:
 
-> *`my_extension/Classes/DefinitionComponentService.php`*
+> *`my_extension/Classes/Service/DefinitionComponentService.php`*
 ```php
 <?php
 namespace Vendor\MyExtension\Service;
