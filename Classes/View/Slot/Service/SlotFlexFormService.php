@@ -73,12 +73,7 @@ class SlotFlexFormService implements SingletonInterface
      */
     public function getSlotViewFlexForm(SlotView $view)
     {
-        $hash = 'slots-' . sha1(serialize([
-                $view->getTemplatePathAndFilename(),
-                $view->getLayoutRootPaths(),
-                $view->getPartialRootPaths(),
-                $view->getEventDefinition()->getFullIdentifier()
-            ]));
+        $hash = $this->getViewCacheHash($view);
 
         if ($this->cacheService->has($hash)) {
             $flexForm = $this->cacheService->get($hash);
@@ -202,5 +197,19 @@ XML;
     </sheets>
 </T3DataStructure>
 XML;
+    }
+
+    /**
+     * @param SlotView $view
+     * @return string
+     */
+    protected function getViewCacheHash(SlotView $view)
+    {
+        return 'slots-' . sha1(serialize([
+                $view->getTemplatePathAndFilename(),
+                $view->getLayoutRootPaths(),
+                $view->getPartialRootPaths(),
+                $view->getEventDefinition()->getFullIdentifier()
+            ]));
     }
 }
