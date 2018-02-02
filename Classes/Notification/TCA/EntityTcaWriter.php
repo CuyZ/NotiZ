@@ -174,12 +174,16 @@ abstract class EntityTcaWriter implements SingletonInterface
             }
 
             if (isset($column['displayCond'])) {
-                $this->data['columns'][$key]['displayCond'] = [
-                    'AND' => [
-                        $condition,
-                        $column['displayCond'],
-                    ]
-                ];
+                if (isset($column['displayCond']['AND'])) {
+                    $this->data['columns'][$key]['displayCond']['AND'][] = $condition;
+                } else {
+                    $this->data['columns'][$key]['displayCond'] = [
+                        'AND' => [
+                            $condition,
+                            $column['displayCond'],
+                        ]
+                    ];
+                }
             } else {
                 $this->data['columns'][$key]['displayCond'] = $condition;
             }

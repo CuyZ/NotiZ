@@ -58,6 +58,9 @@
             <trans-unit id="field.body">
                 <target>Corps du mail</target>
             </trans-unit>
+            <trans-unit id="field.body.slot.default">
+                <source>Défaut</source>
+            </trans-unit>
 
             <trans-unit id="field.sender_custom">
                 <target>Utiliser un expéditeur personnalisé ?</target>

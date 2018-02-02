@@ -18,10 +18,11 @@ namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\
 
 use CuyZ\Notiz\Definition\Tree\AbstractDefinitionComponent;
 use CuyZ\Notiz\Exception\EntryNotFoundException;
+use CuyZ\Notiz\View\ViewPathsAware;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessor;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessorInterface;
 
-class View extends AbstractDefinitionComponent implements DataPreProcessorInterface
+class View extends AbstractDefinitionComponent implements ViewPathsAware, DataPreProcessorInterface
 {
     /**
      * @var \CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\View\Layout[]
