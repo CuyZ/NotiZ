@@ -6,7 +6,7 @@
 TAG_NAME=$1
 
 # Format "02 Feb 2018"
-CURRENT_DATE=`date +'%e %b %Y'`
+CURRENT_DATE=`date +'%d %b %Y'`
 
 # Fetches last tag that was added in git
 LAST_GIT_TAG=`git describe --tags --abbrev=0`
