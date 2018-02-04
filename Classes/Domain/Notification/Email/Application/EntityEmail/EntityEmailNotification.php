@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2017
+ * Copyright (C) 2018
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -21,6 +21,8 @@ use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\Entity
 use CuyZ\Notiz\Domain\Notification\Email\EmailNotification;
 use CuyZ\Notiz\Domain\Notification\EntityNotification;
 use CuyZ\Notiz\Notification\CustomSettingsNotification;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Service\FlexFormService;
 
 class EntityEmailNotification extends EntityNotification implements EmailNotification, CustomSettingsNotification
 {
@@ -88,6 +90,11 @@ class EntityEmailNotification extends EntityNotification implements EmailNotific
      * @var string
      */
     protected $body;
+
+    /**
+     * @var array
+     */
+    protected $bodySlots = [];
 
     /**
      * @return string
@@ -287,6 +294,21 @@ class EntityEmailNotification extends EntityNotification implements EmailNotific
     public function getBody()
     {
         return $this->body;
+    }
+
+    /**
+     * @return array
+     */
+    public function getBodySlots()
+    {
+        if (empty($this->bodySlots)) {
+            /** @var FlexFormService $flexFormService */
+            $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
+
+            $this->bodySlots = $flexFormService->convertFlexFormContentToArray($this->body);
+        }
+
+        return $this->bodySlots;
     }
 
     /**

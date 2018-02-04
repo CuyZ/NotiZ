@@ -37,8 +37,10 @@ In here you can configure the mail subject and body.
 Depending on the selected event, you have access to markers with dynamic values.
 These markers can be used in both the subject and the body.
 
-![Configuration tab][tab-configuration]
+The body may be customized for complex emails. See the chapter 
+“[Customize email body][customize-email-body]” for more information.
 
+![Configuration tab][tab-configuration]
 
 ## Recipients
 
@@ -60,7 +62,7 @@ any of your notifications.
 They are configurable in TypoScript at the path:
 `config.tx_notiz.notifications.entityEmail.settings.globalRecipients`.
 
-This is usefull for recipients that are shared between several notifications.
+This is useful for recipients that are shared between several notifications.
 
 ![Recipients tab][tab-recipients]
 
@@ -75,7 +77,9 @@ You can also override it by notification.
 
 ---
 
-[:books: Documentation index](../README.md)
+[:books: Documentation index](../../README.md)
+
+[customize-email-body]: Customize-email-body.md
 
 [tab-general]: /Documentation/Images/EmailNotification/email-general.png
 [tab-event]: /Documentation/Images/EmailNotification/email-event.png

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2017
+ * Copyright (C) 2018
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -38,9 +38,7 @@ class Marker extends PropertyEntry
     {
         return sprintf(
             NotizConstants::DEFAULT_MARKER_FORMAT,
-            strtoupper(
-                GeneralUtility::camelCaseToLowerCaseUnderscored($this->getName())
-            )
+            $this->getName()
         );
     }
 }

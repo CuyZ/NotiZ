@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2017
+ * Copyright (C) 2018
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -174,12 +174,16 @@ abstract class EntityTcaWriter implements SingletonInterface
             }
 
             if (isset($column['displayCond'])) {
-                $this->data['columns'][$key]['displayCond'] = [
-                    'AND' => [
-                        $condition,
-                        $column['displayCond'],
-                    ]
-                ];
+                if (isset($column['displayCond']['AND'])) {
+                    $this->data['columns'][$key]['displayCond']['AND'][] = $condition;
+                } else {
+                    $this->data['columns'][$key]['displayCond'] = [
+                        'AND' => [
+                            $condition,
+                            $column['displayCond'],
+                        ]
+                    ];
+                }
             } else {
                 $this->data['columns'][$key]['displayCond'] = $condition;
             }
@@ -315,6 +319,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                     'renderType' => 'selectSingle',
                     'size' => 8,
                     'itemsProcFunc' => NotificationTcaService::class . '->getEventsList',
+                    'eval' => 'required',
                 ],
             ],
 
@@ -331,6 +336,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                     'type' => 'select',
                     'renderType' => 'selectSingle',
                     'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getChannelsList',
+                    'eval' => 'required',
                 ],
             ],
 

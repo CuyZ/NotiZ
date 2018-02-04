@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2017
+ * Copyright (C) 2018
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -78,5 +78,5 @@ final class NotizConstants
      *
      * @see \CuyZ\Notiz\Event\Event
      */
-    const DEFAULT_MARKER_FORMAT = '#%s#';
+    const DEFAULT_MARKER_FORMAT = '{%s}';
 }

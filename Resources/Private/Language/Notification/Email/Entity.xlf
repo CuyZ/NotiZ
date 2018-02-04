@@ -58,6 +58,9 @@
             <trans-unit id="field.body">
                 <source>Mail body</source>
             </trans-unit>
+            <trans-unit id="field.body.slot.default">
+                <source>Default</source>
+            </trans-unit>
 
             <trans-unit id="field.sender_custom">
                 <source>Use custom sender?</source>

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2017
+ * Copyright (C) 2018
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -111,7 +111,7 @@ class LocalizationService implements SingletonInterface
         foreach ($possiblePaths as $possiblePath) {
             $value = $this->localizeInternal($possiblePath, $arguments);
 
-            if ($value) {
+            if ($value && $value !== $possiblePath) {
                 return $value;
             }
         }
