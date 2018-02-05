@@ -92,7 +92,8 @@ The following variables can be accessed within this section:
 --------------------------------------------------------------------------------
 <f:section name="Slots">
     <nz:slot.text name="FirstPart"
-                  label="First part" />
+                  label="First part"
+                  rte="true" />
 
     <nz:slot.input name="SingleFeed"
                    label="Feed" />
@@ -108,7 +109,9 @@ been processed with the marker replacement.
 You can access every marker defined by the event directly as Fluid variables.
 --------------------------------------------------------------------------------
 <f:section name="Body">
-    <nz:slot.render name="FirstPart" />
+    <f:format.html>
+        <nz:slot.render name="FirstPart" />
+    </f:format.html>
 
     <ul>
         <f:for each="{feeds}" as="feed">

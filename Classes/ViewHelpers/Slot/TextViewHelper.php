@@ -22,13 +22,29 @@ use CuyZ\Notiz\View\Slot\Application\TextSlot;
 class TextViewHelper extends SlotViewHelper
 {
     /**
+     * @inheritdoc
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+
+        $this->registerArgument('rte', 'bool', 'Should rich text be enabled?', false, false);
+        $this->registerArgument('rteMode', 'string', 'Mode of the RTE: can be a CKEditor preset or a RteHtmlArea configuration.', false);
+    }
+
+    /**
      * @return Slot
      */
     protected function getSlot()
     {
+        $rte = $this->arguments['rte'];
+        $rteMode = $this->arguments['rteMode'];
+
         return new TextSlot(
             $this->getSlotName(),
-            $this->getSlotLabel()
+            $this->getSlotLabel(),
+            $rte,
+            $rteMode
         );
     }
 }

@@ -22,6 +22,10 @@
             <trans-unit id="field.markers.description">
                 <target>Ces marqueurs sont fournis par l'événement « %s ».</target>
             </trans-unit>
+
+            <trans-unit id="field.rte.ck_editor_preset_missing">
+                <target>Attention : le préréglage « %s » pour CKEditor n'a pas été configuré. Vous pouvez l'enregistrer en ajoutant une entrée dans `$GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']`.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -13,7 +13,8 @@ The following variables can be accessed within this section:
 --------------------------------------------------------------------------------
 <f:section name="Slots">
     <nz:slot.text name="Default"
-                      label="LLL:EXT:notiz/Resources/Private/Language/Notification/Email/Entity:field.body.slot.default" />
+                  label="LLL:EXT:notiz/Resources/Private/Language/Notification/Email/Entity:field.body.slot.default"
+                  rte="true" />
 </f:section>
 
 --------------------------------------------------------------------------------
@@ -22,5 +23,7 @@ actual body of the template: the slots defined in the section above will be
 rendered here, after they have been processed with the marker replacement.
 --------------------------------------------------------------------------------
 <f:section name="Body">
-    <nz:slot.render name="Default" />
+    <f:format.html>
+        <nz:slot.render name="Default" />
+    </f:format.html>
 </f:section>

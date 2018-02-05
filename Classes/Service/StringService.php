@@ -30,11 +30,12 @@ class StringService implements SingletonInterface
      * @see \CuyZ\Notiz\Service\StringService::doMark
      *
      * @param string $content
+     * @param string $replacement
      * @return string
      */
-    public static function mark($content)
+    public static function mark($content, $replacement = '<samp class="bg-info">$1</samp>')
     {
-        return self::get()->doMark($content);
+        return self::get()->doMark($content, $replacement);
     }
 
     /**
@@ -50,13 +51,14 @@ class StringService implements SingletonInterface
      * > Look at <samp class="bg-info">foo</samp> lorem ipsum...
      *
      * @param string $content
+     * @param string $replacement
      * @return string
      */
-    public function doMark($content)
+    public function doMark($content, $replacement)
     {
         return preg_replace(
             '/`([^`]+)`/',
-            '<samp class="bg-info">$1</samp>',
+            $replacement,
             $content
         );
     }

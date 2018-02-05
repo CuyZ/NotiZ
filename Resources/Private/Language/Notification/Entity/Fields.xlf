@@ -22,6 +22,10 @@
             <trans-unit id="field.markers.description">
                 <source>These markers are provided by the event “%s”.</source>
             </trans-unit>
+
+            <trans-unit id="field.rte.ck_editor_preset_missing">
+                <source>Warning: the CKEditor preset “%s” has not been registered. You can register it by adding an entry to `$GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']`.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

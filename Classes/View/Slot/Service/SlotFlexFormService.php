@@ -168,6 +168,8 @@ XML;
         <config>
             {$slot->getFlexFormConfiguration()}
         </config>
+        
+        {$slot->getFlexFormAdditionalConfiguration()}  
     </TCEforms>
 </{$slot->getName()}>
 XML;

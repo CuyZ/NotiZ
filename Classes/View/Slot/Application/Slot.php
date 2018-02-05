@@ -66,4 +66,12 @@ abstract class Slot
      * @return string
      */
     abstract public function getFlexFormConfiguration();
+
+    /**
+     * @return string
+     */
+    public function getFlexFormAdditionalConfiguration()
+    {
+        return '';
+    }
 }
