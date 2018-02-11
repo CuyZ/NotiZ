@@ -60,7 +60,7 @@ You can also define globally available recipients that you can then use in
 any of your notifications.
 
 They are configurable in TypoScript at the path:
-`config.tx_notiz.notifications.entityEmail.settings.globalRecipients`.
+`notiz.notifications.entityEmail.settings.globalRecipients`.
 
 This is useful for recipients that are shared between several notifications.
 
@@ -70,7 +70,7 @@ This is useful for recipients that are shared between several notifications.
 ## Sender
 
 The default sender is configurable in TypoScript at the path:
-`config.tx_notiz.notifications.entityEmail.settings.defaultSender`.
+`notiz.notifications.entityEmail.settings.defaultSender`.
 You can also override it by notification.
 
 ![Sender tab][tab-sender]

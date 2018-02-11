@@ -60,24 +60,22 @@ For example `$name` can be used as `#NAME#`.
 Events are registered in Typoscript:
 
 ```typoscript
-config {
-    tx_notiz {
-        eventGroups {
-            contactEvents {
-                label = Events related to contact forms
+notiz {
+    eventGroups {
+        contactEvents {
+            label = Events related to contact forms
 
-                events {
-                    messageSent {
-                        label = Contact form sent
+            events {
+                messageSent {
+                    label = Contact form sent
 
-                        className = Acme\MyExtension\Domain\Event\ContactFormSentEvent
+                    className = Acme\MyExtension\Domain\Event\ContactFormSentEvent
 
-                        connection {
-                            type = signal
+                    connection {
+                        type = signal
 
-                            className = Acme\MyExtension\Controller\ContactController
-                            name = sendMessage
-                        }
+                        className = Acme\MyExtension\Controller\ContactController
+                        name = sendMessage
                     }
                 }
             }

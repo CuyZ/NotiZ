@@ -1,15 +1,13 @@
-config {
-    tx_notiz {
-        notifications {
-            entityLog {
-                label = Notification/Log/Entity:title
+notiz {
+    notifications {
+        entityLog {
+            label = Notification/Log/Entity:title
 
-                className = CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\EntityLogNotification
+            className = CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\EntityLogNotification
 
-                iconPath = EXT:notiz/Resources/Public/Icon/Notification/notification-log-entity-typo3.svg
+            iconPath = EXT:notiz/Resources/Public/Icon/Notification/notification-log-entity-typo3.svg
 
-                channels < config.tx_notiz.channels.logs
-            }
+            channels < notiz.channels.logs
         }
     }
 }

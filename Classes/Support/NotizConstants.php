@@ -54,7 +54,7 @@ final class NotizConstants
     /**
      * Used to retrieve the FrontendCache instance.
      */
-    const CACHE_ID = 'notiz';
+    const CACHE_ID = self::EXTENSION_KEY;
 
     /**
      * Cache key used by the `configuration_object` API for NotiZ.
@@ -64,7 +64,7 @@ final class NotizConstants
     /**
      * Root node for all definitions.
      */
-    const DEFINITION_ROOT_PATH = 'config.tx_' . self::EXTENSION_KEY;
+    const DEFINITION_ROOT_PATH = self::EXTENSION_KEY;
 
     /**
      * Identifier for the administration backend module. Can be used for:

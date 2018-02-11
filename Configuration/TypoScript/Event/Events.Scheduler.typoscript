@@ -1,60 +1,58 @@
-config {
-    tx_notiz {
-        eventGroups {
-            scheduler {
-                label = LLL:EXT:scheduler/Resources/Private/Language/locallang_mod.xlf:mlang_labels_tablabel
+notiz {
+    eventGroups {
+        scheduler {
+            label = LLL:EXT:scheduler/Resources/Private/Language/locallang_mod.xlf:mlang_labels_tablabel
 
-                events {
-                    /*
-                    * Scheduler task was executed
-                    * ---------------------------
-                    *
-                    * Event firing when a scheduler task was executed without
-                    * error.
-                    */
-                    schedulerTaskWasExecuted {
-                        label = Event/Scheduler/SchedulerTaskWasExecuted:title
+            events {
+                /*
+                * Scheduler task was executed
+                * ---------------------------
+                *
+                * Event firing when a scheduler task was executed without
+                * error.
+                */
+                schedulerTaskWasExecuted {
+                    label = Event/Scheduler/SchedulerTaskWasExecuted:title
 
-                        className = CuyZ\Notiz\Domain\Event\Scheduler\SchedulerTaskWasExecutedEvent
+                    className = CuyZ\Notiz\Domain\Event\Scheduler\SchedulerTaskWasExecutedEvent
 
-                        configuration {
-                            flexForm {
-                                file = EXT:notiz/Configuration/FlexForm/Event/Scheduler/SchedulerTaskEventFlexForm.xml
-                            }
-                        }
-
-                        connection {
-                            type = signal
-
-                            className = CuyZ\Notiz\Service\Scheduler\Scheduler
-                            name = taskWasExecuted
+                    configuration {
+                        flexForm {
+                            file = EXT:notiz/Configuration/FlexForm/Event/Scheduler/SchedulerTaskEventFlexForm.xml
                         }
                     }
 
-                    /*
-                    * Scheduler task execution failed
-                    * -------------------------------
-                    *
-                    * Event firing when an exception/error was thrown during the
-                    * execution of a scheduler task.
-                    */
-                    schedulerTaskExecutionFailed {
-                        label = Event/Scheduler/SchedulerTaskExecutionFailed:title
+                    connection {
+                        type = signal
 
-                        className = CuyZ\Notiz\Domain\Event\Scheduler\SchedulerTaskExecutionFailedEvent
+                        className = CuyZ\Notiz\Service\Scheduler\Scheduler
+                        name = taskWasExecuted
+                    }
+                }
 
-                        configuration {
-                            flexForm {
-                                file = EXT:notiz/Configuration/FlexForm/Event/Scheduler/SchedulerTaskEventFlexForm.xml
-                            }
+                /*
+                * Scheduler task execution failed
+                * -------------------------------
+                *
+                * Event firing when an exception/error was thrown during the
+                * execution of a scheduler task.
+                */
+                schedulerTaskExecutionFailed {
+                    label = Event/Scheduler/SchedulerTaskExecutionFailed:title
+
+                    className = CuyZ\Notiz\Domain\Event\Scheduler\SchedulerTaskExecutionFailedEvent
+
+                    configuration {
+                        flexForm {
+                            file = EXT:notiz/Configuration/FlexForm/Event/Scheduler/SchedulerTaskEventFlexForm.xml
                         }
+                    }
 
-                        connection {
-                            type = signal
+                    connection {
+                        type = signal
 
-                            className = CuyZ\Notiz\Service\Scheduler\Scheduler
-                            name = taskExecutionFailed
-                        }
+                        className = CuyZ\Notiz\Service\Scheduler\Scheduler
+                        name = taskExecutionFailed
                     }
                 }
             }

@@ -22,7 +22,6 @@ use CuyZ\Notiz\Support\NotizConstants;
 use Romm\ConfigurationObject\ConfigurationObjectInstance;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser;
-use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Service\TypoScriptService;
 
@@ -125,8 +124,8 @@ class TypoScriptDefinitionSource implements DefinitionSource, SingletonInterface
 
         $definition = $this->typoScriptService->convertTypoScriptArrayToPlainArray($typoScriptParser->setup);
 
-        return ArrayUtility::isValidPath($definition, NotizConstants::DEFINITION_ROOT_PATH, '.')
-            ? ArrayUtility::getValueByPath($definition, NotizConstants::DEFINITION_ROOT_PATH, '.')
+        return isset($definition[NotizConstants::DEFINITION_ROOT_PATH])
+            ? $definition[NotizConstants::DEFINITION_ROOT_PATH]
             : [];
     }
 }
