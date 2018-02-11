@@ -93,7 +93,7 @@ notiz {
                  * the form, that will be available in the notifications
                  * markers.
                  */
-                copieSauvegardeSimulateur {
+                contactFormSent {
                     label = Contact form sent
 
                     className = MyVendor\MyExtension\Event\ContactFormSentEvent
