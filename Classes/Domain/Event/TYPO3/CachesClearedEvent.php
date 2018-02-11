@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Event\TYPO3;
 
-use CuyZ\Notiz\Event\AbstractEvent;
+use CuyZ\Notiz\Core\Event\AbstractEvent;
 use TYPO3\CMS\Core\Utility\MathUtility;
 
 /**

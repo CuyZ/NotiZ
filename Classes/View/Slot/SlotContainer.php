@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\View\Slot;
 
-use CuyZ\Notiz\Exception\DuplicateEntryException;
+use CuyZ\Notiz\Core\Exception\DuplicateEntryException;
 use CuyZ\Notiz\View\Slot\Application\Slot;
 
 class SlotContainer

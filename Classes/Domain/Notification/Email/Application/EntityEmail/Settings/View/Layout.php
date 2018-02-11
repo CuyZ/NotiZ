@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\View;
 
-use CuyZ\Notiz\Definition\Tree\AbstractDefinitionComponent;
+use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
 use CuyZ\Notiz\Service\LocalizationService;
 
 class Layout extends AbstractDefinitionComponent

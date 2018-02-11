@@ -16,9 +16,9 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings;
 
-use CuyZ\Notiz\Definition\Tree\AbstractDefinitionComponent;
+use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
+use CuyZ\Notiz\Core\Notification\Settings\NotificationSettings;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\View\View;
-use CuyZ\Notiz\Notification\Settings\NotificationSettings;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessor;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessorInterface;
 

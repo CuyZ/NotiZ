@@ -1,12 +1,12 @@
 # Create a custom event
 
-An event is a class that should extend `\CuyZ\Notiz\Event\AbstractEvent`.
+An event is a class that should extend `\CuyZ\Notiz\Core\Event\AbstractEvent`.
 
 In addition to the required methods, the event must implement the `run` method.
 This method takes the signal/hook arguments as parameters.
 
 If you need a more specific implementation for your event, you can instead
-implement the interface `\CuyZ\Notiz\Event\Event`.
+implement the interface `\CuyZ\Notiz\Core\Event\Event`.
 
 Once your event is created, you will have to register it into NotiZ.
 
@@ -17,7 +17,7 @@ Here is an example event that will listen to a TYPO3 signal:
 
 namespace Acme\MyExtension\Domain\Event;
 
-use CuyZ\Notiz\Event\AbstractEvent;
+use CuyZ\Notiz\Core\Event\AbstractEvent;
 use Acme\MyExtension\Form\ContactForm;
 
 class ContactFormSentEvent extends AbstractEvent

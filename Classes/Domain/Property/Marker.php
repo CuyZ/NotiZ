@@ -16,14 +16,13 @@
 
 namespace CuyZ\Notiz\Domain\Property;
 
-use CuyZ\Notiz\Property\PropertyEntry;
-use CuyZ\Notiz\Support\NotizConstants;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use CuyZ\Notiz\Core\Property\PropertyEntry;
+use CuyZ\Notiz\Core\Support\NotizConstants;
 
 /**
  * This property represents a single marker annotation in the `Event` class.
  *
- * @see \CuyZ\Notiz\Event\Event
+ * @see \CuyZ\Notiz\Core\Event\Event
  */
 class Marker extends PropertyEntry
 {

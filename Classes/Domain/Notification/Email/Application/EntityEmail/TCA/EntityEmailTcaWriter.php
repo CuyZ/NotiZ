@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\TCA;
 
-use CuyZ\Notiz\Notification\TCA\EntityTcaWriter;
+use CuyZ\Notiz\Core\Notification\TCA\EntityTcaWriter;
 
 class EntityEmailTcaWriter extends EntityTcaWriter
 {

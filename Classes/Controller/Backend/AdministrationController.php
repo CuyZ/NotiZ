@@ -16,10 +16,10 @@
 
 namespace CuyZ\Notiz\Controller\Backend;
 
-use Exception;
-use CuyZ\Notiz\Definition\DefinitionService;
-use CuyZ\Notiz\Definition\DefinitionTransformer;
+use CuyZ\Notiz\Core\Definition\DefinitionService;
+use CuyZ\Notiz\Core\Definition\DefinitionTransformer;
 use CuyZ\Notiz\Service\RuntimeService;
+use Throwable;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
@@ -90,7 +90,7 @@ class AdministrationController extends ActionController
      * of the definition. The exception will be displayed, using TYPO3 core
      * exception handling.
      *
-     * @throws Exception
+     * @throws Throwable
      */
     public function showExceptionAction()
     {

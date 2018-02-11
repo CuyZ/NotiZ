@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\TCA;
 
-use CuyZ\Notiz\Notification\Service\NotificationTcaService;
+use CuyZ\Notiz\Core\Notification\Service\NotificationTcaService;
 use CuyZ\Notiz\Service\LocalizationService;
 use Psr\Log\LogLevel;
 

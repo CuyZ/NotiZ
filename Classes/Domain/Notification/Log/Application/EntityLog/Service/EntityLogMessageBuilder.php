@@ -16,10 +16,10 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\Service;
 
-use CuyZ\Notiz\Channel\Payload;
+use CuyZ\Notiz\Core\Channel\Payload;
+use CuyZ\Notiz\Core\Property\Service\MarkerParser;
 use CuyZ\Notiz\Domain\Notification\Log\LogNotification;
 use CuyZ\Notiz\Domain\Property\Marker;
-use CuyZ\Notiz\Property\Service\MarkerParser;
 
 class EntityLogMessageBuilder
 {

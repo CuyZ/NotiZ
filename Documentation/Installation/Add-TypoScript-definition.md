@@ -17,8 +17,8 @@ In your extension's `ext_localconf.php` file, add this piece of code:
 $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
 
 $dispatcher->connect(
-    \CuyZ\Notiz\Definition\Builder\DefinitionBuilder::class,
-    \CuyZ\Notiz\Definition\Builder\DefinitionBuilder::COMPONENTS_SIGNAL,
+    \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::class,
+    \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::COMPONENTS_SIGNAL,
     \Vendor\MyExtension\Service\DefinitionComponentService::class,
     'registerDefinitionComponents'
 );
@@ -33,7 +33,7 @@ Now you need to create the actual definition component service:
 <?php
 namespace Vendor\MyExtension\Service;
 
-use CuyZ\Notiz\Definition\Builder\Component\DefinitionComponents;
+use CuyZ\Notiz\Core\Definition\Builder\Component\DefinitionComponents;
 use CuyZ\Notiz\Domain\Definition\Builder\Component\Source\TypoScriptDefinitionSource;
 use TYPO3\CMS\Core\SingletonInterface;
 

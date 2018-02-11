@@ -16,12 +16,12 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\TCA;
 
-use CuyZ\Notiz\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Notification\Service\NotificationTcaService;
+use CuyZ\Notiz\Core\Notification\Settings\NotificationSettings;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\EntityEmailSettings;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\GlobalRecipients\Recipient;
 use CuyZ\Notiz\Domain\Property\Email;
-use CuyZ\Notiz\Notification\Service\NotificationTcaService;
-use CuyZ\Notiz\Notification\Settings\NotificationSettings;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\LocalizationService;
 use CuyZ\Notiz\View\Slot\Service\SlotFlexFormService;

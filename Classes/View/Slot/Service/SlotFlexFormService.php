@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\View\Slot\Service;
 
-use CuyZ\Notiz\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Service\CacheService;
 use CuyZ\Notiz\View\Slot\Application\Slot;
 use CuyZ\Notiz\View\Slot\SlotView;

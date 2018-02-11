@@ -16,11 +16,11 @@
 
 namespace CuyZ\Notiz\Domain\Definition\Builder\Component;
 
-use CuyZ\Notiz\Definition\Builder\Component\DefinitionComponents;
-use CuyZ\Notiz\Definition\Builder\Component\Source\DefinitionSource;
+use CuyZ\Notiz\Core\Definition\Builder\Component\DefinitionComponents;
+use CuyZ\Notiz\Core\Definition\Builder\Component\Source\DefinitionSource;
+use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Domain\Definition\Builder\Component\Source\TypoScriptDefinitionSource;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
-use CuyZ\Notiz\Support\NotizConstants;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 

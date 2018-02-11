@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Channel\Log;
 
-use CuyZ\Notiz\Channel\AbstractChannel;
+use CuyZ\Notiz\Core\Channel\AbstractChannel;
 use CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\Service\EntityLogMessageBuilder;
 use CuyZ\Notiz\Domain\Notification\Log\LogNotification;
 use Psr\Log\LoggerInterface;

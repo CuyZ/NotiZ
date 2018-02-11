@@ -16,8 +16,8 @@
 
 namespace CuyZ\Notiz\Service;
 
-use CuyZ\Notiz\Exception\EntryNotFoundException;
-use CuyZ\Notiz\Support\NotizConstants;
+use CuyZ\Notiz\Core\Exception\EntryNotFoundException;
+use CuyZ\Notiz\Core\Support\NotizConstants;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility;
 

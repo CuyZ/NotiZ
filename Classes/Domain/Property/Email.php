@@ -16,12 +16,12 @@
 
 namespace CuyZ\Notiz\Domain\Property;
 
-use CuyZ\Notiz\Property\PropertyEntry;
+use CuyZ\Notiz\Core\Property\PropertyEntry;
 
 /**
  * An email property should always contain a valid email address.
  *
- * @see \CuyZ\Notiz\Event\Event
+ * @see \CuyZ\Notiz\Core\Event\Event
  */
 class Email extends PropertyEntry
 {

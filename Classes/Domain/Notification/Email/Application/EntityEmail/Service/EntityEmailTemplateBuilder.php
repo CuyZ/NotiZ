@@ -16,12 +16,12 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Service;
 
-use CuyZ\Notiz\Channel\Payload;
+use CuyZ\Notiz\Core\Channel\Payload;
+use CuyZ\Notiz\Core\Event\Event;
+use CuyZ\Notiz\Core\Property\Service\MarkerParser;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\EntityEmailSettings;
 use CuyZ\Notiz\Domain\Property\Marker;
-use CuyZ\Notiz\Event\Event;
-use CuyZ\Notiz\Property\Service\MarkerParser;
 use CuyZ\Notiz\View\Slot\Service\SlotViewService;
 
 class EntityEmailTemplateBuilder

@@ -16,8 +16,8 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Log;
 
-use CuyZ\Notiz\Notification\MultipleChannelsNotification;
-use CuyZ\Notiz\Notification\Notification;
+use CuyZ\Notiz\Core\Notification\MultipleChannelsNotification;
+use CuyZ\Notiz\Core\Notification\Notification;
 
 interface LogNotification extends Notification, MultipleChannelsNotification
 {

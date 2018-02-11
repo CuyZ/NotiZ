@@ -16,8 +16,8 @@
 
 namespace CuyZ\Notiz\View\Slot;
 
-use CuyZ\Notiz\Definition\DefinitionService;
-use CuyZ\Notiz\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Definition\DefinitionService;
+use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\ViewHelpers\Slot\RenderViewHelper;
 use CuyZ\Notiz\ViewHelpers\Slot\SlotViewHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
