@@ -20,18 +20,16 @@ to be transformed to the UpperCamelCase syntax.
 For instance, let's take the example below:
 
 ```typoscript
-config {
-    tx_notiz {
-        eventGroups {
-            contactEvents {
-                label = Events related to contact forms
+notiz {
+    eventGroups {
+        contactEvents {
+            label = Events related to contact forms
 
-                events {
-                    messageSent {
-                        label = Contact form sent
+            events {
+                messageSent {
+                    label = Contact form sent
 
-                        // Other stuf…
-                    }
+                    // Other stuf…
                 }
             }
         }
@@ -47,15 +45,13 @@ Also remember to register the template paths to your extension. You can do so in
 the definition of the mail notification:
 
 ```typoscript
-config {
-    tx_notiz {
-        notifications {
-            entityEmail {
-                view {
-                    layoutRootPaths.50 = EXT:my_extension/Resources/Private/Layouts/Mail/
-                    templateRootPaths.50 = EXT:my_extension/Resources/Private/Templates/Mail/
-                    partialRootPaths.50 = EXT:my_extension/Resources/Private/Partials/Mail/
-                }
+notiz {
+    notifications {
+        entityEmail {
+            view {
+                layoutRootPaths.50 = EXT:my_extension/Resources/Private/Layouts/Mail/
+                templateRootPaths.50 = EXT:my_extension/Resources/Private/Templates/Mail/
+                partialRootPaths.50 = EXT:my_extension/Resources/Private/Partials/Mail/
             }
         }
     }

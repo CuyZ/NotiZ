@@ -58,53 +58,51 @@ Finally, you can write definition in your newly registered file:
 
 > *`my_extension/Configuration/TypoScript/MyCustomDefinition.typoscript`*
 ```
-config {
-    tx_notiz {
-        notifications {
-            /*
-             * Modifying the provided email notification settings…
-             */
-            entityEmail {
-                settings {
-                    /*
-                     * These recipients will be available by default in every 
-                     * email notification record.
-                     */
-                    globalRecipients {
-                         10 = webmaster@acme.com
-                    }
+notiz {
+    notifications {
+        /*
+         * Modifying the provided email notification settings…
+         */
+        entityEmail {
+            settings {
+                /*
+                 * These recipients will be available by default in every 
+                 * email notification record.
+                 */
+                globalRecipients {
+                     10 = webmaster@acme.com
                 }
             }
         }
-        
-        eventGroups {
-            /*
-             * We add a new event group for our custom events.
-             */
-            my_extension {
-                label = Events for My Extension
+    }
+    
+    eventGroups {
+        /*
+         * We add a new event group for our custom events.
+         */
+        my_extension {
+            label = Events for My Extension
 
-                events {
-                    /*
-                     * Contact form is sent
-                     * --------------------
-                     *
-                     * This event is bound to a signal sent by the contact 
-                     * controller. It contains data about the user who submitted
-                     * the form, that will be available in the notifications
-                     * markers.
-                     */
-                    contactFormSent {
-                        label = Contact form sent
+            events {
+                /*
+                 * Contact form is sent
+                 * --------------------
+                 *
+                 * This event is bound to a signal sent by the contact 
+                 * controller. It contains data about the user who submitted
+                 * the form, that will be available in the notifications
+                 * markers.
+                 */
+                contactFormSent {
+                    label = Contact form sent
 
-                        className = MyVendor\MyExtension\Event\ContactFormSentEvent
+                    className = MyVendor\MyExtension\Event\ContactFormSentEvent
 
-                        connection {
-                            type = signal
+                    connection {
+                        type = signal
 
-                            className = MyVendor\MyContactExtension\Controller\ContactController
-                            name = contactFormSent
-                        }
+                        className = MyVendor\MyContactExtension\Controller\ContactController
+                        name = contactFormSent
                     }
                 }
             }
