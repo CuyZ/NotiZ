@@ -16,10 +16,10 @@
 
 namespace CuyZ\Notiz\ViewHelpers\Slot;
 
+use CuyZ\Notiz\Core\Exception\DuplicateEntryException;
+use CuyZ\Notiz\Core\Exception\EntryNotFoundException;
+use CuyZ\Notiz\Core\Property\Service\MarkerParser;
 use CuyZ\Notiz\Domain\Property\Marker;
-use CuyZ\Notiz\Exception\DuplicateEntryException;
-use CuyZ\Notiz\Exception\EntryNotFoundException;
-use CuyZ\Notiz\Property\Service\MarkerParser;
 use CuyZ\Notiz\View\Slot\SlotContainer;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 

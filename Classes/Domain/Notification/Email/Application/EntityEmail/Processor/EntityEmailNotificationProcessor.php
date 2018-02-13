@@ -16,8 +16,8 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Processor;
 
+use CuyZ\Notiz\Core\Notification\Processor\EntityNotificationProcessor;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Repository\EntityEmailNotificationRepository;
-use CuyZ\Notiz\Notification\Processor\EntityNotificationProcessor;
 
 class EntityEmailNotificationProcessor extends EntityNotificationProcessor
 {

@@ -16,10 +16,10 @@
 
 namespace CuyZ\Notiz\Domain\Notification;
 
-use CuyZ\Notiz\Definition\Tree\EventGroup\Event\EventDefinition;
-use CuyZ\Notiz\Definition\Tree\Notification\Channel\ChannelDefinition;
-use CuyZ\Notiz\Notification\MultipleChannelsNotification;
-use CuyZ\Notiz\Notification\Notification;
+use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Definition\Tree\Notification\Channel\ChannelDefinition;
+use CuyZ\Notiz\Core\Notification\MultipleChannelsNotification;
+use CuyZ\Notiz\Core\Notification\Notification;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Service\FlexFormService;

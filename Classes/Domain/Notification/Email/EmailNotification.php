@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Email;
 
-use CuyZ\Notiz\Notification\Notification;
+use CuyZ\Notiz\Core\Notification\Notification;
 
 interface EmailNotification extends Notification
 {

@@ -16,8 +16,8 @@
 
 namespace CuyZ\Notiz\Service;
 
+use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
-use CuyZ\Notiz\Support\NotizConstants;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 

@@ -16,11 +16,11 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail;
 
+use CuyZ\Notiz\Core\Notification\CustomSettingsNotification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Processor\EntityEmailNotificationProcessor;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\EntityEmailSettings;
 use CuyZ\Notiz\Domain\Notification\Email\EmailNotification;
 use CuyZ\Notiz\Domain\Notification\EntityNotification;
-use CuyZ\Notiz\Notification\CustomSettingsNotification;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Service\FlexFormService;
 

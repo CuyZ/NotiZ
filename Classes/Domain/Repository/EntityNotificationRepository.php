@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Repository;
 
-use CuyZ\Notiz\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;

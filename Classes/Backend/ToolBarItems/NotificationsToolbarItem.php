@@ -16,12 +16,12 @@
 
 namespace CuyZ\Notiz\Backend\ToolBarItems;
 
-use Exception;
-use CuyZ\Notiz\Definition\DefinitionService;
+use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Service\BackendUriBuilder;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use CuyZ\Notiz\Service\LocalizationService;
 use CuyZ\Notiz\Service\ViewService;
+use Exception;
 use Throwable;
 use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
 use TYPO3\CMS\Core\Imaging\IconFactory;

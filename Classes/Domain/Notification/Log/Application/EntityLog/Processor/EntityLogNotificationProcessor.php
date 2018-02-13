@@ -16,8 +16,8 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\Processor;
 
+use CuyZ\Notiz\Core\Notification\Processor\EntityNotificationProcessor;
 use CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\Repository\EntityLogNotificationRepository;
-use CuyZ\Notiz\Notification\Processor\EntityNotificationProcessor;
 
 class EntityLogNotificationProcessor extends EntityNotificationProcessor
 {

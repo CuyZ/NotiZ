@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Service;
 
-use CuyZ\Notiz\Definition\DefinitionService;
+use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
 use Throwable;
 use TYPO3\CMS\Core\SingletonInterface;

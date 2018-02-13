@@ -16,10 +16,10 @@
 
 namespace CuyZ\Notiz\Validation\Validator;
 
-use CuyZ\Notiz\Channel\Channel;
-use CuyZ\Notiz\Definition\Tree\Definition;
-use CuyZ\Notiz\Exception\InvalidTypeException;
-use CuyZ\Notiz\Exception\NotizException;
+use CuyZ\Notiz\Core\Channel\Channel;
+use CuyZ\Notiz\Core\Definition\Tree\Definition;
+use CuyZ\Notiz\Core\Exception\InvalidTypeException;
+use CuyZ\Notiz\Core\Exception\NotizException;
 use TYPO3\CMS\Extbase\Error\Error;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 

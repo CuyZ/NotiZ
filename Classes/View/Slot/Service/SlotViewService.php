@@ -16,8 +16,8 @@
 
 namespace CuyZ\Notiz\View\Slot\Service;
 
-use CuyZ\Notiz\Definition\DefinitionService;
-use CuyZ\Notiz\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Definition\DefinitionService;
+use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\StringService;
 use CuyZ\Notiz\View\Slot\SlotView;

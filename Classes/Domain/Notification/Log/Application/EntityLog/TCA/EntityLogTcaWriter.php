@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\TCA;
 
-use CuyZ\Notiz\Notification\TCA\EntityTcaWriter;
+use CuyZ\Notiz\Core\Notification\TCA\EntityTcaWriter;
 
 class EntityLogTcaWriter extends EntityTcaWriter
 {

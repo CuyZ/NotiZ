@@ -16,9 +16,9 @@
 
 namespace CuyZ\Notiz\Domain\Definition\Builder\Component\Source;
 
-use CuyZ\Notiz\Definition\Builder\Component\Source\DefinitionSource;
-use CuyZ\Notiz\Exception\FileNotFoundException;
-use CuyZ\Notiz\Support\NotizConstants;
+use CuyZ\Notiz\Core\Definition\Builder\Component\Source\DefinitionSource;
+use CuyZ\Notiz\Core\Exception\FileNotFoundException;
+use CuyZ\Notiz\Core\Support\NotizConstants;
 use Romm\ConfigurationObject\ConfigurationObjectInstance;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser;
@@ -34,15 +34,15 @@ use TYPO3\CMS\Extbase\Service\TypoScriptService;
  *
  * To know how to register a new component:
  *
- * @see \CuyZ\Notiz\Definition\Builder\DefinitionBuilder
+ * @see \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder
  *
  * ```
  * class MyCustomComponents
  * {
- *     public function register(\CuyZ\Notiz\Definition\Builder\Component\DefinitionComponents $components)
+ *     public function register(\CuyZ\Notiz\Core\Definition\Builder\Component\DefinitionComponents $components)
  *     {
- *         if ($components->hasSource(\CuyZ\Notiz\Definition\Builder\Component\Source\DefinitionSource::SOURCE_TYPOSCRIPT)) {
- *             $components->getSource(\CuyZ\Notiz\Definition\Builder\Component\Source\DefinitionSource::SOURCE_TYPOSCRIPT)
+ *         if ($components->hasSource(\CuyZ\Notiz\Core\Definition\Builder\Component\Source\DefinitionSource::SOURCE_TYPOSCRIPT)) {
+ *             $components->getSource(\CuyZ\Notiz\Core\Definition\Builder\Component\Source\DefinitionSource::SOURCE_TYPOSCRIPT)
  *                 ->addTypoScriptFilePath("EXT:my_extension/Definition/TypoScript/NotiZ/setup.typoscript")
  *         }
  *     }

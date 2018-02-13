@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\View\Slot\Application;
 
-use CuyZ\Notiz\Exception\WrongFormatException;
+use CuyZ\Notiz\Core\Exception\WrongFormatException;
 
 abstract class Slot
 {

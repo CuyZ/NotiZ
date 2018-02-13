@@ -17,14 +17,14 @@
 namespace CuyZ\Notiz\Service\Extension;
 
 use CuyZ\Notiz\Backend\ToolBarItems\NotificationsToolbarItem;
-use CuyZ\Notiz\Definition\Builder\DefinitionBuilder;
+use CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder;
+use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Domain\Definition\Builder\Component\DefaultDefinitionComponents;
-use CuyZ\Notiz\Hook\EventDefinitionRegisterer;
-use CuyZ\Notiz\Hook\NotificationFlexFormProcessor;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
+use CuyZ\Notiz\Service\Hook\EventDefinitionRegisterer;
+use CuyZ\Notiz\Service\Hook\NotificationFlexFormProcessor;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
-use CuyZ\Notiz\Support\NotizConstants;
 use TYPO3\CMS\Core\Cache\Backend\FileBackend;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
 use TYPO3\CMS\Core\Database\TableConfigurationPostProcessingHookInterface;

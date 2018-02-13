@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Service;
 
-use CuyZ\Notiz\Support\NotizConstants;
+use CuyZ\Notiz\Core\Support\NotizConstants;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;

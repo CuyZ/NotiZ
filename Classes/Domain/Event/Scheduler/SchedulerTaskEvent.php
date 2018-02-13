@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Event\Scheduler;
 
-use CuyZ\Notiz\Event\AbstractEvent;
+use CuyZ\Notiz\Core\Event\AbstractEvent;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Scheduler\Task\AbstractTask;
 

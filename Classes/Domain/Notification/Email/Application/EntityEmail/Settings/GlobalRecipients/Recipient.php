@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\GlobalRecipients;
 
-use CuyZ\Notiz\Definition\Tree\AbstractDefinitionComponent;
+use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
 use CuyZ\Notiz\Service\StringService;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessor;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessorInterface;
