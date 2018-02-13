@@ -55,6 +55,8 @@ class IconService implements SingletonInterface
         $iconIdentifier = 'tx-notiz-icon-notification-' . $notification->getIdentifier();
 
         if (!in_array($iconIdentifier, $this->registeredIcons)) {
+            $this->registeredIcons[] = $iconIdentifier;
+
             $iconPath = $notification->getIconPath();
 
             $iconProviderClass = StringUtility::endsWith(strtolower($iconPath), 'svg')
