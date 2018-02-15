@@ -1,0 +1,13 @@
+notiz {
+    notifications {
+        entitySlack {
+            label = Notification/Slack/Entity:title
+
+            className = CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\EntitySlackNotification
+
+            iconPath = EXT:notiz/Resources/Public/Icon/Notification/notification-log-entity-typo3.svg
+
+            channels < notiz.channels.slack
+        }
+    }
+}

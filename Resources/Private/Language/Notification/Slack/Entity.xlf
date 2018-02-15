@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+            <!--########################################-->
+            <!--###     SLACK NOTIFICATION RECORD    ###-->
+            <!--########################################-->
+            <trans-unit id="title">
+                <source>Slack</source>
+            </trans-unit>
+
+            <!-- TABS -->
+            <trans-unit id="tab.content">
+                <source>Message</source>
+            </trans-unit>
+            <trans-unit id="tab.slack">
+                <source>Slack</source>
+            </trans-unit>
+
+            <!-- PALETTES -->
+            <trans-unit id="palette.content">
+                <source>Slack message</source>
+            </trans-unit>
+
+            <!-- FIELDS -->
+            <trans-unit id="field.target">
+                <source>Target (@user or #channel)</source>
+            </trans-unit>
+
+            <trans-unit id="field.name">
+                <source>Name</source>
+            </trans-unit>
+
+            <trans-unit id="field.avatar">
+                <source>Avatar (direct image url or :emoji:)</source>
+            </trans-unit>
+
+            <trans-unit id="field.message">
+                <source>Message</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

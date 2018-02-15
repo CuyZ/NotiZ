@@ -13,5 +13,12 @@ notiz {
                 label = Channel/Log/TYPO3-Log:title
             }
         }
+
+        slack {
+            typo3 {
+                className = CuyZ\Notiz\Domain\Channel\Slack\Typo3SlackChannel
+                label = Channel/Slack/TYPO3-Slack:title
+            }
+        }
     }
 }
