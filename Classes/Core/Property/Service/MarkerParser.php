@@ -53,12 +53,12 @@ class MarkerParser implements SingletonInterface
             if (!isset($markers[$root])) {
                 $value = '';
             } else {
-                $marker = $markers[$root];
-
-                $value = $this->getVariableValue($variable, $root, $marker);
+                $value = $this->getVariableValue($variable, $root, $markers[$root]);
             }
 
-            $replacePairs[$identifier] = $value;
+            $replacePairs[$identifier] = isset($markers[$root])
+                ? $this->getVariableValue($variable, $root, $markers[$root])
+                : '';
         }
 
         return strtr($string, $replacePairs);
