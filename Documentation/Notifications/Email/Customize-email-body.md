@@ -126,8 +126,58 @@ And here is the received email:
 >  * New products (subscribed on 31/01/2018): Information about out new products
 >  * Discounts (subscribed on 28/01/2018): Get discounts on existing products
 
-[slots-example]: /Documentation/Images/EmailNotification/email-slots.png
+## Use advanced slot rendering
+
+When a slot is rendered, the value filled by the user (in the notification 
+record) is fetched and processed with the available markers (coming from the 
+event).
+
+The slot rendering can be used in several ways:
+
+### Default
+
+If you just want to render the processed value, just call the view-helper:
+
+```html
+<f:section name="Body">
+    <nz:slot.render name="MySlot" />
+</f:section>
+``` 
+
+### Conditional rendering
+
+If a given slot may be unregistered, you can use the view-helper like a 
+classical conditional Fluid view-helper. In this case, a new Fluid variable 
+containing the processed value is accessible: `{slotValue}` 
+
+```html
+<f:section name="Body">
+    <nz:slot.render name="MySlot">
+        <f:then>{slotValue}</f:then>
+        <f:else>Default value</f:else>
+    </nz:slot.render>
+</f:section>
+```
+
+### Wrapping
+
+You can also use the view-helper as a wrapper for the slot value. In that case,
+if the slot is not registered nothing will be rendered.
+
+```html
+<f:section name="Body">
+    <nz:slot.render name="MySlot">
+        <hr />
+        
+        <div class="my-class">
+            {slotValue -> f:format.html()}
+        </div>
+    </nz:slot.render>
+</f:section>
+```
 
 ---
 
 [:books: Documentation index](../../README.md)
+
+[slots-example]: /Documentation/Images/EmailNotification/email-slots.png

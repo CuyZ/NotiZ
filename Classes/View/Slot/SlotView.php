@@ -18,7 +18,6 @@ namespace CuyZ\Notiz\View\Slot;
 
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
-use CuyZ\Notiz\ViewHelpers\Slot\RenderViewHelper;
 use CuyZ\Notiz\ViewHelpers\Slot\SlotViewHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
@@ -26,6 +25,10 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class SlotView extends StandaloneView
 {
+    const SLOT_CONTAINER = 'SlotContainer';
+    const SLOT_VALUES = 'SlotValues';
+    const MARKERS = 'Marker';
+
     /**
      * @var SlotContainer
      */
@@ -92,9 +95,9 @@ class SlotView extends StandaloneView
     {
         $viewHelperVariableContainer = $this->baseRenderingContext->getViewHelperVariableContainer();
 
-        $viewHelperVariableContainer->add(RenderViewHelper::class, RenderViewHelper::SLOT_CONTAINER, $this->getSlots());
-        $viewHelperVariableContainer->add(RenderViewHelper::class, RenderViewHelper::SLOT_VALUES, $slotsValues);
-        $viewHelperVariableContainer->add(RenderViewHelper::class, RenderViewHelper::MARKERS, $markers);
+        $viewHelperVariableContainer->add(self::class, self::SLOT_CONTAINER, $this->getSlots());
+        $viewHelperVariableContainer->add(self::class, self::SLOT_VALUES, $slotsValues);
+        $viewHelperVariableContainer->add(self::class, self::MARKERS, $markers);
 
         return $this->render();
     }
