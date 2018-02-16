@@ -49,9 +49,14 @@ class MarkerParser implements SingletonInterface
         foreach ($variables as $index => $variable) {
             $identifier = $identifiers[$index];
             $root = $roots[$index];
-            $marker = $markers[$root];
 
-            $value = $this->getVariableValue($variable, $root, $marker);
+            if (!isset($markers[$root])) {
+                $value = '';
+            } else {
+                $marker = $markers[$root];
+
+                $value = $this->getVariableValue($variable, $root, $marker);
+            }
 
             $replacePairs[$identifier] = $value;
         }
