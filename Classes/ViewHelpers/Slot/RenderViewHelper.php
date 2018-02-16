@@ -148,6 +148,14 @@ class RenderViewHelper extends AbstractConditionViewHelper
     protected static function addSlotValueToVariables(array $arguments, RenderingContextInterface $renderingContext)
     {
         $slotValue = self::getSlotValue($arguments, $renderingContext);
+
+        /**
+         * @deprecated Must be removed when TYPO3 v7 is not supported anymore.
+         */
+        if ($renderingContext->getTemplateVariableContainer()->exists('slotValue')) {
+            $renderingContext->getTemplateVariableContainer()->remove('slotValue');
+        }
+
         $renderingContext->getTemplateVariableContainer()->add('slotValue', $slotValue);
     }
 
