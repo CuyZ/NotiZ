@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Domain\Event\Scheduler;
 
 use CuyZ\Notiz\Core\Event\AbstractEvent;
+use CuyZ\Notiz\Core\Event\Support\HasNotificationData;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Scheduler\Task\AbstractTask;
 
@@ -44,6 +45,14 @@ abstract class SchedulerTaskEvent extends AbstractEvent
     protected $description;
 
     /**
+     * @marker
+     * @label Event/Scheduler/SchedulerTask:marker.data
+     *
+     * @var array
+     */
+    protected $data;
+
+    /**
      * @param AbstractTask $task
      */
     protected function checkTaskFilter(AbstractTask $task)
@@ -65,5 +74,9 @@ abstract class SchedulerTaskEvent extends AbstractEvent
         $this->uid = $task->getTaskUid();
         $this->title = $task->getTaskTitle();
         $this->description = $task->getDescription();
+
+        if ($task instanceof HasNotificationData) {
+            $this->data = $task->getNotificationData();
+        }
     }
 }

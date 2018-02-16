@@ -19,6 +19,10 @@
                 <source>Invalid task</source>
             </trans-unit>
 
+            <trans-unit id="marker.data">
+                <source>Arbitrary data that can be filled by the task and used as markers.</source>
+            </trans-unit>
+
             <!--#########################-->
             <!--### EXECUTION FAILED  ###-->
             <!--#########################-->
