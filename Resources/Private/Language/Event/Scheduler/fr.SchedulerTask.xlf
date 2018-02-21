@@ -19,6 +19,10 @@
                 <target>Tâche invalide</target>
             </trans-unit>
 
+            <trans-unit id="marker.data">
+                <target>Données arbitraires qui peuvent être remplies par la tâche et utilisées dans les marqueurs.</target>
+            </trans-unit>
+
             <!--#########################-->
             <!--### EXECUTION FAILED  ###-->
             <!--#########################-->
