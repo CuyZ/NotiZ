@@ -1,4 +1,6 @@
-# Customize email body
+# Customize email
+
+## Have a dynamic email body
 
 An email body can quickly become so complex that the default configuration is 
 not enough.
@@ -7,7 +9,7 @@ NotiZ allows you to easily customize how the rendering is done, and even manage
 the sections shown in the backend record, to give editors more control on the
 body content.
 
-## Use a custom Fluid template
+### Use a custom Fluid template
 
 By default, NotiZ uses the basic template located at 
 `EXT:notiz/Resources/Private/Templates/Mail/Default.html`.
@@ -126,7 +128,7 @@ And here is the received email:
 >  * New products (subscribed on 31/01/2018): Information about out new products
 >  * Discounts (subscribed on 28/01/2018): Get discounts on existing products
 
-## Use advanced slot rendering
+### Use advanced slot rendering
 
 When a slot is rendered, the value filled by the user (in the notification 
 record) is fetched and processed with the available markers (coming from the 
@@ -134,7 +136,7 @@ event).
 
 The slot rendering can be used in several ways:
 
-### Default
+#### Default
 
 If you just want to render the processed value, just call the view-helper:
 
@@ -144,7 +146,7 @@ If you just want to render the processed value, just call the view-helper:
 </f:section>
 ``` 
 
-### Conditional rendering
+#### Conditional rendering
 
 If a given slot may be unregistered, you can use the view-helper like a 
 classical conditional Fluid view-helper. In this case, a new Fluid variable 
@@ -159,7 +161,7 @@ containing the processed value is accessible: `{slotValue}`
 </f:section>
 ```
 
-### Wrapping
+#### Wrapping
 
 You can also use the view-helper as a wrapper for the slot value. In that case,
 if the slot is not registered nothing will be rendered.
@@ -174,6 +176,65 @@ if the slot is not registered nothing will be rendered.
         </div>
     </nz:slot.render>
 </f:section>
+```
+
+## Customize the email object
+
+If you need to do advanced modification on your mail, you can use a PHP signal.
+Register the slot in your `ext_localconf.php` file :
+
+> *`my_extension/ext_localconf.php`*
+```php
+<?php
+$dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+    \TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class
+);
+
+$dispatcher->connect(
+    \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::class,
+    \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::COMPONENTS_SIGNAL,
+    \Vendor\MyExtension\Service\Mail\MailTransformer::class,
+    'registerDefinitionComponents'
+);
+```
+
+Then modify your mail object as you need:
+
+> *`my_extension/Classes/Service/Mail/MailTransformer.php`*
+```php
+<?php
+namespace Vendor\MyExtension\Service\Mail;
+
+use CuyZ\Notiz\Core\Channel\Payload;
+use TYPO3\CMS\Core\Mail\MailMessage;
+use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+class MailTransformer implements SingletonInterface
+{
+    /**
+     * @param MailMessage $mailMessage
+     * @param Payload $payload
+     */
+    public function transform(MailMessage $mailMessage, Payload $payload)
+    {
+        $applicationContext = GeneralUtility::getApplicationContext();
+
+        // We don't change anything in production.
+        if ($applicationContext->isProduction()) {
+            return;
+        }
+
+        // Add a prefix to the mail subject, containing the application context.
+        $subject = "[$applicationContext][NotiZ] " . $mailMessage->getSubject();
+        $mailMessage->setSubject($subject);
+        
+        // When not in production, we want the mail to be sent only to us.
+        $mailMessage->setTo('webmaster@acme.com');
+        $mailMessage->setCc([]);
+        $mailMessage->setBcc([]);
+    }
+}
 ```
 
 ---

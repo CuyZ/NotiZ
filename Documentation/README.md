@@ -19,7 +19,7 @@ You can find below documentation on how to use and extend NotiZ.
     - [Example video](Example/Video.md)
 - [Notifications](Notifications/README.md)
     - [Email notification](Notifications/Email/README.md)
-        - [Customize email body](Notifications/Email/Customize-email-body.md)
+        - [Customize email body](Notifications/Email/Customize-email.md)
     - [Log notification](Notifications/Log-notification.md)
 - [Events](Events/README.md)
     - [Create a custom event](Events/Create-a-custom-event.md)
