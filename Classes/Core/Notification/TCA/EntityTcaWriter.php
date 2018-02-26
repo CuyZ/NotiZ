@@ -78,14 +78,19 @@ abstract class EntityTcaWriter implements SingletonInterface
     {
         $this->tableName = $tableName;
 
-        // Each sub-class starts to fill the array.
-        $this->data = $this->buildTcaArray();
+        if ($this->service->definitionHasErrors()) {
+            // If the definition contains errors, we only show a message.
+            $this->data = $this->getDefinitionErrorTca();
+        } else {
+            // Each sub-class starts to fill the array.
+            $this->data = $this->buildTcaArray();
 
-        // Some columns are common for all notification types
-        $this->addCommonColumns();
+            // Some columns are common for all notification types
+            $this->addCommonColumns();
 
-        // The default columns are always the same.
-        $this->addDefaultTypo3Columns();
+            // The default columns are always the same.
+            $this->addDefaultTypo3Columns();
+        }
 
         // This hides all fields if the definition has any error.
         $this->addDisplayConditionToFields();
@@ -191,6 +196,34 @@ abstract class EntityTcaWriter implements SingletonInterface
     }
 
     /**
+     * @return array
+     */
+    protected function getDefaultCtrl()
+    {
+        return [
+            'label' => 'title',
+            'tstamp' => 'tstamp',
+            'crdate' => 'crdate',
+            'cruser_id' => 'cruser_id',
+            'dividers2tabs' => true,
+
+            'requestUpdate' => 'event',
+
+            'languageField' => 'sys_language_uid',
+            'transOrigPointerField' => 'l10n_parent',
+            'transOrigDiffSourceField' => 'l10n_diffsource',
+            'delete' => 'deleted',
+            'enablecolumns' => [
+                'disabled' => 'hidden',
+                'starttime' => 'starttime',
+                'endtime' => 'endtime',
+            ],
+            'searchFields' => 'title,event',
+            'iconfile' => $this->service->getNotificationIconPath()
+        ];
+    }
+
+    /**
      * Returns the default TYPO3 columns to include in the final TCA array.
      */
     private function addDefaultTypo3Columns()
@@ -289,13 +322,7 @@ abstract class EntityTcaWriter implements SingletonInterface
     private function addCommonColumns()
     {
         $commonColumns = [
-            'error_message' => [
-                'displayCond' => 'USER:' . NotificationTcaService::class . '->definitionContainsErrors:inverted',
-                'config' => [
-                    'type' => 'user',
-                    'userFunc' => NotificationTcaService::class . '->getErrorMessage',
-                ],
-            ],
+            'error_message' => $this->getErrorMessageColumn(),
 
             'title' => [
                 'exclude' => 1,
@@ -357,5 +384,42 @@ abstract class EntityTcaWriter implements SingletonInterface
             $this->data['columns'],
             $commonColumns
         );
+    }
+
+    /**
+     * @return array
+     */
+    private function getDefinitionErrorTca()
+    {
+        return [
+            'ctrl' => $this->getDefaultCtrl(),
+            'types' => [
+                '0' => [
+                    'showitem' => 'error_message'
+                ]
+            ],
+            'columns' => [
+                'error_message' => $this->getErrorMessageColumn(),
+                'title' => [
+                    'config' => [
+                        'type' => 'passthrough',
+                    ],
+                ],
+            ]
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private function getErrorMessageColumn()
+    {
+        return [
+            'displayCond' => 'USER:' . NotificationTcaService::class . '->definitionContainsErrors:inverted',
+            'config' => [
+                'type' => 'user',
+                'userFunc' => NotificationTcaService::class . '->getErrorMessage',
+            ],
+        ];
     }
 }
