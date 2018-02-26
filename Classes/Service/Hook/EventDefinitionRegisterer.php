@@ -36,6 +36,11 @@ use TYPO3\CMS\Core\SingletonInterface;
 class EventDefinitionRegisterer implements SingletonInterface, TableConfigurationPostProcessingHookInterface
 {
     /**
+     * @var bool
+     */
+    private static $initialized = false;
+
+    /**
      * Just calling the event registry.
      *
      * Gotta get SCHWIFTY!
@@ -44,6 +49,12 @@ class EventDefinitionRegisterer implements SingletonInterface, TableConfiguratio
      */
     public function processData()
     {
+        if (self::$initialized) {
+            return;
+        }
+
+        self::$initialized = true;
+
         if ($this->clearingInstallToolCache()) {
             return;
         }

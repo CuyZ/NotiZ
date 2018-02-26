@@ -131,6 +131,7 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
     protected function registerEventDefinitionHook()
     {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['extTablesInclusion-PostProcessing'][] = EventDefinitionRegisterer::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['checkAlternativeIdMethods-PostProc'][] = EventDefinitionRegisterer::class . '->processData';
     }
 
     /**
