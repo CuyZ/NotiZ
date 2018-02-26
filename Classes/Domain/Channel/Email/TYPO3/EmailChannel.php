@@ -22,12 +22,68 @@ use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Service\EntityE
 use CuyZ\Notiz\Domain\Notification\Email\EmailNotification;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
  * Channel using the default `MailMessage` provided by the TYPO3 core.
+ *
+ * If you need to do advanced modification on your mail, you can use a PHP
+ * signal. Register the slot in your `ext_localconf.php` file :
+ *
+ * ```
+ * // my_extension/ext_localconf.php
+ *
+ * $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+ *     \TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class
+ * );
+ *
+ * $dispatcher->connect(
+ *     \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::class,
+ *     \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::COMPONENTS_SIGNAL,
+ *     \Vendor\MyExtension\Service\Mail\MailTransformer::class,
+ *     'registerDefinitionComponents'
+ * );
+ * ```
+ *
+ * Then modify your mail object as you need:
+ *
+ * ```
+ * // my_extension/Classes/Service/Mail/MailTransformer.php
+ *
+ * namespace Vendor\MyExtension\Service\Mail;
+ *
+ * use CuyZ\Notiz\Core\Channel\Payload;
+ * use TYPO3\CMS\Core\Mail\MailMessage;
+ * use TYPO3\CMS\Core\SingletonInterface;
+ * use TYPO3\CMS\Core\Utility\GeneralUtility;
+ *
+ * class MailTransformer implements SingletonInterface
+ * {
+ *     public function transform(MailMessage $mailMessage, Payload $payload)
+ *     {
+ *         $applicationContext = GeneralUtility::getApplicationContext();
+ *
+ *         // We don't change anything in production.
+ *         if ($applicationContext->isProduction()) {
+ *             return;
+ *         }
+ *
+ *         // Add a prefix to the mail subject, containing the application context.
+ *         $subject = "[$applicationContext][NotiZ] " . $mailMessage->getSubject();
+ *         $mailMessage->setSubject($subject);
+ *
+ *         // When not in production, we want the mail to be sent only to us.
+ *         $mailMessage->setTo('webmaster@acme.com');
+ *         $mailMessage->setCc([]);
+ *         $mailMessage->setBcc([]);
+ *     }
+ * }
+ * ```
  */
 class EmailChannel extends AbstractChannel
 {
+    const EMAIL_SIGNAL = 'sendEmail';
+
     /**
      * @var array
      */
@@ -44,6 +100,11 @@ class EmailChannel extends AbstractChannel
      * @var EntityEmailAddressMapper
      */
     protected $addressMapper;
+
+    /**
+     * @var Dispatcher
+     */
+    protected $slotDispatcher;
 
     /**
      * Setting up services used by this channel.
@@ -71,6 +132,31 @@ class EmailChannel extends AbstractChannel
             ->setBcc($this->addressMapper->getSendBcc())
             ->setContentType('text/html');
 
+        $this->dispatchEmailSignal($mailMessage);
+
         $mailMessage->send();
+    }
+
+    /**
+     * @param MailMessage $mailMessage
+     */
+    protected function dispatchEmailSignal(MailMessage $mailMessage)
+    {
+        $this->slotDispatcher->dispatch(
+            self::class,
+            self::EMAIL_SIGNAL,
+            [
+                $mailMessage,
+                $this->payload,
+            ]
+        );
+    }
+
+    /**
+     * @param Dispatcher $slotDispatcher
+     */
+    public function injectSlotDispatcher(Dispatcher $slotDispatcher)
+    {
+        $this->slotDispatcher = $slotDispatcher;
     }
 }
