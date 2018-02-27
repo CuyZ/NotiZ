@@ -67,7 +67,7 @@ class EventFactory implements SingletonInterface
         }
 
         /** @var Event $event */
-        $event = $this->objectManager->get($className, $eventDefinition, $notification->getEventConfiguration($eventDefinition));
+        $event = $this->objectManager->get($className, $eventDefinition, $notification);
 
         return $event;
     }

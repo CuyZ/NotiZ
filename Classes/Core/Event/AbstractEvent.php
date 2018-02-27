@@ -18,6 +18,7 @@ namespace CuyZ\Notiz\Core\Event;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Event\Exception\CancelEventDispatch;
+use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Property\Factory\PropertyContainer;
 use CuyZ\Notiz\Core\Property\Factory\PropertyDefinition;
 use CuyZ\Notiz\Core\Property\Factory\PropertyFactory;
@@ -79,6 +80,11 @@ abstract class AbstractEvent implements Event
     protected $eventDefinition;
 
     /**
+     * @var Notification
+     */
+    protected $notification;
+
+    /**
      * @var array
      */
     protected $configuration = [];
@@ -101,14 +107,15 @@ abstract class AbstractEvent implements Event
      * `parent::__construct`
      *
      * @param EventDefinition $eventDefinition
-     * @param array $configuration
+     * @param Notification $notification
      * @param PropertyFactory $propertyFactory
      * @param ObjectManager $objectManager
      */
-    public function __construct(EventDefinition $eventDefinition, array $configuration, PropertyFactory $propertyFactory, ObjectManager $objectManager)
+    public function __construct(EventDefinition $eventDefinition, Notification $notification, PropertyFactory $propertyFactory, ObjectManager $objectManager)
     {
         $this->eventDefinition = $eventDefinition;
-        $this->configuration = $configuration;
+        $this->notification = $notification;
+        $this->configuration = $notification->getEventConfiguration();
         $this->propertyFactory = $propertyFactory;
         $this->objectManager = $objectManager;
     }
@@ -169,5 +176,13 @@ abstract class AbstractEvent implements Event
     public function getDefinition()
     {
         return $this->eventDefinition;
+    }
+
+    /**
+     * @return Notification
+     */
+    public function getNotification()
+    {
+        return $this->notification;
     }
 }

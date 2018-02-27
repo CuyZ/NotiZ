@@ -16,7 +16,6 @@
 
 namespace CuyZ\Notiz\Domain\Notification;
 
-use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Definition\Tree\Notification\Channel\ChannelDefinition;
 use CuyZ\Notiz\Core\Notification\MultipleChannelsNotification;
 use CuyZ\Notiz\Core\Notification\Notification;
@@ -68,10 +67,9 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * Returns the event configuration stored as a FlexForm string.
      *
-     * @param EventDefinition $eventDefinition
      * @return array
      */
-    public function getEventConfiguration(EventDefinition $eventDefinition)
+    public function getEventConfiguration()
     {
         if (null === $this->eventConfiguration) {
             /** @var FlexFormService $flexFormService */

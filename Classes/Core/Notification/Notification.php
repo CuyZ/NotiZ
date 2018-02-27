@@ -16,8 +16,6 @@
 
 namespace CuyZ\Notiz\Core\Notification;
 
-use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
-
 /**
  * This interface must be implemented by notification classes that are
  * registered in the definition.
@@ -34,14 +32,13 @@ interface Notification
     public static function getProcessorClassName();
 
     /**
-     * Must return a configuration array that will be used by the given event
-     * during the dispatching with this notification.
+     * Must return a configuration array that will be used by the event during
+     * the dispatching of this notification.
      *
      * The configuration may be used by the event to change its behaviour: fill
      * properties, cancel the dispatching, or more.
      *
-     * @param EventDefinition $eventDefinition
      * @return array
      */
-    public function getEventConfiguration(EventDefinition $eventDefinition);
+    public function getEventConfiguration();
 }
