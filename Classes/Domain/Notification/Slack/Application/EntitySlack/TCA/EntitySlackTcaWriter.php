@@ -20,6 +20,8 @@ use CuyZ\Notiz\Core\Notification\TCA\EntityTcaWriter;
 
 class EntitySlackTcaWriter extends EntityTcaWriter
 {
+    const SLACK_LLL = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Slack/Entity.xlf';
+
     /**
      * This method must create the basic TCA configuration. It must fill at
      * least the `ctrl` and `columns` sections.
@@ -31,31 +33,8 @@ class EntitySlackTcaWriter extends EntityTcaWriter
      */
     protected function buildTcaArray()
     {
-        $lll = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Slack/Entity.xlf';
-
         return [
-            'ctrl' => [
-                'title' => "$lll:title",
-                'label' => 'title',
-                'tstamp' => 'tstamp',
-                'crdate' => 'crdate',
-                'cruser_id' => 'cruser_id',
-                'dividers2tabs' => true,
-
-                'requestUpdate' => 'event',
-
-                'languageField' => 'sys_language_uid',
-                'transOrigPointerField' => 'l10n_parent',
-                'transOrigDiffSourceField' => 'l10n_diffsource',
-                'delete' => 'deleted',
-                'enablecolumns' => [
-                    'disabled' => 'hidden',
-                    'starttime' => 'starttime',
-                    'endtime' => 'endtime',
-                ],
-                'searchFields' => 'title,event',
-                'iconfile' => $this->service->getNotificationIconPath(),
-            ],
+            'ctrl' => $this->getCtrl(),
 
             'palettes' => [
                 'content' => [
@@ -70,18 +49,18 @@ class EntitySlackTcaWriter extends EntityTcaWriter
 
             'types' => [
                 '0' => [
-                    'showitem' => "
+                    'showitem' => '
                 error_message,
                 title, sys_language_uid, hidden,
-                --div--;" . self::LLL_TABS . ":tab.event,
+                --div--;' . self::LLL_TABS . ':tab.event,
                     event, event_configuration_flex,
-                --div--;" . self::LLL_TABS . ":tab.channel,
+                --div--;' . self::LLL_TABS . ':tab.channel,
                     channel,
-                --div--;$lll:tab.content,
-                    --palette--;$lll:palette.content;content,
-                --div--;$lll:tab.slack,
-                    --palette--;$lll:palette.slack;slack
-"
+                --div--;' . self::SLACK_LLL . ':tab.content,
+                    --palette--;' . self::SLACK_LLL . ':palette.content;content,
+                --div--;' . self::SLACK_LLL . ':tab.slack,
+                    --palette--;' . self::SLACK_LLL . ':palette.slack;slack
+'
                 ]
             ],
 
@@ -89,7 +68,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
 
                 'target' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.target",
+                    'label' => self::SLACK_LLL . ':field.target',
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
@@ -99,7 +78,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
 
                 'name' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.name",
+                    'label' => self::SLACK_LLL . ':field.name',
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
@@ -109,7 +88,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
 
                 'avatar' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.avatar",
+                    'label' => self::SLACK_LLL . ':field.avatar',
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
@@ -119,7 +98,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
 
                 'message' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.message",
+                    'label' => self::SLACK_LLL . ':field.message',
                     'config' => [
                         'type' => 'text',
                         'size' => 4000,
@@ -129,6 +108,18 @@ class EntitySlackTcaWriter extends EntityTcaWriter
 
             ],
         ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getCtrl()
+    {
+        $ctrl = $this->getDefaultCtrl();
+
+        $ctrl['title'] = self::SLACK_LLL . ':title';
+
+        return $ctrl;
     }
 
     /**
