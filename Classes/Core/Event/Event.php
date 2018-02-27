@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Core\Event;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Property\Factory\PropertyContainer;
 use CuyZ\Notiz\Core\Property\Factory\PropertyDefinition;
 use CuyZ\Notiz\Core\Property\PropertyEntry;
@@ -180,4 +181,9 @@ interface Event
      * @return EventDefinition
      */
     public function getDefinition();
+
+    /**
+     * @return Notification
+     */
+    public function getNotification();
 }
