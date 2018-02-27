@@ -43,31 +43,8 @@ class EntityLogTcaWriter extends EntityTcaWriter
      */
     protected function buildTcaArray()
     {
-        $lll = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Log/Entity.xlf';
-
         return [
-            'ctrl' => [
-                'title' => "$lll:title",
-                'label' => 'title',
-                'tstamp' => 'tstamp',
-                'crdate' => 'crdate',
-                'cruser_id' => 'cruser_id',
-                'dividers2tabs' => true,
-
-                'requestUpdate' => 'event',
-
-                'languageField' => 'sys_language_uid',
-                'transOrigPointerField' => 'l10n_parent',
-                'transOrigDiffSourceField' => 'l10n_diffsource',
-                'delete' => 'deleted',
-                'enablecolumns' => [
-                    'disabled' => 'hidden',
-                    'starttime' => 'starttime',
-                    'endtime' => 'endtime',
-                ],
-                'searchFields' => 'title,event',
-                'iconfile' => $this->service->getNotificationIconPath()
-            ],
+            'ctrl' => $this->getCtrl(),
 
             'palettes' => [
                 'content' => [
@@ -82,25 +59,23 @@ class EntityLogTcaWriter extends EntityTcaWriter
 
             'types' => [
                 '0' => [
-                    'showitem' => "
-                error_message,
-                title, sys_language_uid, hidden,
-                --div--;" . self::LLL_TABS . ":tab.event,
-                    event, event_configuration_flex,
-                --div--;" . self::LLL_TABS . ":tab.channel,
-                    channel,
-                --div--;$lll:tab.log,
-                    --palette--;$lll:palette.content;content,
-                    --palette--;$lll:palette.levels;levels
-"
-                ]
+                    'showitem' => '
+                        error_message,
+                        title, sys_language_uid, hidden,
+                        --div--;' . self::LLL_TABS . ':tab.event,
+                            event, event_configuration_flex,
+                        --div--;' . self::LLL_TABS . ':tab.channel,
+                            channel,
+                        --div--;' . self::LOG_LLL . ':tab.log,
+                            --palette--;' . self::LOG_LLL . ':palette.content;content,
+                            --palette--;' . self::LOG_LLL . ':palette.levels;levels',
+                ],
             ],
 
             'columns' => [
-
                 'message' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.message",
+                    'label' => self::LOG_LLL . ':field.message',
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
@@ -110,27 +85,40 @@ class EntityLogTcaWriter extends EntityTcaWriter
 
                 'level' => [
                     'exclude' => 1,
-                    'label' => $lll . ':field.level',
+                    'label' => self::LOG_LLL . ':field.level',
                     'l10n_mode' => 'exclude',
                     'l10n_display' => 'defaultAsReadonly',
                     'config' => [
                         'type' => 'radio',
                         'items' => [],
                         'itemsProcFunc' => EntityLogTcaService::class . '->getLogLevelsList',
-                    ]
+                        'eval' => 'required',
+                    ],
                 ],
 
                 'levels_descriptions' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.levels_descriptions_title",
+                    'label' => self::LOG_LLL . ':field.levels_descriptions_title',
                     'l10n_display' => 'defaultAsReadonly',
                     'config' => [
                         'type' => 'user',
                         'userFunc' => EntityLogTcaService::class . '->getLogLevelsDescriptions',
-                    ]
+                    ],
                 ],
 
             ],
         ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getCtrl()
+    {
+        $ctrl = $this->getDefaultCtrl();
+
+        $ctrl['title'] = self::LOG_LLL . ':title';
+
+        return $ctrl;
     }
 }

@@ -44,37 +44,12 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     }
 
     /**
-     * Fill the whole TCA array.
-     *
      * @inheritdoc
      */
     protected function buildTcaArray()
     {
-        $lll = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Email/Entity.xlf';
-
         return [
-            'ctrl' => [
-                'title' => "$lll:title",
-                'label' => 'title',
-                'tstamp' => 'tstamp',
-                'crdate' => 'crdate',
-                'cruser_id' => 'cruser_id',
-                'dividers2tabs' => true,
-
-                'requestUpdate' => 'event,sender_custom',
-
-                'languageField' => 'sys_language_uid',
-                'transOrigPointerField' => 'l10n_parent',
-                'transOrigDiffSourceField' => 'l10n_diffsource',
-                'delete' => 'deleted',
-                'enablecolumns' => [
-                    'disabled' => 'hidden',
-                    'starttime' => 'starttime',
-                    'endtime' => 'endtime',
-                ],
-                'searchFields' => 'title,event,sender,sender_custom,send_to,send_to_provided,send_cc,send_cc_provided,send_bcc,send_bcc_provided,subject,body',
-                'iconfile' => $this->service->getNotificationIconPath()
-            ],
+            'ctrl' => $this->getCtrl(),
 
             'palettes' => [
                 'mail' => [
@@ -97,24 +72,24 @@ class EntityEmailTcaWriter extends EntityTcaWriter
 
             'types' => [
                 '0' => [
-                    'showitem' => "
-                error_message,
-				title, sys_language_uid, hidden,
-				--div--;" . self::LLL_TABS . ":tab.event,
-				    event, event_configuration_flex,
-                --div--;" . self::LLL_TABS . ":tab.channel,
-                    channel,
-				--div--;$lll:tab.mail_configuration,
-                    layout,
-                    --palette--;$lll:palette.mail;mail,
-                --div--;$lll:tab.mail_recipients,
-                    --palette--;$lll:palette.mail_recipients_to;send_to,
-                    --palette--;$lll:palette.mail_recipients_cc;send_cc,
-                    --palette--;$lll:palette.mail_recipients_bcc;send_bcc,
-                --div--;$lll:tab.mail_sender,
-                    sender_custom,--linebreak--,sender,sender_default,
-				"
-                ]
+                    'showitem' => '
+                        error_message,
+                        title, sys_language_uid, hidden,
+                        --div--;' . self::LLL_TABS . ':tab.event,
+                            event, event_configuration_flex,
+                        --div--;' . self::LLL_TABS . ':tab.channel,
+                            channel,
+                        --div--;' . self::EMAIL_LLL . ':tab.mail_configuration,
+                            layout,
+                            --palette--;' . self::EMAIL_LLL . ':palette.mail;mail,
+                        --div--;' . self::EMAIL_LLL . ':tab.mail_recipients,
+                            --palette--;' . self::EMAIL_LLL . ':palette.mail_recipients_to;send_to,
+                            --palette--;' . self::EMAIL_LLL . ':palette.mail_recipients_cc;send_cc,
+                            --palette--;' . self::EMAIL_LLL . ':palette.mail_recipients_bcc;send_bcc,
+                        --div--;' . self::EMAIL_LLL . ':tab.mail_sender,
+                            sender_custom,--linebreak--,sender,sender_default,
+                        ',
+                ],
             ],
 
             'columns' => [
@@ -123,7 +98,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
 
                 'layout' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.layout",
+                    'label' => self::EMAIL_LLL . ':field.layout',
                     'l10n_mode' => 'exclude',
                     'l10n_display' => 'defaultAsReadonly',
                     'config' => [
@@ -131,25 +106,25 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                         'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getLayoutList',
                         'size' => 1,
                         'maxitems' => 1,
-                        'eval' => 'required'
-                    ]
+                        'eval' => 'required',
+                    ],
                 ],
 
                 // Mail content
 
                 'subject' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.subject",
+                    'label' => self::EMAIL_LLL . ':field.subject',
                     'config' => [
                         'type' => 'input',
                         'size' => 40,
-                        'eval' => 'trim,required'
-                    ]
+                        'eval' => 'trim,required',
+                    ],
                 ],
 
                 'body' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.body",
+                    'label' => self::EMAIL_LLL . ':field.body',
                     'displayCond' => $this->service->getMailBodyDisplayCond(),
                     'config' => [
                         'type' => 'flex',
@@ -158,14 +133,14 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                         'behaviour' => [
                             'allowLanguageSynchronization' => true,
                         ],
-                    ]
+                    ],
                 ],
 
                 // Sender
 
                 'sender_custom' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.sender_custom",
+                    'label' => self::EMAIL_LLL . ':field.sender_custom',
                     'config' => [
                         'type' => 'check',
                         'default' => 0,
@@ -174,7 +149,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
 
                 'sender_default' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.sender_default",
+                    'label' => self::EMAIL_LLL . ':field.sender_default',
                     'displayCond' => 'FIELD:sender_custom:=:0',
                     'config' => [
                         'type' => 'user',
@@ -184,7 +159,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
 
                 'sender' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.sender",
+                    'label' => self::EMAIL_LLL . ':field.sender',
                     'displayCond' => 'FIELD:sender_custom:=:1',
                     'l10n_mode' => 'exclude',
                     'l10n_display' => 'defaultAsReadonly',
@@ -194,25 +169,25 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                         'eval' => 'email,required',
                         'default' => '',
                         'placeholder' => 'no-reply@example.com',
-                    ]
+                    ],
                 ],
 
                 // Recipients
 
                 'send_to' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.send_to",
+                    'label' => self::EMAIL_LLL . ':field.send_to',
                     'config' => [
                         'type' => 'input',
                         'size' => 512,
                         'eval' => 'trim',
-                        'placeholder' => 'john@example.com, jane@example.com'
-                    ]
+                        'placeholder' => 'john@example.com, jane@example.com',
+                    ],
                 ],
 
                 'send_to_provided' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.send_to_provided",
+                    'label' => self::EMAIL_LLL . ':field.send_to_provided',
                     'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->shouldShowProvidedRecipientsSelect',
                     'config' => [
                         'type' => 'select',
@@ -220,23 +195,23 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                         'renderType' => 'selectMultipleSideBySide',
                         'size' => 5,
                         'maxitems' => 128,
-                    ]
+                    ],
                 ],
 
                 'send_cc' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.send_cc",
+                    'label' => self::EMAIL_LLL . ':field.send_cc',
                     'config' => [
                         'type' => 'input',
                         'size' => 512,
                         'eval' => 'trim',
-                        'placeholder' => 'john@example.com, jane@example.com'
-                    ]
+                        'placeholder' => 'john@example.com, jane@example.com',
+                    ],
                 ],
 
                 'send_cc_provided' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.send_cc_provided",
+                    'label' => self::EMAIL_LLL . ':field.send_cc_provided',
                     'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->shouldShowProvidedRecipientsSelect',
                     'config' => [
                         'type' => 'select',
@@ -244,23 +219,23 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                         'renderType' => 'selectMultipleSideBySide',
                         'size' => 5,
                         'maxitems' => 128,
-                    ]
+                    ],
                 ],
 
                 'send_bcc' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.send_bcc",
+                    'label' => self::EMAIL_LLL . ':field.send_bcc',
                     'config' => [
                         'type' => 'input',
                         'size' => 512,
                         'eval' => 'trim',
-                        'placeholder' => 'john@example.com, jane@example.com'
-                    ]
+                        'placeholder' => 'john@example.com, jane@example.com',
+                    ],
                 ],
 
                 'send_bcc_provided' => [
                     'exclude' => 1,
-                    'label' => "$lll:field.send_bcc_provided",
+                    'label' => self::EMAIL_LLL . ':field.send_bcc_provided',
                     'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->shouldShowProvidedRecipientsSelect',
                     'config' => [
                         'type' => 'select',
@@ -268,10 +243,24 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                         'renderType' => 'selectMultipleSideBySide',
                         'size' => 5,
                         'maxitems' => 128,
-                    ]
+                    ],
                 ],
 
             ],
         ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getCtrl()
+    {
+        $ctrl = $this->getDefaultCtrl();
+
+        $ctrl['title'] = self::EMAIL_LLL . ':title';
+        $ctrl['requestUpdate'] .= ',sender_custom';
+        $ctrl['searchFields'] .= ',sender,sender_custom,send_to,send_to_provided,send_cc,send_cc_provided,send_bcc,send_bcc_provided,subject,body';
+
+        return $ctrl;
     }
 }
