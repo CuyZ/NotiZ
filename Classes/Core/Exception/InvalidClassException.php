@@ -25,6 +25,7 @@ use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Notification\Processor\NotificationProcessor;
 use CuyZ\Notiz\Core\Notification\Settings\NotificationSettings;
 use CuyZ\Notiz\Core\Property\PropertyEntry;
+use CuyZ\Notiz\Core\Property\Support\PropertyBuilder;
 
 class InvalidClassException extends NotizException
 {
@@ -45,6 +46,8 @@ class InvalidClassException extends NotizException
     const EVENT_CONFIGURATION_FLEX_FORM_PROVIDER_MISSING_INTERFACE = 'The FlexForm provider class `%s` must implement the interface `%s`.';
 
     const CHANNEL_SETTINGS_MISSING_INTERFACE = 'The channel settings class `%s` must implement the interface `%s`.';
+
+    const EVENT_PROPERTY_BUILDER_MISSING_INTERFACE = 'The property builder `%s` must implement the interface `%s`.';
 
     /**
      * @param string $className
@@ -162,6 +165,19 @@ class InvalidClassException extends NotizException
             self::CHANNEL_SETTINGS_MISSING_INTERFACE,
             1507409177,
             [$className, ChannelSettings::class]
+        );
+    }
+
+    /**
+     * @param string $className
+     * @return static
+     */
+    public static function eventPropertyBuilderMissingInterface($className)
+    {
+        return self::makeNewInstance(
+            self::EVENT_PROPERTY_BUILDER_MISSING_INTERFACE,
+            1519756764,
+            [$className, PropertyBuilder::class]
         );
     }
 }
