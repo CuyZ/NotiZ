@@ -1,0 +1,35 @@
+notiz {
+    eventGroups {
+        form {
+            label = Event/Form/FormEventGroup:title
+
+            events {
+                /*
+                * Dispatch form notification
+                * --------------------------
+                *
+                * This event is triggered when a form that implements the
+                * notification dispatch finisher is submitted.
+                */
+                dispatchFormNotification {
+                    label = Event/Form/DispatchFormNotification:title
+
+                    className = CuyZ\Notiz\Domain\Event\Form\DispatchFormNotificationEvent
+
+                    configuration {
+                        flexForm {
+                            file = EXT:notiz/Configuration/FlexForm/Event/Form/DispatchFormNotificationEventFlexForm.xml
+                        }
+                    }
+
+                    connection {
+                        type = signal
+
+                        className = CuyZ\Notiz\Domain\Event\Form\DispatchFormNotificationFinisher
+                        name = dispatchNotification
+                    }
+                }
+            }
+        }
+    }
+}

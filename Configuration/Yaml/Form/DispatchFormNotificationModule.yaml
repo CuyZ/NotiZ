@@ -1,0 +1,27 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formEditor:
+            translationFile:
+              10: 'EXT:form/Resources/Private/Language/Database.xlf'
+              20: 'EXT:notiz/Resources/Private/Language/Event/Form/DispatchFormNotification.xlf'
+          formElementsDefinition:
+            Form:
+              formEditor:
+                editors:
+                  900:
+                    selectOptions:
+                      1519552194:
+                        value: 'DispatchNotification'
+                        label: 'form_editor.finisher.dispatch_notification.label'
+                propertyCollections:
+                  finishers:
+                    1519552194:
+                      identifier: 'DispatchNotification'
+                      editors:
+                        __inheritances:
+                          10: 'TYPO3.CMS.Form.mixins.formElementMixins.BaseCollectionEditorsMixin'
+                        100:
+                          label: 'form_editor.finisher.dispatch_notification.label'

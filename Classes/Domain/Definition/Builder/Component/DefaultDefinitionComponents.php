@@ -82,5 +82,10 @@ class DefaultDefinitionComponents implements SingletonInterface
                 $typoScriptDefinitionSource->addTypoScriptFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Scheduler.typoscript');
             }
         }
+
+        // The core extension "form" can dispatch events.
+        if (ExtensionManagementUtility::isLoaded('form')) {
+            $typoScriptDefinitionSource->addTypoScriptFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Form.typoscript');
+        }
     }
 }

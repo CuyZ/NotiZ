@@ -11,3 +11,19 @@ config.tx_extbase.persistence.classes {
         }
     }
 }
+
+module.tx_form {
+    settings {
+        yamlConfigurations {
+            notizModule = EXT:notiz/Configuration/Yaml/Form/DispatchFormNotificationModule.yaml
+            notizPlugin = EXT:notiz/Configuration/Yaml/Form/DispatchFormNotificationPlugin.yaml
+        }
+    }
+}
+plugin.tx_form {
+    settings {
+        yamlConfigurations {
+            notizPlugin = EXT:notiz/Configuration/Yaml/Form/DispatchFormNotificationPlugin.yaml
+        }
+    }
+}
