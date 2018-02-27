@@ -123,9 +123,10 @@ interface Event
      * ```
      *
      * @param PropertyDefinition $definition
+     * @param Notification $notification
      * @return void
      */
-    public static function buildPropertyDefinition(PropertyDefinition $definition);
+    public static function buildPropertyDefinition(PropertyDefinition $definition, Notification $notification);
 
     /**
      * Method called to fill the values of the properties that were added during

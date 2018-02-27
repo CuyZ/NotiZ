@@ -139,8 +139,9 @@ abstract class AbstractEvent implements Event
      * See class description for more information.
      *
      * @param PropertyDefinition $definition
+     * @param Notification $notification
      */
-    public static function buildPropertyDefinition(PropertyDefinition $definition)
+    public static function buildPropertyDefinition(PropertyDefinition $definition, Notification $notification)
     {
         TagsPropertyService::get()->fillPropertyDefinition($definition);
     }

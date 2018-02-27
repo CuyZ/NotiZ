@@ -62,7 +62,9 @@ class EntityEmailTcaService extends NotificationTcaService
             return;
         }
 
-        $eventDefinition = $this->getSelectedEvent($parameters['row']);
+        $row = $parameters['row'];
+        $eventDefinition = $this->getSelectedEvent($row);
+        $notification = $this->getNotification($row);
 
         $eventRecipients = array_map(
             function (Email $recipient) {
@@ -71,7 +73,7 @@ class EntityEmailTcaService extends NotificationTcaService
                     'value' => $recipient->getName(),
                 ];
             },
-            $eventDefinition->getPropertiesDefinition(Email::class)
+            $eventDefinition->getPropertiesDefinition(Email::class, $notification)
         );
 
         $globalRecipients = array_map(
@@ -190,10 +192,12 @@ class EntityEmailTcaService extends NotificationTcaService
             return false;
         }
 
-        $eventDefinition = $this->getSelectedEvent($parameters['record']);
+        $row = $parameters['record'];
+        $eventDefinition = $this->getSelectedEvent($row);
+        $notification = $this->getNotification($row);
 
         /** @var Email[] $recipients */
-        $recipients = $eventDefinition->getPropertiesDefinition(Email::class);
+        $recipients = $eventDefinition->getPropertiesDefinition(Email::class, $notification);
 
         $globalRecipients = $this->getNotificationSettings()
             ->getGlobalRecipients()

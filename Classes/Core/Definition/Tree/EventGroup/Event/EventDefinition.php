@@ -20,6 +20,7 @@ use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Configuration\EventConfiguration;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Connection\Connection;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\EventGroup;
+use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Property\Factory\PropertyFactory;
 use CuyZ\Notiz\Core\Property\PropertyEntry;
 use CuyZ\Notiz\Service\LocalizationService;
@@ -138,11 +139,12 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
 
     /**
      * @param string $propertyClassName
+     * @param Notification $notification
      * @return PropertyEntry[]
      */
-    public function getPropertiesDefinition($propertyClassName)
+    public function getPropertiesDefinition($propertyClassName, Notification $notification)
     {
-        return PropertyFactory::get()->getPropertiesDefinition($propertyClassName, $this);
+        return PropertyFactory::get()->getPropertiesDefinition($propertyClassName, $this, $notification);
     }
 
     /**
