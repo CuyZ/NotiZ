@@ -1,4 +1,4 @@
-# ![NotiZ](../ext_icon.svg) NotiZ • Documentation
+# ![NotiZ](Images/NotiZ.svg) NotiZ • Documentation
 
 NotiZ is a ![TYPO3](Images/TYPO3.svg)[TYPO3](https://typo3.com)
 [extension](https://extensions.typo3.org/extension/notiz/) allowing to easily
@@ -7,7 +7,7 @@ your application.
 
 To ease editors lives, everything can be managed directly in the TYPO3 backend.
 
-> ![Slack](../Documentation/Images/Slack.svg) Join the discussion on Slack in channel [**#ext-notiz**](https://typo3.slack.com/messages/ext-notiz)! – You don't have access to TYPO3 Slack? Get your Slack invitation [by clicking here](https://forger.typo3.org/slack)!
+> ![Slack](Images/Slack.svg) Join the discussion on Slack in channel [**#ext-notiz**](https://typo3.slack.com/messages/ext-notiz)! – You don't have access to TYPO3 Slack? Get your Slack invitation [by clicking here](https://forger.typo3.org/slack)!
 
 You can find below documentation on how to use and extend NotiZ.
 

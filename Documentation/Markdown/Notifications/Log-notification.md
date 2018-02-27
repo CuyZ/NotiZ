@@ -52,8 +52,8 @@ In that case the notification will not be logged.
 
 [:books: Documentation index](../README.md)
 
-[tab-general]: /Documentation/Images/LogNotification/log-general.png
-[tab-event]: /Documentation/Images/LogNotification/log-event.png
-[tab-channel]: /Documentation/Images/LogNotification/log-channel.png
-[tab-configuration]: /Documentation/Images/LogNotification/log-configuration.png
+[tab-general]: ../Images/LogNotification/log-general.png
+[tab-event]: ../Images/LogNotification/log-event.png
+[tab-channel]: ../Images/LogNotification/log-channel.png
+[tab-configuration]: ../Images/LogNotification/log-configuration.png
 [link-psr3]: http://www.php-fig.org/psr/psr-3/#psrlogloglevel

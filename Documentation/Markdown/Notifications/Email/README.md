@@ -81,9 +81,9 @@ You can also override it by notification.
 
 [customize-email]: Customize-email.md
 
-[tab-general]: /Documentation/Images/EmailNotification/email-general.png
-[tab-event]: /Documentation/Images/EmailNotification/email-event.png
-[tab-channel]: /Documentation/Images/EmailNotification/email-channel.png
-[tab-configuration]: /Documentation/Images/EmailNotification/email-configuration.png
-[tab-recipients]: /Documentation/Images/EmailNotification/email-recipients.png
-[tab-sender]: /Documentation/Images/EmailNotification/email-sender.png
+[tab-general]: ../../Images/EmailNotification/email-general.png
+[tab-event]: ../../Images/EmailNotification/email-event.png
+[tab-channel]: ../../Images/EmailNotification/email-channel.png
+[tab-configuration]: ../../Images/EmailNotification/email-configuration.png
+[tab-recipients]: ../../Images/EmailNotification/email-recipients.png
+[tab-sender]: ../../Images/EmailNotification/email-sender.png
