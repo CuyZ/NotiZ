@@ -18,6 +18,7 @@ namespace CuyZ\Notiz\Core\Event;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Event\Exception\CancelEventDispatch;
+use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Property\Factory\PropertyContainer;
 use CuyZ\Notiz\Core\Property\Factory\PropertyDefinition;
 use CuyZ\Notiz\Core\Property\Factory\PropertyFactory;
@@ -132,8 +133,9 @@ abstract class AbstractEvent implements Event
      * See class description for more information.
      *
      * @param PropertyDefinition $definition
+     * @param Notification $notification
      */
-    public static function buildPropertyDefinition(PropertyDefinition $definition)
+    public static function buildPropertyDefinition(PropertyDefinition $definition, Notification $notification)
     {
         TagsPropertyService::get()->fillPropertyDefinition($definition);
     }

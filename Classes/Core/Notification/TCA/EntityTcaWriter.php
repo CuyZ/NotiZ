@@ -171,7 +171,7 @@ abstract class EntityTcaWriter implements SingletonInterface
      */
     private function addDisplayConditionToFields()
     {
-        $condition = 'USER:' . NotificationTcaService::class . '->definitionContainsErrors';
+        $condition = 'USER:' . $this->getNotificationTcaServiceClass() . '->definitionContainsErrors';
 
         foreach ($this->data['columns'] as $key => $column) {
             if ($key === 'error_message') {
@@ -345,7 +345,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                     'type' => 'select',
                     'renderType' => 'selectSingle',
                     'size' => 8,
-                    'itemsProcFunc' => NotificationTcaService::class . '->getEventsList',
+                    'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getEventsList',
                     'eval' => 'required',
                 ],
             ],
@@ -375,7 +375,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'l10n_display' => 'defaultAsReadonly',
                 'config' => [
                     'type' => 'user',
-                    'userFunc' => NotificationTcaService::class . '->getMarkersLabel',
+                    'userFunc' => $this->getNotificationTcaServiceClass() . '->getMarkersLabel',
                 ]
             ],
         ];
@@ -415,10 +415,10 @@ abstract class EntityTcaWriter implements SingletonInterface
     private function getErrorMessageColumn()
     {
         return [
-            'displayCond' => 'USER:' . NotificationTcaService::class . '->definitionContainsErrors:inverted',
+            'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->definitionContainsErrors:inverted',
             'config' => [
                 'type' => 'user',
-                'userFunc' => NotificationTcaService::class . '->getErrorMessage',
+                'userFunc' => $this->getNotificationTcaServiceClass() . '->getErrorMessage',
             ],
         ];
     }

@@ -18,6 +18,7 @@ namespace CuyZ\Notiz\Core\Property\Factory;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Event\Event;
+use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Property\PropertyEntry;
 use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -71,11 +72,12 @@ class PropertyFactory implements SingletonInterface
      *
      * @param string $propertyClassName
      * @param EventDefinition $eventDefinition
+     * @param Notification $notification
      * @return PropertyEntry[]
      */
-    public function getPropertiesDefinition($propertyClassName, EventDefinition $eventDefinition)
+    public function getPropertiesDefinition($propertyClassName, EventDefinition $eventDefinition, Notification $notification)
     {
-        return $this->buildPropertyDefinition($propertyClassName, $eventDefinition)->getEntries();
+        return $this->buildPropertyDefinition($propertyClassName, $eventDefinition, $notification)->getEntries();
     }
 
     /**
@@ -95,7 +97,7 @@ class PropertyFactory implements SingletonInterface
         $hash = spl_object_hash($event) . '::' . $propertyClassName;
 
         if (false === isset($this->propertyContainer[$hash])) {
-            $definition = $this->buildPropertyDefinition($propertyClassName, $event->getDefinition());
+            $definition = $this->buildPropertyDefinition($propertyClassName, $event->getDefinition(), $event->getNotification());
 
             /** @var PropertyContainer $propertyContainer */
             $propertyContainer = GeneralUtility::makeInstance(PropertyContainer::class, $definition);
@@ -119,9 +121,10 @@ class PropertyFactory implements SingletonInterface
      *
      * @param string $propertyClassName
      * @param EventDefinition $eventDefinition
+     * @param Notification $notification
      * @return PropertyDefinition
      */
-    protected function buildPropertyDefinition($propertyClassName, EventDefinition $eventDefinition)
+    protected function buildPropertyDefinition($propertyClassName, EventDefinition $eventDefinition, Notification $notification)
     {
         $propertyClassName = $this->objectContainer->getImplementationClassName($propertyClassName);
 
@@ -134,7 +137,7 @@ class PropertyFactory implements SingletonInterface
             /** @var Event $eventClassName */
             $eventClassName = $eventDefinition->getClassName();
 
-            $eventClassName::buildPropertyDefinition($propertyDefinition);
+            $eventClassName::buildPropertyDefinition($propertyDefinition, $notification);
 
             $this->propertyDefinition[$identifier] = $propertyDefinition;
         }

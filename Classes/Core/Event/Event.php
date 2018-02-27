@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Core\Event;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Property\Factory\PropertyContainer;
 use CuyZ\Notiz\Core\Property\Factory\PropertyDefinition;
 use CuyZ\Notiz\Core\Property\PropertyEntry;
@@ -122,9 +123,10 @@ interface Event
      * ```
      *
      * @param PropertyDefinition $definition
+     * @param Notification $notification
      * @return void
      */
-    public static function buildPropertyDefinition(PropertyDefinition $definition);
+    public static function buildPropertyDefinition(PropertyDefinition $definition, Notification $notification);
 
     /**
      * Method called to fill the values of the properties that were added during

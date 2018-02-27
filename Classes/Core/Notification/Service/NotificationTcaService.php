@@ -22,6 +22,7 @@ use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
 use CuyZ\Notiz\Core\Event\Service\EventFactory;
 use CuyZ\Notiz\Core\Exception\NotImplementedException;
+use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Domain\Property\Marker;
 use CuyZ\Notiz\Service\BackendUriBuilder;
@@ -32,11 +33,12 @@ use CuyZ\Notiz\Service\ViewService;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 
 /**
  * Utility service to ease TCA manipulation for TYPO3 notification records.
  */
-class NotificationTcaService implements SingletonInterface
+abstract class NotificationTcaService implements SingletonInterface
 {
     /**
      * @var EventFactory
@@ -59,6 +61,16 @@ class NotificationTcaService implements SingletonInterface
     protected $backendUriBuilder;
 
     /**
+     * @var DataMapper
+     */
+    protected $dataMapper;
+
+    /**
+     * @var Notification[]
+     */
+    private $notification;
+
+    /**
      * Manual dependency injection.
      */
     public function __construct()
@@ -67,6 +79,7 @@ class NotificationTcaService implements SingletonInterface
         $this->definitionService = Container::get(DefinitionService::class);
         $this->viewService = Container::get(ViewService::class);
         $this->backendUriBuilder = Container::get(BackendUriBuilder::class);
+        $this->dataMapper = Container::get(DataMapper::class);
     }
 
     /**
@@ -176,10 +189,12 @@ class NotificationTcaService implements SingletonInterface
             return '';
         }
 
-        $eventDefinition = $this->getSelectedEvent($parameters['row']);
+        $row = $parameters['row'];
+        $eventDefinition = $this->getSelectedEvent($row);
+        $notification = $this->getNotification($row);
 
         /** @var Marker[] $markers */
-        $markers = $eventDefinition->getPropertiesDefinition(Marker::class);
+        $markers = $eventDefinition->getPropertiesDefinition(Marker::class, $notification);
 
         $output = '';
 
@@ -239,6 +254,26 @@ HTML;
         $message = StringService::mark($message, '<code>$1</code>');
 
         return '<span class="bg-danger">' . $message . '</span>';
+    }
+
+    /**
+     * Returns a notification object based on an array containing the
+     * notification properties.
+     *
+     * @param array $row
+     * @return Notification
+     */
+    protected function getNotification(array $row)
+    {
+        $hash = json_encode($row);
+
+        if (!isset($this->notification[$hash])) {
+            $this->notification[$hash] = isset($row['uid']) && is_integer($row['uid'])
+                ? $this->getNotificationDefinition()->getProcessor()->getNotificationFromIdentifier($row['uid'])
+                : reset($this->dataMapper->map($this->getNotificationDefinition()->getClassName(), [$row]));
+        }
+
+        return $this->notification[$hash];
     }
 
     /**
