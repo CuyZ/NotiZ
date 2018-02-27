@@ -33,7 +33,7 @@ class Channel extends AbstractDefinitionComponent
     /**
      * @var string
      */
-    protected $channel;
+    protected $target;
 
     /**
      * @return string
@@ -54,8 +54,8 @@ class Channel extends AbstractDefinitionComponent
     /**
      * @return string
      */
-    public function getChannel()
+    public function getTarget()
     {
-        return $this->channel;
+        return $this->target;
     }
 }
