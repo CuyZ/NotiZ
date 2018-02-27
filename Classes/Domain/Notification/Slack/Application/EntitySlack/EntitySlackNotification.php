@@ -16,11 +16,13 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack;
 
+use CuyZ\Notiz\Core\Notification\CustomSettingsNotification;
 use CuyZ\Notiz\Domain\Notification\EntityNotification;
 use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Processor\EntitySlackNotificationProcessor;
+use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Settings\EntitySlackSettings;
 use CuyZ\Notiz\Domain\Notification\Slack\SlackNotification;
 
-class EntitySlackNotification extends EntityNotification implements SlackNotification
+class EntitySlackNotification extends EntityNotification implements SlackNotification, CustomSettingsNotification
 {
     /**
      * @var string
@@ -38,9 +40,34 @@ class EntitySlackNotification extends EntityNotification implements SlackNotific
     protected $message;
 
     /**
+     * @var bool
+     */
+    protected $botCustom;
+
+    /**
+     * @var string
+     */
+    protected $bot;
+
+    /**
+     * @var bool
+     */
+    protected $slackChannelCustom;
+
+    /**
+     * @var string
+     */
+    protected $slackChannel;
+
+    /**
      * @var string
      */
     protected $target;
+
+    /**
+     * @var string
+     */
+    protected $webhookUrl;
 
     /**
      * @var string
@@ -101,6 +128,86 @@ class EntitySlackNotification extends EntityNotification implements SlackNotific
     }
 
     /**
+     * @return bool
+     */
+    public function isBotCustom()
+    {
+        return $this->botCustom;
+    }
+
+    /**
+     * @param bool $botCustom
+     */
+    public function setBotCustom($botCustom)
+    {
+        $this->botCustom = $botCustom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBot()
+    {
+        return $this->bot;
+    }
+
+    /**
+     * @param string $bot
+     */
+    public function setBot($bot)
+    {
+        $this->bot = $bot;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSlackChannelCustom()
+    {
+        return $this->slackChannelCustom;
+    }
+
+    /**
+     * @param bool $slackChannelCustom
+     */
+    public function setSlackChannelCustom($slackChannelCustom)
+    {
+        $this->slackChannelCustom = $slackChannelCustom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlackChannel()
+    {
+        return $this->slackChannel;
+    }
+
+    /**
+     * @param string $slackChannel
+     */
+    public function setSlackChannel($slackChannel)
+    {
+        $this->slackChannel = $slackChannel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWebhookUrl()
+    {
+        return $this->webhookUrl;
+    }
+
+    /**
+     * @param string $webhookUrl
+     */
+    public function setWebhookUrl($webhookUrl)
+    {
+        $this->webhookUrl = $webhookUrl;
+    }
+
+    /**
      * @return string
      */
     public function getTarget()
@@ -158,5 +265,13 @@ class EntitySlackNotification extends EntityNotification implements SlackNotific
     public static function getProcessorClassName()
     {
         return EntitySlackNotificationProcessor::class;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getSettingsClassName()
+    {
+        return EntitySlackSettings::class;
     }
 }

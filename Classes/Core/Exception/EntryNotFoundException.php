@@ -42,6 +42,8 @@ class EntryNotFoundException extends NotizException
 
     const EVENT_CONNECTION_TYPE_MISSING = 'The property `type` must be filled with one of these values: `%s`.';
 
+    const ENTITY_SLACK_BOT_NOT_FOUND = 'The Slack bot `%s` was not found.';
+
     /**
      * @param string $identifier
      * @return static
@@ -172,6 +174,19 @@ class EntryNotFoundException extends NotizException
             self::EVENT_CONNECTION_TYPE_MISSING,
             1509630193,
             [implode('`, `', $allowedTypes)]
+        );
+    }
+
+    /**
+     * @param string $botIdentifier
+     * @return static
+     */
+    public static function entitySlackBotNotFound($botIdentifier)
+    {
+        return self::makeNewInstance(
+            self::ENTITY_SLACK_BOT_NOT_FOUND,
+            1519770222,
+            [$botIdentifier]
         );
     }
 }

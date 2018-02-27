@@ -17,9 +17,14 @@
 namespace CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Settings\Bots;
 
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
+use Romm\ConfigurationObject\Traits\ConfigurationObject\StoreArrayIndexTrait;
 
 class Bot extends AbstractDefinitionComponent
 {
+    use StoreArrayIndexTrait;
+
+    const IDENTIFIER_PREFIX = '__NOTIZ_SLACK_BOT_';
+
     /**
      * @var string
      */
@@ -44,5 +49,13 @@ class Bot extends AbstractDefinitionComponent
     public function getAvatar()
     {
         return $this->avatar;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return self::IDENTIFIER_PREFIX . $this->getArrayIndex();
     }
 }

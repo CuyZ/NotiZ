@@ -27,9 +27,34 @@ interface SlackNotification extends Notification, MultipleChannelsNotification
     public function getMessage();
 
     /**
+     * @return bool
+     */
+    public function isBotCustom();
+
+    /**
+     * @return string
+     */
+    public function getBot();
+
+    /**
+     * @return bool
+     */
+    public function isSlackChannelCustom();
+
+    /**
+     * @return string
+     */
+    public function getSlackChannel();
+
+    /**
      * @return string
      */
     public function getTarget();
+
+    /**
+     * @return string
+     */
+    public function getWebhookUrl();
 
     /**
      * @return string

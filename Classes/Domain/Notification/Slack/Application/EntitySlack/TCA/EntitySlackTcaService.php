@@ -17,6 +17,8 @@
 namespace CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\TCA;
 
 use CuyZ\Notiz\Core\Notification\Service\NotificationTcaService;
+use CuyZ\Notiz\Core\Notification\Settings\NotificationSettings;
+use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Settings\EntitySlackSettings;
 
 class EntitySlackTcaService extends NotificationTcaService
 {
@@ -26,5 +28,53 @@ class EntitySlackTcaService extends NotificationTcaService
     protected function getNotificationIdentifier()
     {
         return 'entitySlack';
+    }
+
+    /**
+     * Loads all bots provided by the notification and stores them as an array
+     * to be used in the TCA.
+     *
+     * @param array $parameters
+     */
+    public function getBotsList(array &$parameters)
+    {
+        if ($this->definitionHasErrors()) {
+            return;
+        }
+
+        foreach ($this->getNotificationSettings()->getBots() as $bot) {
+            $parameters['items'][] = [
+                $bot->getName(),
+                $bot->getIdentifier(),
+            ];
+        }
+    }
+
+    /**
+     * Loads all Slack channels provided by the notification and stores them as
+     * an array to be used in the TCA.
+     *
+     * @param array $parameters
+     */
+    public function getSlackChannelsList(array &$parameters)
+    {
+        if ($this->definitionHasErrors()) {
+            return;
+        }
+
+        foreach ($this->getNotificationSettings()->getChannels() as $channel) {
+            $parameters['items'][] = [
+                $channel->getLabel(),
+                $channel->getIdentifier(),
+            ];
+        }
+    }
+
+    /**
+     * @return EntitySlackSettings|NotificationSettings
+     */
+    protected function getNotificationSettings()
+    {
+        return $this->getNotificationDefinition()->getSettings();
     }
 }

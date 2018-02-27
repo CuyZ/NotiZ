@@ -17,9 +17,14 @@
 namespace CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Settings\Channels;
 
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
+use Romm\ConfigurationObject\Traits\ConfigurationObject\StoreArrayIndexTrait;
 
 class Channel extends AbstractDefinitionComponent
 {
+    use StoreArrayIndexTrait;
+
+    const IDENTIFIER_PREFIX = '__NOTIZ_SLACK_CHANNEL_';
+
     /**
      * @var string
      */
@@ -57,5 +62,13 @@ class Channel extends AbstractDefinitionComponent
     public function getTarget()
     {
         return $this->target;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return self::IDENTIFIER_PREFIX . $this->getArrayIndex();
     }
 }

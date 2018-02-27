@@ -108,9 +108,14 @@ CREATE TABLE tx_notiz_domain_model_entityslacknotification (
 	event_configuration_flex text NOT NULL,
 	channel varchar(255) DEFAULT '' NOT NULL,
 
-  target varchar(255) DEFAULT '' NOT NULL,
+  bot varchar(255) DEFAULT '' NOT NULL,
+	bot_custom tinyint(4) unsigned DEFAULT '0' NOT NULL,
   name varchar(255) DEFAULT '' NOT NULL,
   avatar varchar(255) DEFAULT '' NOT NULL,
+  slack_channel varchar(255) DEFAULT '' NOT NULL,
+	slack_channel_custom tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  target varchar(255) DEFAULT '' NOT NULL,
+  webhook_url varchar(255) DEFAULT '' NOT NULL,
 	message text NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,

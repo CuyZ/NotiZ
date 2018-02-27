@@ -25,6 +25,22 @@
             </trans-unit>
 
             <!-- FIELDS -->
+            <trans-unit id="field.bot_custom">
+                <source>Use a custom bot?</source>
+            </trans-unit>
+            <trans-unit id="field.bot">
+                <source>Bot</source>
+            </trans-unit>
+
+            <trans-unit id="field.slack_channel_custom">
+                <source>Use a custom Slack channel?</source>
+            </trans-unit>
+            <trans-unit id="field.slack_channel">
+                <source>Slack channel</source>
+            </trans-unit>
+            <trans-unit id="field.webhook_url">
+                <source>WebHook Url</source>
+            </trans-unit>
             <trans-unit id="field.target">
                 <source>Target (@user or #channel)</source>
             </trans-unit>
