@@ -186,7 +186,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                         'AND' => [
                             $condition,
                             $column['displayCond'],
-                        ]
+                        ],
                     ];
                 }
             } else {
@@ -219,7 +219,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'endtime' => 'endtime',
             ],
             'searchFields' => 'title,event',
-            'iconfile' => $this->service->getNotificationIconPath()
+            'iconfile' => $this->service->getNotificationIconPath(),
         ];
     }
 
@@ -238,9 +238,9 @@ abstract class EntityTcaWriter implements SingletonInterface
                     'foreign_table_where' => 'ORDER BY sys_language.title',
                     'items' => [
                         ['LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1],
-                        ['LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0]
-                    ]
-                ]
+                        ['LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0],
+                    ],
+                ],
             ],
             'l10n_parent' => [
                 'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -252,29 +252,29 @@ abstract class EntityTcaWriter implements SingletonInterface
                     'foreign_table' => $this->tableName,
                     'foreign_table_where' => "AND {$this->tableName}.pid=###CURRENT_PID### AND {$this->tableName}.sys_language_uid IN (-1,0)",
                     'items' => [
-                        ['', 0]
-                    ]
-                ]
+                        ['', 0],
+                    ],
+                ],
             ],
             'l10n_diffsource' => [
                 'config' => [
-                    'type' => 'passthrough'
-                ]
+                    'type' => 'passthrough',
+                ],
             ],
             't3ver_label' => [
                 'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
                 'config' => [
                     'type' => 'input',
                     'size' => 30,
-                    'max' => 255
-                ]
+                    'max' => 255,
+                ],
             ],
             'hidden' => [
                 'exclude' => 1,
                 'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
                 'config' => [
-                    'type' => 'check'
-                ]
+                    'type' => 'check',
+                ],
             ],
             'starttime' => [
                 'exclude' => 1,
@@ -288,9 +288,9 @@ abstract class EntityTcaWriter implements SingletonInterface
                     'checkbox' => 0,
                     'default' => 0,
                     'range' => [
-                        'lower' => mktime(0, 0, 0, (int)date('m'), (int)date('d'), (int)date('Y'))
-                    ]
-                ]
+                        'lower' => mktime(0, 0, 0, (int)date('m'), (int)date('d'), (int)date('Y')),
+                    ],
+                ],
             ],
             'endtime' => [
                 'exclude' => 1,
@@ -304,9 +304,9 @@ abstract class EntityTcaWriter implements SingletonInterface
                     'checkbox' => 0,
                     'default' => 0,
                     'range' => [
-                        'lower' => mktime(0, 0, 0, (int)date('m'), (int)date('d'), (int)date('Y'))
-                    ]
-                ]
+                        'lower' => mktime(0, 0, 0, (int)date('m'), (int)date('d'), (int)date('Y')),
+                    ],
+                ],
             ],
         ];
 
@@ -376,7 +376,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'config' => [
                     'type' => 'user',
                     'userFunc' => NotificationTcaService::class . '->getMarkersLabel',
-                ]
+                ],
             ],
         ];
 
@@ -395,8 +395,8 @@ abstract class EntityTcaWriter implements SingletonInterface
             'ctrl' => $this->getDefaultCtrl(),
             'types' => [
                 '0' => [
-                    'showitem' => 'error_message'
-                ]
+                    'showitem' => 'error_message',
+                ],
             ],
             'columns' => [
                 'error_message' => $this->getErrorMessageColumn(),
@@ -405,7 +405,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                         'type' => 'passthrough',
                     ],
                 ],
-            ]
+            ],
         ];
     }
 
