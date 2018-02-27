@@ -32,7 +32,6 @@ class EntityNotificationRepository extends Repository
         $querySettings = $this->objectManager->get(QuerySettingsInterface::class);
 
         $querySettings->setRespectStoragePage(false);
-        $querySettings->setRespectSysLanguage(false);
 
         $this->setDefaultQuerySettings($querySettings);
     }
