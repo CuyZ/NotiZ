@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ruleset name="Selective Standard">
+
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property phpcs-only="true" name="lineLimit" value="160"/>
+            <property phpcbf-only="true" name="lineLimit" value="160"/>
+        </properties>
+    </rule>
+
+</ruleset>
