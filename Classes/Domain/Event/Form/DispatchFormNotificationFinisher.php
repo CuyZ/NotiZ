@@ -21,7 +21,7 @@ use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 class DispatchFormNotificationFinisher extends AbstractFinisher
 {
-    const NOTIFICATION_DISPATCH_SIGNAL = 'dispatchNotification';
+    const DISPATCH_NOTIFICATION = 'DispatchNotification';
 
     /**
      * @var Dispatcher
@@ -36,7 +36,7 @@ class DispatchFormNotificationFinisher extends AbstractFinisher
     {
         $this->slotDispatcher->dispatch(
             self::class,
-            self::NOTIFICATION_DISPATCH_SIGNAL,
+            self::DISPATCH_NOTIFICATION,
             [$this->finisherContext]
         );
     }

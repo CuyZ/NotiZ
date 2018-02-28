@@ -26,7 +26,7 @@ notiz {
                         type = signal
 
                         className = CuyZ\Notiz\Domain\Event\Form\DispatchFormNotificationFinisher
-                        name = dispatchNotification
+                        name = DispatchNotification
                     }
                 }
             }

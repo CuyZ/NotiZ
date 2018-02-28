@@ -16,6 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Event\Form\Service;
 
+use CuyZ\Notiz\Domain\Event\Form\DispatchFormNotificationFinisher;
 use CuyZ\Notiz\Service\Container;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Form\Mvc\Persistence\FormPersistenceManagerInterface;
@@ -49,7 +50,7 @@ class ListFormNotifications implements SingletonInterface
             $formDefinition = $this->formPersistenceManager->load($persistenceIdentifier);
 
             foreach ($formDefinition['finishers'] as $finisher) {
-                if ($finisher['identifier'] === 'DispatchNotification') {
+                if ($finisher['identifier'] === DispatchFormNotificationFinisher::DISPATCH_NOTIFICATION) {
                     $parameters['items'][] = [
                         $formDefinition['label'] . ' (' . $persistenceIdentifier . ')',
                         $persistenceIdentifier,
