@@ -25,4 +25,4 @@ depending on your needs:
 
 ![Extension configuration][extension-configuration]
 
-[extension-configuration]: /Documentation/Images/extension-configuration.png
+[extension-configuration]: ../Images/extension-configuration.png

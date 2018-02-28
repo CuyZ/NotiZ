@@ -24,11 +24,11 @@ To ease editors lives, everything can be managed directly in the TYPO3 backend.
 
 ## Install
 
-See [Installation chapter](Documentation/Installation/README.md) from the documentation.
+See [Installation chapter](Documentation/Markdown/Installation/README.md) from the documentation.
 
 ## Usage
 
-Need some help? Go to the [Documentation](Documentation/README.md) folder.
+Need some help? Go to the [Documentation](Documentation/Markdown/README.md) folder.
 
 > ![Slack](Documentation/Images/Slack.svg) Join the discussion on Slack in 
 channel [**#ext-notiz**](https://typo3.slack.com/messages/ext-notiz)! – You 
