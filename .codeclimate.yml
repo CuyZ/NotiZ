@@ -24,7 +24,7 @@ checks:
       threshold: 4
   return-statements:
     config:
-      threshold: 4
+      threshold: 5
   similar-code:
     config:
       threshold: # language-specific defaults. an override will affect all languages.
@@ -36,16 +36,22 @@ plugins:
   phpcodesniffer:
     enabled: true
     config:
-      standard: "PSR1,PSR2"
+      standard: "PSR1,PSR2,phpcs.xml"
 
   sonar-php:
     enabled: true
     checks:
       php:S1192: # Define a constant instead of duplicating this literal "value" X times.
         enabled: false
+      php:S1117: # Rename variable which has the same name as the class property.
+        enabled: false
+      php:S1142: # Too many return statements.
+        enabled: false
 
   phpmd:
     enabled: true
+    config:
+      rulesets: "cleancode,codesize,controversial,design,unusedcode,PHPMDRuleset.xml"
     checks:
       CleanCode/StaticAccess:
         enabled: false
