@@ -23,6 +23,8 @@
  */
 class UpdateChangelog
 {
+    const CHANGELOG_FILE = 'CHANGELOG.md';
+
     const LOG_REVISION = '[%h](https://github.com/CuyZ/NotiZ/commit/%H)';
     const LOG_FORMAT_FULL = ' - **%s**%n%n   >*' . self::LOG_REVISION . ' by [%an](mailto:%ae) – %ad*%n%n%w(72, 3, 3)%b';
     const LOG_FORMAT_TINY = ' - [' . self::LOG_REVISION . '] **%s** – *by [%an](mailto:%ae) – %ad*%n';
@@ -63,14 +65,12 @@ class UpdateChangelog
         $important = $this->getLog('!!!');
         $others = $this->getLogTiny();
 
-        $currentChangelog = file_get_contents('./CHANGELOG.md', FILE_USE_INCLUDE_PATH);
-        $file = new SplFileObject('CHANGELOG.md', 'w');
+        $currentChangelog = file_get_contents(self::CHANGELOG_FILE);
 
         $changelog = $this->getChangelog($features, $bugfix, $important, $others);
-
         $changelog = preg_replace('/\n/', "\n$changelog", $currentChangelog, 1);
 
-        $file->fwrite($changelog);
+        file_put_contents(self::CHANGELOG_FILE, $changelog);
     }
 
     /**
