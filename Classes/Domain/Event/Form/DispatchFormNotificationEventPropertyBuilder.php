@@ -89,7 +89,7 @@ class DispatchFormNotificationEventPropertyBuilder implements PropertyBuilder, S
          */
         $elements = ObjectAccess::getProperty($formDefinition, 'elementsByIdentifier', true);
 
-        foreach ($elements as $key => $element) {
+        foreach ($elements as $element) {
             /** @var FormElementInterface $element */
             $definition->addEntry($element->getIdentifier())
                 ->setLabel($element->getLabel() . ' (' . $element->getIdentifier() . ')');
