@@ -1,5 +1,183 @@
 # ![NotiZ](ext_icon.svg) NotiZ – ChangeLog
 
+v0.4.0 - 01 Mar 2018
+====================
+
+New features
+------------
+
+ - **[FEATURE] Introduce event for submission of forms from core extension ([#62](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/62))**
+
+   >*[e3c611e](https://github.com/CuyZ/NotiZ/commit/e3c611e63e322c3d44973d5834e75ef0a5a90854) by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 01 Mar 2018*
+
+   Adds a new finisher "Dispatch a notification" that can be added to a 
+   form definition (accessible in the form editor backend module).
+   
+   A new event "A form was submitted" is now accessible for
+   notifications, and provides several markers as well as email recipients
+   based on the submitted form values.
+
+ - **[FEATURE] Introduce `PropertyDefinitionBuilder` interface ([#61](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/61))**
+
+   >*[cacfa22](https://github.com/CuyZ/NotiZ/commit/cacfa22c3de9d853c2c233e256b6ff20924ce757) by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 27 Feb 2018*
+
+   This interface must be implemented by classes intended to build
+   property definitions for a given event.
+    
+   To create a new builder, you need to have a class with the same name
+   as your event at which you append `PropertyBuilder`. The method
+   `build` of your builder will then be automatically called when
+   needed.
+   
+   Example:
+   
+   `MyVendor\MyExtension\Domain\Event\MyEvent` -> Event
+   
+   `MyVendor\MyExtension\Domain\Event\MyEventPropertyBuilder` -> Builder
+
+ - **[FEATURE] Introduce a signal dispatched before an email is sent ([#53](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/53))**
+
+   >*[6fe9b01](https://github.com/CuyZ/NotiZ/commit/6fe9b0108c9d07bd4e239902508ae70e356c5e6d) by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 26 Feb 2018*
+
+   If you need to do advanced modification on your mail, you can use a
+   PHP signal. Register the slot in your `ext_localconf.php` file :
+   
+   ```php
+   <?php
+   // my_extension/ext_localconf.php
+   
+   $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+      \TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class
+   );
+   
+   $dispatcher->connect(
+      \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::class,
+     
+   \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::COMPONENTS_SIGNAL,
+   
+      \Vendor\MyExtension\Service\Mail\MailTransformer::class,
+      'registerDefinitionComponents'
+   );
+   ```
+   
+    Then modify your mail object as you need:
+   
+   ```php
+   <?php
+   // my_extension/Classes/Service/Mail/MailTransformer.php
+
+    namespace Vendor\MyExtension\Service\Mail;
+ 
+    use CuyZ\Notiz\Core\Channel\Payload;
+    use TYPO3\CMS\Core\Mail\MailMessage;
+    use TYPO3\CMS\Core\SingletonInterface;
+    use TYPO3\CMS\Core\Utility\GeneralUtility;
+ 
+    class MailTransformer implements SingletonInterface
+    {
+        /**
+         * @param MailMessage $mailMessage
+         * @param Payload $payload
+         */
+        public function transform(MailMessage $mailMessage, Payload $payload)
+        {
+            $applicationContext = GeneralUtility::getApplicationContext();
+            
+            // We don't change anything in production.
+            if ($applicationContext->isProduction()) {
+                return;
+            }
+            
+            // Add a prefix to the mail subject, containing the application context.
+            $subject = "[$applicationContext][NotiZ] " . $mailMessage->getSubject();
+            $mailMessage->setSubject($subject);
+            
+            // When not in production, we want the mail to be sent only to us.
+            $mailMessage->setTo('webmaster@acme.com');
+            $mailMessage->setCc([]);
+            $mailMessage->setBcc([]);
+        }
+   }
+   ```
+
+ - **[FEATURE] Allow event objects to give arbitrary data to notifications ([#52](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/52))**
+
+   >*[858391b](https://github.com/CuyZ/NotiZ/commit/858391b54e236e77bc33f5b6f3a991f1d6801495) by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 21 Feb 2018*
+
+   A new interface `HasNotificationData` is introduced and can be implemented 
+   by an object given to an event, when it needs to transfer arbitrary data to
+   a notification during dispatching.
+    
+   For instance, you can implement this interface in a custom scheduler task:
+   
+   ```php
+   <?php
+
+   class MyCustomTask extends AbstractTask implements HasNotificationData
+   {
+       protected $notificationData = [];
+       
+       public function execute()
+       {
+           // Do things…
+           
+           $this->notificationData['foo'] = 'bar';
+           
+           // Do more things…
+           
+           return true;
+       }
+    
+       public function getNotificationData()
+       {
+           return $this->notificationData;
+       }
+   }
+   ```
+   
+    You can then use the marker `{data}` in your notification:
+   
+   `The task has been executed with "{data.foo}".`
+
+Bugs fixed
+----------
+
+ - **[BUGFIX] Accept dash and underscore in markers syntax ([#58](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/58))**
+
+   >*[c629888](https://github.com/CuyZ/NotiZ/commit/c6298888f43f7fb529a1a1058c5d8e14589dbbcf) by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 27 Feb 2018*
+
+ - **[BUGFIX] Respect language when fetching notifications ([#57](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/57))**
+
+   >*[c06253f](https://github.com/CuyZ/NotiZ/commit/c06253f5ce0e920c4bb58f697bceac869000e658) by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 27 Feb 2018*
+
+ - **[BUGFIX] Register events when no backend context is found ([#55](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/55))**
+
+   >*[6670bc0](https://github.com/CuyZ/NotiZ/commit/6670bc0b462f628be0f9a7f374c9ab8e4a96d404) by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 26 Feb 2018*
+
+ - **[BUGFIX] Detect definition error before TCA array is built ([#54](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/54))**
+
+   >*[b561942](https://github.com/CuyZ/NotiZ/commit/b5619423cbfcbfe5e8482890656ae0e667a86ea7) by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 26 Feb 2018*
+
+   Prevents fatal error being thrown in the backend when a definition
+   error is found.
+
+Others
+------
+
+ - [[2f4cc7c](https://github.com/CuyZ/NotiZ/commit/2f4cc7c2d3c64e9d66facb6a631405da5178cb58)] **[TASK] Update changelog script ([#65](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/65))** – *by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 01 Mar 2018*
+
+ - [[54bf3ee](https://github.com/CuyZ/NotiZ/commit/54bf3ee2f5dd2fabbcbcb571e8bce113b1dbc4f6)] **[TASK] Configure Code Climate checks ([#64](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/64))** – *by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 28 Feb 2018*
+
+ - [[927f95c](https://github.com/CuyZ/NotiZ/commit/927f95c417093412a3030689338ebb14297a6fe7)] **[TASK] Add reST documentation index ([#63](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/63))** – *by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 28 Feb 2018*
+
+ - [[b8fbdf3](https://github.com/CuyZ/NotiZ/commit/b8fbdf3c8cc3a7b2a69f8b8bb3dae6110c3ef9fd)] **[TASK] Make notification accessible in property definition build ([#60](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/60))** – *by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 27 Feb 2018*
+
+ - [[4fcae8a](https://github.com/CuyZ/NotiZ/commit/4fcae8aca73abec0e02be092e6ae208cec0f858c)] **[TASK] Build event with notification entry ([#59](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/59))** – *by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 27 Feb 2018*
+
+ - [[6c51f13](https://github.com/CuyZ/NotiZ/commit/6c51f1356fde64ee0d1c942545393556fd522c48)] **[TASK] Refactor and cleanup TCA declaration ([#56](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/56))** – *by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 27 Feb 2018*
+
+----
+
 v0.3.0 - 16 Feb 2018
 ====================
 
