@@ -1,0 +1,11 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          finishersDefinition:
+            DispatchNotification:
+              implementationClassName: CuyZ\Notiz\Domain\Event\Form\DispatchFormNotificationFinisher
+              formEditor:
+                iconIdentifier: 'tx-notiz-icon'
+                label: 'form_editor.finisher.dispatch_notification.label'

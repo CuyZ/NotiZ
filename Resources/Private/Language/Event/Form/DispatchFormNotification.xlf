@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+            <trans-unit id="title">
+                <source>A form was submitted</source>
+            </trans-unit>
+
+            <trans-unit id="flex_form.form_definition.label">
+                <source>Form definition</source>
+            </trans-unit>
+
+            <trans-unit id="marker.form_values">
+                <source>Form values submitted by the user.</source>
+            </trans-unit>
+            <trans-unit id="marker.form_runtime">
+                <source>Runtime object of the form, contains a lot of useful information.</source>
+            </trans-unit>
+            <trans-unit id="marker.controller_context">
+                <source>Current controller context that led to the submission of the form.</source>
+            </trans-unit>
+
+            <trans-unit id="form_editor.finisher.dispatch_notification.label">
+                <source>Dispatch a notification</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

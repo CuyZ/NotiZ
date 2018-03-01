@@ -1,0 +1,29 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Event : form notification dispatch</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <formDefinition>
+                        <TCEforms>
+                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/Form/DispatchFormNotification.xlf:flex_form.form_definition.label</label>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <itemsProcFunc>CuyZ\Notiz\Domain\Event\Form\Service\ListFormNotifications->doList</itemsProcFunc>
+                                <size>8</size>
+                                <eval>required</eval>
+                            </config>
+                        </TCEforms>
+                    </formDefinition>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>
