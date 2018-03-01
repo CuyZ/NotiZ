@@ -26,8 +26,8 @@ class UpdateChangelog
     const CHANGELOG_FILE = 'CHANGELOG.md';
 
     const LOG_REVISION = '[%h](https://github.com/CuyZ/NotiZ/commit/%H)';
-    const LOG_FORMAT_FULL = ' - **%s**%n%n   >*' . self::LOG_REVISION . ' by [%an](mailto:%ae) – %ad*%n%n%w(72, 3, 3)%b';
-    const LOG_FORMAT_TINY = ' - [' . self::LOG_REVISION . '] **%s** – *by [%an](mailto:%ae) – %ad*%n';
+    const LOG_FORMAT_FULL = '%n - **%s**%n%n   >*' . self::LOG_REVISION . ' by [%an](mailto:%ae) – %ad*%n%n%w(72, 3, 3)%b';
+    const LOG_FORMAT_TINY = '%n - [' . self::LOG_REVISION . '] **%s** – *by [%an](mailto:%ae) – %ad*';
 
     protected $version;
     protected $currentDate;
@@ -91,7 +91,6 @@ v$this->version - $this->currentDate
 
 New features
 ------------
-
 $features";
         }
 
@@ -99,7 +98,6 @@ $features";
             $changelog .= "
 Bugs fixed
 ----------
-
 $bugfix";
         }
 
@@ -109,7 +107,6 @@ Important
 ---------
 
 **⚠ Please pay attention to the changes below as they might break your TYPO3 installation:** 
-
 $important";
         }
 
@@ -117,9 +114,12 @@ $important";
             $changelog .= "
 Others
 ------
-
 $others";
         }
+
+        $changelog .= "
+----
+";
 
         return $changelog;
     }
@@ -135,7 +135,7 @@ $others";
             ' --date=format:"%d %b %Y"' .
             ' --pretty=tformat:"' . self::LOG_FORMAT_FULL . '"';
 
-        return $this->replaceIssues(shell_exec($script));
+        return $this->sanitizeLog(shell_exec($script));
     }
 
     /**
@@ -149,18 +149,22 @@ $others";
             ' --date=format:"%d %b %Y"' .
             ' --pretty=tformat:"' . self::LOG_FORMAT_TINY . '"';
 
-        return $this->replaceIssues(shell_exec($script));
+        return $this->sanitizeLog(shell_exec($script));
     }
 
     /**
-     * Adds a link to all detected GitHub issues number.
-     *
      * @param string $text
      * @return string
      */
-    protected function replaceIssues($text)
+    protected function sanitizeLog($text)
     {
-        return preg_replace('/#([0-9]+)/', '[#$1](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/$1)', $text);
+        // Add a link to all detected GitHub issues number.
+        $text = preg_replace('/#([0-9]+)/', '[#$1](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/$1)', $text);
+
+        // Replace redundant line breaks.
+        $text = preg_replace('/\n\n\n+/', "\n\n", $text);
+
+        return $text;
     }
 }
 
