@@ -42,7 +42,7 @@
                 <source>WebHook Url</source>
             </trans-unit>
             <trans-unit id="field.target">
-                <source>Target (@user or #channel)</source>
+                <source>Target (@user, #channel or member ID)</source>
             </trans-unit>
 
             <trans-unit id="field.name">
