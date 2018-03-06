@@ -102,9 +102,9 @@ Here is an example of what the generated message looks like:
 
 [:books: Documentation index](../README.md)
 
-[tab-general]: /Documentation/Images/SlackNotification/slack-general.png
-[tab-event]: /Documentation/Images/SlackNotification/slack-event.png
-[tab-channel]: /Documentation/Images/SlackNotification/slack-channel.png
-[tab-message]: /Documentation/Images/SlackNotification/slack-message.png
-[tab-slack]: /Documentation/Images/SlackNotification/slack-slack.png
-[example]: /Documentation/Images/SlackNotification/slack-result.png
+[tab-general]: ../Images/SlackNotification/slack-general.png
+[tab-event]: ../Images/SlackNotification/slack-event.png
+[tab-channel]: ../Images/SlackNotification/slack-channel.png
+[tab-message]: ../Images/SlackNotification/slack-message.png
+[tab-slack]: ../Images/SlackNotification/slack-slack.png
+[example]: ../Images/SlackNotification/slack-result.png
