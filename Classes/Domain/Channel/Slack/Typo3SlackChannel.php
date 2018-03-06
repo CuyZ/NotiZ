@@ -100,6 +100,7 @@ class Typo3SlackChannel extends AbstractChannel
             ];
 
             if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.1.0', '<')) {
+                // Guzzle is bundled with TYPO3 since version 8.1.0
                 $this->callSlackLegacy($webhookUrl, $data);
             } else {
                 $this->callSlack($webhookUrl, $data);

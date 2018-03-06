@@ -44,6 +44,8 @@ class EntitySlackBotMapper
     }
 
     /**
+     * Returns either a custom bot or a defined one.
+     *
      * @return SlackBot
      * @throws EntryNotFoundException
      */

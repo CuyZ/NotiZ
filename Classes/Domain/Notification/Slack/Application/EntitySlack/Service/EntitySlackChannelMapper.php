@@ -43,6 +43,9 @@ class EntitySlackChannelMapper
     }
 
     /**
+     * Returns an array of channels, either from a custom one, or from one or
+     * more defined ones.
+     *
      * @return SlackChannel[]
      */
     public function getChannels()

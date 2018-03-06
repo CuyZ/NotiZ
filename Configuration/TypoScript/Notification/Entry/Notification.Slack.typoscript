@@ -33,7 +33,7 @@ notiz {
                  *
                  * A channel must have a webhook url and a target.
                  *
-                 * The target can either be a Slack `#channel` or a `@user`.
+                 * The target can either be a Slack `#channel`, `@user` or `MEMBERID`.
                  *
                  * For more info on the url see: https://api.slack.com/incoming-webhooks
                  */
@@ -47,7 +47,13 @@ notiz {
                     # john {
                     #     label = John
                     #     webhookUrl = https://hooks.slack.com/services/ABCDEFGHI/ABCDEFGHI/abcdefghijklmnopqrstuvw
-                    #     target = @John Smith
+                    #     target = @John.Smith
+                    # }
+
+                    # bob {
+                    #     label = Bob
+                    #     webhookUrl = https://hooks.slack.com/services/ABCDEFGHI/ABCDEFGHI/abcdefghijklmnopqrstuvw
+                    #     target = ABCDE12345
                     # }
                 }
             }

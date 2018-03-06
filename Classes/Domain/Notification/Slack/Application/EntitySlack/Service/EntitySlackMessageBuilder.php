@@ -51,6 +51,8 @@ class EntitySlackMessageBuilder
     }
 
     /**
+     * Returns the message with markers replaced.
+     *
      * @return string
      */
     public function getMessage()

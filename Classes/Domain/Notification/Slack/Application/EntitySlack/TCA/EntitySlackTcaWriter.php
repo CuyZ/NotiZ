@@ -23,12 +23,6 @@ class EntitySlackTcaWriter extends EntityTcaWriter
     const SLACK_LLL = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Slack/Entity.xlf';
 
     /**
-     * This method must create the basic TCA configuration. It must fill at
-     * least the `ctrl` and `columns` sections.
-     *
-     * Default TYPO3 columns are added automatically, so no need to add them.
-     * Common notifications columns are also added automatically.
-     *
      * @return array
      */
     protected function buildTcaArray()
@@ -187,9 +181,6 @@ class EntitySlackTcaWriter extends EntityTcaWriter
     }
 
     /**
-     * This method returns the TCA service class for the current entity type.
-     * You can override it to return a class extending `NotificationTcaService`.
-     *
      * @return string
      */
     protected function getNotificationTcaServiceClass()
