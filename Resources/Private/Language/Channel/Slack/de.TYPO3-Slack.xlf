@@ -5,7 +5,7 @@
         <body>
 
             <trans-unit id="title">
-                <target>DE: Curl or Guzzle Slack client</target>
+                <target>DE: Slack client</target>
             </trans-unit>
 
         </body>
