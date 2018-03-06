@@ -12,7 +12,8 @@ In those records, you will have access to data specific to the selected event.
 
 ## Existing notifications
 
-NotiZ provides two types of notifications out of the box: [emails][email-notification] and [logs][log-notification].
+NotiZ provides three types of notifications out of the box:
+[emails][email-notification], [slack][slack-notification] and [logs][log-notification].
 
 ---
 
@@ -20,3 +21,4 @@ NotiZ provides two types of notifications out of the box: [emails][email-notific
 
 [email-notification]: Email/README.md
 [log-notification]: Log-notification.md
+[slack-notification]: Slack-notification.md
