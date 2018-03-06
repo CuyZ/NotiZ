@@ -3,72 +3,60 @@
     <file source-language="de">
         <header/>
         <body>
-            <!--######################################-->
-            <!--###     LOG NOTIFICATION RECORD    ###-->
-            <!--######################################-->
+
+            <!--########################################-->
+            <!--###     SLACK NOTIFICATION RECORD    ###-->
+            <!--########################################-->
             <trans-unit id="title">
-                <target>Log</target>
+                <target>DE: Slack</target>
             </trans-unit>
 
             <!-- TABS -->
-            <trans-unit id="tab.log">
-                <target>Log-Konfiguration</target>
+            <trans-unit id="tab.content">
+                <target>DE: Message</target>
+            </trans-unit>
+            <trans-unit id="tab.slack">
+                <target>DE: Slack</target>
             </trans-unit>
 
             <!-- PALETTES -->
             <trans-unit id="palette.content">
-                <target>Log-Meldung</target>
-            </trans-unit>
-            <trans-unit id="palette.levels">
-                <target>Log-Level</target>
+                <target>DE: Slack message</target>
             </trans-unit>
 
             <!-- FIELDS -->
-            <trans-unit id="field.logger">
-                <target>Logger</target>
+            <trans-unit id="field.bot_custom">
+                <target>DE: Use a custom bot?</target>
+            </trans-unit>
+            <trans-unit id="field.bot">
+                <target>DE: Bot</target>
+            </trans-unit>
+
+            <trans-unit id="field.slack_channel_custom">
+                <target>DE: Use a custom Slack channel?</target>
+            </trans-unit>
+            <trans-unit id="field.slack_channel">
+                <target>DE: Slack channel</target>
+            </trans-unit>
+            <trans-unit id="field.webhook_url">
+                <target>DE: WebHook Url</target>
+            </trans-unit>
+            <trans-unit id="field.target">
+                <target>DE: Target (@user, #channel or member ID)</target>
+            </trans-unit>
+
+            <trans-unit id="field.name">
+                <target>DE: Name</target>
+            </trans-unit>
+
+            <trans-unit id="field.avatar">
+                <target>DE: Avatar (direct image url or :emoji:)</target>
             </trans-unit>
 
             <trans-unit id="field.message">
-                <target>Meldung</target>
+                <target>DE: Message</target>
             </trans-unit>
 
-            <trans-unit id="field.level">
-                <target>Level</target>
-            </trans-unit>
-
-            <trans-unit id="field.levels_descriptions_title">
-                <target>Beschreibung der Levels</target>
-            </trans-unit>
-
-            <!-- Log levels descriptions -->
-            <trans-unit id="levels.more_info">
-                <target>Mehr Information zu den Levels</target>
-            </trans-unit>
-
-            <trans-unit id="level.DEBUG">
-                <target>Detaillierte Debug-Information</target>
-            </trans-unit>
-            <trans-unit id="level.INFO">
-                <target>Interessante Ereignisse (Benutzer loggt sich ein, SQL-Logs).</target>
-            </trans-unit>
-            <trans-unit id="level.NOTICE">
-                <target>Normale, aber wichtige Ereignisse</target>
-            </trans-unit>
-            <trans-unit id="level.WARNING">
-                <target>Außergewöhnliche Vorkommnisse, die keine Fehler sind (Nutzung einer API, die deprecated ist, falsche Nutzung einer API, unerwünschte Dinge, die aber nicht unbedingt falsch sind).</target>
-            </trans-unit>
-            <trans-unit id="level.ERROR">
-                <target>Laufzeitfehler, die keine sofortige Reaktion erfordern, aber geloggt und beobachtet werden sollten.</target>
-            </trans-unit>
-            <trans-unit id="level.CRITICAL">
-                <target>Kritische Zustände (Komponenten der Anwendungen nicht verfügbar, unerwartete Exception)</target>
-            </trans-unit>
-            <trans-unit id="level.ALERT">
-                <target>Sofortige Reaktion ist erforderlich (komplette Website ist down, Datenbank ist nicht verfügbar, etc…). Dies sollte die SMS-Benachrichtigung auslösen und Sie aufwecken.</target>
-            </trans-unit>
-            <trans-unit id="level.EMERGENCY">
-                <target>System ist unbenutzbar.</target>
-            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="de">
+        <header/>
+        <body>
+
+            <trans-unit id="title">
+                <target>DE: Curl or Guzzle Slack client</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
