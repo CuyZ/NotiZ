@@ -191,10 +191,10 @@ $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
 );
 
 $dispatcher->connect(
-    \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::class,
-    \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::COMPONENTS_SIGNAL,
+    \CuyZ\Notiz\Domain\Channel\Email\TYPO3\EmailChannel::class,
+    \CuyZ\Notiz\Domain\Channel\Email\TYPO3\EmailChannel::EMAIL_SIGNAL,
     \Vendor\MyExtension\Service\Mail\MailTransformer::class,
-    'registerDefinitionComponents'
+    'transform'
 );
 ```
 

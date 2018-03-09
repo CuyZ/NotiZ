@@ -47,16 +47,14 @@ New features
    // my_extension/ext_localconf.php
    
    $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-      \TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class
+       \TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class
    );
    
    $dispatcher->connect(
-      \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::class,
-     
-   \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::COMPONENTS_SIGNAL,
-   
-      \Vendor\MyExtension\Service\Mail\MailTransformer::class,
-      'registerDefinitionComponents'
+       \CuyZ\Notiz\Domain\Channel\Email\TYPO3\EmailChannel::class,
+       \CuyZ\Notiz\Domain\Channel\Email\TYPO3\EmailChannel::EMAIL_SIGNAL,
+       \Vendor\MyExtension\Service\Mail\MailTransformer::class,
+       'transform'
    );
    ```
    
