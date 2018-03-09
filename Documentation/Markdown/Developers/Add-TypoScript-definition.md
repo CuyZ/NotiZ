@@ -110,3 +110,7 @@ notiz {
     }
 }
 ```
+
+---
+
+[:books: Documentation index](../README.md)
