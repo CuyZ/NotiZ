@@ -135,7 +135,7 @@ class EventRunner
             $callback($event);
 
             $this->signalDispatcher->dispatch(
-                __CLASS__,
+                self::class,
                 self::SIGNAL_EVENT_WAS_DISPATCHED,
                 [$event, $notification]
             );
@@ -146,7 +146,7 @@ class EventRunner
 
         if ($exception) {
             $this->signalDispatcher->dispatch(
-                __CLASS__,
+                self::class,
                 self::SIGNAL_EVENT_DISPATCH_ERROR,
                 [$exception, $event, $notification]
             );

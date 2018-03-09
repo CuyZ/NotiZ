@@ -14,7 +14,6 @@ You can find below documentation on how to use and extend NotiZ.
 ## Summary
 
 - [Installation](Installation/README.md)
-    - [Add TypoScript definition](Installation/Add-TypoScript-definition.md)
 - [Simple example](Example/README.md)
     - [Example video](Example/Video.md)
 - [Notifications](Notifications/README.md)
@@ -23,4 +22,7 @@ You can find below documentation on how to use and extend NotiZ.
     - [Log notification](Notifications/Log-notification.md)
 - [Events](Events/README.md)
     - [Create a custom event](Events/Create-a-custom-event.md)
+- Developers
+    - [Add TypoScript definition](Developers/Add-TypoScript-definition.md)
+    - [Signals provided by the extension](Developers/Signals-connection.md)
 - [Known issues](Known-issues.md)
