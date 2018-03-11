@@ -105,6 +105,7 @@ class DefinitionBuilder implements SingletonInterface
     use ExtendedSelfInstantiateTrait;
 
     const COMPONENTS_SIGNAL = 'manageDefinitionComponents';
+    const DEFINITION_BUILT_SIGNAL = 'definitionBuilt';
 
     /**
      * @var DefinitionComponents
@@ -173,6 +174,8 @@ class DefinitionBuilder implements SingletonInterface
                     }
                 }
             }
+
+            $this->sendDefinitionBuiltSignal();
         }
 
         return $this->definitionObject;
@@ -233,5 +236,22 @@ class DefinitionBuilder implements SingletonInterface
             self::COMPONENTS_SIGNAL,
             [$this->components]
         );
+    }
+
+    /**
+     * Sends a signal when the definition object is complete.
+     *
+     * Please be aware that this signal is sent only if no error was found when
+     * the definition was built.
+     */
+    protected function sendDefinitionBuiltSignal()
+    {
+        if (!$this->definitionObject->getValidationResult()->hasErrors()) {
+            $this->dispatcher->dispatch(
+                self::class,
+                self::DEFINITION_BUILT_SIGNAL,
+                [$this->definitionObject->getObject()]
+            );
+        }
     }
 }

@@ -4,6 +4,56 @@
 
 See chapter [Customize the email object](../Notifications/Email/Customize-email.md#customize-the-email-object)
 
+## Definition was built
+
+You may need to use NotiZ definition to initialize things in your own extension.
+
+A signal will be dispatched when the definition object is complete, **only when 
+no error was found when it was built**.
+
+Note that you wont be able to modify the definition, only access its values.
+
+> *`my_extension/ext_localconf.php`*
+```php
+<?php
+$dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+    \TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class
+);
+
+$dispatcher->connect(
+    \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::class,
+    \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::DEFINITION_BUILT_SIGNAL,
+    \Vendor\MyExtension\Plugin\MyPluginService::class,
+    'registerMyPlugin'
+);
+```
+
+> *`my_extension/Classes/Plugin/MyPluginService.php`*
+```php
+<?php
+
+namespace Vendor\MyExtension\Plugin;
+
+use CuyZ\Notiz\Core\Definition\Tree\Definition;
+use TYPO3\CMS\Core\SingletonInterface;
+
+class MyPluginService implements SingletonInterface
+{
+    /**
+     * Adds a custom plugin for every notification definition entry.
+     *
+     * @param Definition $definition
+     */
+    public function registerMyPlugin(Definition $definition)
+    {
+        foreach ($definition->getNotifications() as $notification) {
+            $this->addSomePluginForNotification($notification);
+        }
+    }
+}
+
+```
+
 ## Event was dispatched
 
 This signal is sent after an event was successfully dispatched with a 
@@ -22,7 +72,7 @@ $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
 $dispatcher->connect(
     \CuyZ\Notiz\Core\Event\Runner\EventRunner::class,
     \CuyZ\Notiz\Core\Event\Runner\EventRunner::SIGNAL_EVENT_WAS_DISPATCHED,
-    \Vendor\MyExtension\Service\MessageService,
+    \Vendor\MyExtension\Service\MessageService::class,
     'eventWasDispatched'
 );
 ```
@@ -82,7 +132,7 @@ $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
 $dispatcher->connect(
     \CuyZ\Notiz\Core\Event\Runner\EventRunner::class,
     \CuyZ\Notiz\Core\Event\Runner\EventRunner::SIGNAL_EVENT_DISPATCH_ERROR,
-    \Vendor\MyExtension\Error\ErrorLogger,
+    \Vendor\MyExtension\Error\ErrorLogger::class,
     'logEventDispatchError'
 );
 ```
