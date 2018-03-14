@@ -39,7 +39,8 @@ class ContactFormSentEvent extends AbstractEvent
     private $name;
     
     /**
-     * @email The email of the user
+     * @label The email of the user
+     * @email
      * 
      * @var string
      */
@@ -57,13 +58,13 @@ class ContactFormSentEvent extends AbstractEvent
 }
 ```
 
-Variables annotated with `@marker` will be available for the channels, for instance:
+Variables annotated with `@marker` will be available for the notifications, for instance:
 - In an email, they will be available in the subject and body;
 - In a log, the will be available in the message.
 
 For example `$name` can be used as `#NAME#`.
 
-Variables annotated with `@email` will be available in the select option for email cc and bcc.
+Variables annotated with `@email` will be available in the recipients lists for email notifications.
 
 ## Registering the event
 
