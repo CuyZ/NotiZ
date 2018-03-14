@@ -37,7 +37,15 @@ class ContactFormSentEvent extends AbstractEvent
      * @var string
      */
     private $name;
-
+    
+    /**
+     * @label The email of the user
+     * @email
+     * 
+     * @var string
+     */
+    private $email;
+    
     /**
      * @param ContactForm $form
      */
@@ -45,15 +53,18 @@ class ContactFormSentEvent extends AbstractEvent
     {
         $this->message = $form->getMessage();
         $this->name = $form->getName();
+        $this->email = $form->getEmail();
     }
 }
 ```
 
-Variables annotated with `@marker` will be available for the channels, for instance:
+Variables annotated with `@marker` will be available for the notifications, for instance:
 - In an email, they will be available in the subject and body;
 - In a log, the will be available in the message.
 
 For example `$name` can be used as `#NAME#`.
+
+Variables annotated with `@email` will be available in the recipients lists for email notifications.
 
 ## Registering the event
 
