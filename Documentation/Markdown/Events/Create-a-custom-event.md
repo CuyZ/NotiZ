@@ -37,7 +37,14 @@ class ContactFormSentEvent extends AbstractEvent
      * @var string
      */
     private $name;
-
+    
+    /**
+     * @email The email of the user
+     * 
+     * @var string
+     */
+    private $email;
+    
     /**
      * @param ContactForm $form
      */
@@ -45,6 +52,7 @@ class ContactFormSentEvent extends AbstractEvent
     {
         $this->message = $form->getMessage();
         $this->name = $form->getName();
+        $this->email = $form->getEmail();
     }
 }
 ```
@@ -54,6 +62,8 @@ Variables annotated with `@marker` will be available for the channels, for insta
 - In a log, the will be available in the message.
 
 For example `$name` can be used as `#NAME#`.
+
+Variables annotated with `@email` will be available in the select option for email cc and bcc.
 
 ## Registering the event
 
