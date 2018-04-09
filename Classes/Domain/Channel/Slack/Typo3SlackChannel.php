@@ -85,6 +85,12 @@ class Typo3SlackChannel extends AbstractChannel
         $bot = $this->botMapper->getBot();
         $channels = $this->channelMapper->getChannels();
 
+        $callSlack = 'callSlack';
+
+        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.1.0', '<')) {
+            $callSlack = 'callSlackLegacy';
+        }
+
         foreach ($channels as $channel) {
             $webhookUrl = $channel->getWebhookUrl();
 
@@ -99,12 +105,7 @@ class Typo3SlackChannel extends AbstractChannel
                 $iconKey => $bot->getAvatar(),
             ];
 
-            if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.1.0', '<')) {
-                // Guzzle is bundled with TYPO3 since version 8.1.0
-                $this->callSlackLegacy($webhookUrl, $data);
-            } else {
-                $this->callSlack($webhookUrl, $data);
-            }
+            $this->$callSlack($webhookUrl, $data);
         }
     }
 
@@ -140,18 +141,21 @@ class Typo3SlackChannel extends AbstractChannel
     {
         $data = json_encode($data);
 
-        $ch = curl_init($webhookUrl);
+        $curl = curl_init($webhookUrl);
 
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER,
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        curl_setopt(
+            $curl,
+            CURLOPT_HTTPHEADER,
             [
                 'Content-Type: application/json',
                 'Content-Length: ' . strlen($data),
             ]
         );
 
-        curl_exec($ch);
+        curl_exec($curl);
     }
 }
