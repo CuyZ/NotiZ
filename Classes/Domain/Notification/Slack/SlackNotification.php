@@ -37,6 +37,9 @@ interface SlackNotification extends Notification, MultipleChannelsNotification
     public function getBot();
 
     /**
+     * This method should return `true` if the notification has a custom
+     * channel configured in addition to the defined ones.
+     *
      * @return bool
      */
     public function hasCustomSlackChannel();
