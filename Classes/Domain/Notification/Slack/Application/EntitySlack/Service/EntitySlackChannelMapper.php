@@ -43,20 +43,20 @@ class EntitySlackChannelMapper
     }
 
     /**
-     * Returns an array of channels, either from a custom one, or from one or
+     * Returns an array of channels from a custom one and/or from one or
      * more defined ones.
      *
      * @return SlackChannel[]
      */
     public function getChannels()
     {
-        if ($this->notification->isSlackChannelCustom()) {
-            return [SlackChannel::fromNotification($this->notification)];
+        $channels = [];
+
+        if ($this->notification->hasCustomSlackChannel()) {
+            $channels[] = SlackChannel::fromNotification($this->notification);
         }
 
         $identifiers = explode(',', $this->notification->getSlackChannel());
-
-        $channels = [];
 
         foreach ($this->notificationSettings->getChannels() as $channel) {
             if (in_array($channel->getIdentifier(), $identifiers)) {

@@ -50,11 +50,6 @@ class EntitySlackNotification extends EntityNotification implements SlackNotific
     protected $bot;
 
     /**
-     * @var bool
-     */
-    protected $slackChannelCustom;
-
-    /**
      * @var string
      */
     protected $slackChannel;
@@ -162,17 +157,9 @@ class EntitySlackNotification extends EntityNotification implements SlackNotific
     /**
      * @return bool
      */
-    public function isSlackChannelCustom()
+    public function hasCustomSlackChannel()
     {
-        return $this->slackChannelCustom;
-    }
-
-    /**
-     * @param bool $slackChannelCustom
-     */
-    public function setSlackChannelCustom($slackChannelCustom)
-    {
-        $this->slackChannelCustom = $slackChannelCustom;
+        return !empty($this->target) || !empty($this->webhookUrl);
     }
 
     /**

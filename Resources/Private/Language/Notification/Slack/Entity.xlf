@@ -23,6 +23,9 @@
             <trans-unit id="palette.content">
                 <source>Slack message</source>
             </trans-unit>
+            <trans-unit id="palette.channel_custom">
+                <source>Additional channel</source>
+            </trans-unit>
 
             <!-- FIELDS -->
             <trans-unit id="field.bot_custom">
@@ -32,9 +35,6 @@
                 <source>Bot</source>
             </trans-unit>
 
-            <trans-unit id="field.slack_channel_custom">
-                <source>Use a custom Slack channel?</source>
-            </trans-unit>
             <trans-unit id="field.slack_channel">
                 <source>Slack channel</source>
             </trans-unit>

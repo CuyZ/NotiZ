@@ -39,7 +39,7 @@ interface SlackNotification extends Notification, MultipleChannelsNotification
     /**
      * @return bool
      */
-    public function isSlackChannelCustom();
+    public function hasCustomSlackChannel();
 
     /**
      * @return string

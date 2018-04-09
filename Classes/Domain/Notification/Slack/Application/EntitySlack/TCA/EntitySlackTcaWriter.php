@@ -40,7 +40,11 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'canNotCollapse' => true,
                 ],
                 'channel' => [
-                    'showitem' => 'slack_channel_custom,--linebreak--,slack_channel,webhookUrl,--linebreak--,webhook_url,--linebreak--,target',
+                    'showitem' => 'slack_channel',
+                    'canNotCollapse' => true,
+                ],
+                'channel_custom' => [
+                    'showitem' => 'target,--linebreak--,webhook_url',
                     'canNotCollapse' => true,
                 ],
             ],
@@ -58,7 +62,8 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     --palette--;' . self::SLACK_LLL . ':palette.content;content,
                 --div--;' . self::SLACK_LLL . ':tab.slack,
                     --palette--;' . self::SLACK_LLL . ':palette.bot;bot,
-                    --palette--;' . self::SLACK_LLL . ':palette.channel;channel
+                    --palette--;' . self::SLACK_LLL . ':palette.channel;channel,
+                    --palette--;' . self::SLACK_LLL . ':palette.channel_custom;channel_custom
 '
                 ]
             ],
@@ -119,19 +124,9 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     ],
                 ],
 
-                'slack_channel_custom' => [
-                    'exclude' => 1,
-                    'label' => self::SLACK_LLL . ':field.slack_channel_custom',
-                    'config' => [
-                        'type' => 'check',
-                        'default' => 0,
-                    ],
-                ],
-
                 'slack_channel' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.slack_channel',
-                    'displayCond' => 'FIELD:slack_channel_custom:=:0',
                     'config' => [
                         'type' => 'select',
                         'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getSlackChannelsList',
@@ -144,7 +139,6 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 'target' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.target',
-                    'displayCond' => 'FIELD:slack_channel_custom:=:1',
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
@@ -155,7 +149,6 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 'webhook_url' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.webhook_url',
-                    'displayCond' => 'FIELD:slack_channel_custom:=:1',
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
@@ -175,7 +168,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
         $ctrl = $this->getDefaultCtrl();
 
         $ctrl['title'] = self::SLACK_LLL . ':title';
-        $ctrl['requestUpdate'] .= ',bot_custom,slack_channel_custom';
+        $ctrl['requestUpdate'] .= ',bot_custom';
 
         return $ctrl;
     }
