@@ -36,7 +36,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'canNotCollapse' => true,
                 ],
                 'bot' => [
-                    'showitem' => 'bot_custom,--linebreak--,bot,name,--linebreak--,avatar',
+                    'showitem' => 'custom_bot,--linebreak--,bot,name,--linebreak--,avatar',
                     'canNotCollapse' => true,
                 ],
                 'channel' => [
@@ -80,9 +80,9 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     ],
                 ],
 
-                'bot_custom' => [
+                'custom_bot' => [
                     'exclude' => 1,
-                    'label' => self::SLACK_LLL . ':field.bot_custom',
+                    'label' => self::SLACK_LLL . ':field.custom_bot',
                     'config' => [
                         'type' => 'check',
                         'default' => 0,
@@ -92,7 +92,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 'bot' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.bot',
-                    'displayCond' => 'FIELD:bot_custom:=:0',
+                    'displayCond' => 'FIELD:custom_bot:=:0',
                     'config' => [
                         'type' => 'select',
                         'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getBotsList',
@@ -105,7 +105,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 'name' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.name',
-                    'displayCond' => 'FIELD:bot_custom:=:1',
+                    'displayCond' => 'FIELD:custom_bot:=:1',
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
@@ -116,7 +116,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 'avatar' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.avatar',
-                    'displayCond' => 'FIELD:bot_custom:=:1',
+                    'displayCond' => 'FIELD:custom_bot:=:1',
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
@@ -168,7 +168,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
         $ctrl = $this->getDefaultCtrl();
 
         $ctrl['title'] = self::SLACK_LLL . ':title';
-        $ctrl['requestUpdate'] .= ',bot_custom';
+        $ctrl['requestUpdate'] .= ',custom_bot';
 
         return $ctrl;
     }

@@ -42,7 +42,7 @@ class EntitySlackNotification extends EntityNotification implements SlackNotific
     /**
      * @var bool
      */
-    protected $botCustom;
+    protected $customBot;
 
     /**
      * @var string
@@ -125,17 +125,17 @@ class EntitySlackNotification extends EntityNotification implements SlackNotific
     /**
      * @return bool
      */
-    public function isBotCustom()
+    public function hasCustomBot()
     {
-        return $this->botCustom;
+        return $this->customBot;
     }
 
     /**
-     * @param bool $botCustom
+     * @param bool $customBot
      */
-    public function setBotCustom($botCustom)
+    public function setCustomBot($customBot)
     {
-        $this->botCustom = $botCustom;
+        $this->customBot = $customBot;
     }
 
     /**

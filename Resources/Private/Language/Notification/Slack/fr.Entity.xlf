@@ -28,7 +28,7 @@
             </trans-unit>
 
             <!-- FIELDS -->
-            <trans-unit id="field.bot_custom">
+            <trans-unit id="field.custom_bot">
                 <target>Utiliser un bot personnalisé ?</target>
             </trans-unit>
             <trans-unit id="field.bot">

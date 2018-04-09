@@ -51,7 +51,7 @@ class EntitySlackBotMapper
      */
     public function getBot()
     {
-        if ($this->notification->isBotCustom()) {
+        if ($this->notification->hasCustomBot()) {
             return SlackBot::fromNotification($this->notification);
         }
 

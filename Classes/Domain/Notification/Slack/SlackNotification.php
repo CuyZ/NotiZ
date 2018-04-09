@@ -29,7 +29,7 @@ interface SlackNotification extends Notification, MultipleChannelsNotification
     /**
      * @return bool
      */
-    public function isBotCustom();
+    public function hasCustomBot();
 
     /**
      * @return string
