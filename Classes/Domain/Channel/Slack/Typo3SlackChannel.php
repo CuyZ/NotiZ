@@ -78,7 +78,7 @@ class Typo3SlackChannel extends AbstractChannel
     }
 
     /**
-     * Send the slack notification.
+     * Send the Slack notification.
      */
     protected function process()
     {

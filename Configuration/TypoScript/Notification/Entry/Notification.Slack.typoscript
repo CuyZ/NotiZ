@@ -31,11 +31,11 @@ notiz {
                 /*
                  * Channels will be available for every Slack notification.
                  *
-                 * A channel must have a webhook url and a target.
+                 * A channel must have a webhook URL and a target.
                  *
                  * The target can either be a Slack `#channel`, `@user` or `MEMBERID`.
                  *
-                 * For more info on the url see: https://api.slack.com/incoming-webhooks
+                 * For more info on the URL see: https://api.slack.com/incoming-webhooks
                  */
                 channels {
                     # general {

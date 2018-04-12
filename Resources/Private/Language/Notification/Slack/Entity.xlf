@@ -39,7 +39,7 @@
                 <source>Slack channel</source>
             </trans-unit>
             <trans-unit id="field.webhook_url">
-                <source>WebHook Url</source>
+                <source>WebHook URL</source>
             </trans-unit>
             <trans-unit id="field.target">
                 <source>Target (@user, #channel or member ID)</source>
@@ -50,7 +50,7 @@
             </trans-unit>
 
             <trans-unit id="field.avatar">
-                <source>Avatar (direct image url or :emoji:)</source>
+                <source>Avatar (direct image URL or :emoji:)</source>
             </trans-unit>
 
             <trans-unit id="field.message">

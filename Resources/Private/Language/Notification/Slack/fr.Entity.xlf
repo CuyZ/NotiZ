@@ -24,7 +24,7 @@
                 <target>Message Slack</target>
             </trans-unit>
             <trans-unit id="palette.channel_custom">
-                <target>Channel supplémentaire</target>
+                <target>Canal supplémentaire</target>
             </trans-unit>
 
             <!-- FIELDS -->
@@ -42,7 +42,7 @@
                 <target>Lien du WebHook</target>
             </trans-unit>
             <trans-unit id="field.target">
-                <target>Cible (@utilisateur, #salon or ID membre)</target>
+                <target>Cible (@utilisateur, #salon ou ID membre)</target>
             </trans-unit>
 
             <trans-unit id="field.name">

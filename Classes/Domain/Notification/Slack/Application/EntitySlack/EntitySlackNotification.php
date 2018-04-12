@@ -243,10 +243,6 @@ class EntitySlackNotification extends EntityNotification implements SlackNotific
     }
 
     /**
-     * Must return a processor class name that does extend the class:
-     *
-     * @see \CuyZ\Notiz\Core\Notification\Processor\NotificationProcessor
-     *
      * @return string
      */
     public static function getProcessorClassName()

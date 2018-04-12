@@ -30,7 +30,7 @@ TYPO3 version.
 
 ## The message
 
-In here you can configure the slack message.
+In here you can configure the Slack message.
 
 Depending on the selected event, you have access to markers with dynamic values.
 These markers can be used in the message.
