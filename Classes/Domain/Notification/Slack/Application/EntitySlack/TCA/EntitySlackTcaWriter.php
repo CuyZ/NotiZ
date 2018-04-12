@@ -36,7 +36,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'canNotCollapse' => true,
                 ],
                 'bot' => [
-                    'showitem' => 'custom_bot,--linebreak--,bot,name,--linebreak--,avatar',
+                    'showitem' => 'custom_bot,--linebreak--,bot,no_defined_bot,name,--linebreak--,avatar',
                     'canNotCollapse' => true,
                 ],
                 'channel' => [
@@ -92,13 +92,33 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 'bot' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.bot',
-                    'displayCond' => 'FIELD:custom_bot:=:0',
+                    'displayCond' => [
+                        'AND' => [
+                            'FIELD:custom_bot:=:0',
+                            'USER:' . $this->getNotificationTcaServiceClass() . '->hasDefinedBot',
+                        ],
+                    ],
                     'config' => [
                         'type' => 'select',
                         'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getBotsList',
                         'size' => 1,
                         'maxitems' => 1,
                         'eval' => 'required',
+                    ],
+                ],
+
+                'no_defined_bot' => [
+                    'exclude' => 1,
+                    'label' => self::SLACK_LLL . ':field.no_defined_bot',
+                    'displayCond' => [
+                        'AND' => [
+                            'FIELD:custom_bot:=:0',
+                            'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedBot',
+                        ],
+                    ],
+                    'config' => [
+                        'type' => 'user',
+                        'userFunc' => $this->getNotificationTcaServiceClass() . '->getNoDefinedBotText',
                     ],
                 ],
 

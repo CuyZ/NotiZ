@@ -71,6 +71,36 @@ class EntitySlackTcaService extends NotificationTcaService
     }
 
     /**
+     * @return bool
+     */
+    public function hasDefinedBot()
+    {
+        if ($this->definitionHasErrors()) {
+            return false;
+        }
+
+        return count($this->getNotificationSettings()->getChannels()) > 0;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasNoDefinedBot()
+    {
+        return !$this->hasDefinedBot();
+    }
+
+    /**
+     * @return string
+     */
+    public function getNoDefinedBotText()
+    {
+        $view = $this->viewService->getStandaloneView('Backend/TCA/NoDefinedBotMessage');
+
+        return $view->render();
+    }
+
+    /**
      * @return EntitySlackSettings|NotificationSettings
      */
     protected function getNotificationSettings()

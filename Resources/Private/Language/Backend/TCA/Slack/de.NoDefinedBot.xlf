@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="fr">
+        <header/>
+        <body>
+
+            <!--####################################-->
+            <!--###  SLACK TCA - NO BOT DEFINED  ###-->
+            <!--####################################-->
+
+            <trans-unit id="info_box.title">
+                <target>DE: Good to know</target>
+            </trans-unit>
+
+            <trans-unit id="info_box.header">
+                <target>DE: You can pre-configure bots</target>
+            </trans-unit>
+            <trans-unit id="info_box.body">
+                <target>DE: Bots can be configured in TypoScript to be selectable here instead of defining a custom one:</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
