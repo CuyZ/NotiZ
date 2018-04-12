@@ -70,6 +70,27 @@ notiz {
 In this section you can either pick one or more defined channels or configure a
 custom one for the notification.
 
+
+#### Options
+
+Each channel is composed out of three options:
+
+##### `label`
+
+It will be displayed in the backend and can be an `LLL:...` reference.
+
+##### `webhookUrl`
+
+The Slack URL to which the notification is sent to.
+
+You can generate one by following the [official documentation][webhook-doc]
+ 
+##### `target`
+
+The `@user`, `MEMBER_ID` or `#slack-channel` to send the notification to.
+
+#### Definition
+
 Channels are defined in TypoScript:
 
 ```typoscript
@@ -108,3 +129,4 @@ Here is an example of what the generated message looks like:
 [tab-message]: ../Images/SlackNotification/slack-message.png
 [tab-slack]: ../Images/SlackNotification/slack-slack.png
 [example]: ../Images/SlackNotification/slack-result.png
+[webhook-doc]: https://api.slack.com/incoming-webhooks
