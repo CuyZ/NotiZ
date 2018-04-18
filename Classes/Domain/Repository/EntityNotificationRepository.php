@@ -17,7 +17,9 @@
 namespace CuyZ\Notiz\Domain\Repository;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Domain\Notification\EntityNotification;
 use TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
@@ -49,5 +51,34 @@ class EntityNotificationRepository extends Repository
         );
 
         return $query->execute();
+    }
+
+    /**
+     * Returns the wanted notification even if it was disabled.
+     *
+     * @param mixed $identifier
+     * @return EntityNotification|object
+     */
+    public function findByIdentifierForce($identifier)
+    {
+        $query = $this->createQueryWithoutEnableStatement();
+
+        $query->matching(
+            $query->equals('uid', $identifier)
+        );
+
+        return $query->execute()->getFirst();
+    }
+
+    /**
+     * @return QueryInterface
+     */
+    protected function createQueryWithoutEnableStatement()
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()
+            ->setIgnoreEnableFields(true);
+
+        return $query;
     }
 }

@@ -42,12 +42,14 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
 
     /**
      * @param string $identifier
+     * @param bool $force If `true` the notification will be returned even if it was disabled.
      * @return Notification|object
      */
-    public function getNotificationFromIdentifier($identifier)
+    public function getNotificationFromIdentifier($identifier, $force = false)
     {
-        return $this->notificationRepository
-            ->findByIdentifier($identifier);
+        return $force
+            ? $this->notificationRepository->findByIdentifierForce($identifier)
+            : $this->notificationRepository->findByIdentifier($identifier);
     }
 
     /**

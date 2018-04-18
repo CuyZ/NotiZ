@@ -64,9 +64,10 @@ abstract class NotificationProcessor
 
     /**
      * @param string $identifier
+     * @param bool $force If `true` the notification will be returned even if it was disabled.
      * @return Notification
      */
-    abstract public function getNotificationFromIdentifier($identifier);
+    abstract public function getNotificationFromIdentifier($identifier, $force);
 
     /**
      * Returns all notification instances.
