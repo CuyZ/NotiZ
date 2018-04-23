@@ -40,7 +40,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'canNotCollapse' => true,
                 ],
                 'channel' => [
-                    'showitem' => 'slack_channel',
+                    'showitem' => 'slack_channel,no_defined_slack_channel',
                     'canNotCollapse' => true,
                 ],
                 'channel_custom' => [
@@ -144,9 +144,20 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     ],
                 ],
 
+                'no_defined_slack_channel' => [
+                    'exclude' => 1,
+                    'label' => self::SLACK_LLL . ':field.no_defined_slack_channel',
+                    'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedSlackChannel',
+                    'config' => [
+                        'type' => 'user',
+                        'userFunc' => $this->getNotificationTcaServiceClass() . '->getNoDefinedSlackChannelText',
+                    ],
+                ],
+
                 'slack_channel' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.slack_channel',
+                    'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->hasDefinedSlackChannel',
                     'config' => [
                         'type' => 'select',
                         'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getSlackChannelsList',

@@ -23,8 +23,14 @@
             <trans-unit id="palette.content">
                 <target>DE: Slack message</target>
             </trans-unit>
+            <trans-unit id="palette.bot">
+                <target>DE: Slack bot</target>
+            </trans-unit>
+            <trans-unit id="palette.channel">
+                <target>DE: Slack channel</target>
+            </trans-unit>
             <trans-unit id="palette.channel_custom">
-                <source>DE: Additional channel</source>
+                <target>DE: Additional channel</target>
             </trans-unit>
 
             <!-- FIELDS -->

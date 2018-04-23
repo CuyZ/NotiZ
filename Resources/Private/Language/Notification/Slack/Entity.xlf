@@ -23,6 +23,12 @@
             <trans-unit id="palette.content">
                 <source>Slack message</source>
             </trans-unit>
+            <trans-unit id="palette.bot">
+                <source>Slack bot</source>
+            </trans-unit>
+            <trans-unit id="palette.channel">
+                <source>Slack channel</source>
+            </trans-unit>
             <trans-unit id="palette.channel_custom">
                 <source>Additional channel</source>
             </trans-unit>
