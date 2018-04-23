@@ -79,7 +79,7 @@ class EntitySlackTcaService extends NotificationTcaService
             return false;
         }
 
-        return count($this->getNotificationSettings()->getChannels()) > 0;
+        return count($this->getNotificationSettings()->getBots()) > 0;
     }
 
     /**
