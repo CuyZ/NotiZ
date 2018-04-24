@@ -18,16 +18,13 @@ namespace CuyZ\Notiz\Core\Event;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Notification\Notification;
-use CuyZ\Notiz\Core\Property\Factory\PropertyContainer;
-use CuyZ\Notiz\Core\Property\Factory\PropertyDefinition;
-use CuyZ\Notiz\Core\Property\PropertyEntry;
 
 /**
  * Interface for an event that will be processed when a hook/signal is called.
  *
- * The purpose of an event is to process the data coming from the hook/signal to
- * fill properties. These properties are then used by the notifications bound to
- * this very event, to dispatch it with correct information.
+ * The purpose of an event is to process the data coming from the hook/signal.
+ * It may fill so-called "properties", that are then used by the notifications
+ * bound to this very event, to dispatch it with correct information.
  *
  * An example of an event usage could be:
  *
@@ -53,22 +50,11 @@ use CuyZ\Notiz\Core\Property\PropertyEntry;
  * #1 - Property definition
  * ------------------------
  *
- * An event must implement the method `buildPropertyDefinition()` that will be
- * called to build a full definition of a property type that can be processed by
- * the event.
+ * In order for an event to be able to fill properties, it has to
+ * implements the interface: @see \CuyZ\Notiz\Core\Event\Support\HasProperties
  *
- * The method is static, meaning that an event implementation should always know
- * in advance which data exactly can be handled during the event dispatch
- * process.
- *
- * The method will be called for every property type that can be asked by a
- * notification, so the code must be adapted to handle these several calls. See
- * the method documentation for more information:
- *
- * @see \CuyZ\Notiz\Core\Event\Event::buildPropertyDefinition
- *
- * In order to be sure that an event can be dispatched by all notifications you
- * need to cover every case for all registered property types.
+ * The static method `getPropertyBuilder` must return an instance of a property
+ * builder that will be used to fetch the definition for used properties.
  *
  * #2 - Dispatch process
  * ---------------------
@@ -90,88 +76,13 @@ use CuyZ\Notiz\Core\Property\PropertyEntry;
  * Now that the data was saved during phase #2, the notifications bound to this
  * event will want to access to this data.
  *
- * @see \CuyZ\Notiz\Core\Event\Event::fillPropertyEntries
+ * @see \CuyZ\Notiz\Core\Event\Support\HasProperties::fillPropertyEntries
  *
  * In this method, the properties that were added in the definitions during
  * phase #1 should be filled with correct values.
  */
 interface Event
 {
-    /**
-     * Builds a definition for a given property type that can be used by
-     * notifications.
-     *
-     * Be aware that this method can be called several times, depending on what
-     * type of property the notifications need.
-     *
-     * An example of implementation for this method can be:
-     *
-     * ```
-     * public static function buildPropertyDefinition(PropertyDefinition $definition)
-     * {
-     *     switch ($definition->getPropertyType()) {
-     *         case Marker::class:
-     *             $entry = $definition->addEntry('user_name');
-     *             $entry->setLabel('Registered user name');
-     *             break;
-     *         case Email::class:
-     *             $entry = $definition->addEntry('user_email');
-     *             $entry->setLabel('Registered user');
-     *             break;
-     *     }
-     * }
-     * ```
-     *
-     * @param PropertyDefinition $definition
-     * @param Notification $notification
-     * @return void
-     */
-    public static function buildPropertyDefinition(PropertyDefinition $definition, Notification $notification);
-
-    /**
-     * Method called to fill the values of the properties that were added during
-     * the definition phase, so they can be used by notifications.
-     *
-     * @see \CuyZ\Notiz\Core\Event\Event::buildPropertyDefinition
-     *
-     * The property container passed as a parameter contains the entries added
-     * in the definition: each one should be filled with a value that was
-     * fetched during the dispatch process of the event.
-     *
-     * Be aware that this method may be called multiple times, as a notification
-     * may need several property types.
-     *
-     * An example of implementation for this method can be:
-     *
-     * ```
-     * public function fillPropertyEntries(PropertyContainer $container)
-     * {
-     *     switch ($container->getPropertyType()) {
-     *         case Marker::class:
-     *             $container->getEntry('user_name')
-     *                 ->setValue($this->userName);
-     *             break;
-     *         case Email::class:
-     *             $container->getEntry('user_email')
-     *                 ->setValue($this->userEmail);
-     *             break;
-     *     }
-     * }
-     * ```
-     *
-     * @param PropertyContainer $container
-     * @return void
-     */
-    public function fillPropertyEntries(PropertyContainer $container);
-
-    /**
-     * Returns the property entries list for the given property type.
-     *
-     * @param string $propertyClassName
-     * @return PropertyEntry[]
-     */
-    public function getProperties($propertyClassName);
-
     /**
      * Must return the definition for this event instance.
      *

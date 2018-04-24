@@ -34,7 +34,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * A property definition is built by an event, because the event is the only one
  * to know which entries can be added.
  *
- * @see \CuyZ\Notiz\Core\Event\Event::buildPropertyDefinition
+ * @see \CuyZ\Notiz\Core\Event\Support\HasProperties::buildPropertyDefinition
  *
  * In the method above, the definition can be manipulated to add new entries:
  *

@@ -22,7 +22,7 @@ use CuyZ\Notiz\Service\LocalizationService;
 /**
  * An entry of a property definition, that is created in an event:
  *
- * @see \CuyZ\Notiz\Core\Event\Event::buildPropertyDefinition
+ * @see \CuyZ\Notiz\Core\Event\Support\HasProperties::buildPropertyDefinition
  *
  * An entry must be named, and can contain a label. You may add more class
  * properties with own getters/setters, that can be filled during the definition
@@ -32,7 +32,7 @@ use CuyZ\Notiz\Service\LocalizationService;
  * notification, but you wont be able to force a value after the method below
  * was called:
  *
- * @see \CuyZ\Notiz\Core\Event\Event::fillPropertyEntries
+ * @see \CuyZ\Notiz\Core\Event\Support\HasProperties::fillPropertyEntries
  */
 abstract class PropertyEntry
 {

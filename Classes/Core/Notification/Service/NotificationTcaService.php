@@ -194,7 +194,7 @@ abstract class NotificationTcaService implements SingletonInterface
         $notification = $this->getNotification($row);
 
         /** @var Marker[] $markers */
-        $markers = $eventDefinition->getPropertiesDefinition(Marker::class, $notification);
+        $markers = $eventDefinition->getPropertyDefinition(Marker::class, $notification)->getEntries();
 
         $output = '';
 

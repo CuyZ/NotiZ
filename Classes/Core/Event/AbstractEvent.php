@@ -18,14 +18,13 @@ namespace CuyZ\Notiz\Core\Event;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Event\Exception\CancelEventDispatch;
+use CuyZ\Notiz\Core\Event\Support\HasProperties;
 use CuyZ\Notiz\Core\Exception\InvalidClassException;
 use CuyZ\Notiz\Core\Notification\Notification;
+use CuyZ\Notiz\Core\Property\Builder\PropertyBuilder;
 use CuyZ\Notiz\Core\Property\Factory\PropertyContainer;
-use CuyZ\Notiz\Core\Property\Factory\PropertyDefinition;
 use CuyZ\Notiz\Core\Property\Factory\PropertyFactory;
-use CuyZ\Notiz\Core\Property\PropertyEntry;
-use CuyZ\Notiz\Core\Property\Service\TagsPropertyService;
-use CuyZ\Notiz\Core\Property\Support\PropertyBuilder;
+use CuyZ\Notiz\Domain\Property\Builder\TagsPropertyBuilder;
 use CuyZ\Notiz\Service\Container;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
@@ -75,8 +74,10 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
  * `cancelDispatch()` whenever you need to. This will cancel the dispatch of the
  * event and prevent any notification bound to this event from being fired.
  */
-abstract class AbstractEvent implements Event
+abstract class AbstractEvent implements Event, HasProperties
 {
+    const BUILDER_SUFFIX = 'PropertyBuilder';
+
     /**
      * @var EventDefinition
      */
@@ -139,29 +140,34 @@ abstract class AbstractEvent implements Event
     }
 
     /**
-     * See class description for more information.
+     * By default, the following builder will be used for your event:
+     * @see \CuyZ\Notiz\Domain\Property\Builder\TagsPropertyBuilder
      *
-     * @param PropertyDefinition $definition
-     * @param Notification $notification
+     * To use a custom builder, you need to create a class with the same name as
+     * your event at which you append `PropertyBuilder`. The method `build` of
+     * your builder will then be automatically called when needed.
+     *
+     * Example:
+     *
+     * `MyVendor\MyExtension\Domain\Event\MyEvent` -> Event
+     * `MyVendor\MyExtension\Domain\Event\MyEventPropertyBuilder` -> Builder
+     *
+     * @return PropertyBuilder
      */
-    public static function buildPropertyDefinition(PropertyDefinition $definition, Notification $notification)
+    public static function getPropertyBuilder()
     {
-        TagsPropertyService::get()->fillPropertyDefinition($definition);
+        $builderClassName = static::class . static::BUILDER_SUFFIX;
 
-        /**
-         * @see \CuyZ\Notiz\Core\Property\Support\PropertyBuilder
-         */
-        $builderClassName = static::class . PropertyBuilder::BUILDER_SUFFIX;
-
-        if (class_exists($builderClassName)) {
-            if (!in_array(PropertyBuilder::class, class_implements($builderClassName))) {
-                throw InvalidClassException::eventPropertyBuilderMissingInterface($builderClassName);
-            }
-
-            /** @var PropertyBuilder $builder */
-            $builder = Container::get($builderClassName);
-            $builder->build($definition, $notification);
+        if (!class_exists($builderClassName)) {
+            $builderClassName = TagsPropertyBuilder::class;
+        } elseif (!in_array(PropertyBuilder::class, class_implements($builderClassName))) {
+            throw InvalidClassException::eventPropertyBuilderMissingInterface($builderClassName);
         }
+
+        /** @var PropertyBuilder $builder */
+        $builder = Container::get($builderClassName);
+
+        return $builder;
     }
 
     /**
@@ -178,15 +184,6 @@ abstract class AbstractEvent implements Event
                 $property->setValue($this->$name);
             }
         }
-    }
-
-    /**
-     * @param string $propertyClassName
-     * @return PropertyEntry[]
-     */
-    public function getProperties($propertyClassName)
-    {
-        return $this->propertyFactory->getProperties($propertyClassName, $this);
     }
 
     /**

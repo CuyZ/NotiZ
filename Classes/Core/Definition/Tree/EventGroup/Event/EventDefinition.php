@@ -21,8 +21,8 @@ use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Configuration\EventConfigur
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Connection\Connection;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\EventGroup;
 use CuyZ\Notiz\Core\Notification\Notification;
+use CuyZ\Notiz\Core\Property\Factory\PropertyDefinition;
 use CuyZ\Notiz\Core\Property\Factory\PropertyFactory;
-use CuyZ\Notiz\Core\Property\PropertyEntry;
 use CuyZ\Notiz\Service\LocalizationService;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessor;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessorInterface;
@@ -140,11 +140,11 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     /**
      * @param string $propertyClassName
      * @param Notification $notification
-     * @return PropertyEntry[]
+     * @return PropertyDefinition
      */
-    public function getPropertiesDefinition($propertyClassName, Notification $notification)
+    public function getPropertyDefinition($propertyClassName, Notification $notification)
     {
-        return PropertyFactory::get()->getPropertiesDefinition($propertyClassName, $this, $notification);
+        return PropertyFactory::get()->getPropertyDefinition($propertyClassName, $this, $notification);
     }
 
     /**

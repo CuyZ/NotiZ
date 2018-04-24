@@ -18,6 +18,7 @@ namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Service;
 
 use CuyZ\Notiz\Core\Channel\Payload;
 use CuyZ\Notiz\Core\Event\Event;
+use CuyZ\Notiz\Core\Property\Factory\PropertyFactory;
 use CuyZ\Notiz\Core\Property\Service\MarkerParser;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\EntityEmailSettings;
@@ -60,8 +61,9 @@ class EntityEmailTemplateBuilder
      * @param Payload $payload
      * @param MarkerParser $markerParser
      * @param SlotViewService $slotViewService
+     * @param PropertyFactory $propertyFactory
      */
-    public function __construct(Payload $payload, MarkerParser $markerParser, SlotViewService $slotViewService)
+    public function __construct(Payload $payload, MarkerParser $markerParser, SlotViewService $slotViewService, PropertyFactory $propertyFactory)
     {
         $this->notification = $payload->getNotification();
         $this->notificationSettings = $payload->getNotificationDefinition()->getSettings();
@@ -69,7 +71,7 @@ class EntityEmailTemplateBuilder
         $this->event = $payload->getEvent();
 
         $this->markerParser = $markerParser;
-        $this->markers = $payload->getEvent()->getProperties(Marker::class);
+        $this->markers = $propertyFactory->getProperties(Marker::class, $payload->getEvent())->getEntries();
 
         $this->slotViewService = $slotViewService;
     }
