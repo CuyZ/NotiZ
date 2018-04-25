@@ -17,7 +17,7 @@
 namespace CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Data;
 
 use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\EntitySlackNotification;
-use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Settings\Channels\Channel;
+use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Settings\Channels\Channel as ChannelDefinition;
 
 class SlackChannel
 {
@@ -54,10 +54,10 @@ class SlackChannel
     }
 
     /**
-     * @param Channel $channel
+     * @param ChannelDefinition $channel
      * @return static
      */
-    public static function fromDefinition(Channel $channel)
+    public static function fromDefinition(ChannelDefinition $channel)
     {
         return new static($channel->getWebhookUrl(), $channel->getTarget());
     }
