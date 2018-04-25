@@ -5,7 +5,7 @@ notiz {
 
             className = CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\EntitySlackNotification
 
-            iconPath = EXT:notiz/Resources/Public/Icon/Notification/notification-log-entity-typo3.svg
+            iconPath = EXT:notiz/Resources/Public/Icon/Notification/notification-slack-entity-typo3.svg
 
             channels < notiz.channels.slack
 
