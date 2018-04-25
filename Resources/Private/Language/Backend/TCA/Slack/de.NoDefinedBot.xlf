@@ -9,14 +9,14 @@
             <!--####################################-->
 
             <trans-unit id="info_box.title">
-                <target>DE: Good to know</target>
+                <target>Gut zu wissen</target>
             </trans-unit>
 
             <trans-unit id="info_box.header">
-                <target>DE: You can pre-configure bots</target>
+                <target>Sie können Bots vorkonfigurieren</target>
             </trans-unit>
             <trans-unit id="info_box.body">
-                <target>DE: Bots can be configured in TypoScript to be selectable here instead of defining a custom one:</target>
+                <target>Anstelle der benutzerdefinierten Definition können Bots per TypoScript definiert und anschließend hier ausgewählt werden:</target>
             </trans-unit>
 
         </body>

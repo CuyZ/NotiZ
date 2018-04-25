@@ -8,59 +8,59 @@
             <!--###     SLACK NOTIFICATION RECORD    ###-->
             <!--########################################-->
             <trans-unit id="title">
-                <target>DE: Slack</target>
+                <target>Slack</target>
             </trans-unit>
 
             <!-- TABS -->
             <trans-unit id="tab.content">
-                <target>DE: Message</target>
+                <target>Nachricht</target>
             </trans-unit>
             <trans-unit id="tab.slack">
-                <target>DE: Slack</target>
+                <target>Slack</target>
             </trans-unit>
 
             <!-- PALETTES -->
             <trans-unit id="palette.content">
-                <target>DE: Slack message</target>
+                <target>Slack-Nachricht</target>
             </trans-unit>
             <trans-unit id="palette.bot">
-                <target>DE: Slack bot</target>
+                <target>Slack-Bot</target>
             </trans-unit>
             <trans-unit id="palette.channel">
-                <target>DE: Slack channel</target>
+                <target>Slack-Channel</target>
             </trans-unit>
             <trans-unit id="palette.channel_custom">
-                <target>DE: Additional channel</target>
+                <target>Zusätzlicher Channel</target>
             </trans-unit>
 
             <!-- FIELDS -->
             <trans-unit id="field.custom_bot">
-                <target>DE: Use a custom bot?</target>
+                <target>Benutzerdefinierten Bot verwenden?</target>
             </trans-unit>
             <trans-unit id="field.bot">
-                <target>DE: Bot</target>
+                <target>Bot</target>
             </trans-unit>
 
             <trans-unit id="field.slack_channel">
-                <target>DE: Slack channel</target>
+                <target>Slack-Channel</target>
             </trans-unit>
             <trans-unit id="field.webhook_url">
-                <target>DE: WebHook Url</target>
+                <target>WebHook-URL</target>
             </trans-unit>
             <trans-unit id="field.target">
-                <target>DE: Target (@user, #channel or member ID)</target>
+                <target>Ziel (@user, #channel oder Member-ID)</target>
             </trans-unit>
 
             <trans-unit id="field.name">
-                <target>DE: Name</target>
+                <target>Name</target>
             </trans-unit>
 
             <trans-unit id="field.avatar">
-                <target>DE: Avatar (direct image url or :emoji:)</target>
+                <target>Avatar (Bild-URL oder :emoji:)</target>
             </trans-unit>
 
             <trans-unit id="field.message">
-                <target>DE: Message</target>
+                <target>Nachricht</target>
             </trans-unit>
 
         </body>

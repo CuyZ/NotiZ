@@ -5,7 +5,7 @@
         <body>
 
             <trans-unit id="title">
-                <target>DE: Slack client</target>
+                <target>Slack-Client</target>
             </trans-unit>
 
         </body>
