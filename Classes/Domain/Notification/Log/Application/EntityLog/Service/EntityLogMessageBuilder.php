@@ -49,7 +49,7 @@ class EntityLogMessageBuilder
         $this->notification = $payload->getNotification();
         $this->markerParser = $markerParser;
 
-        $this->markers = $propertyFactory->getProperties(Marker::class, $payload->getEvent())->getEntries();
+        $this->markers = $propertyFactory->getProperties(Marker::class, $payload->getEvent());
     }
 
     /**

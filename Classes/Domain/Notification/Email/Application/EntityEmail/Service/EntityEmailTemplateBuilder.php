@@ -71,7 +71,7 @@ class EntityEmailTemplateBuilder
         $this->event = $payload->getEvent();
 
         $this->markerParser = $markerParser;
-        $this->markers = $propertyFactory->getProperties(Marker::class, $payload->getEvent())->getEntries();
+        $this->markers = $propertyFactory->getProperties(Marker::class, $payload->getEvent());
 
         $this->slotViewService = $slotViewService;
     }

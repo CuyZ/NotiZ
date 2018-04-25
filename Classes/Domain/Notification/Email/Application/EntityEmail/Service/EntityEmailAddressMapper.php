@@ -55,7 +55,7 @@ class EntityEmailAddressMapper
         $this->notification = $payload->getNotification();
         $this->notificationSettings = $payload->getNotificationDefinition()->getSettings();
 
-        $this->eventRecipients = $propertyFactory->getProperties(Email::class, $payload->getEvent())->getEntries();
+        $this->eventRecipients = $propertyFactory->getProperties(Email::class, $payload->getEvent());
         $this->globalRecipients = $this->notificationSettings->getGlobalRecipients()->getRecipients();
     }
 

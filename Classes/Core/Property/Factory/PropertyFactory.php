@@ -20,6 +20,7 @@ use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Event\Event;
 use CuyZ\Notiz\Core\Event\Support\HasProperties;
 use CuyZ\Notiz\Core\Notification\Notification;
+use CuyZ\Notiz\Core\Property\PropertyEntry;
 use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -93,8 +94,8 @@ class PropertyFactory implements SingletonInterface
     }
 
     /**
-     * Returns a list of property entries that have been processed by the given
-     * event. This means all their data can be accessed properly.
+     * Returns a container of property entries that have been processed by the
+     * given event. This means all their data can be accessed properly.
      *
      * Note that each property type for each event is processed only once,
      * memoization is used to serve the same properties later in a same run
@@ -104,7 +105,7 @@ class PropertyFactory implements SingletonInterface
      * @param Event $event
      * @return PropertyContainer
      */
-    public function getProperties($propertyClassName, Event $event)
+    public function getPropertyContainer($propertyClassName, Event $event)
     {
         $propertyClassName = $this->objectContainer->getImplementationClassName($propertyClassName);
 
@@ -115,6 +116,17 @@ class PropertyFactory implements SingletonInterface
         }
 
         return $this->properties[$hash];
+    }
+
+
+    /**
+     * @param string $propertyClassName
+     * @param Event $event
+     * @return PropertyEntry[]
+     */
+    public function getProperties($propertyClassName, Event $event)
+    {
+        return $this->getPropertyContainer($propertyClassName, $event)->getEntries();
     }
 
     /**
