@@ -14,7 +14,7 @@
  * http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace CuyZ\Notiz\Core\Property\Support;
+namespace CuyZ\Notiz\Core\Property\Builder;
 
 use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Property\Factory\PropertyDefinition;

@@ -24,8 +24,8 @@ use CuyZ\Notiz\Core\Event\Event;
 use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Notification\Processor\NotificationProcessor;
 use CuyZ\Notiz\Core\Notification\Settings\NotificationSettings;
+use CuyZ\Notiz\Core\Property\Builder\PropertyBuilder;
 use CuyZ\Notiz\Core\Property\PropertyEntry;
-use CuyZ\Notiz\Core\Property\Support\PropertyBuilder;
 
 class InvalidClassException extends NotizException
 {

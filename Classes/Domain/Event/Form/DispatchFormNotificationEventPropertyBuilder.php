@@ -17,8 +17,9 @@
 namespace CuyZ\Notiz\Domain\Event\Form;
 
 use CuyZ\Notiz\Core\Notification\Notification;
+use CuyZ\Notiz\Core\Property\Builder\PropertyBuilder;
 use CuyZ\Notiz\Core\Property\Factory\PropertyDefinition;
-use CuyZ\Notiz\Core\Property\Support\PropertyBuilder;
+use CuyZ\Notiz\Core\Property\Service\TagsPropertyService;
 use CuyZ\Notiz\Domain\Property\Email;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
@@ -30,6 +31,11 @@ use TYPO3\CMS\Form\Mvc\Persistence\FormPersistenceManagerInterface;
 class DispatchFormNotificationEventPropertyBuilder implements PropertyBuilder, SingletonInterface
 {
     /**
+     * @var TagsPropertyService
+     */
+    protected $tagsPropertyService;
+
+    /**
      * @var FormPersistenceManagerInterface
      */
     protected $formPersistenceManager;
@@ -40,11 +46,16 @@ class DispatchFormNotificationEventPropertyBuilder implements PropertyBuilder, S
     protected $arrayFormFactory;
 
     /**
+     * @param TagsPropertyService $tagsPropertyService
      * @param FormPersistenceManagerInterface $formPersistenceManager
      * @param ArrayFormFactory $arrayFormFactory
      */
-    public function __construct(FormPersistenceManagerInterface $formPersistenceManager, ArrayFormFactory $arrayFormFactory)
-    {
+    public function __construct(
+        TagsPropertyService $tagsPropertyService,
+        FormPersistenceManagerInterface $formPersistenceManager,
+        ArrayFormFactory $arrayFormFactory
+    ) {
+        $this->tagsPropertyService = $tagsPropertyService;
         $this->formPersistenceManager = $formPersistenceManager;
         $this->arrayFormFactory = $arrayFormFactory;
     }
@@ -63,6 +74,8 @@ class DispatchFormNotificationEventPropertyBuilder implements PropertyBuilder, S
     public function build(PropertyDefinition $definition, Notification $notification)
     {
         if ($definition->getPropertyType() !== Email::class) {
+            $this->tagsPropertyService->fillPropertyDefinition($definition);
+
             return;
         }
 

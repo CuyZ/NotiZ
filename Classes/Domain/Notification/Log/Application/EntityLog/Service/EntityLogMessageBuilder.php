@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\Service;
 
 use CuyZ\Notiz\Core\Channel\Payload;
+use CuyZ\Notiz\Core\Property\Factory\PropertyFactory;
 use CuyZ\Notiz\Core\Property\Service\MarkerParser;
 use CuyZ\Notiz\Domain\Notification\Log\LogNotification;
 use CuyZ\Notiz\Domain\Property\Marker;
@@ -41,13 +42,14 @@ class EntityLogMessageBuilder
     /**
      * @param Payload $payload
      * @param MarkerParser $markerParser
+     * @param PropertyFactory $propertyFactory
      */
-    public function __construct(Payload $payload, MarkerParser $markerParser)
+    public function __construct(Payload $payload, MarkerParser $markerParser, PropertyFactory $propertyFactory)
     {
         $this->notification = $payload->getNotification();
         $this->markerParser = $markerParser;
 
-        $this->markers = $payload->getEvent()->getProperties(Marker::class);
+        $this->markers = $propertyFactory->getProperties(Marker::class, $payload->getEvent());
     }
 
     /**
