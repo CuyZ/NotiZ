@@ -58,10 +58,14 @@ class EntitySlackChannelMapper
 
         $identifiers = explode(',', $this->notification->getSlackChannel());
 
-        foreach ($this->notificationSettings->getChannels() as $channel) {
-            if (in_array($channel->getIdentifier(), $identifiers)) {
-                $channels[] = SlackChannel::fromDefinition($channel);
+        foreach ($identifiers as $identifier) {
+            if (!$this->notificationSettings->hasChannel($identifier)) {
+                continue;
             }
+
+            $channels[] = SlackChannel::fromDefinition(
+                $this->notificationSettings->getChannel($identifier)
+            );
         }
 
         return $channels;

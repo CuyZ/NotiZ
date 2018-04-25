@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Settings;
 
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
+use CuyZ\Notiz\Core\Exception\EntryNotFoundException;
 use CuyZ\Notiz\Core\Notification\Settings\NotificationSettings;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessor;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessorInterface;
@@ -47,6 +48,28 @@ class EntitySlackSettings extends AbstractDefinitionComponent implements Notific
     public function getChannels()
     {
         return $this->channels;
+    }
+
+    /**
+     * @param string $identifier
+     * @return bool
+     */
+    public function hasChannel($identifier)
+    {
+        return isset($this->channels[$identifier]);
+    }
+
+    /**
+     * @param string $identifier
+     * @return Channels\Channel
+     */
+    public function getChannel($identifier)
+    {
+        if (!$this->hasChannel($identifier)) {
+            throw EntryNotFoundException::entitySlackChannelDefinitionNotFound($identifier);
+        }
+
+        return $this->channels[$identifier];
     }
 
     /**

@@ -23,8 +23,6 @@ class Channel extends AbstractDefinitionComponent
 {
     use StoreArrayIndexTrait;
 
-    const IDENTIFIER_PREFIX = '__NOTIZ_SLACK_CHANNEL_';
-
     /**
      * @var string
      */
@@ -69,6 +67,6 @@ class Channel extends AbstractDefinitionComponent
      */
     public function getIdentifier()
     {
-        return self::IDENTIFIER_PREFIX . $this->getArrayIndex();
+        return $this->getArrayIndex();
     }
 }
