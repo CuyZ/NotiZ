@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="fr">
+        <header/>
+        <body>
+
+            <!--########################################-->
+            <!--###     SLACK NOTIFICATION RECORD    ###-->
+            <!--########################################-->
+            <trans-unit id="title">
+                <target>Slack</target>
+            </trans-unit>
+
+            <!-- TABS -->
+            <trans-unit id="tab.content">
+                <target>Message</target>
+            </trans-unit>
+            <trans-unit id="tab.slack">
+                <target>Slack</target>
+            </trans-unit>
+
+            <!-- PALETTES -->
+            <trans-unit id="palette.content">
+                <target>Message Slack</target>
+            </trans-unit>
+            <trans-unit id="palette.bot">
+                <target>Bot Slack</target>
+            </trans-unit>
+            <trans-unit id="palette.channel">
+                <target>Canal Slack</target>
+            </trans-unit>
+            <trans-unit id="palette.channel_custom">
+                <target>Canal supplémentaire</target>
+            </trans-unit>
+
+            <!-- FIELDS -->
+            <trans-unit id="field.custom_bot">
+                <target>Utiliser un bot personnalisé ?</target>
+            </trans-unit>
+            <trans-unit id="field.bot">
+                <target>Bot</target>
+            </trans-unit>
+
+            <trans-unit id="field.slack_channel">
+                <target>Salon Slack</target>
+            </trans-unit>
+            <trans-unit id="field.webhook_url">
+                <target>Lien du WebHook</target>
+            </trans-unit>
+            <trans-unit id="field.target">
+                <target>Cible (@utilisateur, #salon ou ID membre)</target>
+            </trans-unit>
+
+            <trans-unit id="field.name">
+                <target>Nom</target>
+            </trans-unit>
+
+            <trans-unit id="field.avatar">
+                <target>Avatar (lien direct vers une image ou :emoji:)</target>
+            </trans-unit>
+
+            <trans-unit id="field.message">
+                <target>Message</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

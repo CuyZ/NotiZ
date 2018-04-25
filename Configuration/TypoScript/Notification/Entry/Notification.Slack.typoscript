@@ -1,0 +1,62 @@
+notiz {
+    notifications {
+        entitySlack {
+            label = Notification/Slack/Entity:title
+
+            className = CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\EntitySlackNotification
+
+            iconPath = EXT:notiz/Resources/Public/Icon/Notification/notification-slack-entity-typo3.svg
+
+            channels < notiz.channels.slack
+
+            settings {
+                /*
+                 * Bots will be available for every Slack notification.
+                 *
+                 * A bot can have a name and an avatar.
+                 * The avatar can either be an :emoji: or a direct image url.
+                 */
+                bots {
+                    # pizza {
+                    #     name = Mr Pizza
+                    #     avatar = :pizza:
+                    # }
+
+                    # acme {
+                    #     name = Acme Bot
+                    #     avatar = https://example.com/acme.png
+                    # }
+                }
+
+                /*
+                 * Channels will be available for every Slack notification.
+                 *
+                 * A channel must have a webhook URL and a target.
+                 *
+                 * The target can either be a Slack `#channel`, `@user` or `MEMBERID`.
+                 *
+                 * For more info on the URL see: https://api.slack.com/incoming-webhooks
+                 */
+                channels {
+                    # general {
+                    #     label = General
+                    #     webhookUrl = https://hooks.slack.com/services/ABCDEFGHI/ABCDEFGHI/abcdefghijklmnopqrstuvw
+                    #     target = #general
+                    # }
+
+                    # john {
+                    #     label = John
+                    #     webhookUrl = https://hooks.slack.com/services/ABCDEFGHI/ABCDEFGHI/abcdefghijklmnopqrstuvw
+                    #     target = @John.Smith
+                    # }
+
+                    # bob {
+                    #     label = Bob
+                    #     webhookUrl = https://hooks.slack.com/services/ABCDEFGHI/ABCDEFGHI/abcdefghijklmnopqrstuvw
+                    #     target = ABCDE12345
+                    # }
+                }
+            }
+        }
+    }
+}

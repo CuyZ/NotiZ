@@ -19,6 +19,7 @@ namespace CuyZ\Notiz\Core\Exception;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\EventGroup;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\View\Layout;
+use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Settings\Channels\Channel;
 
 class EntryNotFoundException extends NotizException
 {
@@ -41,6 +42,10 @@ class EntryNotFoundException extends NotizException
     const EVENT_RUNNER_ENTRY_NOT_FOUND = 'The runner entry `%s` was not found, please use method `%s::has()`.';
 
     const EVENT_CONNECTION_TYPE_MISSING = 'The property `type` must be filled with one of these values: `%s`.';
+
+    const ENTITY_SLACK_BOT_NOT_FOUND = 'The Slack bot `%s` was not found.';
+
+    const ENTITY_SLACK_CHANNEL_DEFINITION_NOT_FOUND = 'The channel definition `%s` was not found, please use method `%s::hasChannel()`.';
 
     /**
      * @param string $identifier
@@ -172,6 +177,32 @@ class EntryNotFoundException extends NotizException
             self::EVENT_CONNECTION_TYPE_MISSING,
             1509630193,
             [implode('`, `', $allowedTypes)]
+        );
+    }
+
+    /**
+     * @param string $botIdentifier
+     * @return static
+     */
+    public static function entitySlackBotNotFound($botIdentifier)
+    {
+        return self::makeNewInstance(
+            self::ENTITY_SLACK_BOT_NOT_FOUND,
+            1519770222,
+            [$botIdentifier]
+        );
+    }
+
+    /**
+     * @param string $identifier
+     * @return static
+     */
+    public static function entitySlackChannelDefinitionNotFound($identifier)
+    {
+        return self::makeNewInstance(
+            self::ENTITY_SLACK_CHANNEL_DEFINITION_NOT_FOUND,
+            1524661834,
+            [$identifier, Channel::class]
         );
     }
 }
