@@ -64,7 +64,10 @@ class EntityNotificationRepository extends Repository
         $query = $this->createQueryWithoutEnableStatement();
 
         $query->matching(
-            $query->equals('uid', $identifier)
+            $query->logicalAnd(
+                $query->equals('uid', $identifier),
+                $query->equals('deleted', false)
+            )
         );
 
         return $query->execute()->getFirst();

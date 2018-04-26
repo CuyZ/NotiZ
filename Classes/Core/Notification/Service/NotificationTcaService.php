@@ -269,7 +269,7 @@ HTML;
 
         if (!isset($this->notification[$hash])) {
             $this->notification[$hash] = isset($row['uid']) && is_integer($row['uid'])
-                ? $this->getNotificationDefinition()->getProcessor()->getNotificationFromIdentifier($row['uid'], true)
+                ? $this->getNotificationDefinition()->getProcessor()->getNotificationFromIdentifier($row['uid'])
                 : reset($this->dataMapper->map($this->getNotificationDefinition()->getClassName(), [$row]));
         }
 
