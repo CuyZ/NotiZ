@@ -46,8 +46,7 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
      */
     public function getNotificationFromIdentifier($identifier)
     {
-        return $this->notificationRepository
-            ->findByIdentifier($identifier);
+        return $this->notificationRepository->findByIdentifierForce($identifier);
     }
 
     /**
