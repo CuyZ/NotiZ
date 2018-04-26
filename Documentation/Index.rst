@@ -41,4 +41,4 @@
     The content of this document is related to TYPO3,
     a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.
 
-    The documentation is not yet available on docs.typo3.org, please go to https://github.com/CuyZ/NotiZ/tree/0.4.0/Documentation/Markdown/README.md
+    The documentation is not yet available on docs.typo3.org, please go to https://github.com/CuyZ/NotiZ/tree/0.5.0/Documentation/Markdown/README.md

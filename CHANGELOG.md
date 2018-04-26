@@ -1,5 +1,116 @@
 # ![NotiZ](ext_icon.svg) NotiZ – ChangeLog
 
+v0.5.0 - 26 Apr 2018
+====================
+
+New features
+------------
+
+ - **[FEATURE] Introduce Slack notification type ([#75](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/75))**
+
+   >*[6454dbe](https://github.com/CuyZ/NotiZ/commit/6454dbe85da09d6e44d549326549461c1f54ab7b) by [Nathan Boiron](mailto:nathan.boiron@gmail.com) – 25 Apr 2018*
+
+   This new notification type can be used in the TYPO3 backend in the same
+   way as the email and log notifications.
+   
+   You may send your messages in channels or to specific users of your
+   Slack instance, whenever any pre-configured event is triggered and
+   dispatched by NotiZ.
+   
+   You will need to properly configure the definition to bind your Slack
+   instance with NotiZ, please read documentation for more details.
+   
+   Co-authored-by: Simon Praetorius <simon@praetorius.me>
+
+ - **[FEATURE] Introduce signal dispatched when definition is built ([#71](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/71))**
+
+   >*[c1d3e70](https://github.com/CuyZ/NotiZ/commit/c1d3e70eaeef58488189f87c534908f3fd04bd56) by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 11 Mar 2018*
+
+   You may need to use NotiZ definition to initialize things in your own
+   extension.
+   
+   A signal will be dispatched when the definition object is complete,
+   **only when no error was found when it was built**.
+   
+   Note that you won't be able to modify the definition, only access its
+   values.
+   
+   More information in the documentation.
+
+Bugs fixed
+----------
+
+ - **[BUGFIX] Fix edition of disabled notification ([#76](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/76))**
+
+   >*[c94f370](https://github.com/CuyZ/NotiZ/commit/c94f370d952b10ee738dcd13159aed0795e1328d) by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 26 Apr 2018*
+
+   The notifications that were disabled in the backend were showing a fatal
+   error on edition.
+   
+   This commit fixes the issue and disabled notifications can now be edited
+   properly again.
+
+Important
+---------
+
+**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:** 
+
+ - **[!!!][TASK] Separate properties handling from events ([#77](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/77))**
+
+   >*[278ea81](https://github.com/CuyZ/NotiZ/commit/278ea81f6b95cbc152560d66abb44729336cc01f) by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 25 Apr 2018*
+
+   Some events may exist without the need of having properties handling.
+   
+   Methods in the event interface concerning the properties have been moved
+   to a new interface `HasProperties` which slightly alter how the system
+   works.
+   
+   This interface is implemented by default in the `AbstractEvent`, so this
+   changes nothing for events that extend this class (unless they override
+   old methods that have been changed/deleted).
+   
+   Some major refactoring works have been made so this might break your
+   installation. In this case, please read carefully the class
+   documentation blocks.
+   
+   **Deleted methods**
+   
+   - `\CuyZ\Notiz\Core\Event\Event::getProperties`
+   
+     This method was unnecessary and won't be replaced.
+   
+   - `\CuyZ\Notiz\Core\Event\Event::buildPropertyDefinition`
+   
+     A new way of building the property definition is done using:
+     `\CuyZ\Notiz\Core\Event\Support\HasProperties::getPropertyBuilder`
+   
+   **Moved methods**
+   
+   - `\CuyZ\Notiz\Core\Event\Event::fillPropertyEntries`
+   
+     This method has been moved to:
+     `\CuyZ\Notiz\Core\Event\Support\HasProperties::fillPropertyEntries`
+   
+   **Moved classes**
+   
+   - `\CuyZ\Notiz\Core\Property\Support\PropertyBuilder`
+   
+     This class has been moved to:
+     `\CuyZ\Notiz\Core\Property\Builder\PropertyBuilder`
+
+Others
+------
+
+ - [[5ff61f4](https://github.com/CuyZ/NotiZ/commit/5ff61f496abeb25e4fee01b35af1de657677c980)] **[DOC] Add documentation for email annotation ([#73](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/73))** – *by [Lukas Niestroj](mailto:niestrojlukas@gmail.com) – 14 Mar 2018*
+
+ - [[687d8f9](https://github.com/CuyZ/NotiZ/commit/687d8f9e4e56daf1fdecbbf398dd840525e7f594)] **[DOC] Add documentation for signals sent by the extension ([#69](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/69))** – *by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 09 Mar 2018*
+
+ - [[6fc8753](https://github.com/CuyZ/NotiZ/commit/6fc87537f383d787427a4fa4d9f4c2085f44feba)] **[DOC] Fix signal name in example ([#68](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/68))** – *by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 09 Mar 2018*
+
+ - [[cd36f7d](https://github.com/CuyZ/NotiZ/commit/cd36f7d1841d8f1ecc2b8180be08f06cbfc80d98)] **[TASK] Fix images paths in README file ([#67](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/67))** – *by [Romain Canon](mailto:romain.hydrocanon@gmail.com) – 04 Mar 2018*
+
+----
+
 v0.4.0 - 01 Mar 2018
 ====================
 
