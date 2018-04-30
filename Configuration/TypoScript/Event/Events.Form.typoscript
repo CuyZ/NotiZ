@@ -13,6 +13,7 @@ notiz {
                 */
                 dispatchFormNotification {
                     label = Event/Form/DispatchFormNotification:title
+                    description = Event/Form/DispatchFormNotification:description
 
                     className = CuyZ\Notiz\Domain\Event\Form\DispatchFormNotificationEvent
 

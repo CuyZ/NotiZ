@@ -7,6 +7,11 @@
             <trans-unit id="title">
                 <target>Vidage des caches</target>
             </trans-unit>
+            <trans-unit id="description">
+                <target><![CDATA[
+                    Cet événement sera déclenché lorsque les caches sont vidés manuellement sur l'instance TYPO3.
+                ]]></target>
+            </trans-unit>
 
             <trans-unit id="flex_form.allowed_commands.label">
                 <target>Commandes autorisées</target>
