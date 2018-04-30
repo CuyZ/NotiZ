@@ -9,6 +9,15 @@
             <trans-unit id="title">
                 <target>Notification email</target>
             </trans-unit>
+            <trans-unit id="description">
+                <target><![CDATA[
+                    Les emails seront envoyés au destinataires configurés.
+
+                    Des gabarits personnalisés peuvent être utilisés pour changer le rendu du corps du mail.
+
+                    Des marqueurs peuvent être utilisés dans le titre et le corps du mail, afin d'être remplacés par des valeurs dynamiques lorsque l'événement est déclenché.
+                ]]></target>
+            </trans-unit>
 
             <!-- DEFINITION -->
             <trans-unit id="definition.view.layout.default.label">

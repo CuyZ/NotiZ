@@ -9,6 +9,13 @@
             <trans-unit id="title">
                 <target>Notification log</target>
             </trans-unit>
+            <trans-unit id="description">
+                <target><![CDATA[
+                    Les logs peuvent être utilisés pour enregistrer des événements spécifiques qui se produisent dans votre application, afin de vous aider à comprendre l'activité de votre système.
+
+                    Par défaut les logs sont stockés dans un fichier du répertoire de fichiers temporaires de TYPO3.
+                ]]></target>
+            </trans-unit>
 
             <!-- TABS -->
             <trans-unit id="tab.log">
