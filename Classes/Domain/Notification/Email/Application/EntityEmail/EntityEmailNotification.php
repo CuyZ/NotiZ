@@ -29,16 +29,6 @@ class EntityEmailNotification extends EntityNotification implements EmailNotific
     /**
      * @var string
      */
-    protected $title;
-
-    /**
-     * @var string
-     */
-    protected $event;
-
-    /**
-     * @var string
-     */
     protected $layout;
 
     /**
@@ -95,38 +85,6 @@ class EntityEmailNotification extends EntityNotification implements EmailNotific
      * @var array
      */
     protected $bodySlots = [];
-
-    /**
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEvent()
-    {
-        return $this->event;
-    }
-
-    /**
-     * @param string $event
-     */
-    public function setEvent($event)
-    {
-        $this->event = $event;
-    }
 
     /**
      * @return string

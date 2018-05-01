@@ -27,16 +27,6 @@ class EntitySlackNotification extends EntityNotification implements SlackNotific
     /**
      * @var string
      */
-    protected $title;
-
-    /**
-     * @var string
-     */
-    protected $event;
-
-    /**
-     * @var string
-     */
     protected $message;
 
     /**
@@ -73,38 +63,6 @@ class EntitySlackNotification extends EntityNotification implements SlackNotific
      * @var string
      */
     protected $avatar;
-
-    /**
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEvent()
-    {
-        return $this->event;
-    }
-
-    /**
-     * @param string $event
-     */
-    public function setEvent($event)
-    {
-        $this->event = $event;
-    }
 
     /**
      * @return string
