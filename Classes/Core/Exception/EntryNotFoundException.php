@@ -31,6 +31,8 @@ class EntryNotFoundException extends NotizException
 
     const DEFINITION_EVENT_NOT_FOUND = 'The event `%s` was not found, please use method `%s::hasEvent()`.';
 
+    const DEFINITION_EVENT_FULL_IDENTIFIER_NOT_FOUND = 'The event with a full identifier `%s` was not found.';
+
     const DEFINITION_NOTIFICATION_NOT_FOUND = 'The notification `%s` was not found, please use method `%s::hasNotification()`.';
 
     const ENTITY_EMAIL_VIEW_LAYOUT_NOT_FOUND = 'The view layout `%s` was not found, please use method `%s::hasLayout()`.';
@@ -96,6 +98,19 @@ class EntryNotFoundException extends NotizException
             self::DEFINITION_EVENT_NOT_FOUND,
             1503851804,
             [$identifier, EventGroup::class]
+        );
+    }
+
+    /**
+     * @param string $fullIdentifier
+     * @return static
+     */
+    public static function definitionEventFullIdentifierNotFound($fullIdentifier)
+    {
+        return self::makeNewInstance(
+            self::DEFINITION_EVENT_FULL_IDENTIFIER_NOT_FOUND,
+            1520251011,
+            [$fullIdentifier]
         );
     }
 
