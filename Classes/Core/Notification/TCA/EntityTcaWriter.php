@@ -18,6 +18,7 @@ namespace CuyZ\Notiz\Core\Notification\TCA;
 
 use CuyZ\Notiz\Core\Notification\Service\LegacyNotificationTcaService;
 use CuyZ\Notiz\Core\Notification\Service\NotificationTcaService;
+use CuyZ\Notiz\FormEngine\DataProvider\DefaultEventFromGet;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
@@ -220,6 +221,7 @@ abstract class EntityTcaWriter implements SingletonInterface
             ],
             'searchFields' => 'title,event',
             'iconfile' => $this->service->getNotificationIconPath(),
+            DefaultEventFromGet::ENABLE_DEFAULT_VALUE => true,
         ];
     }
 
