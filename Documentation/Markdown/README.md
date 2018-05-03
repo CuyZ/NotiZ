@@ -19,6 +19,7 @@ You can find below documentation on how to use and extend NotiZ.
 - [Notifications](Notifications/README.md)
     - [Email notification](Notifications/Email/README.md)
         - [Customize email body](Notifications/Email/Customize-email.md)
+    - [Slack notification](Notifications/Slack-notification.md)
     - [Log notification](Notifications/Log-notification.md)
 - [Events](Events/README.md)
     - [Create a custom event](Events/Create-a-custom-event.md)
