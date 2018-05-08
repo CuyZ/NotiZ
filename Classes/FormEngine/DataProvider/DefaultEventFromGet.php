@@ -45,7 +45,7 @@ class DefaultEventFromGet implements FormDataProviderInterface
             return $result;
         }
 
-        // The feature needs to be enable in the `ctrl` section of the TCA.
+        // The feature needs to be enabled in the `ctrl` section of the TCA.
         if (!isset($result['processedTca']['ctrl'][self::ENABLE_DEFAULT_VALUE])) {
             return $result;
         }
