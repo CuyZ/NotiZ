@@ -31,8 +31,6 @@ use CuyZ\Notiz\Service\LocalizationService;
 use CuyZ\Notiz\Service\StringService;
 use CuyZ\Notiz\Service\ViewService;
 use TYPO3\CMS\Core\SingletonInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 
 /**
@@ -155,21 +153,14 @@ abstract class NotificationTcaService implements SingletonInterface
         // The first configured event is selected by default.
         $event = $definition->getFirstEventGroup()->getFirstEvent();
 
-        // We check if the record already exists in the database...
-        if (MathUtility::canBeInterpretedAsInteger($row['uid'])) {
+        if (isset($row['event'])) {
             // @PHP7
             $eventValue = is_array($row['event'])
                 ? $row['event'][0]
                 : $row['event'];
 
-            list($eventGroupIdentifier, $eventIdentifier) = GeneralUtility::trimExplode('.', $eventValue);
-
-            if ($definition->hasEventGroup($eventGroupIdentifier)) {
-                $eventGroup = $definition->getEventGroup($eventGroupIdentifier);
-
-                if ($eventGroup->hasEvent($eventIdentifier)) {
-                    $event = $eventGroup->getEvent($eventIdentifier);
-                }
+            if ($definition->hasEventFromFullIdentifier($eventValue)) {
+                $event = $definition->getEventFromFullIdentifier($eventValue);
             }
         }
 
