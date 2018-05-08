@@ -10,6 +10,13 @@
             <trans-unit id="title">
                 <target>Slack</target>
             </trans-unit>
+            <trans-unit id="description">
+                <target><![CDATA[
+                    DE : Messages can be sent to channels or users of a configured Slack workspace. Basic markdown syntax is available to customize the rendering of the message.
+
+                    Bots that send messages can have a custom name and avatar.
+                ]]></target>
+            </trans-unit>
 
             <!-- TABS -->
             <trans-unit id="tab.content">

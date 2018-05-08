@@ -2,6 +2,7 @@ notiz {
     notifications {
         entityEmail {
             label = Notification/Email/Entity:title
+            description = Notification/Email/Entity:description
 
             className = CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification
 

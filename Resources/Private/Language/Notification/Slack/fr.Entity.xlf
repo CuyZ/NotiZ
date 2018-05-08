@@ -10,6 +10,13 @@
             <trans-unit id="title">
                 <target>Slack</target>
             </trans-unit>
+            <trans-unit id="description">
+                <target><![CDATA[
+                    Des messages peuvent être envoyés dans des canaux ou à des utilisateurs d'un espace de travail Slack. La syntaxe de Markdown classique est disponible pour personnaliser le rendu du message.
+
+                    Les robots qui envoient des messages peuvent avoir un nom et un avatar personnalisés.
+                ]]></target>
+            </trans-unit>
 
             <!-- TABS -->
             <trans-unit id="tab.content">
