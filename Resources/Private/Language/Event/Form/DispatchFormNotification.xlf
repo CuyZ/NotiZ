@@ -7,6 +7,11 @@
             <trans-unit id="title">
                 <source>A form was submitted</source>
             </trans-unit>
+            <trans-unit id="description">
+                <source><![CDATA[
+                    This event will be triggered whenever a form is submitted by a user.
+                ]]></source>
+            </trans-unit>
 
             <trans-unit id="flex_form.form_definition.label">
                 <source>Form definition</source>

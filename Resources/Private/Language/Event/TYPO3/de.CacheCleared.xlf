@@ -7,6 +7,11 @@
             <trans-unit id="title">
                 <target>Caches geleert</target>
             </trans-unit>
+            <trans-unit id="description">
+                <target><![CDATA[
+                    DE : This event will be triggered whenever caches are manually cleared within the TYPO3 instance.
+                ]]></target>
+            </trans-unit>
 
             <trans-unit id="flex_form.allowed_commands.label">
                 <target>Erlaubte Kommandos</target>

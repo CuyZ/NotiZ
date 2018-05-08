@@ -13,6 +13,7 @@ notiz {
                 */
                 schedulerTaskWasExecuted {
                     label = Event/Scheduler/SchedulerTaskWasExecuted:title
+                    description = Event/Scheduler/SchedulerTaskWasExecuted:description
 
                     className = CuyZ\Notiz\Domain\Event\Scheduler\SchedulerTaskWasExecutedEvent
 
@@ -39,6 +40,7 @@ notiz {
                 */
                 schedulerTaskExecutionFailed {
                     label = Event/Scheduler/SchedulerTaskExecutionFailed:title
+                    description = Event/Scheduler/SchedulerTaskExecutionFailed:description
 
                     className = CuyZ\Notiz\Domain\Event\Scheduler\SchedulerTaskExecutionFailedEvent
 

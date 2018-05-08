@@ -46,6 +46,11 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
 
     /**
      * @var string
+     */
+    protected $description;
+
+    /**
+     * @var string
      *
      * @validate Romm.ConfigurationObject:ClassImplements(interface=CuyZ\Notiz\Core\Event\Event)
      */
@@ -100,6 +105,14 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     public function getLabel()
     {
         return LocalizationService::localize($this->label);
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return LocalizationService::localize($this->description);
     }
 
     /**

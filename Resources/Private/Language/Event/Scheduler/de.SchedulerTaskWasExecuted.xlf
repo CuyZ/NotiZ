@@ -7,6 +7,11 @@
             <trans-unit id="title">
                 <target>Scheduler Task wurde ausgeführt</target>
             </trans-unit>
+            <trans-unit id="description">
+                <target><![CDATA[
+                    DE : This event will be triggered whenever a task from the scheduler finishes its execution.
+                ]]></target>
+            </trans-unit>
 
         </body>
     </file>

@@ -7,6 +7,11 @@
             <trans-unit id="title">
                 <target>Installation d'une extension</target>
             </trans-unit>
+            <trans-unit id="description">
+                <target><![CDATA[
+                    Cet événement sera déclenché lorsqu'une extension est installée sur l'instance TYPO3.
+                ]]></target>
+            </trans-unit>
 
             <trans-unit id="marker.key">
                 <target>Clé de l'extension, par exemple `mon_extension`.</target>

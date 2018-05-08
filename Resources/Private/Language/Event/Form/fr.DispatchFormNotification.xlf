@@ -7,6 +7,11 @@
             <trans-unit id="title">
                 <target>Soumission d'un formulaire</target>
             </trans-unit>
+            <trans-unit id="description">
+                <target><![CDATA[
+                    Cet événement sera déclenché lors de la soumission d'un formulaire par un utilisateur.
+                ]]></target>
+            </trans-unit>
 
             <trans-unit id="flex_form.form_definition.label">
                 <target>Définition du formulaire</target>

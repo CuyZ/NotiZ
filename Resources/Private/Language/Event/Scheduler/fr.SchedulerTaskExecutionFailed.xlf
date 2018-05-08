@@ -7,6 +7,11 @@
             <trans-unit id="title">
                 <target>Échec de l'exécution d'une tâche du planificateur</target>
             </trans-unit>
+            <trans-unit id="description">
+                <target><![CDATA[
+                    Cet événement sera déclenché lors de l'échec de l'exécution d'une tâche du planificateur.
+                ]]></target>
+            </trans-unit>
 
         </body>
     </file>

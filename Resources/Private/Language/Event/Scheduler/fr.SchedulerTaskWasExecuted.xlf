@@ -7,6 +7,11 @@
             <trans-unit id="title">
                 <target>Exécution d'une tâche du planificateur</target>
             </trans-unit>
+            <trans-unit id="description">
+                <target><![CDATA[
+                    Cet événement sera déclenché lorsqu'une tâche du planificateur finit son exécution.
+                ]]></target>
+            </trans-unit>
 
         </body>
     </file>
