@@ -16,6 +16,8 @@
 
 namespace CuyZ\Notiz\Core\Notification;
 
+use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
+
 /**
  * This interface must be implemented by notification classes that are
  * registered in the definition.
@@ -30,6 +32,11 @@ interface Notification
      * @return string
      */
     public static function getProcessorClassName();
+
+    /**
+     * @return NotificationDefinition
+     */
+    public function getNotificationDefinition();
 
     /**
      * Must return a configuration array that will be used by the event during

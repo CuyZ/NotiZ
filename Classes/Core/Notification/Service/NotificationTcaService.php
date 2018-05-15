@@ -301,7 +301,7 @@ HTML;
      */
     protected function getNotificationDefinition()
     {
-        return $this->getDefinition()->getNotification($this->getNotificationIdentifier());
+        return $this->getDefinition()->getNotification($this->getDefinitionIdentifier());
     }
 
     /**
@@ -311,7 +311,7 @@ HTML;
      * @return string
      * @throws NotImplementedException
      */
-    protected function getNotificationIdentifier()
+    protected function getDefinitionIdentifier()
     {
         throw NotImplementedException::tcaServiceNotificationIdentifierMissing(__METHOD__);
     }
