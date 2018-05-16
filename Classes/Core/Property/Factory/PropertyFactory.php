@@ -231,11 +231,11 @@ class PropertyFactory implements SingletonInterface
 
         if ($this->eventHasProperties($event->getDefinition())) {
             $event->fillPropertyEntries($propertyContainer);
-
-            $this->dispatchPropertyFillingSignal($propertyContainer, $event);
-
-            $propertyContainer->freeze();
         }
+
+        $this->dispatchPropertyFillingSignal($propertyContainer, $event);
+
+        $propertyContainer->freeze();
 
         return $propertyContainer;
     }
