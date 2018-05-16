@@ -181,6 +181,61 @@ class ErrorLogger implements SingletonInterface
 }
 ```
 
+## Global properties manipulation 
+
+If you need to globally do things with properties (for instance markers), you 
+can use the signals below.
+
+In the example below, we add a new global marker `currentDate` that will be 
+accessible for every notification. 
+
+> *`my_extension/ext_localconf.php`*
+```php
+<?php
+$dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+    \TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class
+);
+
+/*
+ * We add a new entry to the definition of the markers: `currentDate` that will
+ * be later filled with the date of the day.
+ *
+ * This marker will be accessible to every notification, regardless of the event
+ * and other selected configuration.
+ */
+$dispatcher->connect(
+    \CuyZ\Notiz\Core\Property\Factory\PropertyFactory::class,
+    \CuyZ\Notiz\Core\Property\Factory\PropertyFactory::SIGNAL_PROPERTY_BUILD_DEFINITION,
+    function (
+        \CuyZ\Notiz\Core\Property\Factory\PropertyDefinition $propertyDefinition,
+        \CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition $eventDefinition,
+        \CuyZ\Notiz\Core\Notification\Notification $notification
+    ) {
+        if ($propertyDefinition->getPropertyType() === \CuyZ\Notiz\Domain\Property\Marker::class) {
+            $propertyDefinition->addEntry('currentDate')
+                ->setLabel('Formatted date of the day');
+        }
+    }
+);
+
+/*
+ * Manually filling the marker `currentDate` with the date of the day.
+ */
+$dispatcher->connect(
+    \CuyZ\Notiz\Core\Property\Factory\PropertyFactory::class,
+    \CuyZ\Notiz\Core\Property\Factory\PropertyFactory::SIGNAL_PROPERTY_FILLING,
+    function (
+        \CuyZ\Notiz\Core\Property\Factory\PropertyContainer $propertyContainer,
+        \CuyZ\Notiz\Core\Event\Event $event
+    ) {
+        if ($propertyContainer->getPropertyType() === \CuyZ\Notiz\Domain\Property\Marker::class) {
+            $propertyContainer->getEntry('currentDate')
+                ->setValue(date('d/m/Y'));
+        }
+    }
+);
+```
+
 ---
 
 [:books: Documentation index](../README.md)
