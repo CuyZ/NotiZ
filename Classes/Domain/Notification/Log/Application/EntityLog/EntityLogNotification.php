@@ -71,4 +71,12 @@ class EntityLogNotification extends EntityNotification implements LogNotificatio
     {
         return EntityLogNotificationProcessor::class;
     }
+
+    /**
+     * @return string
+     */
+    public static function getDefinitionIdentifier()
+    {
+        return 'entityLog';
+    }
 }

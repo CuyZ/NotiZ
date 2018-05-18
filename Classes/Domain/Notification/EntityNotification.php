@@ -16,7 +16,10 @@
 
 namespace CuyZ\Notiz\Domain\Notification;
 
+use CuyZ\Notiz\Core\Definition\DefinitionService;
+use CuyZ\Notiz\Core\Definition\Tree\Definition;
 use CuyZ\Notiz\Core\Definition\Tree\Notification\Channel\ChannelDefinition;
+use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
 use CuyZ\Notiz\Core\Notification\MultipleChannelsNotification;
 use CuyZ\Notiz\Core\Notification\Notification;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -107,6 +110,14 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     }
 
     /**
+     * @return NotificationDefinition
+     */
+    public function getNotificationDefinition()
+    {
+        return $this->getDefinition()->getNotification(static::getDefinitionIdentifier());
+    }
+
+    /**
      * Returns the event configuration stored as a FlexForm string.
      *
      * @return array
@@ -131,5 +142,18 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     public function shouldDispatch(ChannelDefinition $definition)
     {
         return $definition->getClassName() === $this->getChannel();
+    }
+
+    /**
+     * @return string
+     */
+    abstract public static function getDefinitionIdentifier();
+
+    /**
+     * @return Definition
+     */
+    protected function getDefinition()
+    {
+        return DefinitionService::get()->getDefinition();
     }
 }

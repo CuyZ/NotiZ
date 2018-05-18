@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\TCA;
 
 use CuyZ\Notiz\Core\Notification\Service\NotificationTcaService;
+use CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\EntityLogNotification;
 use CuyZ\Notiz\Service\LocalizationService;
 use Psr\Log\LogLevel;
 
@@ -93,8 +94,8 @@ HTML;
     /**
      * @return string
      */
-    protected function getNotificationIdentifier()
+    protected function getDefinitionIdentifier()
     {
-        return 'entityLog';
+        return EntityLogNotification::getDefinitionIdentifier();
     }
 }
