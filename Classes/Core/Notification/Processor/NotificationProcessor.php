@@ -63,6 +63,12 @@ abstract class NotificationProcessor
     abstract public function getNotificationsFromEventDefinition(EventDefinition $eventDefinition);
 
     /**
+     * @param EventDefinition $eventDefinition
+     * @return int
+     */
+    abstract public function countNotificationsFromEventDefinition(EventDefinition $eventDefinition);
+
+    /**
      * @param string $identifier
      * @return Notification
      */

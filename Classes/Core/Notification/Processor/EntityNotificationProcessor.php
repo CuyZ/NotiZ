@@ -41,6 +41,15 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
     }
 
     /**
+     * @param EventDefinition $definition
+     * @return int
+     */
+    public function countNotificationsFromEventDefinition(EventDefinition $definition)
+    {
+        return $this->notificationRepository->countFromEventDefinition($definition);
+    }
+
+    /**
      * @param string $identifier
      * @return Notification|object
      */
