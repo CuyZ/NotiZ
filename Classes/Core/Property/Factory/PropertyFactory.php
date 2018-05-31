@@ -26,13 +26,69 @@ use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\Container\Container;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
  * Factory for getting both properties definitions and values, that are defined
  * by events and used by notifications.
+ *
+ * Global properties manipulation
+ * ------------------------------
+ *
+ * If you need to globally do things with properties (for instance markers), you
+ * can use the signals below.
+ *
+ * In the example below, we add a new global marker `currentDate` that will be
+ * accessible for every notification.
+ *
+ * > my_extension/ext_localconf.php
+ * ```
+ * $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+ *     \TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class
+ * );
+ *
+ *  // We add a new entry to the definition of the markers: `currentDate` that will
+ *  // be later filled with the date of the day.
+ *  //
+ *  // This marker will be accessible to every notification, regardless of the event
+ *  // and other selected configuration.
+ * $dispatcher->connect(
+ *     \CuyZ\Notiz\Core\Property\Factory\PropertyFactory::class,
+ *     \CuyZ\Notiz\Core\Property\Factory\PropertyFactory::SIGNAL_PROPERTY_BUILD_DEFINITION,
+ *     function (
+ *         \CuyZ\Notiz\Core\Property\Factory\PropertyDefinition $propertyDefinition,
+ *         \CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition $eventDefinition,
+ *         \CuyZ\Notiz\Core\Notification\Notification $notification
+ *     ) {
+ *         if ($propertyDefinition->getPropertyType() === \CuyZ\Notiz\Domain\Property\Marker::class) {
+ *             $propertyDefinition->addEntry('currentDate')
+ *                 ->setLabel('Formatted date of the day');
+ *         }
+ *     }
+ * );
+ *
+ * // Manually filling the marker `currentDate` with the date of the day.
+ * $dispatcher->connect(
+ *     \CuyZ\Notiz\Core\Property\Factory\PropertyFactory::class,
+ *     \CuyZ\Notiz\Core\Property\Factory\PropertyFactory::SIGNAL_PROPERTY_FILLING,
+ *     function (
+ *         \CuyZ\Notiz\Core\Property\Factory\PropertyContainer $propertyContainer,
+ *         \CuyZ\Notiz\Core\Event\Event $event
+ *     ) {
+ *         if ($propertyContainer->getPropertyType() === \CuyZ\Notiz\Domain\Property\Marker::class) {
+ *             $propertyContainer->getEntry('currentDate')
+ *                 ->setValue(date('d/m/Y'));
+ *         }
+ *     }
+ * );
+ * ```
  */
 class PropertyFactory implements SingletonInterface
 {
+    const SIGNAL_PROPERTY_BUILD_DEFINITION = 'propertyBuildDefinition';
+
+    const SIGNAL_PROPERTY_FILLING = 'propertyFilling';
+
     use ExtendedSelfInstantiateTrait;
 
     /**
@@ -56,13 +112,20 @@ class PropertyFactory implements SingletonInterface
     protected $objectContainer;
 
     /**
+     * @var Dispatcher
+     */
+    protected $slotDispatcher;
+
+    /**
      * @param ObjectManager $objectManager
      * @param Container $objectContainer
+     * @param Dispatcher $slotDispatcher
      */
-    public function __construct(ObjectManager $objectManager, Container $objectContainer)
+    public function __construct(ObjectManager $objectManager, Container $objectContainer, Dispatcher $slotDispatcher)
     {
         $this->objectManager = $objectManager;
         $this->objectContainer = $objectContainer;
+        $this->slotDispatcher = $slotDispatcher;
     }
 
     /**
@@ -149,6 +212,8 @@ class PropertyFactory implements SingletonInterface
             $propertyBuilder->build($propertyDefinition, $notification);
         }
 
+        $this->dispatchPropertyBuildDefinitionSignal($propertyDefinition, $eventDefinition, $notification);
+
         return $propertyDefinition;
     }
 
@@ -166,11 +231,57 @@ class PropertyFactory implements SingletonInterface
 
         if ($this->eventHasProperties($event->getDefinition())) {
             $event->fillPropertyEntries($propertyContainer);
-
-            $propertyContainer->freeze();
         }
 
+        $this->dispatchPropertyFillingSignal($propertyContainer, $event);
+
+        $propertyContainer->freeze();
+
         return $propertyContainer;
+    }
+
+    /**
+     * This signal is sent after the property definition was built. It can be
+     * used to alter the definition depending on your needs.
+     *
+     * @param PropertyDefinition $propertyDefinition
+     * @param EventDefinition $eventDefinition
+     * @param Notification $notification
+     */
+    protected function dispatchPropertyBuildDefinitionSignal(
+        PropertyDefinition $propertyDefinition,
+        EventDefinition $eventDefinition,
+        Notification $notification
+    ) {
+        $this->slotDispatcher->dispatch(
+            self::class,
+            self::SIGNAL_PROPERTY_BUILD_DEFINITION,
+            [
+                $propertyDefinition,
+                $eventDefinition,
+                $notification,
+            ]
+        );
+    }
+
+    /**
+     * This signal is sent just after properties have been filled with their own
+     * values. It can be used to manipulate the values of properties before they
+     * are freezed.
+     *
+     * @param PropertyContainer $propertyContainer
+     * @param Event $event
+     */
+    protected function dispatchPropertyFillingSignal(PropertyContainer $propertyContainer, Event $event)
+    {
+        $this->slotDispatcher->dispatch(
+            self::class,
+            self::SIGNAL_PROPERTY_FILLING,
+            [
+                $propertyContainer,
+                $event,
+            ]
+        );
     }
 
     /**

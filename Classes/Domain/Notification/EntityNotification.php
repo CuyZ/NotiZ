@@ -20,6 +20,7 @@ use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Definition\Tree\Notification\Channel\ChannelDefinition;
+use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
 use CuyZ\Notiz\Core\Notification\MultipleChannelsNotification;
 use CuyZ\Notiz\Core\Notification\Notification;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -110,6 +111,14 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     }
 
     /**
+     * @return NotificationDefinition
+     */
+    public function getNotificationDefinition()
+    {
+        return $this->getDefinition()->getNotification(static::getDefinitionIdentifier());
+    }
+
+    /**
      * @return EventDefinition
      */
     public function getEventDefinition()
@@ -143,6 +152,11 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     {
         return $definition->getClassName() === $this->getChannel();
     }
+
+    /**
+     * @return string
+     */
+    abstract public static function getDefinitionIdentifier();
 
     /**
      * @return Definition

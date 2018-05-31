@@ -19,6 +19,7 @@ namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\TCA;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Notification\Service\NotificationTcaService;
 use CuyZ\Notiz\Core\Notification\Settings\NotificationSettings;
+use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\EntityEmailSettings;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\GlobalRecipients\Recipient;
 use CuyZ\Notiz\Domain\Property\Email;
@@ -217,8 +218,8 @@ class EntityEmailTcaService extends NotificationTcaService
     /**
      * @return string
      */
-    protected function getNotificationIdentifier()
+    protected function getDefinitionIdentifier()
     {
-        return 'entityEmail';
+        return EntityEmailNotification::getDefinitionIdentifier();
     }
 }

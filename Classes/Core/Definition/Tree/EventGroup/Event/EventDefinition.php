@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event;
 
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
+use CuyZ\Notiz\Core\Definition\Tree\Definition;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Configuration\EventConfiguration;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Connection\Connection;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\EventGroup;
@@ -158,6 +159,25 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     public function getPropertyDefinition($propertyClassName, Notification $notification)
     {
         return PropertyFactory::get()->getPropertyDefinition($propertyClassName, $this, $notification);
+    }
+
+    /**
+     * Counts the number of notifications that are using this event.
+     *
+     * @return int
+     */
+    public function getNotificationNumber()
+    {
+        $counter = 0;
+
+        /** @var Definition $definition */
+        $definition = $this->getFirstParent(Definition::class);
+
+        foreach ($definition->getNotifications() as $notification) {
+            $counter += $notification->getProcessor()->countNotificationsFromEventDefinition($this);
+        }
+
+        return $counter;
     }
 
     /**
