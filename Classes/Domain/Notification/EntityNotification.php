@@ -18,6 +18,7 @@ namespace CuyZ\Notiz\Domain\Notification;
 
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
+use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Definition\Tree\Notification\Channel\ChannelDefinition;
 use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
 use CuyZ\Notiz\Core\Notification\MultipleChannelsNotification;
@@ -115,6 +116,14 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     public function getNotificationDefinition()
     {
         return $this->getDefinition()->getNotification(static::getDefinitionIdentifier());
+    }
+
+    /**
+     * @return EventDefinition
+     */
+    public function getEventDefinition()
+    {
+        return $this->getDefinition()->getEventFromFullIdentifier($this->getEvent());
     }
 
     /**

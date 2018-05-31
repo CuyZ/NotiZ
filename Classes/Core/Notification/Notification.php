@@ -16,6 +16,7 @@
 
 namespace CuyZ\Notiz\Core\Notification;
 
+use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
 
 /**
@@ -37,6 +38,13 @@ interface Notification
      * @return NotificationDefinition
      */
     public function getNotificationDefinition();
+
+    /**
+     * Must return the event definition this notification is bound to.
+     *
+     * @return EventDefinition
+     */
+    public function getEventDefinition();
 
     /**
      * Must return a configuration array that will be used by the event during
