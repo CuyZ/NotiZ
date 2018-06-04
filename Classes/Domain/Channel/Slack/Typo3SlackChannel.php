@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Domain\Channel\Slack;
 
 use CuyZ\Notiz\Core\Channel\AbstractChannel;
+use CuyZ\Notiz\Core\Service\Container;
 use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Service\EntitySlackBotMapper;
 use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Service\EntitySlackChannelMapper;
 use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Service\EntitySlackMessageBuilder;
@@ -59,17 +60,17 @@ class Typo3SlackChannel extends AbstractChannel
      */
     final protected function initialize()
     {
-        $this->messageBuilder = $this->objectManager->get(
+        $this->messageBuilder = Container::get(
             EntitySlackMessageBuilder::class,
             $this->payload
         );
 
-        $this->botMapper = $this->objectManager->get(
+        $this->botMapper = Container::get(
             EntitySlackBotMapper::class,
             $this->payload
         );
 
-        $this->channelMapper = $this->objectManager->get(
+        $this->channelMapper = Container::get(
             EntitySlackChannelMapper::class,
             $this->payload
         );

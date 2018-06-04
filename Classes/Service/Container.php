@@ -20,6 +20,9 @@ use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
+/**
+ * @deprecated
+ */
 class Container implements SingletonInterface
 {
     use ExtendedSelfInstantiateTrait {

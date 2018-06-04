@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Domain\Channel\Email\TYPO3;
 
 use CuyZ\Notiz\Core\Channel\AbstractChannel;
+use CuyZ\Notiz\Core\Service\Container;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Service\EntityEmailAddressMapper;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Service\EntityEmailTemplateBuilder;
 use CuyZ\Notiz\Domain\Notification\Email\EmailNotification;
@@ -111,8 +112,8 @@ class EmailChannel extends AbstractChannel
      */
     protected function initialize()
     {
-        $this->templateBuilder = $this->objectManager->get(EntityEmailTemplateBuilder::class, $this->payload);
-        $this->addressMapper = $this->objectManager->get(EntityEmailAddressMapper::class, $this->payload);
+        $this->templateBuilder = Container::get(EntityEmailTemplateBuilder::class, $this->payload);
+        $this->addressMapper = Container::get(EntityEmailAddressMapper::class, $this->payload);
     }
 
     /**

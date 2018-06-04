@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Domain\Channel\Log;
 
 use CuyZ\Notiz\Core\Channel\AbstractChannel;
+use CuyZ\Notiz\Core\Service\Container;
 use CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\Service\EntityLogMessageBuilder;
 use CuyZ\Notiz\Domain\Notification\Log\LogNotification;
 use Psr\Log\LoggerInterface;
@@ -53,7 +54,7 @@ abstract class LogChannel extends AbstractChannel
      */
     final protected function initialize()
     {
-        $this->messageBuilder = $this->objectManager->get(
+        $this->messageBuilder = Container::get(
             EntityLogMessageBuilder::class,
             $this->payload
         );
