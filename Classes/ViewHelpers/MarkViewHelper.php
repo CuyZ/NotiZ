@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\ViewHelpers;
 
-use CuyZ\Notiz\Service\StringService;
+use CuyZ\Notiz\Core\Service\StringService;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
@@ -24,7 +24,7 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
 /**
  * Applies the "marker" behaviour to the given content:
  *
- * @see \CuyZ\Notiz\Service\StringService::doMark
+ * @see \CuyZ\Notiz\Core\Service\StringService::doMark
  */
 class MarkViewHelper extends AbstractViewHelper implements CompilableInterface
 {

@@ -17,7 +17,7 @@
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\GlobalRecipients;
 
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
-use CuyZ\Notiz\Service\StringService;
+use CuyZ\Notiz\Core\Service\StringService;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessor;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessorInterface;
 use Romm\ConfigurationObject\Traits\ConfigurationObject\StoreArrayIndexTrait;

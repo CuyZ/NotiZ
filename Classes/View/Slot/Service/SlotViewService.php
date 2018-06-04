@@ -18,8 +18,8 @@ namespace CuyZ\Notiz\View\Slot\Service;
 
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Service\StringService;
 use CuyZ\Notiz\Service\Container;
-use CuyZ\Notiz\Service\StringService;
 use CuyZ\Notiz\View\Slot\SlotView;
 use CuyZ\Notiz\View\ViewPathsAware;
 use Generator;

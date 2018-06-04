@@ -18,11 +18,11 @@ namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Service;
 
 use CuyZ\Notiz\Core\Channel\Payload;
 use CuyZ\Notiz\Core\Property\Factory\PropertyFactory;
+use CuyZ\Notiz\Core\Service\StringService;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\EntityEmailSettings;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\GlobalRecipients\Recipient;
 use CuyZ\Notiz\Domain\Property\Email;
-use CuyZ\Notiz\Service\StringService;
 
 class EntityEmailAddressMapper
 {
@@ -157,7 +157,7 @@ class EntityEmailAddressMapper
      * This method takes an array of recipient strings and returns them as
      * formatted email list arrays.
      *
-     * @see \CuyZ\Notiz\Service\StringService::formatEmailAddress
+     * @see \CuyZ\Notiz\Core\Service\StringService::formatEmailAddress
      *
      * @param array $recipients
      * @return array
