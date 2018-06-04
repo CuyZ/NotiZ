@@ -16,8 +16,8 @@
 
 namespace CuyZ\Notiz\Service\Scheduler;
 
+use CuyZ\Notiz\Core\Service\Container\Container;
 use Exception;
-use CuyZ\Notiz\Service\Container;
 use Throwable;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 use TYPO3\CMS\Scheduler\Task\AbstractTask;

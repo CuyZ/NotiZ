@@ -18,11 +18,11 @@ namespace CuyZ\Notiz\Service\Extension;
 
 use CuyZ\Notiz\Backend\ToolBarItems\NotificationsToolbarItem;
 use CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder;
+use CuyZ\Notiz\Core\Service\Container\Container;
 use CuyZ\Notiz\Core\Service\Traits\SelfInstantiateTrait;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Domain\Definition\Builder\Component\DefaultDefinitionComponents;
 use CuyZ\Notiz\FormEngine\DataProvider\DefaultEventFromGet;
-use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use CuyZ\Notiz\Service\Hook\EventDefinitionRegisterer;
 use CuyZ\Notiz\Service\Hook\NotificationFlexFormProcessor;

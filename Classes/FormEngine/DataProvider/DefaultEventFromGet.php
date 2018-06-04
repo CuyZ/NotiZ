@@ -18,7 +18,7 @@ namespace CuyZ\Notiz\FormEngine\DataProvider;
 
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
-use CuyZ\Notiz\Service\Container;
+use CuyZ\Notiz\Core\Service\Container\Container;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 

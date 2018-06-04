@@ -20,7 +20,7 @@ use Closure;
 use CuyZ\Notiz\Core\Exception\DuplicateEntryException;
 use CuyZ\Notiz\Core\Property\Service\MarkerParser;
 use CuyZ\Notiz\Domain\Property\Marker;
-use CuyZ\Notiz\Service\Container;
+use CuyZ\Notiz\Core\Service\Container\Container;
 use CuyZ\Notiz\View\Slot\SlotContainer;
 use CuyZ\Notiz\View\Slot\SlotView;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
