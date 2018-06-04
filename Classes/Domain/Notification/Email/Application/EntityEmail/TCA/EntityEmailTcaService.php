@@ -19,7 +19,7 @@ namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\TCA;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Notification\Service\NotificationTcaService;
 use CuyZ\Notiz\Core\Notification\Settings\NotificationSettings;
-use CuyZ\Notiz\Core\Service\Container;
+use CuyZ\Notiz\Core\Service\Container\Container;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\EntityEmailSettings;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\GlobalRecipients\Recipient;

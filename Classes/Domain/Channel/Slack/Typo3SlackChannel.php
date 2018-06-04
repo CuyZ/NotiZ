@@ -17,7 +17,7 @@
 namespace CuyZ\Notiz\Domain\Channel\Slack;
 
 use CuyZ\Notiz\Core\Channel\AbstractChannel;
-use CuyZ\Notiz\Core\Service\Container;
+use CuyZ\Notiz\Core\Service\Container\Container;
 use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Service\EntitySlackBotMapper;
 use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Service\EntitySlackChannelMapper;
 use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Service\EntitySlackMessageBuilder;

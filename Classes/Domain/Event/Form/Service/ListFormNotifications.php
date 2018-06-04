@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Event\Form\Service;
 
-use CuyZ\Notiz\Core\Service\Container;
+use CuyZ\Notiz\Core\Service\Container\Container;
 use CuyZ\Notiz\Domain\Event\Form\DispatchFormNotificationFinisher;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Form\Mvc\Persistence\FormPersistenceManagerInterface;
