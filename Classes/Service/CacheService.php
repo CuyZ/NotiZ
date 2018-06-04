@@ -16,8 +16,8 @@
 
 namespace CuyZ\Notiz\Service;
 
+use CuyZ\Notiz\Core\Service\Traits\ExtendedSelfInstantiateTrait;
 use CuyZ\Notiz\Core\Support\NotizConstants;
-use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
 use TYPO3\CMS\Core\Cache\Backend\TransientMemoryBackend;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;

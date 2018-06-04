@@ -18,7 +18,7 @@ namespace CuyZ\Notiz\Controller\Backend;
 
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\DefinitionTransformer;
-use CuyZ\Notiz\Service\RuntimeService;
+use CuyZ\Notiz\Core\Support\ExceptionHolder;
 use Throwable;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
@@ -36,7 +36,7 @@ class AdministrationController extends ActionController
     protected $definitionTransformer;
 
     /**
-     * @var RuntimeService
+     * @var ExceptionHolder
      */
     protected $runtimeService;
 
@@ -120,9 +120,9 @@ class AdministrationController extends ActionController
     }
 
     /**
-     * @param RuntimeService $runtimeService
+     * @param ExceptionHolder $runtimeService
      */
-    public function injectRuntimeService(RuntimeService $runtimeService)
+    public function injectRuntimeService(ExceptionHolder $runtimeService)
     {
         $this->runtimeService = $runtimeService;
     }

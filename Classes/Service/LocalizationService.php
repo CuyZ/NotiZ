@@ -16,8 +16,8 @@
 
 namespace CuyZ\Notiz\Service;
 
+use CuyZ\Notiz\Core\Service\Traits\SelfInstantiateTrait;
 use CuyZ\Notiz\Core\Support\NotizConstants;
-use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 

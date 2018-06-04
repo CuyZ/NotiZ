@@ -18,8 +18,8 @@ namespace CuyZ\Notiz\Service\Hook;
 
 use CuyZ\Notiz\Core\Event\Service\EventRegistry;
 use CuyZ\Notiz\Core\Support\NotizConstants;
+use CuyZ\Notiz\Core\Support\ExceptionHolder;
 use CuyZ\Notiz\Service\CacheService;
-use CuyZ\Notiz\Service\RuntimeService;
 use Exception;
 use Throwable;
 use TYPO3\CMS\Core\Database\TableConfigurationPostProcessingHookInterface;
@@ -62,10 +62,10 @@ class EventDefinitionRegisterer implements SingletonInterface, TableConfiguratio
         try {
             EventRegistry::get()->registerEvents();
         } catch (Throwable $exception) {
-            RuntimeService::get()->setException($exception);
+            ExceptionHolder::get()->setException($exception);
         } catch (Exception $exception) {
             // @PHP7
-            RuntimeService::get()->setException($exception);
+            ExceptionHolder::get()->setException($exception);
         }
     }
 

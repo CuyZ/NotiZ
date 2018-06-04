@@ -17,7 +17,7 @@
 namespace CuyZ\Notiz\Service;
 
 use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
-use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
+use CuyZ\Notiz\Core\Service\Traits\ExtendedSelfInstantiateTrait;
 use TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider;
 use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
 use TYPO3\CMS\Core\Imaging\IconRegistry;

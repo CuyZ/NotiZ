@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Service;
 
-use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
+use CuyZ\Notiz\Core\Service\Traits\ExtendedSelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
