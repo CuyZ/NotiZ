@@ -25,7 +25,6 @@ use CuyZ\Notiz\Core\Exception\NotImplementedException;
 use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Domain\Property\Marker;
-use CuyZ\Notiz\Service\BackendUriBuilder;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\LocalizationService;
 use CuyZ\Notiz\Service\StringService;
@@ -54,11 +53,6 @@ abstract class NotificationTcaService implements SingletonInterface
     protected $viewService;
 
     /**
-     * @var BackendUriBuilder
-     */
-    protected $backendUriBuilder;
-
-    /**
      * @var DataMapper
      */
     protected $dataMapper;
@@ -76,7 +70,6 @@ abstract class NotificationTcaService implements SingletonInterface
         $this->eventFactory = Container::get(EventFactory::class);
         $this->definitionService = Container::get(DefinitionService::class);
         $this->viewService = Container::get(ViewService::class);
-        $this->backendUriBuilder = Container::get(BackendUriBuilder::class);
         $this->dataMapper = Container::get(DataMapper::class);
     }
 
@@ -102,7 +95,6 @@ abstract class NotificationTcaService implements SingletonInterface
     {
         $view = $this->viewService->getStandaloneView('Backend/TCA/DefinitionErrorMessage');
 
-        $view->assign('showDefinitionUri', $this->backendUriBuilder->uriFor('showDefinition'));
         $view->assign('result', $this->definitionService->getValidationResult());
 
         return $view->render();
