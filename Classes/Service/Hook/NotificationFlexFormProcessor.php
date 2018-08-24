@@ -33,7 +33,8 @@ class NotificationFlexFormProcessor implements SingletonInterface
      */
     protected static $handledTables = [
         'tx_notiz_domain_model_entityemailnotification' => 'event_configuration_flex',
-        'tx_notiz_domain_model_entitylognotification' => 'event_configuration_flex'
+        'tx_notiz_domain_model_entitylognotification' => 'event_configuration_flex',
+        'tx_notiz_domain_model_entityslacknotification' => 'event_configuration_flex',
     ];
 
     /**
