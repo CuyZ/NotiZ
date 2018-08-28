@@ -12,3 +12,7 @@ installing the extension.
 
 - [Successful task](./Scheduler/SchedulerTaskWasExecuted.md)
 - [Failed task](./Scheduler/SchedulerTaskExecutionFailed.md)
+
+## Extension `form`
+
+- [Form finisher](./Form/DispatchFormNotification.md)
