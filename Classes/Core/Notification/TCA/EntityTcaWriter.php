@@ -16,9 +16,9 @@
 
 namespace CuyZ\Notiz\Core\Notification\TCA;
 
+use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefaultEventFromGet;
 use CuyZ\Notiz\Core\Notification\Service\LegacyNotificationTcaService;
 use CuyZ\Notiz\Core\Notification\Service\NotificationTcaService;
-use CuyZ\Notiz\FormEngine\DataProvider\DefaultEventFromGet;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;

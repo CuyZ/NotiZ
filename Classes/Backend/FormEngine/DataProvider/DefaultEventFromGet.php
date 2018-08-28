@@ -14,7 +14,7 @@
  * http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace CuyZ\Notiz\FormEngine\DataProvider;
+namespace CuyZ\Notiz\Backend\FormEngine\DataProvider;
 
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
