@@ -7,3 +7,8 @@ installing the extension.
     
 - [Caches cleared](./TYPO3/CachesCleared.md)
 - [Extension installed](./TYPO3/ExtensionInstalled.md)
+
+## Scheduler
+
+- [Successful task](./Scheduler/SchedulerTaskWasExecuted.md)
+- [Failed task](./Scheduler/SchedulerTaskExecutionFailed.md)
