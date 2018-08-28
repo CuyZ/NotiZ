@@ -27,7 +27,7 @@ class SchedulerTaskWasExecutedEvent extends SchedulerTaskEvent
      * @label Event/Scheduler/SchedulerTask:execution_done.marker.result
      * @marker
      *
-     * @var string
+     * @var bool
      */
     protected $result;
 
@@ -41,5 +41,16 @@ class SchedulerTaskWasExecutedEvent extends SchedulerTaskEvent
         $this->fillTaskData($task);
 
         $this->result = $result;
+    }
+
+    /**
+     * @return array
+     */
+    public function getExampleProperties()
+    {
+        return parent::getExampleProperties() +
+            [
+                'result' => true,
+            ];
     }
 }

@@ -17,12 +17,13 @@
 namespace CuyZ\Notiz\Domain\Event\TYPO3;
 
 use CuyZ\Notiz\Core\Event\AbstractEvent;
+use CuyZ\Notiz\Core\Event\Support\ProvidesExampleProperties;
 use TYPO3\CMS\Core\Utility\MathUtility;
 
 /**
  * Event triggered when TYPO3 caches are cleared.
  */
-class CachesClearedEvent extends AbstractEvent
+class CachesClearedEvent extends AbstractEvent implements ProvidesExampleProperties
 {
     /**
      * @label Event/TYPO3/CacheCleared:marker.cache_command
@@ -55,5 +56,16 @@ class CachesClearedEvent extends AbstractEvent
             $this->pageUid = (int)$this->cacheCommand;
             $this->cacheCommand = 'page';
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getExampleProperties()
+    {
+        return [
+            'cacheCommand' => 'page',
+            'pageUid' => 42,
+        ];
     }
 }
