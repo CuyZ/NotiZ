@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Domain\Event\Form;
 
 use CuyZ\Notiz\Core\Event\AbstractEvent;
+use CuyZ\Notiz\Core\Event\Support\ProvidesExampleProperties;
 use CuyZ\Notiz\Core\Property\Factory\PropertyContainer;
 use CuyZ\Notiz\Domain\Property\Email;
 use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
@@ -31,7 +32,7 @@ use TYPO3\CMS\Form\Mvc\Persistence\FormPersistenceManagerInterface;
  * The identifier configured in the finisher must be the same as the identifier
  * in this event options, or the event is canceled.
  */
-class DispatchFormNotificationEvent extends AbstractEvent
+class DispatchFormNotificationEvent extends AbstractEvent implements ProvidesExampleProperties
 {
     /**
      * @label Event/Form/DispatchFormNotification:marker.form_values
@@ -107,5 +108,18 @@ class DispatchFormNotificationEvent extends AbstractEvent
     public function injectFormPersistenceManager(FormPersistenceManagerInterface $formPersistenceManager)
     {
         $this->formPersistenceManager = $formPersistenceManager;
+    }
+
+    /**
+     * @return array
+     */
+    public function getExampleProperties()
+    {
+        return [
+            'formValues' => [
+                'name' => 'John Doe',
+                'email' => 'john.doe@example.com',
+            ],
+        ];
     }
 }

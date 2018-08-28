@@ -18,10 +18,11 @@ namespace CuyZ\Notiz\Domain\Event\Scheduler;
 
 use CuyZ\Notiz\Core\Event\AbstractEvent;
 use CuyZ\Notiz\Core\Event\Support\HasNotificationData;
+use CuyZ\Notiz\Core\Event\Support\ProvidesExampleProperties;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Scheduler\Task\AbstractTask;
 
-abstract class SchedulerTaskEvent extends AbstractEvent
+abstract class SchedulerTaskEvent extends AbstractEvent implements ProvidesExampleProperties
 {
     /**
      * @marker
@@ -78,5 +79,18 @@ abstract class SchedulerTaskEvent extends AbstractEvent
         if ($task instanceof HasNotificationData) {
             $this->data = $task->getNotificationData();
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getExampleProperties()
+    {
+        return [
+            'uid' => '42',
+            'title' => 'My Scheduler Task',
+            'description' => 'Some random description that gives details about my scheduler task.',
+            'data' => ['foo' => 'bar'],
+        ];
     }
 }

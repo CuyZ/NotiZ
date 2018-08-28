@@ -16,6 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Event\Scheduler;
 
+use Exception;
 use Throwable;
 use TYPO3\CMS\Scheduler\Task\AbstractTask;
 
@@ -29,7 +30,7 @@ class SchedulerTaskExecutionFailedEvent extends SchedulerTaskEvent
      * @label Event/Scheduler/SchedulerTask:execution_failed.marker.exception
      * @marker
      *
-     * @var string
+     * @var Throwable
      */
     protected $exception;
 
@@ -43,5 +44,16 @@ class SchedulerTaskExecutionFailedEvent extends SchedulerTaskEvent
         $this->fillTaskData($task);
 
         $this->exception = $exception;
+    }
+
+    /**
+     * @return array
+     */
+    public function getExampleProperties()
+    {
+        return parent::getExampleProperties() +
+            [
+                'exception' => new Exception('Some fake exception message', 1337),
+            ];
     }
 }
