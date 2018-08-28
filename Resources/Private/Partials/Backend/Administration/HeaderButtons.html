@@ -1,0 +1,31 @@
+<f:section name="Buttons">
+    <f:link.action action="index" class="btn btn-default" title="{nz:t(key: 'Backend/Module/Administration/Layout:menu.index')}">
+        <strong>
+            <core:icon identifier="actions-online-media-add" />
+            <nz:t key="Backend/Module/Administration/Layout:menu.index" />
+        </strong>
+    </f:link.action>
+
+    <f:if condition="{request.controllerActionName} == 'showDefinition'">
+        <f:then>
+            <f:link.action action="showDefinition" class="btn btn-primary" title="{nz:t(key: 'Backend/Module/Administration/Definition/Show:refresh')}">
+                <strong>
+                    <core:icon identifier="actions-refresh" />
+                    <nz:t key="Backend/Module/Administration/Definition/Show:refresh" />
+                </strong>
+            </f:link.action>
+        </f:then>
+        <f:else>
+            <f:link.action action="showDefinition" class="btn btn-primary" title="{nz:t(key: 'Backend/Module/Main/Module:label.show_definition')}">
+                <strong>
+                    <core:icon identifier="actions-view" />
+                    <nz:t key="Backend/Module/Main/Module:label.show_definition" />
+
+                    <f:if condition="{result.flattenedErrors}">
+                        (<span class="text-danger">{nz:t(key: 'Backend/Module/Administration/Definition/Error:errors_count', args: '{0: \'{result.flattenedErrors -> f:count()}\'}')}</span>)
+                    </f:if>
+                </strong>
+            </f:link.action>
+        </f:else>
+    </f:if>
+</f:section>

@@ -2,6 +2,10 @@
 
 <f:layout name="Backend/Default" />
 
+<f:section name="HeaderButtons">
+    <f:render partial="Backend/Administration/HeaderButtons" section="Buttons" arguments="{_all}" />
+</f:section>
+
 <f:section name="Content">
     <f:be.infobox title="{nz:t(key: 'Backend/Module/Administration/Index/Index:tmp.title')}" state="-1">
         <p>
