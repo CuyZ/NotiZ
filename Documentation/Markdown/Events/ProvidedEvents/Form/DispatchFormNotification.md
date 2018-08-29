@@ -5,8 +5,6 @@
 This event is triggered when a form that implements the notification dispatch
 finisher is submitted.
 
-The finisher class is `\CuyZ\Notiz\Domain\Event\Form\DispatchFormNotificationFinisher`.
-
 You can use the following properties in your notifications:
 
 | Property          | Description                                                       |
@@ -15,9 +13,19 @@ You can use the following properties in your notifications:
 | formRuntime       | Runtime object of the form, contains a lot of useful information  |
 | controllerContext | Current controller context that led to the submission of the form |
 
+You have to configure the notification dispatch in your form using the provided finisher:
+
+![Notification finisher][notification-finisher]
+
+You can then listen to the event in your notification and select your form:
+
+![Notification event][notification-event]
+
 ---
 
 [:books: Documentation index](../README.md)
 
 [form-changelog]: https://docs.typo3.org/typo3cms/extensions/core/Changelog/8.5/Feature-77910-EXTform-IntroduceNewFormFramework.html
 [form-extension]: https://docs.typo3.org/typo3cms/extensions/form/Index.html
+[notification-finisher]: ../../../Images/Events/notification-finisher.png
+[notification-event]: ../../../Images/Events/notification-event.png
