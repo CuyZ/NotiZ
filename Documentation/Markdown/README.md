@@ -23,6 +23,15 @@ You can find below documentation on how to use and extend NotiZ.
     - [Log notification](Notifications/Log-notification.md)
 - [Events](Events/README.md)
     - [Create a custom event](Events/Create-a-custom-event.md)
+    - [Provided events](Events/ProvidedEvents/README.md)
+        - TYPO3
+            - [Caches cleared](./Events/ProvidedEvents/TYPO3/CachesCleared.md)
+            - [Extension installed](./Events/ProvidedEvents/TYPO3/ExtensionInstalled.md)
+        - Scheduler
+            - [Successful task](./Scheduler/SchedulerTaskWasExecuted.md)
+            - [Failed task](./Scheduler/SchedulerTaskExecutionFailed.md)
+        - Extension `form`
+            - [Form finisher](./Form/DispatchFormNotification.md)
 - Developers
     - [Add TypoScript definition](Developers/Add-TypoScript-definition.md)
     - [Signals provided by the extension](Developers/Signals-connection.md)
