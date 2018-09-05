@@ -65,10 +65,11 @@ class TablesConfigurationService implements SingletonInterface
             '',
             [],
             [
-                'access' => 'user,group',
+                'access' => '',
                 'icon' => '',
                 'iconIdentifier' => 'tx-notiz-icon-main-module',
                 'labels' => "LLL:EXT:{$this->extensionKey}/Resources/Private/Language/Backend/Module/Main/Module.xlf",
+                'sub' => [],
             ]
         );
 
@@ -81,7 +82,7 @@ class TablesConfigurationService implements SingletonInterface
                 'Backend\Administration' => 'index, showDefinition, showException'
             ],
             [
-                'access' => 'user,group',
+                'access' => 'admin',
                 'icon' => NotizConstants::EXTENSION_ICON_MODULE_PATH,
                 'labels' => "LLL:EXT:{$this->extensionKey}/Resources/Private/Language/Backend/Module/Administration/Module.xlf",
             ]
