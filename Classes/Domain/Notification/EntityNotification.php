@@ -37,6 +37,11 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @var string
      */
+    protected $description;
+
+    /**
+     * @var string
+     */
     protected $event;
 
     /**
@@ -68,6 +73,22 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
     /**
