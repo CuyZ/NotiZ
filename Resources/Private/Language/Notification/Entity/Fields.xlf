@@ -6,6 +6,9 @@
             <trans-unit id="field.title">
                 <source>Title</source>
             </trans-unit>
+            <trans-unit id="field.description">
+                <source>Description</source>
+            </trans-unit>
             <trans-unit id="field.event">
                 <source>Event</source>
             </trans-unit>
