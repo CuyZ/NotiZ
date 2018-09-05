@@ -44,7 +44,7 @@ class EntityLogTcaWriter extends EntityTcaWriter
     protected function buildTcaArray()
     {
         return [
-            'ctrl' => $this->getCtrl(),
+            'ctrl' => $this->getDefaultCtrl(),
 
             'palettes' => [
                 'content' => [
@@ -111,14 +111,10 @@ class EntityLogTcaWriter extends EntityTcaWriter
     }
 
     /**
-     * @return array
+     * @return string
      */
-    protected function getCtrl()
+    protected function getEntityTitle()
     {
-        $ctrl = $this->getDefaultCtrl();
-
-        $ctrl['title'] = self::LOG_LLL . ':title';
-
-        return $ctrl;
+        return self::LOG_LLL . ':title';
     }
 }

@@ -198,7 +198,6 @@ class EntitySlackTcaWriter extends EntityTcaWriter
     {
         $ctrl = $this->getDefaultCtrl();
 
-        $ctrl['title'] = self::SLACK_LLL . ':title';
         $ctrl['requestUpdate'] .= ',custom_bot';
 
         return $ctrl;
@@ -210,5 +209,13 @@ class EntitySlackTcaWriter extends EntityTcaWriter
     protected function getNotificationTcaServiceClass()
     {
         return EntitySlackTcaService::class;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getEntityTitle()
+    {
+        return self::SLACK_LLL . ':title';
     }
 }
