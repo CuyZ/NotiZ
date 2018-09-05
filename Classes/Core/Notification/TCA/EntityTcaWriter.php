@@ -203,6 +203,7 @@ abstract class EntityTcaWriter implements SingletonInterface
     {
         return [
             'label' => 'title',
+            'descriptionColumn' => 'description',
             'tstamp' => 'tstamp',
             'crdate' => 'crdate',
             'cruser_id' => 'cruser_id',
@@ -333,6 +334,16 @@ abstract class EntityTcaWriter implements SingletonInterface
                     'type' => 'input',
                     'size' => 30,
                     'eval' => 'trim,required',
+                ],
+            ],
+
+            'description' => [
+                'exclude' => 1,
+                'label' => self::LLL_FIELDS . ":field.description",
+                'config' => [
+                    'type' => 'text',
+                    'cols' => 40,
+                    'rows' => 5,
                 ],
             ],
 

@@ -53,7 +53,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 '0' => [
                     'showitem' => '
                 error_message,
-                title, sys_language_uid, hidden,
+                title, description, sys_language_uid, hidden,
                 --div--;' . self::LLL_TABS . ':tab.event,
                     event, event_configuration_flex,
                 --div--;' . self::LLL_TABS . ':tab.channel,
