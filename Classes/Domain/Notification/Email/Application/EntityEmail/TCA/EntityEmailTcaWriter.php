@@ -257,10 +257,17 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     {
         $ctrl = $this->getDefaultCtrl();
 
-        $ctrl['title'] = self::EMAIL_LLL . ':title';
         $ctrl['requestUpdate'] .= ',sender_custom';
         $ctrl['searchFields'] .= ',sender,sender_custom,send_to,send_to_provided,send_cc,send_cc_provided,send_bcc,send_bcc_provided,subject,body';
 
         return $ctrl;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getEntityTitle()
+    {
+        return self::EMAIL_LLL . ':title';
     }
 }
