@@ -132,6 +132,6 @@ abstract class PropertyEntry
      */
     public function __toString()
     {
-        return $this->getValue();
+        return (string)$this->getValue();
     }
 }
