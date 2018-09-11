@@ -16,6 +16,7 @@
 
 namespace CuyZ\Notiz\Service\Extension;
 
+use CuyZ\Notiz\Backend\Report\NotificationStatus;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -50,6 +51,7 @@ class TablesConfigurationService implements SingletonInterface
     public function process()
     {
         $this->registerBackendModule();
+        $this->registerReportStatus();
     }
 
     /**
@@ -87,5 +89,13 @@ class TablesConfigurationService implements SingletonInterface
                 'labels' => "LLL:EXT:{$this->extensionKey}/Resources/Private/Language/Backend/Module/Administration/Module.xlf",
             ]
         );
+    }
+
+    /**
+     * @see \CuyZ\Notiz\Backend\Report\NotificationStatus
+     */
+    protected function registerReportStatus()
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports']['tx_reports']['status']['providers']['NotiZ'][] = NotificationStatus::class;
     }
 }
