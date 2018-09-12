@@ -18,6 +18,8 @@ namespace CuyZ\Notiz\Backend\Module\Uri;
 
 use CuyZ\Notiz\Backend\Module\ModuleManager;
 use CuyZ\Notiz\Core\Support\NotizConstants;
+use Psr\Http\Message\UriInterface;
+use TYPO3\CMS\Core\Http\Uri;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder as ExbaseUriBuilder;
 
 class UriBuilder
@@ -89,14 +91,14 @@ class UriBuilder
     }
 
     /**
-     * @return string
+     * @return UriInterface
      */
     public function build()
     {
         $module = $this->moduleManager->getModuleName();
         $controller = $this->controller ?: $this->moduleManager->getDefaultControllerName();
 
-        return $this->uriBuilder
+        $uri = $this->uriBuilder
             ->reset()
             ->setArguments(['M' => $module])
             ->uriFor(
@@ -106,6 +108,8 @@ class UriBuilder
                 NotizConstants::EXTENSION_KEY,
                 $module
             );
+
+        return new Uri($uri);
     }
 
     /**
