@@ -39,6 +39,10 @@
     <nz:t key="Backend/Toolbar/Show:body.notification_label" args="{0: notification.processor.totalNumber}" />
 </f:section>
 
+<f:section name="BodySimpleMenu">
+    <nz:t key="Backend/Toolbar/Show:body.simple_menu" />
+</f:section>
+
 ********************************************************************************
 *** ERRORS
 ********************************************************************************
@@ -55,4 +59,23 @@
         <nz:t key="Backend/Module/Administration/Definition/Error:errors_link.label"
               args="{0: '{result.flattenedErrors -> f:count()}'}" />
     </nz:backend.module.link>
+</f:section>
+
+********************************************************************************
+*** DATA CONTAINER (used by Ajax request for toolbar refresh)
+********************************************************************************
+<f:section name="DataContainer">
+    <f:alias map="{key: '{f:if(condition: \'{result.flattenedErrors}\', then: \'error\', else: \'ok\')}'}">
+        <span class="t3js-notiz-data-container"
+              data-error="{f:if(condition: '{result.flattenedErrors}', then: '1')}"
+              data-message-title="{nz:t(key: 'Backend/Toolbar/Show:flash.{key}.title')}"
+              data-message-body="{nz:t(key: 'Backend/Toolbar/Show:flash.{key}.body')}"
+        ></span>
+    </f:alias>
+
+    <div class="t3js-notiz-icon hidden">
+        <f:render partial="Backend/Toolbar/ToolbarIcon"
+                  section="Content"
+                  arguments="{result: result}" />
+    </div>
 </f:section>
