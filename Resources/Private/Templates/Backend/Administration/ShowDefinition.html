@@ -88,7 +88,7 @@
                                     <div class="text-center">
                                         <f:link.action action="showException" class="text-center btn btn-default" target="_blank">
                                             <strong>
-                                                <core:icon identifier="overlay-missing" />
+                                                <nz:core.icon identifier="overlay-missing" />
                                                 <nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.open_in_new_tab" />
                                             </strong>
                                         </f:link.action>
@@ -115,7 +115,7 @@
 
 <f:section name="DefinitionTree">
     <span class="root-definition">
-        <core:icon identifier="tx-notiz-icon" size="default" />
+        <nz:core.icon identifier="tx-notiz-icon" size="default" />
         <nz:t key="Backend/Module/Administration/Definition/Show:definition_tree.root" />
     </span>
 
@@ -159,7 +159,7 @@
                 <span class="notiz-definition-entry">
                     <label>
                         <span title="{nz:t(key: 'Backend/Module/Administration/Definition/Show:definition_tree.label_show_full_path')}">
-                            <core:icon identifier="apps-pagetree-page-shortcut-external" />
+                            <nz:core.icon identifier="apps-pagetree-page-shortcut-external" />
                         </span>
 
                         <input type="checkbox" />
@@ -199,13 +199,13 @@
 <f:section name="Messages">
     <f:for each="{messages}" as="message">
         <li>
-            <core:icon identifier="{icon}" />
+            <nz:core.icon identifier="{icon}" />
 
             <span class="{background}" title="code: {message.code}">{message -> nz:mark()}</span>
 
             <span class="notiz-definition-entry">
                 <label>
-                    <core:icon identifier="actions-search" />
+                    <nz:core.icon identifier="actions-search" />
 
                     <input type="checkbox" />
 

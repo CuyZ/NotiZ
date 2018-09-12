@@ -1,7 +1,9 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+
 <f:section name="Buttons">
     <f:link.action action="index" class="btn btn-default" title="{nz:t(key: 'Backend/Module/Administration/Layout:menu.index')}">
         <strong>
-            <core:icon identifier="actions-online-media-add" />
+            <nz:core.icon identifier="actions-online-media-add" />
             <nz:t key="Backend/Module/Administration/Layout:menu.index" />
         </strong>
     </f:link.action>
@@ -10,7 +12,7 @@
         <f:then>
             <f:link.action action="showDefinition" class="btn btn-primary" title="{nz:t(key: 'Backend/Module/Administration/Definition/Show:refresh')}">
                 <strong>
-                    <core:icon identifier="actions-refresh" />
+                    <nz:core.icon identifier="actions-refresh" />
                     <nz:t key="Backend/Module/Administration/Definition/Show:refresh" />
                 </strong>
             </f:link.action>
@@ -18,7 +20,7 @@
         <f:else>
             <f:link.action action="showDefinition" class="btn btn-primary" title="{nz:t(key: 'Backend/Module/Main/Module:label.show_definition')}">
                 <strong>
-                    <core:icon identifier="actions-view" />
+                    <nz:core.icon identifier="actions-view" />
                     <nz:t key="Backend/Module/Main/Module:label.show_definition" />
 
                     <f:if condition="{result.flattenedErrors}">
