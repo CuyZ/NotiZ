@@ -111,7 +111,7 @@ define([
                     '<p class="dropdown-text text-danger">' + TYPO3.lang['notiz.toolbar.error.body'] + '</p>' +
                     '<hr />' +
                     '<p class="dropdown-text">' +
-                    '<a href="#" onclick="TYPO3.NotificationToolbar.menu.refresh();" title="' + refreshLabel + '">' +
+                    '<a href="javascript:void(0);" onclick="TYPO3.NotificationToolbar.menu.refresh();" title="' + refreshLabel + '">' +
                     '<span class="refresh-icon"></span>' + '&nbsp;' + refreshLabel +
                     '</a>' +
                     '</p>'
