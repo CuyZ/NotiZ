@@ -19,8 +19,8 @@ define([
     };
 
     var menu = (function () {
-        var toolbarContainer = $(selector.toolbarContainer),
-            menuContainer = toolbarContainer.find(selector.menuContainer);
+        var toolbarContainer = $(selector.toolbarContainer);
+        var menuContainer = toolbarContainer.find(selector.menuContainer);
 
         return {
             container: menuContainer,
@@ -165,9 +165,9 @@ define([
      * Timer used for refreshing the toolbar.
      */
     var timer = (function () {
-        var instance = null,
-            defaultTick = 1000 * 60 * 5, // 5 minutes
-            tick = defaultTick;
+        var instance = null;
+        var defaultTick = 1000 * 60 * 5; // 5 minutes
+        var tick = defaultTick;
 
         return {
             reset: function () {
