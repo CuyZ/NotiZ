@@ -28,7 +28,7 @@ define([
             content: function (content) {
                 menuContainer.html(content);
             },
-            
+
             show: function () {
                 toolbarContainer.addClass('open');
             },
@@ -47,31 +47,31 @@ define([
                             skipSessionUpdate: 1
                         },
                         type: 'post',
-                        cache: false,
-                        success: function (result) {
-                            // Display the new content of the toolbar.
-                            menu.content(result);
+                        cache: false
+                    })
+                    .done(function (result) {
+                        // Display the new content of the toolbar.
+                        menu.content(result);
 
-                            // Update the icon (can have an error overlay).
-                            icon.update(menu.container.find(selector.iconContainer).html());
+                        // Update the icon (can have an error overlay).
+                        icon.update(menu.container.find(selector.iconContainer).html());
 
-                            // Send a flash message to the user.
-                            var data = menu.data();
-                            message.new(data.type).send(data.message.title, data.message.body);
+                        // Send a flash message to the user.
+                        var data = menu.data();
+                        message.new(data.type).send(data.message.title, data.message.body);
 
-                            if (data.error) {
-                                timer.fastTick();
-                            } else {
-                                timer.defaultTick();
-                            }
-                        },
-                        error: menu.error,
-                        complete: function () {
-                            timer.launch();
+                        if (data.error) {
+                            timer.fastTick();
+                        } else {
+                            timer.defaultTick();
+                        }
+                    })
+                    .fail(menu.error)
+                    .always(function () {
+                        timer.launch();
 
-                            if (typeof callback !== 'undefined') {
-                                callback();
-                            }
+                        if (typeof callback !== 'undefined') {
+                            callback();
                         }
                     });
                 });
@@ -195,7 +195,7 @@ define([
         }
     })();
 
-    var message = (function() {
+    var message = (function () {
         var typeKey = 'notiz.toolbar.message_type';
 
         return {
@@ -221,7 +221,7 @@ define([
                         if (lastType === type) {
                             return;
                         }
-                        
+
                         if (type === 'error') {
                             Notification.error(title, body);
                         } else {
