@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Service;
 
 use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
@@ -47,5 +48,13 @@ class Container implements SingletonInterface
     public static function get($className, ...$arguments)
     {
         return static::getInstance()->objectManager->get($className, ...$arguments);
+    }
+
+    /**
+     * @return BackendUserAuthentication
+     */
+    public static function getBackendUser()
+    {
+        return $GLOBALS['BE_USER'];
     }
 }

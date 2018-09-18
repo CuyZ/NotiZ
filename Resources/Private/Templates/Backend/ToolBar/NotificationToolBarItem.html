@@ -5,20 +5,9 @@
 
 <f:section name="Icon">
     <span title="{nz:t(key: 'Backend/Toolbar/Show:title')}">
-        <f:comment>
-            Change as inline code when https://review.typo3.org/#/c/54212/ is merged.
-        </f:comment>
-        <f:if condition="{result.flattenedErrors}">
-            <f:then>
-                <nz:core.icon identifier="tx-notiz-icon-toolbar"
-                           alternativeMarkupIdentifier="inline"
-                           overlay="overlay-missing" />
-            </f:then>
-            <f:else>
-                <nz:core.icon identifier="tx-notiz-icon-toolbar"
-                           alternativeMarkupIdentifier="inline" />
-            </f:else>
-        </f:if>
+        <f:render partial="Backend/Toolbar/ToolbarIcon"
+                  section="Content"
+                  arguments="{result: result}" />
     </span>
 </f:section>
 

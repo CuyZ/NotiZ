@@ -12,6 +12,10 @@
                 <target>Information NotiZ</target>
             </trans-unit>
 
+            <trans-unit id="body.simple_menu">
+                <target>La définition des notifications est valide : toutes les notifications seront traitées correctement.</target>
+            </trans-unit>
+
             <trans-unit id="body.show_definition">
                 <target>Montrer la définition actuelle</target>
             </trans-unit>
@@ -24,6 +28,23 @@
             </trans-unit>
             <trans-unit id="body.notification_label">
                 <target>%s notification(s)</target>
+            </trans-unit>
+
+            <trans-unit id="flash.ok.title">
+                <target>Les notifications sont actives</target>
+            </trans-unit>
+            <trans-unit id="flash.ok.body">
+                <target>La définition des notifications est valide : toutes les notifications seront traitées correctement.</target>
+            </trans-unit>
+            <trans-unit id="flash.error.title">
+                <target>Les notifications sont désactivées</target>
+            </trans-unit>
+            <trans-unit id="flash.error.body">
+                <target>Au moins une erreur a été trouvée dans la définition des notifications. Toutes les notifications seront désactivées jusqu'à ce que la définition soit valide.</target>
+            </trans-unit>
+
+            <trans-unit id="refresh">
+                <target>Rafraîchir</target>
             </trans-unit>
 
         </body>

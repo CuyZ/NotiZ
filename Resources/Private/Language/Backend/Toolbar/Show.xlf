@@ -12,6 +12,10 @@
                 <source>NotiZ information</source>
             </trans-unit>
 
+            <trans-unit id="body.simple_menu">
+                <source>Notifications definition is valid: all notifications will be dispatched properly.</source>
+            </trans-unit>
+
             <trans-unit id="body.show_definition">
                 <source>Show current definition</source>
             </trans-unit>
@@ -24,6 +28,23 @@
             </trans-unit>
             <trans-unit id="body.notification_label">
                 <source>%s notification(s)</source>
+            </trans-unit>
+
+            <trans-unit id="flash.ok.title">
+                <source>Notifications are active</source>
+            </trans-unit>
+            <trans-unit id="flash.ok.body">
+                <source>Notifications definition is valid: all notifications will be dispatched properly.</source>
+            </trans-unit>
+            <trans-unit id="flash.error.title">
+                <source>Notifications are disabled</source>
+            </trans-unit>
+            <trans-unit id="flash.error.body">
+                <source>At least one error was found in the notifications definition. All notifications are disabled until definition is valid again.</source>
+            </trans-unit>
+
+            <trans-unit id="refresh">
+                <source>Refresh</source>
             </trans-unit>
 
         </body>
