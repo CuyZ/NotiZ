@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\ViewHelpers\Backend\Module;
 
-use CuyZ\Notiz\Backend\Module\ModuleManager;
+use CuyZ\Notiz\Backend\Module\ModuleHandler;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
 class LinkViewHelper extends AbstractTagBasedViewHelper
@@ -72,7 +72,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      */
     public function render()
     {
-        $uri = ModuleManager::for($this->arguments['module'])
+        $uri = ModuleHandler::for($this->arguments['module'])
             ->getUriBuilder()
             ->forController($this->arguments['controller'])
             ->forAction($this->arguments['action'])
