@@ -8,7 +8,7 @@
         </strong>
     </f:link.action>
 
-    <f:if condition="{request.controllerActionName} == 'showDefinition'">
+    <f:if condition="{request.controllerName} == 'Backend\Administration\ShowDefinition'">
         <f:then>
             <f:link.action controller="Backend\Administration\ShowDefinition" class="btn btn-primary" title="{nz:t(key: 'Backend/Module/Administration/Definition/Show:refresh')}">
                 <strong>

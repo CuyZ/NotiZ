@@ -55,7 +55,7 @@ class ShowDefinitionController extends BackendController
         $exception = $this->runtimeService->getException();
 
         if (!$exception) {
-            $this->forward('showDefinition');
+            $this->forward('process');
         }
 
         throw $exception;
