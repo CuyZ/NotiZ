@@ -1,7 +1,7 @@
 {namespace nz=CuyZ\Notiz\ViewHelpers}
 
 <f:section name="Buttons">
-    <f:link.action action="index" class="btn btn-default" title="{nz:t(key: 'Backend/Module/Administration/Layout:menu.index')}">
+    <f:link.action controller="Backend\Administration\Index" class="btn btn-default" title="{nz:t(key: 'Backend/Module/Administration/Layout:menu.index')}">
         <strong>
             <nz:core.icon identifier="actions-online-media-add" />
             <nz:t key="Backend/Module/Administration/Layout:menu.index" />
@@ -10,7 +10,7 @@
 
     <f:if condition="{request.controllerActionName} == 'showDefinition'">
         <f:then>
-            <f:link.action action="showDefinition" class="btn btn-primary" title="{nz:t(key: 'Backend/Module/Administration/Definition/Show:refresh')}">
+            <f:link.action controller="Backend\Administration\ShowDefinition" class="btn btn-primary" title="{nz:t(key: 'Backend/Module/Administration/Definition/Show:refresh')}">
                 <strong>
                     <nz:core.icon identifier="actions-refresh" />
                     <nz:t key="Backend/Module/Administration/Definition/Show:refresh" />
@@ -18,7 +18,7 @@
             </f:link.action>
         </f:then>
         <f:else>
-            <f:link.action action="showDefinition" class="btn btn-primary" title="{nz:t(key: 'Backend/Module/Main/Module:label.show_definition')}">
+            <f:link.action controller="Backend\Administration\ShowDefinition" class="btn btn-primary" title="{nz:t(key: 'Backend/Module/Main/Module:label.show_definition')}">
                 <strong>
                     <nz:core.icon identifier="actions-view" />
                     <nz:t key="Backend/Module/Main/Module:label.show_definition" />

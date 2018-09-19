@@ -14,22 +14,15 @@
  * http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace CuyZ\Notiz\Controller\Backend;
+namespace CuyZ\Notiz\Controller\Backend\Administration;
 
-use CuyZ\Notiz\Core\Definition\DefinitionService;
+use CuyZ\Notiz\Controller\Backend\BackendController;
 use CuyZ\Notiz\Core\Definition\DefinitionTransformer;
 use CuyZ\Notiz\Service\RuntimeService;
 use Throwable;
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
-class AdministrationController extends ActionController
+class ShowDefinitionController extends BackendController
 {
-    /**
-     * @var DefinitionService
-     */
-    protected $definitionService;
-
     /**
      * @var DefinitionTransformer
      */
@@ -41,45 +34,10 @@ class AdministrationController extends ActionController
     protected $runtimeService;
 
     /**
-     * Checking if the definition contains errors: if at least one is found, the
-     * action is forwarded to `showDefinition` to inform the user of what is
-     * wrong.
-     */
-    public function initializeAction()
-    {
-        if ($this->definitionService->getValidationResult()->hasErrors()
-            && !in_array($this->request->getControllerActionName(), ['showDefinition', 'showException'])
-        ) {
-            $this->forward('showDefinition');
-        }
-    }
-
-    /**
-     * Adding default variables to the view for all actions.
-     *
-     * @param ViewInterface $view
-     */
-    public function initializeView(ViewInterface $view)
-    {
-        $view->assignMultiple([
-            'result' => $this->definitionService->getValidationResult(),
-            'request' => $this->request
-        ]);
-    }
-
-    /**
-     * Shows an interface where notifications can be added/edited.
-     */
-    public function indexAction()
-    {
-        // Incoming in stable release...
-    }
-
-    /**
      * Shows a tree for all definition values as well as errors and warnings
      * for every entry.
      */
-    public function showDefinitionAction()
+    public function processAction()
     {
         $this->view->assign('definition', $this->definitionTransformer->getDefinitionArray());
         $this->view->assign('exception', $this->runtimeService->getException());
@@ -101,14 +59,6 @@ class AdministrationController extends ActionController
         }
 
         throw $exception;
-    }
-
-    /**
-     * @param DefinitionService $definitionService
-     */
-    public function injectDefinitionService(DefinitionService $definitionService)
-    {
-        $this->definitionService = $definitionService;
     }
 
     /**
