@@ -90,7 +90,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         $this->tag->addAttribute('href', $this->arguments['frame'] ? 'javascript:void(0);' : $uri);
 
         if ($this->arguments['frame']) {
-            $this->tag->addAttribute('onclick', "TYPO3.ModuleMenu.App.openInContentFrame('$uri');");
+            $this->tag->addAttribute('onclick', "TYPO3.ModuleMenu.App.showModule('{$moduleHandler->getModuleName()}', '{$uri->getQuery()}');");
         }
 
         $this->tag->setContent($content);
