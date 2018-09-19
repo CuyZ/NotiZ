@@ -17,11 +17,13 @@
                 <f:render section="BodyErrorsDescription" />
             </li>
 
-            <li class="divider"></li>
+            <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
+                <li class="divider"></li>
 
-            <li>
-                <f:render section="BodyErrorsLink" />
-            </li>
+                <li>
+                    <f:render section="BodyErrorsLink" />
+                </li>
+            </f:if>
 
             <li class="divider"></li>
 
@@ -68,11 +70,13 @@
                 </f:else>
             </f:if>
 
-            <li class="divider"></li>
+            <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
+                <li class="divider"></li>
 
-            <li>
-                <f:render section="BodyDefinitionLink" />
-            </li>
+                <li>
+                    <f:render section="BodyDefinitionLink" />
+                </li>
+            </f:if>
 
             <li class="divider"></li>
 

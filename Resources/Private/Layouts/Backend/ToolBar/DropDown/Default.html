@@ -14,11 +14,13 @@
             </span>
         </p>
 
-        <hr />
+        <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
+            <hr />
 
-        <p class="dropdown-text">
-            <f:render section="BodyErrorsLink" />
-        </p>
+            <p class="dropdown-text">
+                <f:render section="BodyErrorsLink" />
+            </p>
+        </f:if>
 
         <hr />
 
@@ -62,11 +64,14 @@
                 </p>
             </f:else>
         </f:if>
-        <hr />
 
-        <p class="dropdown-text">
-            <f:render section="BodyDefinitionLink" />
-        </p>
+        <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
+            <hr />
+
+            <p class="dropdown-text">
+                <f:render section="BodyDefinitionLink" />
+            </p>
+        </f:if>
 
         <hr />
 

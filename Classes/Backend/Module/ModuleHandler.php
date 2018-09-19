@@ -67,6 +67,14 @@ abstract class ModuleHandler implements SingletonInterface
     }
 
     /**
+     * @return bool
+     */
+    public function canBeAccessed()
+    {
+        return Container::getBackendUser()->modAccess($GLOBALS['TBE_MODULES']['_configuration'][$this->getModuleName()], false);
+    }
+
+    /**
      * @return string
      */
     abstract public function getDefaultControllerName();
