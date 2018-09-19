@@ -72,7 +72,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      */
     public function render()
     {
-        $uri = ModuleHandler::for($this->arguments['module'])
+        $uri = ModuleHandler::forModule($this->arguments['module'])
             ->getUriBuilder()
             ->forController($this->arguments['controller'])
             ->forAction($this->arguments['action'])
