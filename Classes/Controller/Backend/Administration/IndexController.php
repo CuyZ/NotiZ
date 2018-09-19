@@ -14,23 +14,16 @@
  * http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace CuyZ\Notiz\Backend\Module;
+namespace CuyZ\Notiz\Controller\Backend\Administration;
 
-class AdministrationModuleHandler extends ModuleHandler
+use CuyZ\Notiz\Controller\Backend\BackendController;
+
+class IndexController extends BackendController
 {
     /**
-     * @return string
+     * Shows several information about the extension.
      */
-    public function getDefaultControllerName()
+    public function processAction()
     {
-        return 'Backend\\Administration\\Index';
-    }
-
-    /**
-     * @return string
-     */
-    public function getModuleName()
-    {
-        return 'NotizNotiz_NotizNotizAdministration';
     }
 }

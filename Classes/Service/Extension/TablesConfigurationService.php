@@ -79,7 +79,8 @@ class TablesConfigurationService implements SingletonInterface
             'notiz_administration',
             '',
             [
-                'Backend\Administration' => 'index, showDefinition, showException'
+                'Backend\Administration\Index' => 'process',
+                'Backend\Administration\ShowDefinition' => 'process, showException',
             ],
             [
                 'access' => 'admin',
