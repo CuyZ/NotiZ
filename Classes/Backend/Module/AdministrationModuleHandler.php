@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Backend\Module;
 
-class AdministrationModuleManager extends ModuleManager
+class AdministrationModuleHandler extends ModuleHandler
 {
     /**
      * @return string

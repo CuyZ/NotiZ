@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Backend\Module\Uri;
 
-use CuyZ\Notiz\Backend\Module\ModuleManager;
+use CuyZ\Notiz\Backend\Module\ModuleHandler;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use Psr\Http\Message\UriInterface;
 use TYPO3\CMS\Core\Http\Uri;
@@ -40,9 +40,9 @@ class UriBuilder
     protected $arguments = [];
 
     /**
-     * @var ModuleManager
+     * @var ModuleHandler
      */
-    protected $moduleManager;
+    protected $moduleHandler;
 
     /**
      * @var ExbaseUriBuilder
@@ -50,11 +50,11 @@ class UriBuilder
     protected $uriBuilder;
 
     /**
-     * @param ModuleManager $moduleManager
+     * @param ModuleHandler $moduleHandler
      */
-    public function __construct(ModuleManager $moduleManager)
+    public function __construct(ModuleHandler $moduleHandler)
     {
-        $this->moduleManager = $moduleManager;
+        $this->moduleHandler = $moduleHandler;
     }
 
     /**
@@ -95,8 +95,8 @@ class UriBuilder
      */
     public function build()
     {
-        $module = $this->moduleManager->getModuleName();
-        $controller = $this->controller ?: $this->moduleManager->getDefaultControllerName();
+        $module = $this->moduleHandler->getModuleName();
+        $controller = $this->controller ?: $this->moduleHandler->getDefaultControllerName();
 
         $uri = $this->uriBuilder
             ->reset()
