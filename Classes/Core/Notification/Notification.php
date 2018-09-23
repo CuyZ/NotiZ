@@ -26,6 +26,11 @@ use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
 interface Notification
 {
     /**
+     * @return string|null
+     */
+    public function getTitle();
+
+    /**
      * Must return a processor class name that does extend the abstract class:
      *
      * @see \CuyZ\Notiz\Core\Notification\Processor\NotificationProcessor
