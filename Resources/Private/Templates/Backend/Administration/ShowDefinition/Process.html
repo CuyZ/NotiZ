@@ -7,6 +7,18 @@
     <f:render partial="Backend/Administration/HeaderButtons" section="Buttons" arguments="{_all}" />
 </f:section>
 
+<f:section name="HeaderButtonsRight">
+    <f:alias map="{label: '{nz:t(key: \'Backend/Module/Administration/Definition/Show:refresh\')}'}">
+        <li role="presentation">
+            <f:link.action controller="Backend\Administration\ShowDefinition"
+                           title="{label}">
+                <nz:core.icon identifier="actions-refresh" />
+                <strong>{label}</strong>
+            </f:link.action>
+        </li>
+    </f:alias>
+</f:section>
+
 <f:section name="Content">
     <span class="clearfix"></span>
 
