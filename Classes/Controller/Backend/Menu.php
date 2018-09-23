@@ -14,25 +14,10 @@
  * http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace CuyZ\Notiz\Controller\Backend\Administration;
+namespace CuyZ\Notiz\Controller\Backend;
 
-use CuyZ\Notiz\Controller\Backend\BackendController;
-use CuyZ\Notiz\Controller\Backend\Menu;
-
-class IndexController extends BackendController
+interface Menu
 {
-    /**
-     * Shows several information about the extension.
-     */
-    public function processAction()
-    {
-    }
-
-    /**
-     * @inheritdoc
-     */
-    protected function getMenu()
-    {
-        return Menu::ADMINISTRATION_INDEX;
-    }
+    const ADMINISTRATION_INDEX = 'index';
+    const ADMINISTRATION_DEFINITION = 'definition';
 }

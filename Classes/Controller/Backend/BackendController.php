@@ -64,8 +64,17 @@ abstract class BackendController extends ActionController
         $view->assignMultiple([
             'result' => $this->definitionService->getValidationResult(),
             'request' => $this->request,
+            'menu' => $this->getMenu(),
         ]);
     }
+
+    /**
+     * Must return a menu identifier. You should use a constant of the following
+     * interface: @see \CuyZ\Notiz\Controller\Backend\Menu
+     *
+     * @return string
+     */
+    abstract protected function getMenu();
 
     /**
      * If the definition contain errors, the request is forwarded. If the user

@@ -8,6 +8,23 @@
     display: none;
 }
 
+/*
+ * Correction for the header menu in the backend module.
+ */
+.nz-menu {
+    border-bottom: none;
+}
+
+.nz-menu li.active a,
+.nz-menu li.active a:hover {
+    background-color: white;
+    border-bottom-color: white;
+}
+
+.module-docheader .module-docheader-bar {
+    margin-bottom: 0;
+}
+
 /* ********************************************************************
 Styles personnalisés - @SCO, 9/10/2017
 ******************************************************************** */

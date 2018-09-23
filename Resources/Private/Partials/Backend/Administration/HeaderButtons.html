@@ -1,33 +1,24 @@
 {namespace nz=CuyZ\Notiz\ViewHelpers}
 
 <f:section name="Buttons">
-    <f:link.action controller="Backend\Administration\Index" class="btn btn-default" title="{nz:t(key: 'Backend/Module/Administration/Layout:menu.index')}">
-        <strong>
-            <nz:core.icon identifier="actions-online-media-add" />
-            <nz:t key="Backend/Module/Administration/Layout:menu.index" />
-        </strong>
-    </f:link.action>
-
-    <f:if condition="{request.controllerName} == 'Backend\Administration\ShowDefinition'">
-        <f:then>
-            <f:link.action controller="Backend\Administration\ShowDefinition" class="btn btn-primary" title="{nz:t(key: 'Backend/Module/Administration/Definition/Show:refresh')}">
-                <strong>
-                    <nz:core.icon identifier="actions-refresh" />
-                    <nz:t key="Backend/Module/Administration/Definition/Show:refresh" />
-                </strong>
+    <f:alias map="{label: '{nz:t(key: \'Backend/Module/Administration/Layout:menu.index\')}'}">
+        <li role="presentation" class="{f:if(condition: '{menu} == \'index\'', then: 'active')}">
+            <f:link.action controller="Backend\Administration\Index"
+                           title="{label}">
+                <strong>{label}</strong>
             </f:link.action>
-        </f:then>
-        <f:else>
-            <f:link.action controller="Backend\Administration\ShowDefinition" class="btn btn-primary" title="{nz:t(key: 'Backend/Module/Main/Module:label.show_definition')}">
-                <strong>
-                    <nz:core.icon identifier="actions-view" />
-                    <nz:t key="Backend/Module/Main/Module:label.show_definition" />
+        </li>
+    </f:alias>
 
-                    <f:if condition="{result.flattenedErrors}">
-                        (<span class="text-danger">{nz:t(key: 'Backend/Module/Administration/Definition/Error:errors_count', args: '{0: \'{result.flattenedErrors -> f:count()}\'}')}</span>)
-                    </f:if>
-                </strong>
+    <f:alias map="{label: '{nz:t(key: \'Backend/Module/Administration/Definition/Show:definition_tree.root\')}'}">
+        <li role="presentation" class="{f:if(condition: '{menu} == \'definition\'', then: 'active')}">
+            <f:link.action controller="Backend\Administration\ShowDefinition" title="{label}">
+                <strong>{label}</strong>
+
+                <f:if condition="{result.flattenedErrors}">
+                    (<span class="text-danger">{nz:t(key: 'Backend/Module/Administration/Definition/Error:errors_count', args: '{0: \'{result.flattenedErrors -> f:count()}\'}')}</span>)
+                </f:if>
             </f:link.action>
-        </f:else>
-    </f:if>
+        </li>
+    </f:alias>
 </f:section>
