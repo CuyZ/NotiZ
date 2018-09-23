@@ -24,6 +24,7 @@ use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
 use CuyZ\Notiz\Core\Notification\MultipleChannelsNotification;
 use CuyZ\Notiz\Core\Notification\Notification;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Domain\Model\BackendUser;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Service\FlexFormService;
 
@@ -58,6 +59,12 @@ abstract class EntityNotification extends AbstractEntity implements Notification
      * @var array
      */
     protected $eventConfiguration;
+
+    /**
+     * @var \TYPO3\CMS\Extbase\Domain\Model\BackendUser
+     * @lazy
+     */
+    protected $backendUser;
 
     /**
      * @return string
@@ -162,6 +169,14 @@ abstract class EntityNotification extends AbstractEntity implements Notification
         }
 
         return $this->eventConfiguration;
+    }
+
+    /**
+     * @return BackendUser
+     */
+    public function getBackendUser()
+    {
+        return $this->backendUser;
     }
 
     /**
