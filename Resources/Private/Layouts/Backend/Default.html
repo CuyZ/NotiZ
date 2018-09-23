@@ -24,7 +24,13 @@
                 </div>
 
                 <div class="module-docheader-bar-column-right">
-                    <f:be.buttons.shortcut />
+                    <ul class="nav nav-tabs nz-menu">
+                        <f:render section="HeaderButtonsRight" optional="true" />
+
+                        <li role="presentation">
+                            <f:be.buttons.shortcut />
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
