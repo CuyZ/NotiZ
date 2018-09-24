@@ -98,7 +98,7 @@
                             <div class="panel panel-tab">
                                 <div class="panel-body">
                                     <div class="text-center">
-                                        <f:link.action action="showException" class="text-center btn btn-default" target="_blank">
+                                        <f:link.action controller="Backend\Administration\ShowException" class="text-center btn btn-default" target="_blank">
                                             <strong>
                                                 <nz:core.icon identifier="overlay-missing" />
                                                 <nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.open_in_new_tab" />
@@ -107,7 +107,7 @@
                                     </div>
 
                                     <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe src="{f:uri.action(action: 'showException')}" class="embed-responsive-item"></iframe>
+                                        <iframe src="{f:uri.action(controller: 'Backend\Administration\ShowException')}" class="embed-responsive-item"></iframe>
                                     </div>
                                 </div>
                             </div>

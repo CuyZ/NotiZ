@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Controller\Backend;
 
 use CuyZ\Notiz\Backend\Module\AdministrationModuleHandler;
+use CuyZ\Notiz\Controller\Backend\Administration\ShowExceptionController;
 use CuyZ\Notiz\Controller\Backend\Administration\IndexController;
 use CuyZ\Notiz\Controller\Backend\Administration\ShowDefinitionController;
 use CuyZ\Notiz\Core\Definition\DefinitionService;
@@ -89,6 +90,7 @@ abstract class BackendController extends ActionController
 
         if (IndexController::class === $this->request->getControllerObjectName()
             || ShowDefinitionController::class === $this->request->getControllerObjectName()
+            || ShowExceptionController::class === $this->request->getControllerObjectName()
         ) {
             return;
         }
