@@ -61,9 +61,9 @@ class ShowViewHelper extends AbstractTagBasedViewHelper
         if (!$notification instanceof Viewable) {
             if ($this->arguments['graceful']) {
                 return $this->renderChildren();
-            } else {
-                return '';
             }
+
+            return '';
         }
 
         $this->tag->addAttribute('href', $notification->getViewUri());
