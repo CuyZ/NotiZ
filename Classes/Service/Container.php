@@ -20,6 +20,7 @@ use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Frontend\Page\PageRepository;
 
 class Container implements SingletonInterface
 {
@@ -31,6 +32,11 @@ class Container implements SingletonInterface
      * @var ObjectManager
      */
     protected $objectManager;
+
+    /**
+     * @var PageRepository
+     */
+    protected $pageRepository;
 
     /**
      * @param ObjectManager $objectManager
@@ -56,5 +62,19 @@ class Container implements SingletonInterface
     public static function getBackendUser()
     {
         return $GLOBALS['BE_USER'];
+    }
+
+    /**
+     * @return PageRepository
+     */
+    public static function getPageRepository()
+    {
+        $instance = self::getInstance();
+
+        if (null === $instance->pageRepository) {
+            $instance->pageRepository = $instance->get(PageRepository::class);
+        }
+
+        return $instance->pageRepository;
     }
 }
