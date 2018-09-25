@@ -25,6 +25,7 @@ use CuyZ\Notiz\Core\Notification\MultipleChannelsNotification;
 use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Service\Container;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -213,6 +214,39 @@ abstract class EntityNotification extends AbstractEntity implements Notification
         }
 
         return $href;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEditable()
+    {
+        $backendUser = Container::getBackendUser();
+        $page = Container::getPageRepository()->getPage($this->pid);
+        $userPermissionOnPage = $backendUser->calcPerms($page);
+
+        return $backendUser->recordEditAccessInternals(self::getTableName(), $this->uid)
+            && ($this->pid === 0
+                || (bool)($userPermissionOnPage & Permission::CONTENT_EDIT)
+            );
+    }
+
+    /**
+     * @return string
+     */
+    public function getEditionUri()
+    {
+        $identifier = $this->getNotificationDefinition()->getIdentifier();
+        $tableName = static::getTableName();
+        $uid = $this->getUid();
+
+        return BackendUtility::getModuleUrl(
+            'record_edit',
+            [
+                "edit[$tableName][$uid]" => 'edit',
+                'returnUrl' => GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL') . "#$identifier-$uid",
+            ]
+        );
     }
 
     /**
