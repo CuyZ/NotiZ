@@ -250,6 +250,42 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     }
 
     /**
+     * @return bool
+     */
+    public static function isListable()
+    {
+        return Container::getBackendUser()
+            && Container::getBackendUser()->check('tables_select', self::getTableName());
+    }
+
+    /**
+     * @return bool
+     */
+    public function isViewable()
+    {
+        return self::isListable();
+    }
+
+    /**
+     * @return string
+     */
+    public function getViewUri()
+    {
+        $notificationDefinition = $this->getNotificationDefinition();
+
+        $controller = 'Backend\\Manager\\Notification\\Show' . ucfirst($notificationDefinition->getIdentifier());
+
+        $indexModuleHandler = Container::get(IndexModuleHandler::class);
+
+        return $indexModuleHandler
+            ->getUriBuilder()
+            ->forController($controller)
+            ->forAction('show')
+            ->withArguments(['notificationIdentifier' => $this->getUid()])
+            ->build();
+    }
+
+    /**
      * The selected channel is stored in the `$channel` property.
      *
      * @inheritdoc

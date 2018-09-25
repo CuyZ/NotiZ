@@ -25,6 +25,7 @@ use CuyZ\Notiz\Core\Notification\CustomSettingsNotification;
 use CuyZ\Notiz\Core\Notification\Processor\NotificationProcessor;
 use CuyZ\Notiz\Core\Notification\Processor\NotificationProcessorFactory;
 use CuyZ\Notiz\Core\Notification\Settings\NotificationSettings;
+use CuyZ\Notiz\Core\Notification\Viewable;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Service\IconService;
 use CuyZ\Notiz\Service\LocalizationService;
@@ -165,6 +166,18 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     public function getProcessor()
     {
         return NotificationProcessorFactory::get()->getFromNotificationClassName($this->getClassName());
+    }
+
+    /**
+     * @return bool
+     */
+    public function isListable()
+    {
+        /** @var Viewable $className */
+        $className = $this->getClassName();
+
+        return \in_array(Viewable::class, \class_implements($className))
+            && $className::isListable();
     }
 
     /**
