@@ -36,7 +36,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'canNotCollapse' => true,
                 ],
                 'bot' => [
-                    'showitem' => 'custom_bot,--linebreak--,bot,no_defined_bot,name,--linebreak--,avatar',
+                    'showitem' => 'custom_bot,--linebreak--,name,avatar,bot,--linebreak--,no_defined_bot',
                     'canNotCollapse' => true,
                 ],
                 'channel' => [
@@ -83,6 +83,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 'custom_bot' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.custom_bot',
+                    'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->hasDefinedBot',
                     'config' => [
                         'type' => 'check',
                         'default' => 0,
@@ -125,7 +126,18 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 'name' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.name',
-                    'displayCond' => 'FIELD:custom_bot:=:1',
+                    'displayCond' => [
+                        /**
+                         * @deprecated First level "AND" must be removed when
+                         *             TYPO3 v7 is not supported anymore.
+                         */
+                        'AND' => [
+                            'OR' => [
+                                'FIELD:custom_bot:=:1',
+                                'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedBot',
+                            ],
+                        ]
+                    ],
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
@@ -136,7 +148,18 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 'avatar' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.avatar',
-                    'displayCond' => 'FIELD:custom_bot:=:1',
+                    'displayCond' => [
+                        /**
+                         * @deprecated First level "AND" must be removed when
+                         *             TYPO3 v7 is not supported anymore.
+                         */
+                        'AND' => [
+                            'OR' => [
+                                'FIELD:custom_bot:=:1',
+                                'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedBot',
+                            ],
+                        ],
+                    ],
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
