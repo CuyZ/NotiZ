@@ -16,6 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail;
 
+use CuyZ\Notiz\Core\Notification\Creatable;
 use CuyZ\Notiz\Core\Notification\CustomSettingsNotification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Processor\EntityEmailNotificationProcessor;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\EntityEmailSettings;
@@ -24,7 +25,7 @@ use CuyZ\Notiz\Domain\Notification\EntityNotification;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Service\FlexFormService;
 
-class EntityEmailNotification extends EntityNotification implements EmailNotification, CustomSettingsNotification
+class EntityEmailNotification extends EntityNotification implements EmailNotification, CustomSettingsNotification, Creatable
 {
     /**
      * @var string
