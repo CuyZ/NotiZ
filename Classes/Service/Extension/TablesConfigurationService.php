@@ -80,7 +80,8 @@ class TablesConfigurationService implements SingletonInterface
             '',
             [
                 'Backend\Administration\Index' => 'process',
-                'Backend\Administration\ShowDefinition' => 'process, showException',
+                'Backend\Administration\ShowDefinition' => 'process',
+                'Backend\Administration\ShowException' => 'process',
             ],
             [
                 'access' => 'admin',

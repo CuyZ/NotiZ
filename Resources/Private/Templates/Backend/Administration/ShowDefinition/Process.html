@@ -24,96 +24,16 @@
 
     <f:if condition="{result.flattenedErrors}">
         <f:be.infobox title="{nz:t(key: 'Backend/Module/Administration/Definition/Error:info_box.title')}" state="2">
-            <p>
-                <b>
-                    <f:if condition="{exception}">
-                        <f:then>
-                            <nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.header" />
-                        </f:then>
-                        <f:else>
-                            <nz:t key="Backend/Module/Administration/Definition/Error:info_box.error.header" />
-                        </f:else>
-                    </f:if>
-                </b>
-            </p>
-
-            <p>
-                <f:if condition="{exception}">
-                    <f:then>
-                        <nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.body" />
-                        <ul>
-                            <li><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.body.help_1" /></li>
-                            <li><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.body.help_2" /></li>
-                            <li><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.body.help_3" /></li>
-                            <li><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.body.help_4" /></li>
-                            <li><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.body.help_5" /></li>
-                        </ul>
-                    </f:then>
-                    <f:else>
-                        <nz:t key="Backend/Module/Administration/Definition/Error:info_box.error.body" />
-                    </f:else>
-                </f:if>
-            </p>
-
             <f:if condition="{exception}">
-                <hr />
-                <div role="tabpanel">
-                    <ul class="nav nav-tabs t3js-tabs" role="tablist" id="tabs-tab" data-store-last-tab="1">
-                        <li role="presentation" class="t3js-tabmenu-item  active">
-                            <a href="#exception-message" title="" aria-controls="exception-message" role="tab" data-toggle="tab">
-                                <nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.details" />
-                            </a>
-                        </li>
-                        <li role="presentation" class="t3js-tabmenu-item ">
-                            <a href="#exception-details" title="" aria-controls="exception-details" role="tab" data-toggle="tab">
-                                <nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.details_advanced" />
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="exception-message">
-                            <div class="panel panel-tab">
-                                <div class="panel-body">
-                                    <dl>
-                                        <f:if condition="{exception.code}">
-                                            <dt>
-                                                <strong><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.details.code" /></strong>
-                                            </dt>
-                                            <dd>
-                                                <i>{exception.code}</i>
-                                            </dd>
-                                        </f:if>
-
-                                        <dt>
-                                            <strong><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.details.message" /></strong>
-                                        </dt>
-                                        <dd>
-                                            {exception.message}
-                                        </dd>
-                                    </dl>
-                                </div>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="exception-details">
-                            <div class="panel panel-tab">
-                                <div class="panel-body">
-                                    <div class="text-center">
-                                        <f:link.action action="showException" class="text-center btn btn-default" target="_blank">
-                                            <strong>
-                                                <nz:core.icon identifier="overlay-missing" />
-                                                <nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.open_in_new_tab" />
-                                            </strong>
-                                        </f:link.action>
-                                    </div>
-
-                                    <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe src="{f:uri.action(action: 'showException')}" class="embed-responsive-item"></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <f:then>
+                    <f:render partial="Backend/Administration/DefinitionException"
+                              section="DefinitionException"
+                              arguments="{exception: exception}" />
+                </f:then>
+                <f:else>
+                    <f:render partial="Backend/Administration/DefinitionError"
+                              section="DefinitionError" />
+                </f:else>
             </f:if>
         </f:be.infobox>
     </f:if>

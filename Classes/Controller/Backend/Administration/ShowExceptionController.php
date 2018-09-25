@@ -18,30 +18,32 @@ namespace CuyZ\Notiz\Controller\Backend\Administration;
 
 use CuyZ\Notiz\Controller\Backend\BackendController;
 use CuyZ\Notiz\Controller\Backend\Menu;
-use CuyZ\Notiz\Core\Definition\DefinitionTransformer;
 use CuyZ\Notiz\Service\RuntimeService;
 use Throwable;
 
-class ShowDefinitionController extends BackendController
+class ShowExceptionController extends BackendController
 {
-    /**
-     * @var DefinitionTransformer
-     */
-    protected $definitionTransformer;
-
     /**
      * @var RuntimeService
      */
     protected $runtimeService;
 
     /**
-     * Shows a tree for all definition values as well as errors and warnings
-     * for every entry.
+     * This action will be called if an exception was thrown during the building
+     * of the definition. The exception will be displayed, using TYPO3 core
+     * exception handling.
+     *
+     * @throws Throwable
      */
     public function processAction()
     {
-        $this->view->assign('definition', $this->definitionTransformer->getDefinitionArray());
-        $this->view->assign('exception', $this->runtimeService->getException());
+        $exception = $this->runtimeService->getException();
+
+        if (!$exception) {
+            $this->forward('process', 'ShowDefinition');
+        }
+
+        throw $exception;
     }
 
     /**
@@ -50,14 +52,6 @@ class ShowDefinitionController extends BackendController
     protected function getMenu()
     {
         return Menu::ADMINISTRATION_DEFINITION;
-    }
-
-    /**
-     * @param DefinitionTransformer $definitionTransformer
-     */
-    public function injectDefinitionTransformer(DefinitionTransformer $definitionTransformer)
-    {
-        $this->definitionTransformer = $definitionTransformer;
     }
 
     /**
