@@ -141,6 +141,19 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
     }
 
     /**
+     * @return NotificationDefinition[]
+     */
+    public function getListableNotifications()
+    {
+        return array_filter(
+            $this->notifications,
+            function (NotificationDefinition $notificationDefinition) {
+                return $notificationDefinition->isListable();
+            }
+        );
+    }
+
+    /**
      * @param $identifier
      * @return bool
      */
