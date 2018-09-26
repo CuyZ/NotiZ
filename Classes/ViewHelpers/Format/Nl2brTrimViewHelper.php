@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\ViewHelpers\Format;
 
 use TYPO3\CMS\Fluid\Core\Compiler\TemplateCompiler;
+use TYPO3\CMS\Fluid\Core\Parser\SyntaxTree\AbstractNode;
 use TYPO3\CMS\Fluid\Core\Parser\SyntaxTree\ViewHelperNode;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -38,8 +39,13 @@ class Nl2brTrimViewHelper extends AbstractViewHelper
     /**
      * @inheritdoc
      */
-    public function compile($argumentsName, $closureName, &$initializationPhpCode, ViewHelperNode $node, TemplateCompiler $compiler)
-    {
+    public function compile(
+        $argumentsVariableName,
+        $closureName,
+        &$initializationPhpCode,
+        AbstractNode $syntaxTreeNode,
+        TemplateCompiler $templateCompiler
+    ) {
         return sprintf(
             '\nl2br(\trim(%s()))',
             $closureName
