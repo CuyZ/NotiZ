@@ -111,4 +111,23 @@ class StringService implements SingletonInterface
     {
         return GeneralUtility::underscoredToUpperCamelCase(GeneralUtility::camelCaseToLowerCaseUnderscored($string));
     }
+
+    /**
+     * This will wrap each line of `$text` inside `<p></p>` tags.
+     *
+     * @param $text
+     * @return string
+     */
+    public function wrapLines($text)
+    {
+        $pad = function ($line) {
+            return "<p>$line</p>";
+        };
+
+        $lines = explode("\n", $text);
+        $lines = array_filter($lines);
+        $lines = array_map($pad, $lines);
+
+        return implode('', $lines);
+    }
 }

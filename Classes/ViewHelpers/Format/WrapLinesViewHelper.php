@@ -16,13 +16,17 @@
 
 namespace CuyZ\Notiz\ViewHelpers\Format;
 
-use TYPO3\CMS\Fluid\Core\Compiler\TemplateCompiler;
+use Closure;
+use CuyZ\Notiz\Service\StringService;
 use TYPO3\CMS\Fluid\Core\Parser\SyntaxTree\AbstractNode;
-use TYPO3\CMS\Fluid\Core\Parser\SyntaxTree\ViewHelperNode;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
-class Nl2brTrimViewHelper extends AbstractViewHelper
+class WrapLinesViewHelper extends AbstractViewHelper
 {
+    use CompileWithRenderStatic;
+
     /**
      * @var bool
      */
@@ -31,24 +35,8 @@ class Nl2brTrimViewHelper extends AbstractViewHelper
     /**
      * @inheritdoc
      */
-    public function render()
+    public static function renderStatic(array $arguments, Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
     {
-        return \nl2br(\trim($this->renderChildren()));
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function compile(
-        $argumentsVariableName,
-        $closureName,
-        &$initializationPhpCode,
-        AbstractNode $syntaxTreeNode,
-        TemplateCompiler $templateCompiler
-    ) {
-        return sprintf(
-            '\nl2br(\trim(%s()))',
-            $closureName
-        );
+        return StringService::get()->wrapLines($renderChildrenClosure());
     }
 }

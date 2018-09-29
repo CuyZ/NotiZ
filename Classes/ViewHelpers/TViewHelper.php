@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\ViewHelpers;
 
 use CuyZ\Notiz\Service\LocalizationService;
+use CuyZ\Notiz\Service\StringService;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
@@ -40,6 +41,7 @@ class TViewHelper extends AbstractViewHelper implements CompilableInterface
     {
         $this->registerArgument('key', 'string', 'The translation key');
         $this->registerArgument('args', 'array', 'Translation arguments');
+        $this->registerArgument('wrapLines', 'bool', 'Wrap each line of the translated string into HTML p tags');
     }
 
     /**
@@ -63,6 +65,12 @@ class TViewHelper extends AbstractViewHelper implements CompilableInterface
             ? $arguments['args']
             : [];
 
-        return LocalizationService::localize($key, $args);
+        $result = LocalizationService::localize($key, $args);
+
+        if ($arguments['wrapLines']) {
+            $result = StringService::get()->wrapLines($result);
+        }
+
+        return $result;
     }
 }
