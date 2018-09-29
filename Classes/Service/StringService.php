@@ -125,6 +125,7 @@ class StringService implements SingletonInterface
         };
 
         $lines = explode("\n", $text);
+        $lines = array_map('trim', $lines);
         $lines = array_filter($lines);
         $lines = array_map($pad, $lines);
 
