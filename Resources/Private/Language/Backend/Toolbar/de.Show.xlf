@@ -12,10 +12,6 @@
                 <target>NotiZ-Information</target>
             </trans-unit>
 
-            <trans-unit id="body.simple_menu">
-                <target>TODO DE: Notifications definition is valid: all notifications will be dispatched properly.</target>
-            </trans-unit>
-
             <trans-unit id="body.show_definition">
                 <target>Aktuelle Definition anzeigen</target>
             </trans-unit>
@@ -28,23 +24,6 @@
             </trans-unit>
             <trans-unit id="body.notification_label">
                 <target>%s Benachrichtigung(en)</target>
-            </trans-unit>
-
-            <trans-unit id="flash.ok.title">
-                <target>TODO DE: Notifications are active</target>
-            </trans-unit>
-            <trans-unit id="flash.ok.body">
-                <target>TODO DE: Notifications definition is valid: all notifications will be dispatched properly.</target>
-            </trans-unit>
-            <trans-unit id="flash.error.title">
-                <target>TODO DE: Notifications are disabled</target>
-            </trans-unit>
-            <trans-unit id="flash.error.body">
-                <target>TODO DE: At least one error was found in the notifications definition. All notifications are disabled until definition is valid again.</target>
-            </trans-unit>
-
-            <trans-unit id="refresh">
-                <target>TODO DE: Refresh</target>
             </trans-unit>
 
         </body>
