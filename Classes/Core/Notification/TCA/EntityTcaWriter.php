@@ -218,6 +218,12 @@ abstract class EntityTcaWriter implements SingletonInterface
             'cruser_id' => 'cruser_id',
             'dividers2tabs' => true,
 
+            'rootLevel' => -1,
+            'security' => [
+                'ignoreWebMountRestriction' => true,
+                'ignoreRootLevelRestriction' => true,
+            ],
+
             'requestUpdate' => 'event',
 
             'languageField' => 'sys_language_uid',
