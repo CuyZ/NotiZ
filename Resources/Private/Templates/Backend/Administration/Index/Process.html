@@ -23,7 +23,7 @@
 
         <div class="row flex-row">
             <f:render section="ShowDocumentation" arguments="{docUrl: docUrl}" />
-            <f:render section="Issue" arguments="{newIssueUrl: newIssueUrl}" />
+            <f:render section="Feedback" arguments="{newIssueUrl: newIssueUrl}" />
         </div>
 
         <div class="row flex-row">
@@ -134,7 +134,7 @@
     </div>
 </f:section>
 
-<f:section name="Issue">
+<f:section name="Feedback">
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -156,7 +156,7 @@
                                  title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.feedback.action.report')}"
                                  target="_blank"
                                  class="btn btn-default">
-                    <nz:core.icon identifier="actions-debug" />
+                    <nz:core.icon identifier="actions-document-open" />
                     <nz:t key="Backend/Module/Administration/Index/Index:block.feedback.action.report" />
                 </f:link.external>
             </div>

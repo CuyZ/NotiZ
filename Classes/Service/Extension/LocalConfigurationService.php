@@ -184,10 +184,6 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
             ],
         ];
 
-        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '9.4.0', '<')) {
-            $iconsList[FontawesomeIconProvider::class]['actions-debug'] = ['name' => 'bug'];
-        }
-
         if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')) {
             $iconsList[FontawesomeIconProvider::class]['actions-pagetree'] = ['name' => 'list-ul'];
         }
