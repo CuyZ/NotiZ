@@ -58,7 +58,7 @@ class IndexModuleHandler extends ModuleHandler
         ];
 
         foreach ($controllers as $controller => $actions) {
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase']['extensions']['Notiz']['modules'][self::getModuleName()]['controllers'][$controller] = ['actions' => $actions];
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase']['extensions']['Notiz']['modules'][$this->getModuleName()]['controllers'][$controller] = ['actions' => $actions];
         }
     }
 }
