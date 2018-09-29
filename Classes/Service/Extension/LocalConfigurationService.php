@@ -31,6 +31,7 @@ use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowDefaultValues;
 use TYPO3\CMS\Core\Cache\Backend\FileBackend;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
 use TYPO3\CMS\Core\Database\TableConfigurationPostProcessingHookInterface;
+use TYPO3\CMS\Core\Imaging\IconProvider\FontawesomeIconProvider;
 use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
 use TYPO3\CMS\Core\Imaging\IconRegistry;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -168,23 +169,34 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
      */
     protected function registerIcons()
     {
-        $this->iconRegistry->registerIcon(
-            'tx-notiz-icon',
-            SvgIconProvider::class,
-            ['source' => NotizConstants::EXTENSION_ICON_DEFAULT]
-        );
+        $iconsList = [
+            SvgIconProvider::class => [
+                'tx-notiz-icon' => ['source' => NotizConstants::EXTENSION_ICON_DEFAULT],
+                'tx-notiz-icon-toolbar' => ['source' => NotizConstants::EXTENSION_ICON_PATH . 'notiz-icon-toolbar.svg'],
+                'tx-notiz-icon-main-module' => ['source' => NotizConstants::EXTENSION_ICON_MAIN_MODULE_PATH],
+            ],
+            FontawesomeIconProvider::class => [
+                'info-circle' => ['name' => 'info-circle'],
+                'envelope' => ['name' => 'envelope'],
+                'twitter' => ['name' => 'twitter'],
+                'slack' => ['name' => 'slack'],
+                'github' => ['name' => 'github'],
+            ],
+        ];
 
-        $this->iconRegistry->registerIcon(
-            'tx-notiz-icon-toolbar',
-            SvgIconProvider::class,
-            ['source' => NotizConstants::EXTENSION_ICON_PATH . 'notiz-icon-toolbar.svg']
-        );
+        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '9.4.0', '<')) {
+            $iconsList[FontawesomeIconProvider::class]['actions-debug'] = ['name' => 'bug'];
+        }
 
-        $this->iconRegistry->registerIcon(
-            'tx-notiz-icon-main-module',
-            SvgIconProvider::class,
-            ['source' => NotizConstants::EXTENSION_ICON_MAIN_MODULE_PATH]
-        );
+        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')) {
+            $iconsList[FontawesomeIconProvider::class]['actions-pagetree'] = ['name' => 'list-ul'];
+        }
+
+        foreach ($iconsList as $provider => $icons) {
+            foreach ($icons as $name => $configuration) {
+                $this->iconRegistry->registerIcon($name, $provider, $configuration);
+            }
+        }
     }
 
     /**

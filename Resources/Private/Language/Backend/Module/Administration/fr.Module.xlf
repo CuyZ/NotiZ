@@ -8,10 +8,10 @@
                 <target>Administration</target>
             </trans-unit>
             <trans-unit id="mlang_labels_tabdescr">
-                <target>Configurer vos notifications et voir l'arbre de définition complet.</target>
+                <target>Configurer l'extension et voir l'arbre de définition complet.</target>
             </trans-unit>
             <trans-unit id="mlang_labels_tablabel">
-                <target>Configurer vos notifications et voir l'arbre de définition complet.</target>
+                <target>Administration des notifications</target>
             </trans-unit>
 
         </body>

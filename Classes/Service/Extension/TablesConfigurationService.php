@@ -85,7 +85,7 @@ class TablesConfigurationService implements SingletonInterface
             ],
             [
                 'access' => 'admin',
-                'icon' => NotizConstants::EXTENSION_ICON_MODULE_PATH,
+                'icon' => NotizConstants::EXTENSION_ICON_PATH_MODULE_ADMINISTRATION,
                 'labels' => "LLL:EXT:{$this->extensionKey}/Resources/Private/Language/Backend/Module/Administration/Module.xlf",
             ]
         );
