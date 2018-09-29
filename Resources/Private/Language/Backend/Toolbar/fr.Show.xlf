@@ -9,7 +9,11 @@
             <!--##################################-->
 
             <trans-unit id="title">
-                <target>Information NotiZ</target>
+                <target>Information sur les notifications</target>
+            </trans-unit>
+
+            <trans-unit id="body.list_notifications">
+                <target>Lister les notifications</target>
             </trans-unit>
 
             <trans-unit id="body.simple_menu">

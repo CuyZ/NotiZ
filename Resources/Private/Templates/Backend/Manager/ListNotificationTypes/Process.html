@@ -1,0 +1,122 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+{namespace b=TYPO3\CMS\Backend\ViewHelpers}
+
+<f:layout name="Backend/Default" />
+
+<f:section name="HeaderButtons">
+    <f:render partial="Backend/Manager/HeaderButtons" section="Buttons" arguments="{_all}" />
+</f:section>
+
+--------------------------------------------------------------------------------
+Main section of this view.
+
+Lists all existing notification types: emails, logs, Slack… For each entry, a
+link is added to list all the notifications.
+--------------------------------------------------------------------------------
+<f:section name="Content">
+    <div class="container">
+        <div class="page-header">
+            <h1>
+                <nz:t key="Backend/Module/Manager/ListNotificationTypes:module.title" />
+            </h1>
+        </div>
+
+        <div class="row">
+            <f:if condition="{definition.listableNotifications}">
+                <f:then>
+                    <f:be.infobox>
+                        <nz:t key="Backend/Module/Manager/ListNotificationTypes:introduction" wrapLines="1" />
+                    </f:be.infobox>
+
+                    <f:for each="{definition.listableNotifications -> nz:iterator.chunk(count: 2)}" as="notifications">
+                        <div class="row flex-row">
+                            <f:for each="{notifications}" as="notification">
+                                <div class="col-md-6">
+                                    <f:render section="Notification" arguments="{notification: notification}" />
+                                </div>
+                            </f:for>
+                        </div>
+                    </f:for>
+                </f:then>
+                <f:else>
+                    <f:be.infobox state="1" title="{nz:t(key: 'Backend/Module/Manager/ListNotificationTypes:no_notification_type_found.title')}">
+                        <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
+                            <f:then>
+                                <p>
+                                    <nz:t key="Backend/Module/Manager/ListNotificationTypes:no_notification_type_found.body.admin" wrapLines="1" />
+                                </p>
+
+                                <nz:backend.module.link module="Administration"
+                                                        controller="Backend\Administration\ShowDefinition"
+                                                        title="{nz:t(key: 'Backend/Module/Administration/Index/Index:show_definition_tree')}"
+                                                        class="btn btn-default"
+                                                        frame="1"
+                                                        parentFrame="1">
+                                    <nz:core.icon identifier="actions-pagetree" />
+                                    <nz:t key="Backend/Module/Administration/Index/Index:show_definition_tree" />
+                                </nz:backend.module.link>
+                            </f:then>
+                            <f:else>
+                                <p>
+                                    <nz:t key="Backend/Module/Manager/ListNotificationTypes:no_notification_type_found.body.editor" wrapLines="1" />
+                                </p>
+                            </f:else>
+                        </f:if>
+                    </f:be.infobox>
+                </f:else>
+            </f:if>
+        </div>
+    </div>
+</f:section>
+
+--------------------------------------------------------------------------------
+A block that shows information about a given notification type.
+--------------------------------------------------------------------------------
+<f:section name="Notification">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title text-center">
+                <f:link.action controller="Backend\Manager\ListNotifications"
+                               title="{nz:t(key: 'Backend/Module/Manager/ListNotificationTypes:show_notifications', args: {0: notification.processor.totalNumber})}"
+                               arguments="{notificationIdentifier: notification.identifier}">
+                    {notification.label}
+                </f:link.action>
+            </h2>
+        </div>
+
+        <div class="panel-body">
+            <f:if condition="{notification.description}">
+                <f:then>
+                    <nz:format.wrapLines>{notification.description}</nz:format.wrapLines>
+                </f:then>
+                <f:else>
+                    <em>
+                        <nz:t key="Backend/Module/Manager/ListNotificationTypes:notification.no_description" />
+                    </em>
+                </f:else>
+            </f:if>
+        </div>
+
+        <div class="panel-footer text-center">
+            <nz:notification.link.create notificationDefinition="{notification}"
+                                                class="btn btn-default"
+                                                title="{nz:t(key: 'Backend/Module/Manager/Global:create_notification')}">
+                <nz:core.icon identifier="actions-add" />
+                <nz:t key="Backend/Module/Manager/Global:create_notification" />
+            </nz:notification.link.create>
+
+            <f:if condition="{notification.processor.totalNumber}">
+                <f:alias map="{label: '{nz:t(key: \'Backend/Module/Manager/ListNotificationTypes:show_notifications\', args: {0: notification.processor.totalNumber})}'}">
+                    <f:link.action controller="Backend\Manager\ListNotifications"
+                                   class="btn btn-default"
+                                   title="{label}"
+                                   arguments="{notificationIdentifier: notification.identifier}">
+
+                        <nz:core.icon identifier="{notification.iconIdentifier}" />
+                        {label}
+                    </f:link.action>
+                </f:alias>
+            </f:if>
+        </div>
+    </div>
+</f:section>

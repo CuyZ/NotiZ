@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="fr">
+        <header/>
+        <body>
+
+            <trans-unit id="module.title">
+                <target>Types de notifications</target>
+            </trans-unit>
+
+            <trans-unit id="introduction">
+                <target><![CDATA[
+                    Vous trouverez ci-dessous la liste de tous les types de notifications pouvant être gérés depuis ce module.
+
+                    Utilisez les boutons pour lister les notifications existantes ou en créer de nouvelles.
+                ]]></target>
+            </trans-unit>
+
+            <trans-unit id="no_notification_type_found.title">
+                <target>Oups !</target>
+            </trans-unit>
+            <trans-unit id="no_notification_type_found.body.editor">
+                <target><![CDATA[
+                    Une erreur est survenue, les notifications n'ont pas pu être affichées.
+
+                    Si le problème persiste, contactez votre administrateur.
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="no_notification_type_found.body.admin">
+                <target><![CDATA[
+                    Une erreur est survenue, les notifications n'ont pas pu être affichées.
+
+                    La définition contient probablement une erreur.
+                ]]></target>
+            </trans-unit>
+
+            <trans-unit id="notification.no_description">
+                <target>Pas de description disponible…</target>
+            </trans-unit>
+
+            <trans-unit id="show_notifications">
+                <target>Voir %s notification(s)</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

@@ -65,6 +65,14 @@
             </f:else>
         </f:if>
 
+        <f:if condition="{nz:backend.module.hasAccess(module: 'Index')}">
+            <hr />
+
+            <p class="dropdown-text">
+                <f:render section="BodyNotificationsLink" />
+            </p>
+        </f:if>
+
         <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
             <hr />
 

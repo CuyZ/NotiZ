@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="fr">
+        <header/>
+        <body>
+
+        <trans-unit id="general_information">
+            <target>Informations générales sur la notification</target>
+        </trans-unit>
+
+            <trans-unit id="event">
+            <target>Événement</target>
+        </trans-unit>
+
+        <trans-unit id="created_by">
+            <target>Créé par</target>
+        </trans-unit>
+
+        <trans-unit id="description">
+            <target>Description</target>
+        </trans-unit>
+
+        </body>
+    </file>
+</xliff>

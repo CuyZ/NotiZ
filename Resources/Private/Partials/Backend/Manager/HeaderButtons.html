@@ -1,0 +1,21 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+
+<f:section name="Buttons">
+    <f:alias map="{label: '{nz:t(key: \'Backend/Module/Manager/Layout:show_notifications\')}'}">
+        <li role="presentation" class="{f:if(condition: '{menu} == \'notifications\'', then: 'active')}">
+            <f:link.action controller="Backend\Manager\ListNotificationTypes"
+                           title="{label}">
+                <strong>{label}</strong>
+            </f:link.action>
+        </li>
+    </f:alias>
+
+    <f:alias map="{label: '{nz:t(key: \'Backend/Module/Manager/Layout:show_events\')}'}">
+        <li role="presentation" class="{f:if(condition: '{menu} == \'events\'', then: 'active')}">
+            <f:link.action controller="Backend\Manager\ListEvents"
+                           title="{label}">
+                <strong>{label}</strong>
+            </f:link.action>
+        </li>
+    </f:alias>
+</f:section>

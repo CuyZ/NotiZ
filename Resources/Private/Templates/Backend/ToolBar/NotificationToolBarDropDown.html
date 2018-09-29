@@ -10,6 +10,14 @@
     <nz:t key="Backend/Toolbar/Show:title" />
 </f:section>
 
+<f:section name="BodyNotificationsLink">
+    <nz:backend.module.link module="Index"
+                            frame="1">
+        <nz:core.icon identifier="actions-system-list-open" alternativeMarkupIdentifier="inline" />
+        <nz:t key="Backend/Toolbar/Show:body.list_notifications" />
+    </nz:backend.module.link>
+</f:section>
+
 <f:section name="BodyDefinitionLink">
     <nz:backend.module.link module="Administration"
                             controller="Backend\Administration\ShowDefinition"
@@ -32,11 +40,21 @@
 </f:section>
 
 <f:section name="BodyNotificationIdentifier">
-    {notification.label}
+    <nz:backend.module.link module="Index"
+                            controller="Backend\Manager\ListNotifications"
+                            arguments="{notificationIdentifier: notification.identifier}"
+                            frame="1">
+        {notification.label}
+    </nz:backend.module.link>
 </f:section>
 
 <f:section name="BodyNotificationLabel">
-    <nz:t key="Backend/Toolbar/Show:body.notification_label" args="{0: notification.processor.totalNumber}" />
+    <nz:backend.module.link module="Index"
+                            controller="Backend\Manager\ListNotifications"
+                            arguments="{notificationIdentifier: notification.identifier}"
+                            frame="1">
+        <nz:t key="Backend/Toolbar/Show:body.notification_label" args="{0: notification.processor.totalNumber}" />
+    </nz:backend.module.link>
 </f:section>
 
 <f:section name="BodySimpleMenu">
@@ -48,7 +66,14 @@
 ********************************************************************************
 
 <f:section name="BodyErrorsDescription">
-    <nz:t key="Backend/Toolbar/Error:body.errors_description" />
+    <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
+        <f:then>
+            <nz:t key="Backend/Toolbar/Error:body.errors_description" />
+        </f:then>
+        <f:else>
+            <nz:t key="Backend/Toolbar/Error:body.editor.errors_description" />
+        </f:else>
+    </f:if>
 </f:section>
 
 <f:section name="BodyErrorsLink">

@@ -1,0 +1,136 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+{namespace b=TYPO3\CMS\Backend\ViewHelpers}
+
+<f:layout name="Backend/Default" />
+
+<f:section name="HeaderButtons">
+    <f:render partial="Backend/Manager/HeaderButtons" section="Buttons" arguments="{_all}" />
+</f:section>
+
+<f:section name="Content">
+    <div class="container">
+        <f:render partial="Backend/Manager/Notification/Header"
+                  section="Content"
+                  arguments="{notification: notification}" />
+
+        <table class="table table-hover">
+            <f:render partial="Backend/Manager/Notification/GeneralInformation"
+                      section="Content"
+                      arguments="{notification: notification}" />
+
+            <f:render section="MailInformation" arguments="{_all}" />
+
+            <f:if condition="{nz:notification.hasEvent(notification: notification)}">
+                <f:render section="Preview" arguments="{_all}" />
+            </f:if>
+        </table>
+    </div>
+</f:section>
+
+--------------------------------------------------------------------------------
+General information about the mail notification.
+--------------------------------------------------------------------------------
+<f:section name="MailInformation">
+    <thead>
+        <tr>
+            <th colspan="2">
+                <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:information_mail" />
+            </th>
+        </tr>
+    </thead>
+
+    <tr>
+        <td>
+            <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients" />
+        </td>
+        <td>
+            <dl>
+                <dt>
+                    <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients.to" />
+                </dt>
+                <dd>{notification.sendTo}</dd>
+
+                <dt>
+                    <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients.cc" />
+                </dt>
+                <dd>{notification.sendCc}</dd>
+
+                <dt>
+                    <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients.bcc" />
+                </dt>
+                <dd>{notification.sendBcc}</dd>
+            </dl>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:provided_recipients" />
+        </td>
+        <td>
+            <dl>
+                <dt>
+                    <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients.to" />
+                </dt>
+                <dd>
+                    <f:render section="ProvidedRecipients" arguments="{recipients: notification.selectedSendToProvided}" />
+                </dd>
+
+                <dt>
+                    <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients.cc" />
+                </dt>
+                <dd>
+                    <f:render section="ProvidedRecipients" arguments="{recipients: notification.selectedSendCcProvided}" />
+                </dd>
+
+                <dt>
+                    <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients.bcc" />
+                </dt>
+                <dd>
+                    <f:render section="ProvidedRecipients" arguments="{recipients: notification.selectedSendBccProvided}" />
+                </dd>
+            </dl>
+        </td>
+    </tr>
+</f:section>
+
+--------------------------------------------------------------------------------
+Preview of the whole mail body.
+--------------------------------------------------------------------------------
+<f:section name="Preview">
+    <thead>
+        <tr>
+            <th colspan="2">
+                <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:preview" />
+
+                <a href="{f:uri.action(action: 'preview', arguments: {notificationIdentifier: notification.uid})}"
+                   title="{nz:t(key: 'Backend/Module/Manager/Global:open_new_tab')}"
+                   target="_blank">
+                    <nz:core.icon identifier="actions-window-open" />
+                </a>
+            </th>
+        </tr>
+    </thead>
+
+    <tr>
+        <td colspan="3">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item"
+                        src="{f:uri.action(action: 'preview', arguments: {notificationIdentifier: notification.uid})}"></iframe>
+            </div>
+        </td>
+    </tr>
+</f:section>
+
+--------------------------------------------------------------------------------
+Lists all the provided recipients that will get the email.
+--------------------------------------------------------------------------------
+<f:section name="ProvidedRecipients">
+    <f:if condition="{recipients}">
+        <ul>
+            <f:for each="{recipients}" as="recipient">
+                <li>{recipient.label}</li>
+            </f:for>
+        </ul>
+    </f:if>
+</f:section>

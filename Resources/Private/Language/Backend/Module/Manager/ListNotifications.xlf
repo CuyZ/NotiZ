@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+            <trans-unit id="table.header.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="table.header.event">
+                <source>Event</source>
+            </trans-unit>
+            <trans-unit id="table.header.action">
+                <source>Action</source>
+            </trans-unit>
+
+            <trans-unit id="action.show">
+                <source>Show details of the notification “%s”</source>
+            </trans-unit>
+
+            <trans-unit id="no_notification_found">
+                <source>No notification of type “%s” was found.</source>
+            </trans-unit>
+            <trans-unit id="notification_listing">
+                <source>Below are listed all the notifications of type “%s”.</source>
+            </trans-unit>
+
+            <trans-unit id="notification_type_not_found">
+                <source>Notification of type “%s” was not found in the definition.</source>
+            </trans-unit>
+            <trans-unit id="notification_not_found">
+                <source>Notification of type “%s” with identifier “%s” could not be found.</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

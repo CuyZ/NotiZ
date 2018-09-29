@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="fr">
+        <header/>
+        <body>
+
+            <trans-unit id="table.header.title">
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="table.header.event">
+                <target>Événement</target>
+            </trans-unit>
+            <trans-unit id="table.header.action">
+                <target>Action</target>
+            </trans-unit>
+
+            <trans-unit id="action.show">
+                <target>Voir les détails de la notification « %s »</target>
+            </trans-unit>
+
+            <trans-unit id="no_notification_found">
+                <target>Aucune notification de type « %s » n'a été trouvée.</target>
+            </trans-unit>
+            <trans-unit id="notification_listing">
+                <target>Ci-dessous sont listées toutes les notifications de type « %s ».</target>
+            </trans-unit>
+
+            <trans-unit id="notification_type_not_found">
+                <target>Le type de notification « %s » n'a pas été trouvé dans la définition.</target>
+            </trans-unit>
+            <trans-unit id="notification_not_found">
+                <target>La notification de type « %s » avec l'identifiant « %s » n'a pas été trouvée.</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

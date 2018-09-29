@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+        <trans-unit id="information_log">
+            <source>Information about the log</source>
+        </trans-unit>
+
+        <trans-unit id="preview">
+            <source>Preview</source>
+        </trans-unit>
+
+        </body>
+    </file>
+</xliff>

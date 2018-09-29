@@ -16,9 +16,14 @@
 
 namespace CuyZ\Notiz\Service\Extension;
 
+use CuyZ\Notiz\Backend\FormEngine\ButtonBar\ShowNotificationDetailsButton;
+use CuyZ\Notiz\Backend\Module\IndexModuleHandler;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
+use TYPO3\CMS\Backend\Controller\EditDocumentController;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 /**
@@ -37,11 +42,17 @@ class TablesConfigurationService implements SingletonInterface
     protected $extensionKey;
 
     /**
+     * @var Dispatcher
+     */
+    protected $dispatcher;
+
+    /**
      * Manual dependency injection.
      */
     public function __construct()
     {
         $this->extensionKey = NotizConstants::EXTENSION_KEY;
+        $this->dispatcher = GeneralUtility::makeInstance(Dispatcher::class);
     }
 
     /**
@@ -50,6 +61,8 @@ class TablesConfigurationService implements SingletonInterface
     public function process()
     {
         $this->registerBackendModule();
+        $this->registerDetailViewButton();
+        $this->registerEntityNotificationControllers();
     }
 
     /**
@@ -69,7 +82,25 @@ class TablesConfigurationService implements SingletonInterface
                 'icon' => '',
                 'iconIdentifier' => 'tx-notiz-icon-main-module',
                 'labels' => "LLL:EXT:{$this->extensionKey}/Resources/Private/Language/Backend/Module/Main/Module.xlf",
-                'sub' => [],
+                'sub' => []
+            ]
+        );
+
+        ExtensionUtility::registerModule(
+            'CuyZ.Notiz',
+            'notiz',
+            'notiz_index',
+            '',
+            [
+                'Backend\Manager\ListNotificationTypes' => 'process',
+                'Backend\Manager\ListNotifications' => 'process',
+                'Backend\Manager\ListEvents' => 'process',
+                'Backend\Manager\ShowEvent' => 'process',
+            ],
+            [
+                'access' => 'user,group',
+                'icon' => NotizConstants::EXTENSION_ICON_PATH_MODULE_MANAGER,
+                'labels' => "LLL:EXT:{$this->extensionKey}/Resources/Private/Language/Backend/Module/Manager/Module.xlf",
             ]
         );
 
@@ -89,5 +120,26 @@ class TablesConfigurationService implements SingletonInterface
                 'labels' => "LLL:EXT:{$this->extensionKey}/Resources/Private/Language/Backend/Module/Administration/Module.xlf",
             ]
         );
+    }
+
+    /**
+     * @see ShowNotificationDetailsButton
+     */
+    protected function registerDetailViewButton()
+    {
+        $this->dispatcher->connect(
+            EditDocumentController::class,
+            'initAfter',
+            ShowNotificationDetailsButton::class,
+            'addButton'
+        );
+    }
+
+    /**
+     * Dynamically registers the controllers for existing entity notifications.
+     */
+    protected function registerEntityNotificationControllers()
+    {
+        IndexModuleHandler::get()->registerEntityNotificationControllers();
     }
 }

@@ -19,6 +19,13 @@
                 <target>Vous devez régler ces erreurs pour que NotiZ puisse fonctionner correctement.</target>
             </trans-unit>
 
+            <trans-unit id="info_box.editor.title">
+                <target>Erreur de configuration</target>
+            </trans-unit>
+            <trans-unit id="info_box.editor.error.body">
+                <target>Des erreurs ont été trouvées dans la configuration du module, veuillez contacter votre administrateur.</target>
+            </trans-unit>
+
             <trans-unit id="info_box.exception.header">
                 <target>Une erreur PHP est survenue pendant le processus de création de la définition.</target>
             </trans-unit>
