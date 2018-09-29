@@ -17,7 +17,7 @@
 namespace CuyZ\Notiz\Service\Extension;
 
 use CuyZ\Notiz\Backend\FormEngine\ButtonBar\ShowNotificationDetailsButton;
-use CuyZ\Notiz\Backend\Module\IndexModuleHandler;
+use CuyZ\Notiz\Backend\Module\ManagerModuleHandler;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use TYPO3\CMS\Backend\Controller\EditDocumentController;
@@ -89,7 +89,7 @@ class TablesConfigurationService implements SingletonInterface
         ExtensionUtility::registerModule(
             'CuyZ.Notiz',
             'notiz',
-            'notiz_index',
+            'notiz_manager',
             '',
             [
                 'Backend\Manager\ListNotificationTypes' => 'process',
@@ -140,6 +140,6 @@ class TablesConfigurationService implements SingletonInterface
      */
     protected function registerEntityNotificationControllers()
     {
-        IndexModuleHandler::get()->registerEntityNotificationControllers();
+        ManagerModuleHandler::get()->registerEntityNotificationControllers();
     }
 }
