@@ -7,17 +7,240 @@
 </f:section>
 
 <f:section name="Content">
-    <f:be.infobox title="{nz:t(key: 'Backend/Module/Administration/Index/Index:tmp.title')}" state="-1">
-        <p>
-            <nz:t key="Backend/Module/Administration/Index/Index:tmp.description_1" />
-        </p>
+    <div class="container">
+        <f:if condition="{result.flattenedErrors}">
+            <f:be.infobox title="{nz:t(key: 'Backend/Module/Administration/Definition/Error:info_box.title')}" state="2">
+                <f:render partial="Backend/Administration/DefinitionError"
+                          section="DefinitionError"
+                          arguments="{_all}" />
+            </f:be.infobox>
+        </f:if>
 
-        <p>
-            <nz:t key="Backend/Module/Administration/Index/Index:tmp.description_2" />
-        </p>
+        <div class="row flex-row">
+            <f:render section="ShowDefinition" arguments="{result: result, docAddDefinitionUrl: docAddDefinitionUrl}" />
+            <f:render section="ShowExtensionConfiguration" arguments="{extensionConfigurationUri: extensionConfigurationUri}" />
+        </div>
 
-        <p>
-            <nz:t key="Backend/Module/Administration/Index/Index:tmp.description_3" args="{0: '{f:uri.action(controller: \'Backend\Administration\ShowDefinition\')}'}" />
-        </p>
-    </f:be.infobox>
+        <div class="row flex-row">
+            <f:render section="ShowDocumentation" arguments="{docUrl: docUrl}" />
+            <f:render section="Feedback" arguments="{newIssueUrl: newIssueUrl}" />
+        </div>
+
+        <div class="row flex-row">
+            <f:render section="Support" arguments="{repositoryUrl: repositoryUrl, slackChannelUrl: slackChannelUrl}" />
+        </div>
+    </div>
+</f:section>
+
+<f:section name="ShowDefinition">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title text-center">
+                    <f:link.action controller="Backend\Administration\ShowDefinition"
+                                   title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.definition_tree.title')}">
+                        <nz:t key="Backend/Module/Administration/Index/Index:block.definition_tree.title" />
+                    </f:link.action>
+                </h2>
+            </div>
+
+            <div class="panel-body">
+                <nz:t key="Backend/Module/Administration/Index/Index:block.definition_tree.content" wrapLines="1" />
+            </div>
+
+            <div class="panel-footer text-center">
+                <f:link.action controller="Backend\Administration\ShowDefinition"
+                               title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.definition_tree.action.show')}"
+                               class="btn {f:if(condition: '{result.flattenedErrors}', then: 'btn-danger', else: 'btn-default')}">
+                    <nz:core.icon identifier="actions-pagetree" />
+                    <nz:t key="Backend/Module/Administration/Index/Index:block.definition_tree.action.show" />
+                    <f:if condition="{result.flattenedErrors}">
+                        ({nz:t(key: 'Backend/Module/Administration/Definition/Error:errors_count', args: '{0: \'{result.flattenedErrors -> f:count()}\'}')})
+                    </f:if>
+                </f:link.action>
+
+                <f:link.external uri="{docAddDefinitionUrl}"
+                                 class="btn btn-default"
+                                 target="_blank">
+                    <nz:core.icon identifier="actions-system-help-open" />
+                    <nz:t key="Backend/Module/Administration/Index/Index:block.definition_tree.action.doc_add_definition" />
+                </f:link.external>
+            </div>
+        </div>
+    </div>
+</f:section>
+
+<f:section name="ShowDocumentation">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title text-center">
+                    <f:link.external uri="{docUrl}"
+                                     target="_blank"
+                                     title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.documentation.title')}">
+                        <nz:t key="Backend/Module/Administration/Index/Index:block.documentation.title" />
+                    </f:link.external>
+                </h2>
+            </div>
+
+            <div class="panel-body">
+                <nz:t key="Backend/Module/Administration/Index/Index:block.documentation.content" wrapLines="1" />
+                <ul>
+                    <li><nz:t key="Backend/Module/Administration/Index/Index:block.documentation.list.1" /></li>
+                    <li><nz:t key="Backend/Module/Administration/Index/Index:block.documentation.list.2" /></li>
+                    <li><nz:t key="Backend/Module/Administration/Index/Index:block.documentation.list.3" /></li>
+                    <li><nz:t key="Backend/Module/Administration/Index/Index:block.documentation.list.4" /></li>
+                </ul>
+            </div>
+
+            <div class="panel-footer text-center">
+                <f:link.external uri="{docUrl}"
+                                 title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.definition_tree.action.documentation_url')}"
+                                 target="_blank"
+                                 class="btn btn-default">
+                    <nz:core.icon identifier="actions-system-extension-documentation" />
+                    <nz:t key="Backend/Module/Administration/Index/Index:block.definition_tree.action.documentation_url" />
+                </f:link.external>
+            </div>
+        </div>
+    </div>
+</f:section>
+
+<f:section name="ShowExtensionConfiguration">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title text-center">
+                    <a href="{extensionConfigurationUri}"
+                       title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.configuration.title')}">
+                        <nz:t key="Backend/Module/Administration/Index/Index:block.configuration.title" />
+                    </a>
+                </h2>
+            </div>
+
+            <div class="panel-body">
+                <nz:t key="Backend/Module/Administration/Index/Index:block.configuration.content" wrapLines="1" />
+            </div>
+
+            <div class="panel-footer text-center">
+                <a href="{extensionConfigurationUri}"
+                   title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.configuration.action.configure')}"
+                   class="btn btn-default">
+                    <nz:core.icon identifier="actions-system-extension-configure" />
+                    <nz:t key="Backend/Module/Administration/Index/Index:block.configuration.action.configure" />
+                </a>
+            </div>
+        </div>
+    </div>
+</f:section>
+
+<f:section name="Feedback">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title text-center">
+                    <f:link.external uri="{newIssueUrl}"
+                                     target="_blank"
+                                     title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.feedback.title')}">
+                        <nz:t key="Backend/Module/Administration/Index/Index:block.feedback.title" />
+                    </f:link.external>
+                </h2>
+            </div>
+
+            <div class="panel-body">
+                <nz:t key="Backend/Module/Administration/Index/Index:block.feedback.content" wrapLines="1" />
+            </div>
+
+            <div class="panel-footer text-center">
+                <f:link.external uri="{newIssueUrl}"
+                                 title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.feedback.action.report')}"
+                                 target="_blank"
+                                 class="btn btn-default">
+                    <nz:core.icon identifier="actions-document-open" />
+                    <nz:t key="Backend/Module/Administration/Index/Index:block.feedback.action.report" />
+                </f:link.external>
+            </div>
+        </div>
+    </div>
+</f:section>
+
+<f:section name="Support">
+    <div class="col-md-6 nz-admin-index-support">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title text-center">
+                    <nz:t key="Backend/Module/Administration/Index/Index:block.support.title" />
+                </h2>
+            </div>
+
+            <div class="panel-body">
+                <nz:t key="Backend/Module/Administration/Index/Index:block.support.content" wrapLines="1" />
+
+                <div class="list-group">
+                    <f:link.external uri="{repositoryUrl}"
+                                     title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.support.action.github')}"
+                                     class="list-group-item"
+                                     target="_blank">
+                        <nz:t key="Backend/Module/Administration/Index/Index:block.support.action.github" />
+
+                        <span class="pull-right">
+                            <nz:core.icon identifier="github" />
+                       </span>
+                    </f:link.external>
+
+                    <f:link.external uri="mailto:team.cuyz@gmail.com"
+                                     title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.support.action.email')}"
+                                     class="list-group-item">
+                        <nz:t key="Backend/Module/Administration/Index/Index:block.support.action.email" />
+
+                        <span class="pull-right">
+                            <nz:core.icon identifier="envelope" />
+                        </span>
+                    </f:link.external>
+
+                    <f:link.external uri="{slackChannelUrl}"
+                                     title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.support.action.slack')}"
+                                     class="list-group-item "
+                                     target="_blank">
+                        <nz:t key="Backend/Module/Administration/Index/Index:block.support.action.slack" />
+
+                        <span class="btn btn-sm"
+                              data-trigger="hover"
+                              data-toggle="popover-hover"
+                              data-html="true"
+                              title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.support.action.slack.popover.title')}"
+                              data-content="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.support.action.slack.popover.content', args: {0: '<a href=\'https://my.typo3.org/index.php?id=35#c49\' target=\'_blank\'>my.typo3.org</a>'})}">
+                            <nz:core.icon identifier="info-circle" />
+                        </span>
+
+                        <span class="pull-right">
+                            <nz:core.icon identifier="slack" />
+                        </span>
+                    </f:link.external>
+
+                    <f:link.external uri="https://twitter.com/Rommsteinz"
+                                     title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.support.action.twitter_rommsteinz')}"
+                                     class="list-group-item"
+                                     target="_blank">
+                        <nz:t key="Backend/Module/Administration/Index/Index:block.support.action.twitter_rommsteinz" />
+
+                        <span class="pull-right">
+                            <nz:core.icon identifier="twitter" />
+                        </span>
+                    </f:link.external>
+
+                    <f:link.external uri="https://twitter.com/Lopom"
+                                     title="{nz:t(key: 'Backend/Module/Administration/Index/Index:block.support.action.twitter_lopom')}"
+                                     class="list-group-item"
+                                     target="_blank">
+                        <nz:t key="Backend/Module/Administration/Index/Index:block.support.action.twitter_lopom" />
+
+                        <span class="pull-right">
+                            <nz:core.icon identifier="twitter" />
+                        </span>
+                    </f:link.external>
+                </div>
+            </div>
+        </div>
+    </div>
 </f:section>

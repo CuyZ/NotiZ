@@ -20,7 +20,6 @@ use CuyZ\Notiz\Controller\Backend\BackendController;
 use CuyZ\Notiz\Controller\Backend\Menu;
 use CuyZ\Notiz\Core\Definition\DefinitionTransformer;
 use CuyZ\Notiz\Service\RuntimeService;
-use Throwable;
 
 class ShowDefinitionController extends BackendController
 {

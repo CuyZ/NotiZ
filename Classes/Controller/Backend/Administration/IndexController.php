@@ -18,14 +18,22 @@ namespace CuyZ\Notiz\Controller\Backend\Administration;
 
 use CuyZ\Notiz\Controller\Backend\BackendController;
 use CuyZ\Notiz\Controller\Backend\Menu;
+use CuyZ\Notiz\Core\Support\Url;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class IndexController extends BackendController
 {
     /**
-     * Shows several information about the extension.
+     * Shows various information and links about the extension.
      */
     public function processAction()
     {
+        $this->view->assign('extensionConfigurationUri', $this->getExtensionConfigurationUri());
+        $this->view->assign('docUrl', Url::documentation());
+        $this->view->assign('docAddDefinitionUrl', Url::documentationTypoScriptDefinition());
+        $this->view->assign('repositoryUrl', Url::repository());
+        $this->view->assign('newIssueUrl', Url::newIssue());
+        $this->view->assign('slackChannelUrl', Url::slackChannel());
     }
 
     /**
@@ -34,5 +42,30 @@ class IndexController extends BackendController
     protected function getMenu()
     {
         return Menu::ADMINISTRATION_INDEX;
+    }
+
+    /**
+     * URI to the extension configuration manager (can be accessed within the
+     * extension manager).
+     *
+     * @return string
+     */
+    protected function getExtensionConfigurationUri()
+    {
+        return $this->uriBuilder
+            ->reset()
+            ->setArguments(['M' => 'tools_ExtensionmanagerExtensionmanager'])
+            ->uriFor(
+                'showConfigurationForm',
+                [
+                    'extension' => [
+                        'key' => 'notiz'
+                    ],
+                    'returnUrl' => GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'),
+                ],
+                'Configuration',
+                'extensionmanager',
+                'tools_ExtensionmanagerExtensionmanager'
+            );
     }
 }

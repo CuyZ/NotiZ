@@ -8,10 +8,10 @@
                 <source>Administration</source>
             </trans-unit>
             <trans-unit id="mlang_labels_tabdescr">
-                <source>Configure your notifications and show the full definition tree.</source>
+                <source>Configure the extension and show the full definition tree.</source>
             </trans-unit>
             <trans-unit id="mlang_labels_tablabel">
-                <source>Configure your notifications and show the full definition tree.</source>
+                <source>Notification administration</source>
             </trans-unit>
 
         </body>
