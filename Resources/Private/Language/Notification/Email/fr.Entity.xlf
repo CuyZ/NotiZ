@@ -7,11 +7,11 @@
             <!--###    EMAIL NOTIFICATION RECORD   ###-->
             <!--######################################-->
             <trans-unit id="title">
-                <target>Notification email</target>
+                <target>Email</target>
             </trans-unit>
             <trans-unit id="description">
                 <target><![CDATA[
-                    Les emails seront envoyés au destinataires configurés.
+                    Les emails seront envoyés aux destinataires configurés.
 
                     Des gabarits personnalisés peuvent être utilisés pour changer le rendu du corps du mail.
 

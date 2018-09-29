@@ -72,6 +72,14 @@
                 </f:else>
             </f:if>
 
+            <f:if condition="{nz:backend.module.hasAccess(module: 'Index')}">
+                <li class="divider"></li>
+
+                <li>
+                    <f:render section="BodyNotificationsLink" />
+                </li>
+            </f:if>
+
             <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
                 <li class="divider"></li>
 

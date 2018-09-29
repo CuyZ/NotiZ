@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="fr">
+        <header/>
+        <body>
+
+            <trans-unit id="create_notification">
+                <target>Créer une nouvelle notification</target>
+            </trans-unit>
+            <trans-unit id="edit_notification">
+                <target>Éditer la notification</target>
+            </trans-unit>
+
+            <trans-unit id="show_event_details">
+                <target>Montrer les détails de l'événement « %s »</target>
+            </trans-unit>
+
+            <trans-unit id="show_notification_types">
+                <target>Voir tous les types de notifications</target>
+            </trans-unit>
+            <trans-unit id="show_list_view">
+                <target>Voir la liste</target>
+            </trans-unit>
+
+            <trans-unit id="open_new_tab">
+                <target>Ouvrir dans un nouvel onglet</target>
+            </trans-unit>
+
+            <trans-unit id="notification.no_title">
+                <target>[Pas de titre]</target>
+            </trans-unit>
+            <trans-unit id="notification.no_event">
+                <target>[Pas d'événement]</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

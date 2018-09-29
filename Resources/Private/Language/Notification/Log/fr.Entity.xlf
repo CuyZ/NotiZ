@@ -7,7 +7,7 @@
             <!--###     LOG NOTIFICATION RECORD    ###-->
             <!--######################################-->
             <trans-unit id="title">
-                <target>Notification log</target>
+                <target>Log</target>
             </trans-unit>
             <trans-unit id="description">
                 <target><![CDATA[

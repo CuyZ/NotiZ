@@ -83,3 +83,11 @@
 .nz-admin-index-support .list-group {
     margin: 0 -16px -18px;
 }
+
+/*
+ * Adds the "external link" icon after a link with this class.
+ */
+.nz-external-link:after {
+    font-family: 'FontAwesome';
+    content: " \f08e";
+}

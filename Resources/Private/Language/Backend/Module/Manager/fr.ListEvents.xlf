@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="fr">
+        <header/>
+        <body>
+
+            <trans-unit id="title">
+                <target>Événements disponibles</target>
+            </trans-unit>
+
+            <trans-unit id="introduction">
+                <target><![CDATA[
+                    Vous trouverez ci-dessous la liste des événements disponibles sur lesquels vous pouvez brancher vos notifications.
+
+                    Vous pouvez utiliser les boutons disponibles pour créer une notification utilisant l'événement souhaité.
+                ]]></target>
+            </trans-unit>
+
+            <trans-unit id="show_event_details">
+                <target>Voir les détails de cet événement.</target>
+            </trans-unit>
+
+            <trans-unit id="create_custom_event.title">
+                <target>Documentation</target>
+            </trans-unit>
+            <trans-unit id="create_custom_event">
+                <target>Comment créer un nouvel événement</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

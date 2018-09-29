@@ -16,6 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Notification;
 
+use CuyZ\Notiz\Backend\Module\IndexModuleHandler;
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
@@ -72,7 +73,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     protected $backendUser;
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getTitle()
     {

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+        <trans-unit id="information_slack">
+            <target>Informations sur le message Slack</target>
+        </trans-unit>
+
+        <trans-unit id="bot">
+            <target>Robot</target>
+        </trans-unit>
+        <trans-unit id="bot.name">
+            <target>Nom</target>
+        </trans-unit>
+        <trans-unit id="bot.avatar">
+            <target>Avatar</target>
+        </trans-unit>
+
+        <trans-unit id="channel">
+            <target>Canal</target>
+        </trans-unit>
+        <trans-unit id="channel.target">
+            <target>Cible</target>
+        </trans-unit>
+        <trans-unit id="channel.webhook_url">
+            <target>URL WebHook</target>
+        </trans-unit>
+
+        <trans-unit id="preview">
+            <target>Prévisualisation</target>
+        </trans-unit>
+
+        </body>
+    </file>
+</xliff>

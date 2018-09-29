@@ -1,0 +1,39 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+
+<f:section name="Content">
+
+    <div class="modal fade" id="create-notification" tabindex="-1" role="dialog" aria-labelledby="create-notification-label">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h4 class="modal-title" id="create-notification-label">
+                        <nz:t key="Backend/Module/Manager/Global:create_notification" />
+                    </h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>
+                        <nz:t key="Backend/Module/Manager/CreateNotification:choose_notification_type" />
+                    </p>
+
+                    <f:for each="{definition.notifications}" as="notificationDefinition">
+                        <div class="center-block">
+                            <nz:notification.link.create notificationDefinition="{notificationDefinition}"
+                                                                eventDefinition="{eventDefinition}"
+                                                                addUriTemplate="true"
+                                                                class="btn btn-default btn-block link-create-notification-event"
+                                                                title="{notificationDefinition.label}">
+                                <nz:core.icon identifier="{notificationDefinition.iconIdentifier}" />
+                                {notificationDefinition.label}
+                            </nz:notification.link.create>
+                        </div>
+                    </f:for>
+                </div>
+            </div>
+        </div>
+    </div>
+</f:section>

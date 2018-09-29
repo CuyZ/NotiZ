@@ -109,7 +109,6 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 ],
 
                 'no_defined_bot' => [
-                    'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.no_defined_bot',
                     'displayCond' => [
                         'AND' => [
@@ -168,7 +167,6 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 ],
 
                 'no_defined_slack_channel' => [
-                    'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.no_defined_slack_channel',
                     'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedSlackChannel',
                     'config' => [

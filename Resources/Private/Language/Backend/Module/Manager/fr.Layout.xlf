@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="fr">
+        <header/>
+        <body>
+
+            <trans-unit id="show_notifications">
+                <target>Notifications</target>
+            </trans-unit>
+            <trans-unit id="show_events">
+                <target>Événements</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

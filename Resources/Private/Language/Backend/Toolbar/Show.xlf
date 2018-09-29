@@ -9,7 +9,11 @@
             <!--##################################-->
 
             <trans-unit id="title">
-                <source>NotiZ information</source>
+                <source>Notifications information</source>
+            </trans-unit>
+
+            <trans-unit id="body.list_notifications">
+                <source>List notifications</source>
             </trans-unit>
 
             <trans-unit id="body.simple_menu">

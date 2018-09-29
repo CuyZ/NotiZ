@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+            <trans-unit id="view_details">
+                <source>View details</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

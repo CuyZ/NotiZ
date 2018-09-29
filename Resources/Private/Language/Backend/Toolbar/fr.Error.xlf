@@ -22,6 +22,10 @@
                 <target>Des erreurs de définition ont été trouvées. Vous devez régler ces erreurs pour que NotiZ puisse fonctionner correctement. Cliquez sur le bouton ci-dessous pour avoir plus d'informations.</target>
             </trans-unit>
 
+            <trans-unit id="body.editor.errors_description">
+                <target>Des erreurs ont été trouvées dans la configuration du module. Si le problème persiste, contactez votre administrateur.</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

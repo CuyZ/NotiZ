@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="fr">
+        <header/>
+        <body>
+
+            <trans-unit id="preview_error">
+                <target><![CDATA[
+                    Une erreur est survenue durant la génération de l'apperçu.
+
+                    Cliquez sur le bouton ci-dessous pour plus de détails sur l'erreur.
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="preview_error.editor">
+                <source><![CDATA[
+                    Une erreur est survenue durant la génération de l'apperçu.
+
+                    Si le problème persiste, contactez votre administrateur.
+                ]]></source>
+            </trans-unit>
+            <trans-unit id="show_error_details">
+                <target>Voir les détails de l'erreur</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

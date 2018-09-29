@@ -18,6 +18,9 @@ namespace CuyZ\Notiz\Controller\Backend;
 
 interface Menu
 {
+    const MANAGER_NOTIFICATIONS = 'notifications';
+    const MANAGER_EVENTS = 'events';
+
     const ADMINISTRATION_INDEX = 'index';
     const ADMINISTRATION_DEFINITION = 'definition';
 }

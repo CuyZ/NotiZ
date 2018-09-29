@@ -38,7 +38,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         $this->registerArgument(
             'module',
             'string',
-            'Name of the module, for instance Index or Administration.',
+            'Name of the module, for instance Manager or Administration.',
             true
         );
 

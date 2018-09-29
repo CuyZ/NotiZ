@@ -1,0 +1,96 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+{namespace b=TYPO3\CMS\Backend\ViewHelpers}
+
+<f:layout name="Backend/Default" />
+
+<f:section name="HeaderButtons">
+    <f:render partial="Backend/Manager/HeaderButtons" section="Buttons" arguments="{_all}" />
+</f:section>
+
+<f:section name="Content">
+    <div class="container">
+        <f:render partial="Backend/Manager/Notification/Header"
+                  section="Content"
+                  arguments="{notification: notification}" />
+
+        <table class="table table-hover">
+            <f:render partial="Backend/Manager/Notification/GeneralInformation"
+                      section="Content"
+                      arguments="{notification: notification}" />
+
+            <f:render section="SlackInformation" arguments="{_all}" />
+
+            <f:render section="Preview" arguments="{_all}" />
+        </table>
+    </div>
+</f:section>
+
+--------------------------------------------------------------------------------
+General information about the slack notification.
+--------------------------------------------------------------------------------
+<f:section name="SlackInformation">
+    <thead>
+        <tr>
+            <th colspan="2">
+                <nz:t key="Backend/Module/Manager/Notification/ShowEntitySlack:information_slack" />
+            </th>
+        </tr>
+    </thead>
+
+    <tr>
+        <td>
+            <nz:t key="Backend/Module/Manager/Notification/ShowEntitySlack:bot" />
+        </td>
+        <td>
+            <dl>
+                <dt>
+                    <nz:t key="Backend/Module/Manager/Notification/ShowEntitySlack:bot.name" />
+                </dt>
+                <dd>{notification.name}</dd>
+
+                <dt>
+                    <nz:t key="Backend/Module/Manager/Notification/ShowEntitySlack:bot.avatar" />
+                </dt>
+                <dd>{notification.avatar}</dd>
+            </dl>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <nz:t key="Backend/Module/Manager/Notification/ShowEntitySlack:channel" />
+        </td>
+        <td>
+            <dl>
+                <dt>
+                    <nz:t key="Backend/Module/Manager/Notification/ShowEntitySlack:channel.target" />
+                </dt>
+                <dd>{notification.target}</dd>
+
+                <dt>
+                    <nz:t key="Backend/Module/Manager/Notification/ShowEntitySlack:channel.webhook_url" />
+                </dt>
+                <dd>{notification.webhookUrl}</dd>
+            </dl>
+        </td>
+    </tr>
+</f:section>
+
+--------------------------------------------------------------------------------
+Slack message
+--------------------------------------------------------------------------------
+<f:section name="Preview">
+    <thead>
+        <tr>
+            <th colspan="2">
+                <nz:t key="Backend/Module/Manager/Notification/ShowEntitySlack:preview" />
+            </th>
+        </tr>
+    </thead>
+
+    <tr>
+        <td colspan="3">
+            <f:format.nl2br>{message}</f:format.nl2br>
+        </td>
+    </tr>
+</f:section>

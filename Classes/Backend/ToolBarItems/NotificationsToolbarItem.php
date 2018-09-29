@@ -16,6 +16,7 @@
 
 namespace CuyZ\Notiz\Backend\ToolBarItems;
 
+use CuyZ\Notiz\Backend\Module\IndexModuleHandler;
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
@@ -74,6 +75,11 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     protected $viewService;
 
     /**
+     * @var IndexModuleHandler
+     */
+    protected $indexModuleHandler;
+
+    /**
      * Manual dependency injection.
      */
     public function __construct()
@@ -85,6 +91,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
         $this->definitionService = $objectManager->get(DefinitionService::class);
         $this->extensionConfigurationService = $objectManager->get(ExtensionConfigurationService::class);
         $this->viewService = $objectManager->get(ViewService::class);
+        $this->indexModuleHandler = $objectManager->get(IndexModuleHandler::class);
 
         $this->initializeJavaScript();
     }
@@ -94,7 +101,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
      */
     public function checkAccess()
     {
-        return true;
+        return $this->indexModuleHandler->canBeAccessed();
     }
 
     /**
@@ -161,7 +168,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
                 $notifications = [];
                 $total = 0;
 
-                foreach ($definition->getNotifications() as $notification) {
+                foreach ($definition->getListableNotifications() as $notification) {
                     $number = $notification->getProcessor()->getTotalNumber();
                     $total += $number;
 

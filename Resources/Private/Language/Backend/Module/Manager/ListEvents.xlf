@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+            <trans-unit id="title">
+                <source>Available events</source>
+            </trans-unit>
+
+            <trans-unit id="introduction">
+                <source><![CDATA[
+                    Below are listed all the available events that you can bind your notifications on.
+
+                    You can use the provided buttons to directly create a notification using the wanted event.
+                ]]></source>
+            </trans-unit>
+
+            <trans-unit id="show_event_details">
+                <source>Show details of this event.</source>
+            </trans-unit>
+
+            <trans-unit id="create_custom_event.title">
+                <source>Documentation</source>
+            </trans-unit>
+            <trans-unit id="create_custom_event">
+                <source>How to create a new event</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
