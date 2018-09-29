@@ -5,7 +5,7 @@
         <body>
 
             <trans-unit id="choose_notification_type">
-                <source>Choose the type of the notification:</source>
+                <source>Choose the notification type:</source>
             </trans-unit>
 
         </body>

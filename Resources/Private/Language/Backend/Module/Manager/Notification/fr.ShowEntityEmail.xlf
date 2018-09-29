@@ -5,7 +5,7 @@
         <body>
 
         <trans-unit id="information_mail">
-            <target>Informations à propos du mail</target>
+            <target>Informations à propos de l'email</target>
         </trans-unit>
 
         <trans-unit id="recipients">
