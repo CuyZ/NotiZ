@@ -65,6 +65,12 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             'bool',
             'Should the link open the TYPO3 content frame?'
         );
+
+        $this->registerArgument(
+            'parentFrame',
+            'bool',
+            'If this view-helper is called from inside TYPO3 module frame, this parameter must be set.'
+        );
     }
 
     /**
@@ -90,7 +96,12 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         $this->tag->addAttribute('href', $this->arguments['frame'] ? 'javascript:void(0);' : $uri);
 
         if ($this->arguments['frame']) {
-            $this->tag->addAttribute('onclick', "TYPO3.ModuleMenu.App.showModule('{$moduleHandler->getModuleName()}', '{$uri->getQuery()}');");
+            $onClick = "TYPO3.ModuleMenu.App.showModule('{$moduleHandler->getModuleName()}', '{$uri->getQuery()}');";
+
+            if ($this->arguments['parentFrame']) {
+                $onClick = 'parent.' . $onClick;
+            }
+            $this->tag->addAttribute('onclick', $onClick);
         }
 
         $this->tag->setContent($content);
