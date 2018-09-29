@@ -22,6 +22,10 @@
                 <source>Definition errors were found. You need to fix these errors in order for NotiZ to work properly. Click on the button below to have more information.</source>
             </trans-unit>
 
+            <trans-unit id="body.editor.errors_description">
+                <source>Errors were found in the configuration of the module. If the problem persists, contact your administrator.</source>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

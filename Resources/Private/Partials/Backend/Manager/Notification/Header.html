@@ -1,0 +1,36 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+
+<f:section name="Content">
+    <div class="page-header">
+        <h1>
+            <nz:core.icon identifier="{notification.notificationDefinition.iconIdentifier}" size="default" />
+
+            <f:if condition="{notification.title}">
+                <f:then>{notification.title}</f:then>
+                <f:else>
+                    <em>
+                        <nz:t key="Backend/Module/Manager/Global:notification.no_title" />
+                    </em>
+                </f:else>
+            </f:if>
+
+            <small title="uid={notification.uid}">({notification.uid})</small>
+        </h1>
+    </div>
+
+    <p>
+        <f:link.action controller="Backend\Manager\ListNotifications"
+                       class="btn btn-default"
+                       arguments="{notificationIdentifier: notification.notificationDefinition.identifier}">
+            <nz:core.icon identifier="actions-view-go-back" />
+            <nz:t key="Backend/Module/Manager/Global:show_list_view" />
+        </f:link.action>
+
+        <nz:notification.link.edit notification="{notification}"
+                                          class="btn btn-default"
+                                          title="{nz:t(key: 'Backend/Module/Manager/Global:edit_notification')}">
+            <nz:core.icon identifier="actions-open" />
+            <nz:t key="Backend/Module/Manager/Global:edit_notification" />
+        </nz:notification.link.edit>
+    </p>
+</f:section>

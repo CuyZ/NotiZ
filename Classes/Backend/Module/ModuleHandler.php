@@ -21,7 +21,7 @@ use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Service\Container;
 use TYPO3\CMS\Core\SingletonInterface;
 
-abstract class ModuleManager implements SingletonInterface
+abstract class ModuleHandler implements SingletonInterface
 {
     /**
      * @var DefinitionService
@@ -45,15 +45,17 @@ abstract class ModuleManager implements SingletonInterface
     /**
      * Returns the manager instance for the given module.
      *
+     * @PHP7 rename method to `for`
+     *
      * @param string $module
-     * @return ModuleManager
+     * @return ModuleHandler
      */
-    public static function for($module)
+    public static function forModule($module)
     {
-        /** @var ModuleManager $moduleManager */
-        $moduleManager = Container::get(__NAMESPACE__ . '\\' . $module . 'ModuleManager');
+        /** @var ModuleHandler $moduleHandler */
+        $moduleHandler = Container::get(__NAMESPACE__ . '\\' . $module . 'ModuleHandler');
 
-        return $moduleManager;
+        return $moduleHandler;
     }
 
     /**
@@ -62,6 +64,14 @@ abstract class ModuleManager implements SingletonInterface
     public function getUriBuilder()
     {
         return $this->uriBuilder;
+    }
+
+    /**
+     * @return bool
+     */
+    public function canBeAccessed()
+    {
+        return Container::getBackendUser()->modAccess($GLOBALS['TBE_MODULES']['_configuration'][$this->getModuleName()], false);
     }
 
     /**

@@ -35,7 +35,8 @@ final class NotizConstants
 
     const EXTENSION_ICON_MAIN_MODULE_PATH = self::EXTENSION_ICON_PATH . 'notiz-icon-main-module.svg';
 
-    const EXTENSION_ICON_MODULE_PATH = self::EXTENSION_ICON_PATH . 'notiz-icon-module.svg';
+    const EXTENSION_ICON_PATH_MODULE_MANAGER = self::EXTENSION_ICON_PATH . 'notiz-icon-module-manager.svg';
+    const EXTENSION_ICON_PATH_MODULE_ADMINISTRATION = self::EXTENSION_ICON_PATH . 'notiz-icon-module-administration.svg';
 
     /**
      * View paths.

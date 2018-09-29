@@ -1,0 +1,33 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+
+<ul class="dropdown-list">
+    <li class="text-danger">
+        <nz:t key="Backend/Toolbar/Error:exception" />
+    </li>
+
+    <f:if condition="{isAdmin}">
+        <li class="divider"></li>
+
+        <li>
+            <dl class="dl-horizontal">
+                <f:if condition="{exception.code}">
+                    <dt>
+                        <nz:t key="Backend/Toolbar/Error:exception.code" />
+                    </dt>
+                    <dt>{exception.code}</dt>
+                </f:if>
+
+                <dt>
+                    <nz:t key="Backend/Toolbar/Error:exception.message" />
+                </dt>
+                <dt>{exception.message}</dt>
+            </dl>
+        </li>
+    </f:if>
+
+    <li class="divider"></li>
+
+    <li>
+        <f:render partial="Backend/Toolbar/RefreshToolbar" section="Content" />
+    </li>
+</ul>

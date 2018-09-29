@@ -1,0 +1,18 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+
+<f:section name="Content">
+    <f:comment>
+        Change as inline code when https://review.typo3.org/#/c/54212/ is merged.
+    </f:comment>
+    <f:if condition="{result.flattenedErrors}">
+        <f:then>
+            <nz:core.icon identifier="tx-notiz-icon-toolbar"
+                       alternativeMarkupIdentifier="inline"
+                       overlay="overlay-missing"/>
+        </f:then>
+        <f:else>
+            <nz:core.icon identifier="tx-notiz-icon-toolbar"
+                       alternativeMarkupIdentifier="inline"/>
+        </f:else>
+    </f:if>
+</f:section>

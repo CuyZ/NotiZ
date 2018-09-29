@@ -1,6 +1,10 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+
 <f:comment>
     Layout used for TYPO3 7.6
 </f:comment>
+
+<f:render section="DataContainer" />
 
 <ul class="dropdown-list">
     <li class="dropdown-header">
@@ -15,47 +19,79 @@
                 <f:render section="BodyErrorsDescription" />
             </li>
 
-            <li class="divider"></li>
+            <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
+                <li class="divider"></li>
 
-            <li>
-                <f:render section="BodyErrorsLink" />
-
-            </li>
-        </f:then>
-        <f:else>
-            <f:if condition="{filledNotifications}">
-                <f:then>
-                    <li class="dropdown-intro">
-                        <f:render section="BodyDescriptionNotification" />
-                    </li>
-
-                    <li>
-                        <dl class="dl-horizontal">
-                            <f:for each="{filledNotifications}" as="notification">
-                                <dt title="{notification.label}">
-                                    <f:render section="BodyNotificationIcon" arguments="{notification: notification}" />
-                                    <f:render section="BodyNotificationIdentifier" arguments="{notification: notification}" />
-                                </dt>
-                                <dd>
-                                    <f:render section="BodyNotificationLabel" arguments="{notification: notification}" />
-                                </dd>
-                            </f:for>
-                        </dl>
-                    </li>
-                </f:then>
-                <f:else>
-                    <li class="dropdown-intro">
-                        <span class="text-warning">
-                            <f:render section="BodyDescriptionNoNotification" />
-                        </span>
-                    </li>
-                </f:else>
+                <li>
+                    <f:render section="BodyErrorsLink" />
+                </li>
             </f:if>
 
             <li class="divider"></li>
 
             <li>
-                <f:render section="BodyDefinitionLink" />
+                <f:render partial="Backend/Toolbar/RefreshToolbar" section="Content" />
+            </li>
+        </f:then>
+        <f:else>
+            <f:if condition="{fullMenu}">
+                <f:then>
+                    <f:if condition="{filledNotifications}">
+                        <f:then>
+                            <li class="dropdown-intro">
+                                <f:render section="BodyDescriptionNotification" />
+                            </li>
+
+                            <li>
+                                <dl class="dl-horizontal">
+                                    <f:for each="{filledNotifications}" as="notification">
+                                        <dt title="{notification.label}">
+                                            <f:render section="BodyNotificationIcon" arguments="{notification: notification}" />
+                                            <f:render section="BodyNotificationIdentifier" arguments="{notification: notification}" />
+                                        </dt>
+                                        <dd>
+                                            <f:render section="BodyNotificationLabel" arguments="{notification: notification}" />
+                                        </dd>
+                                    </f:for>
+                                </dl>
+                            </li>
+                        </f:then>
+                        <f:else>
+                            <li class="dropdown-intro">
+                        <span class="text-warning">
+                            <f:render section="BodyDescriptionNoNotification" />
+                        </span>
+                            </li>
+                        </f:else>
+                    </f:if>
+                </f:then>
+                <f:else>
+                    <p class="dropdown-text text-success">
+                        <f:render section="BodySimpleMenu" />
+                    </p>
+                </f:else>
+            </f:if>
+
+            <f:if condition="{nz:backend.module.hasAccess(module: 'Manager')}">
+                <li class="divider"></li>
+
+                <li>
+                    <f:render section="BodyNotificationsLink" />
+                </li>
+            </f:if>
+
+            <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
+                <li class="divider"></li>
+
+                <li>
+                    <f:render section="BodyDefinitionLink" />
+                </li>
+            </f:if>
+
+            <li class="divider"></li>
+
+            <li>
+                <f:render partial="Backend/Toolbar/RefreshToolbar" section="Content" />
             </li>
         </f:else>
     </f:if>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+        <trans-unit id="information_mail">
+            <source>Information about the email</source>
+        </trans-unit>
+
+        <trans-unit id="recipients">
+            <source>Recipients</source>
+        </trans-unit>
+        <trans-unit id="provided_recipients">
+            <source>Provided recipients</source>
+        </trans-unit>
+        <trans-unit id="recipients.to">
+            <source>To</source>
+        </trans-unit>
+        <trans-unit id="recipients.cc">
+            <source>Copy</source>
+        </trans-unit>
+        <trans-unit id="recipients.bcc">
+            <source>Blind copy</source>
+        </trans-unit>
+
+        <trans-unit id="preview">
+            <source>Preview</source>
+        </trans-unit>
+
+        </body>
+    </file>
+</xliff>

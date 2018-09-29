@@ -1,0 +1,70 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+{namespace b=TYPO3\CMS\Backend\ViewHelpers}
+
+<f:layout name="Backend/Default" />
+
+<f:section name="HeaderButtons">
+    <f:render partial="Backend/Manager/HeaderButtons" section="Buttons" arguments="{_all}" />
+</f:section>
+
+<f:section name="Content">
+    <div class="container">
+        <f:render partial="Backend/Manager/Notification/Header" section="Content" arguments="{_all}" />
+
+        <table class="table">
+            <f:render partial="Backend/Manager/Notification/GeneralInformation"
+                      section="Content"
+                      arguments="{notification: notification}" />
+
+            <f:render section="LogInformation" arguments="{_all}" />
+
+            <f:render section="Preview" arguments="{_all}" />
+        </table>
+    </div>
+</f:section>
+
+--------------------------------------------------------------------------------
+General information about the log notification.
+--------------------------------------------------------------------------------
+<f:section name="LogInformation">
+    <thead>
+        <tr>
+            <th colspan="2">
+                <nz:t key="Backend/Module/Manager/Notification/ShowEntityLog:information_log" />
+            </th>
+        </tr>
+    </thead>
+
+    <tr>
+        <td>
+            <nz:t key="Notification/Log/Entity:field.level" />
+        </td>
+        <td>
+            <dl>
+                <dt>{notification.level}</dt>
+                <dd>
+                    <nz:t key="Notification/Log/Entity:level.{notification.level -> f:format.case(mode: 'upper')}" />
+                </dd>
+            </dl>
+        </td>
+    </tr>
+</f:section>
+
+--------------------------------------------------------------------------------
+Preview of the log message.
+--------------------------------------------------------------------------------
+<f:section name="Preview">
+    <thead>
+        <tr>
+            <th colspan="2">
+                <nz:t key="Backend/Module/Manager/Notification/ShowEntityLog:preview" />
+            </th>
+        </tr>
+    </thead>
+
+    <tr>
+        <td colspan="2">
+            {preview}
+        </td>
+    </tr>
+</f:section>

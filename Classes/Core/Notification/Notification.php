@@ -18,6 +18,7 @@ namespace CuyZ\Notiz\Core\Notification;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
+use CuyZ\Notiz\Core\Exception\EntryNotFoundException;
 
 /**
  * This interface must be implemented by notification classes that are
@@ -25,6 +26,11 @@ use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
  */
 interface Notification
 {
+    /**
+     * @return string|null
+     */
+    public function getTitle();
+
     /**
      * Must return a processor class name that does extend the abstract class:
      *
@@ -40,9 +46,16 @@ interface Notification
     public function getNotificationDefinition();
 
     /**
+     * @return bool
+     */
+    public function hasEventDefinition();
+
+    /**
      * Must return the event definition this notification is bound to.
      *
      * @return EventDefinition
+     *
+     * @throws EntryNotFoundException
      */
     public function getEventDefinition();
 

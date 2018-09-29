@@ -14,23 +14,9 @@
  * http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace CuyZ\Notiz\Backend\Module;
-
-class AdministrationModuleManager extends ModuleManager
-{
-    /**
-     * @return string
-     */
-    public function getDefaultControllerName()
-    {
-        return 'Backend\\Administration';
-    }
-
-    /**
-     * @return string
-     */
-    public function getModuleName()
-    {
-        return 'NotizNotiz_NotizNotizAdministration';
-    }
-}
+return [
+    'notiz_render_toolbar' => [
+        'path' => '/notiz/render-toolbar',
+        'target' => \CuyZ\Notiz\Backend\ToolBarItems\NotificationsToolbarItem::class . '::renderMenuAction'
+    ],
+];

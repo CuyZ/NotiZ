@@ -16,6 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Notification;
 
+use CuyZ\Notiz\Backend\Module\ManagerModuleHandler;
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
@@ -23,7 +24,13 @@ use CuyZ\Notiz\Core\Definition\Tree\Notification\Channel\ChannelDefinition;
 use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
 use CuyZ\Notiz\Core\Notification\MultipleChannelsNotification;
 use CuyZ\Notiz\Core\Notification\Notification;
+use CuyZ\Notiz\Service\Container;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Type\Bitmask\Permission;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Domain\Model\BackendUser;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Service\FlexFormService;
 
@@ -60,7 +67,13 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     protected $eventConfiguration;
 
     /**
-     * @return string
+     * @var \TYPO3\CMS\Extbase\Domain\Model\BackendUser
+     * @lazy
+     */
+    protected $backendUser;
+
+    /**
+     * @return string|null
      */
     public function getTitle()
     {
@@ -136,7 +149,15 @@ abstract class EntityNotification extends AbstractEntity implements Notification
      */
     public function getNotificationDefinition()
     {
-        return $this->getDefinition()->getNotification(static::getDefinitionIdentifier());
+        return self::getDefinition()->getNotification(static::getDefinitionIdentifier());
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasEventDefinition()
+    {
+        return self::getDefinition()->hasEventFromFullIdentifier($this->getEvent());
     }
 
     /**
@@ -144,7 +165,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
      */
     public function getEventDefinition()
     {
-        return $this->getDefinition()->getEventFromFullIdentifier($this->getEvent());
+        return self::getDefinition()->getEventFromFullIdentifier($this->getEvent());
     }
 
     /**
@@ -165,6 +186,115 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     }
 
     /**
+     * @return BackendUser
+     */
+    public function getBackendUser()
+    {
+        return $this->backendUser;
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isCreatable()
+    {
+        return Container::getBackendUser()
+            && Container::getBackendUser()->check('tables_modify', self::getTableName());
+    }
+
+    /**
+     * @param string $selectedEvent
+     * @return string
+     */
+    public static function getCreationUri($selectedEvent = null)
+    {
+        $tableName = static::getTableName();
+
+        $href = BackendUtility::getModuleUrl(
+            'record_edit',
+            [
+                "edit[$tableName][0]" => 'new',
+                'returnUrl' => GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'),
+            ]
+        );
+
+        if ($selectedEvent) {
+            $href .= "&selectedEvent=$selectedEvent";
+        }
+
+        return $href;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEditable()
+    {
+        $backendUser = Container::getBackendUser();
+        $page = Container::getPageRepository()->getPage($this->pid);
+        $userPermissionOnPage = $backendUser->calcPerms($page);
+
+        return $backendUser->recordEditAccessInternals(self::getTableName(), $this->uid)
+            && ($this->pid === 0
+                || (bool)($userPermissionOnPage & Permission::CONTENT_EDIT)
+            );
+    }
+
+    /**
+     * @return string
+     */
+    public function getEditionUri()
+    {
+        $identifier = $this->getNotificationDefinition()->getIdentifier();
+        $tableName = static::getTableName();
+        $uid = $this->getUid();
+
+        return BackendUtility::getModuleUrl(
+            'record_edit',
+            [
+                "edit[$tableName][$uid]" => 'edit',
+                'returnUrl' => GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL') . "#$identifier-$uid",
+            ]
+        );
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isListable()
+    {
+        return Container::getBackendUser()
+            && Container::getBackendUser()->check('tables_select', self::getTableName());
+    }
+
+    /**
+     * @return bool
+     */
+    public function isViewable()
+    {
+        return self::isListable();
+    }
+
+    /**
+     * @return string
+     */
+    public function getViewUri()
+    {
+        $notificationDefinition = $this->getNotificationDefinition();
+
+        $controller = 'Backend\\Manager\\Notification\\Show' . ucfirst($notificationDefinition->getIdentifier());
+
+        $managerModuleHandler = Container::get(ManagerModuleHandler::class);
+
+        return $managerModuleHandler
+            ->getUriBuilder()
+            ->forController($controller)
+            ->forAction('show')
+            ->withArguments(['notificationIdentifier' => $this->getUid()])
+            ->build();
+    }
+
+    /**
      * The selected channel is stored in the `$channel` property.
      *
      * @inheritdoc
@@ -175,6 +305,25 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     }
 
     /**
+     * Returns the name of the table for this notification. It is fetched in the
+     * global TypoScript configuration.
+     *
+     * @return string
+     */
+    public static function getTableName()
+    {
+        /** @var ConfigurationManagerInterface $configurationManager */
+        $configurationManager = Container::get(ConfigurationManagerInterface::class);
+        $configuration = $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+
+        $className = self::getDefinition()
+            ->getNotification(static::getDefinitionIdentifier())
+            ->getClassName();
+
+        return ArrayUtility::getValueByPath($configuration, "persistence/classes/$className/mapping/tableName");
+    }
+
+    /**
      * @return string
      */
     abstract public static function getDefinitionIdentifier();
@@ -182,7 +331,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return Definition
      */
-    protected function getDefinition()
+    protected static function getDefinition()
     {
         return DefinitionService::get()->getDefinition();
     }

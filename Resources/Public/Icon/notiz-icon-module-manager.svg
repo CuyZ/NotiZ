@@ -5,9 +5,9 @@
      height="32">
 
     <style type="text/css">
-        #background { fill: #FF8700; }
+        #background { fill: #3B7EB0; }
         #bell { fill: white; }
-        #typo3 { fill: #FF8700; }
+        #typo3 { fill: #3B7EB0; }
     </style>
     <rect id="background" width="128" height="128" />
 

@@ -1,3 +1,5 @@
+<f:render section="DataContainer" />
+
 <h3 class="dropdown-headline">
     <f:render section="BodyTitle" />
 </h3>
@@ -12,15 +14,28 @@
             </span>
         </p>
 
+        <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
+            <hr />
+
+            <p class="dropdown-text">
+                <f:render section="BodyErrorsLink" />
+            </p>
+        </f:if>
+
         <hr />
 
         <p class="dropdown-text">
-            <f:render section="BodyErrorsLink" />
+            <f:render partial="Backend/Toolbar/RefreshToolbar" section="Content" />
         </p>
     </f:then>
     <f:else>
-        <f:if condition="{filledNotifications}">
+        <f:if condition="!{fullMenu}">
             <f:then>
+                <p class="dropdown-text text-success">
+                    <f:render section="BodySimpleMenu" />
+                </p>
+            </f:then>
+            <f:else if="{filledNotifications}">
                 <p class="dropdown-text">
                     <f:render section="BodyDescriptionNotification" />
                 </p>
@@ -40,7 +55,7 @@
                         </div>
                     </f:for>
                 </div>
-            </f:then>
+            </f:else>
             <f:else>
                 <p class="dropdown-text">
                     <span class="text-warning">
@@ -50,10 +65,26 @@
             </f:else>
         </f:if>
 
+        <f:if condition="{nz:backend.module.hasAccess(module: 'Manager')}">
+            <hr />
+
+            <p class="dropdown-text">
+                <f:render section="BodyNotificationsLink" />
+            </p>
+        </f:if>
+
+        <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
+            <hr />
+
+            <p class="dropdown-text">
+                <f:render section="BodyDefinitionLink" />
+            </p>
+        </f:if>
+
         <hr />
 
         <p class="dropdown-text">
-            <f:render section="BodyDefinitionLink" />
+            <f:render partial="Backend/Toolbar/RefreshToolbar" section="Content" />
         </p>
     </f:else>
 </f:if>

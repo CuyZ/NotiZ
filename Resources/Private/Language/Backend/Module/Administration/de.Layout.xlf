@@ -11,6 +11,9 @@
             <trans-unit id="menu.index">
                 <target>Index</target>
             </trans-unit>
+            <trans-unit id="menu.definition">
+                <target>Definition</target>
+            </trans-unit>
 
         </body>
     </file>

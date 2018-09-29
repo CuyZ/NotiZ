@@ -1,0 +1,55 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+
+<f:section name="Content">
+    <thead>
+        <tr>
+            <th colspan="2">
+                <nz:t key="Backend/Module/Manager/Notification/General:general_information" />
+            </th>
+        </tr>
+    </thead>
+
+    <tr>
+        <td>
+            <nz:t key="Backend/Module/Manager/Notification/General:event" />
+        </td>
+        <td>
+            <f:if condition="{nz:notification.hasEvent(notification: notification)}">
+                <f:then>
+                    <f:link.action controller="Backend\Manager\ShowEvent"
+                                   arguments="{eventIdentifier: notification.eventDefinition.fullIdentifier}"
+                                   title="{nz:t(key: 'Backend/Module/Manager/Global:show_event_details', args: {0: notification.eventDefinition.label})}">
+                        {notification.eventDefinition.label} ({notification.eventDefinition.group.label})
+                    </f:link.action>
+                </f:then>
+                <f:else>
+                    <em>
+                        <nz:t key="Backend/Module/Manager/Global:notification.no_event" />
+                    </em>
+                </f:else>
+            </f:if>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <nz:t key="Backend/Module/Manager/Notification/General:created_by" />
+        </td>
+        <td>
+            <b:avatar backendUser="{notification.backendUser.uid}" />
+            <f:if condition="{notification.backendUser.realName}">
+                <f:then>{notification.backendUser.realName}</f:then>
+                <f:else>{notification.backendUser.userName}</f:else>
+            </f:if>
+        </td>
+    </tr>
+    <f:if condition="{notification.description}">
+        <tr>
+            <td>
+                <nz:t key="Backend/Module/Manager/Notification/General:description" />
+            </td>
+            <td>
+                <f:format.nl2br>{notification.description}</f:format.nl2br>
+            </td>
+        </tr>
+    </f:if>
+</f:section>

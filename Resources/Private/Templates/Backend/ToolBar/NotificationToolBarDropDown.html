@@ -10,9 +10,17 @@
     <nz:t key="Backend/Toolbar/Show:title" />
 </f:section>
 
+<f:section name="BodyNotificationsLink">
+    <nz:backend.module.link module="Manager"
+                            frame="1">
+        <nz:core.icon identifier="actions-system-list-open" alternativeMarkupIdentifier="inline" />
+        <nz:t key="Backend/Toolbar/Show:body.list_notifications" />
+    </nz:backend.module.link>
+</f:section>
+
 <f:section name="BodyDefinitionLink">
     <nz:backend.module.link module="Administration"
-                            action="showDefinition"
+                            controller="Backend\Administration\ShowDefinition"
                             frame="1">
         <nz:core.icon identifier="actions-system-extension-configure" alternativeMarkupIdentifier="inline" />
         <nz:t key="Backend/Toolbar/Show:body.show_definition" />
@@ -32,11 +40,25 @@
 </f:section>
 
 <f:section name="BodyNotificationIdentifier">
-    {notification.label}
+    <nz:backend.module.link module="Manager"
+                            controller="Backend\Manager\ListNotifications"
+                            arguments="{notificationIdentifier: notification.identifier}"
+                            frame="1">
+        {notification.label}
+    </nz:backend.module.link>
 </f:section>
 
 <f:section name="BodyNotificationLabel">
-    <nz:t key="Backend/Toolbar/Show:body.notification_label" args="{0: notification.processor.totalNumber}" />
+    <nz:backend.module.link module="Manager"
+                            controller="Backend\Manager\ListNotifications"
+                            arguments="{notificationIdentifier: notification.identifier}"
+                            frame="1">
+        <nz:t key="Backend/Toolbar/Show:body.notification_label" args="{0: notification.processor.totalNumber}" />
+    </nz:backend.module.link>
+</f:section>
+
+<f:section name="BodySimpleMenu">
+    <nz:t key="Backend/Toolbar/Show:body.simple_menu" />
 </f:section>
 
 ********************************************************************************
@@ -44,15 +66,41 @@
 ********************************************************************************
 
 <f:section name="BodyErrorsDescription">
-    <nz:t key="Backend/Toolbar/Error:body.errors_description" />
+    <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
+        <f:then>
+            <nz:t key="Backend/Toolbar/Error:body.errors_description" />
+        </f:then>
+        <f:else>
+            <nz:t key="Backend/Toolbar/Error:body.editor.errors_description" />
+        </f:else>
+    </f:if>
 </f:section>
 
 <f:section name="BodyErrorsLink">
     <nz:backend.module.link module="Administration"
-                            action="showDefinition"
+                            controller="Backend\Administration\ShowDefinition"
                             frame="1">
         <nz:core.icon identifier="actions-search" alternativeMarkupIdentifier="inline" />
         <nz:t key="Backend/Module/Administration/Definition/Error:errors_link.label"
               args="{0: '{result.flattenedErrors -> f:count()}'}" />
     </nz:backend.module.link>
+</f:section>
+
+********************************************************************************
+*** DATA CONTAINER (used by Ajax request for toolbar refresh)
+********************************************************************************
+<f:section name="DataContainer">
+    <f:alias map="{key: '{f:if(condition: \'{result.flattenedErrors}\', then: \'error\', else: \'ok\')}'}">
+        <span class="t3js-notiz-data-container"
+              data-error="{f:if(condition: '{result.flattenedErrors}', then: '1')}"
+              data-message-title="{nz:t(key: 'Backend/Toolbar/Show:flash.{key}.title')}"
+              data-message-body="{nz:t(key: 'Backend/Toolbar/Show:flash.{key}.body')}"
+        ></span>
+    </f:alias>
+
+    <div class="t3js-notiz-icon hidden">
+        <f:render partial="Backend/Toolbar/ToolbarIcon"
+                  section="Content"
+                  arguments="{result: result}" />
+    </div>
 </f:section>

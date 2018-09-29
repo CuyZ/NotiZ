@@ -1,0 +1,79 @@
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+
+<f:section name="DefinitionException">
+    <p>
+        <b>
+            <nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.header" />
+        </b>
+    </p>
+
+    <p>
+        <nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.body" />
+        <ul>
+            <li><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.body.help_1" /></li>
+            <li><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.body.help_2" /></li>
+            <li><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.body.help_3" /></li>
+            <li><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.body.help_4" /></li>
+            <li><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.body.help_5" /></li>
+        </ul>
+    </p>
+
+    <hr />
+    <div role="tabpanel">
+        <ul class="nav nav-tabs t3js-tabs" role="tablist" id="tabs-tab" data-store-last-tab="1">
+            <li role="presentation" class="t3js-tabmenu-item  active">
+                <a href="#exception-message" title="" aria-controls="exception-message" role="tab" data-toggle="tab">
+                    <nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.details" />
+                </a>
+            </li>
+            <li role="presentation" class="t3js-tabmenu-item ">
+                <a href="#exception-details" title="" aria-controls="exception-details" role="tab" data-toggle="tab">
+                    <nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.details_advanced" />
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="exception-message">
+                <div class="panel panel-tab">
+                    <div class="panel-body">
+                        <dl>
+                            <f:if condition="{exception.code}">
+                                <dt>
+                                    <strong><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.details.code" /></strong>
+                                </dt>
+                                <dd>
+                                    <i>{exception.code}</i>
+                                </dd>
+                            </f:if>
+
+                            <dt>
+                                <strong><nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.details.message" /></strong>
+                            </dt>
+                            <dd>
+                                {exception.message}
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="exception-details">
+                <div class="panel panel-tab">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <f:link.action controller="Backend\Administration\ShowException" class="text-center btn btn-default" target="_blank">
+                                <strong>
+                                    <nz:core.icon identifier="overlay-missing" />
+                                    <nz:t key="Backend/Module/Administration/Definition/Error:info_box.exception.open_in_new_tab" />
+                                </strong>
+                            </f:link.action>
+                        </div>
+
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe src="{f:uri.action(controller: 'Backend\Administration\ShowException')}" class="embed-responsive-item"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</f:section>

@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\ViewHelpers\Backend\Module;
 
-use CuyZ\Notiz\Backend\Module\ModuleManager;
+use CuyZ\Notiz\Backend\Module\ModuleHandler;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
 class LinkViewHelper extends AbstractTagBasedViewHelper
@@ -38,7 +38,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         $this->registerArgument(
             'module',
             'string',
-            'Name of the module, for instance Index or Administration.',
+            'Name of the module, for instance Manager or Administration.',
             true
         );
 
@@ -65,6 +65,12 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             'bool',
             'Should the link open the TYPO3 content frame?'
         );
+
+        $this->registerArgument(
+            'parentFrame',
+            'bool',
+            'If this view-helper is called from inside TYPO3 module frame, this parameter must be set.'
+        );
     }
 
     /**
@@ -72,20 +78,33 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      */
     public function render()
     {
-        $uri = ModuleManager::for($this->arguments['module'])
+        $content = $this->renderChildren();
+
+        $moduleHandler = ModuleHandler::forModule($this->arguments['module']);
+
+        if (!$moduleHandler->canBeAccessed()) {
+            return $content;
+        }
+
+        $uri = $moduleHandler
             ->getUriBuilder()
             ->forController($this->arguments['controller'])
             ->forAction($this->arguments['action'])
             ->withArguments($this->arguments['arguments'] ?: [])
             ->build();
 
-        $this->tag->addAttribute('href', $this->arguments['frame'] ? '#' : $uri);
+        $this->tag->addAttribute('href', $this->arguments['frame'] ? 'javascript:void(0);' : $uri);
 
         if ($this->arguments['frame']) {
-            $this->tag->addAttribute('onclick', "TYPO3.ModuleMenu.App.openInContentFrame('$uri');");
+            $onClick = "TYPO3.ModuleMenu.App.showModule('{$moduleHandler->getModuleName()}', '{$uri->getQuery()}');";
+
+            if ($this->arguments['parentFrame']) {
+                $onClick = 'parent.' . $onClick;
+            }
+            $this->tag->addAttribute('onclick', $onClick);
         }
 
-        $this->tag->setContent($this->renderChildren());
+        $this->tag->setContent($content);
 
         return $this->tag->render();
     }

@@ -14,35 +14,33 @@
  * http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace CuyZ\Notiz\ViewHelpers\Format;
+namespace CuyZ\Notiz\ViewHelpers\Backend\Module;
 
-use TYPO3\CMS\Fluid\Core\Compiler\TemplateCompiler;
-use TYPO3\CMS\Fluid\Core\Parser\SyntaxTree\ViewHelperNode;
+use CuyZ\Notiz\Backend\Module\ModuleHandler;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-class Nl2brTrimViewHelper extends AbstractViewHelper
+class HasAccessViewHelper extends AbstractViewHelper
 {
     /**
-     * @var bool
+     * @inheritdoc
      */
-    protected $escapeOutput = false;
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+
+        $this->registerArgument(
+            'module',
+            'string',
+            'Name of the module, for instance Manager or Administration.',
+            true
+        );
+    }
 
     /**
      * @inheritdoc
      */
     public function render()
     {
-        return \nl2br(\trim($this->renderChildren()));
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function compile($argumentsName, $closureName, &$initializationPhpCode, ViewHelperNode $node, TemplateCompiler $compiler)
-    {
-        return sprintf(
-            '\nl2br(\trim(%s()))',
-            $closureName
-        );
+        return ModuleHandler::forModule($this->arguments['module'])->canBeAccessed();
     }
 }

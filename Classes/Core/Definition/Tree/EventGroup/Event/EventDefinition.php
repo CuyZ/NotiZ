@@ -173,7 +173,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
         /** @var Definition $definition */
         $definition = $this->getFirstParent(Definition::class);
 
-        foreach ($definition->getNotifications() as $notification) {
+        foreach ($definition->getListableNotifications() as $notification) {
             $counter += $notification->getProcessor()->countNotificationsFromEventDefinition($this);
         }
 
