@@ -16,7 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Notification;
 
-use CuyZ\Notiz\Backend\Module\IndexModuleHandler;
+use CuyZ\Notiz\Backend\Module\ManagerModuleHandler;
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
@@ -284,9 +284,9 @@ abstract class EntityNotification extends AbstractEntity implements Notification
 
         $controller = 'Backend\\Manager\\Notification\\Show' . ucfirst($notificationDefinition->getIdentifier());
 
-        $indexModuleHandler = Container::get(IndexModuleHandler::class);
+        $managerModuleHandler = Container::get(ManagerModuleHandler::class);
 
-        return $indexModuleHandler
+        return $managerModuleHandler
             ->getUriBuilder()
             ->forController($controller)
             ->forAction('show')

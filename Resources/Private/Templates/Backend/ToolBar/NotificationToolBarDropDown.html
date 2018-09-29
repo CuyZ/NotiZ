@@ -11,7 +11,7 @@
 </f:section>
 
 <f:section name="BodyNotificationsLink">
-    <nz:backend.module.link module="Index"
+    <nz:backend.module.link module="Manager"
                             frame="1">
         <nz:core.icon identifier="actions-system-list-open" alternativeMarkupIdentifier="inline" />
         <nz:t key="Backend/Toolbar/Show:body.list_notifications" />
@@ -40,7 +40,7 @@
 </f:section>
 
 <f:section name="BodyNotificationIdentifier">
-    <nz:backend.module.link module="Index"
+    <nz:backend.module.link module="Manager"
                             controller="Backend\Manager\ListNotifications"
                             arguments="{notificationIdentifier: notification.identifier}"
                             frame="1">
@@ -49,7 +49,7 @@
 </f:section>
 
 <f:section name="BodyNotificationLabel">
-    <nz:backend.module.link module="Index"
+    <nz:backend.module.link module="Manager"
                             controller="Backend\Manager\ListNotifications"
                             arguments="{notificationIdentifier: notification.identifier}"
                             frame="1">

@@ -18,7 +18,7 @@ namespace CuyZ\Notiz\Backend\Module;
 
 use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
 
-class IndexModuleHandler extends ModuleHandler
+class ManagerModuleHandler extends ModuleHandler
 {
     use ExtendedSelfInstantiateTrait;
 
@@ -35,7 +35,7 @@ class IndexModuleHandler extends ModuleHandler
      */
     public function getModuleName()
     {
-        return 'NotizNotiz_NotizNotizIndex';
+        return 'NotizNotiz_NotizNotizManager';
     }
 
     /**
