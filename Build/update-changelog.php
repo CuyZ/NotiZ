@@ -25,10 +25,6 @@ class UpdateChangelog
 {
     const CHANGELOG_FILE = 'CHANGELOG.md';
 
-    const LOG_REVISION = '[%h](https://github.com/CuyZ/NotiZ/commit/%H)';
-    const LOG_FORMAT_FULL = '%n - **%s**%n%n   >*' . self::LOG_REVISION . ' by [%an](mailto:%ae) – %ad*%n%n%w(72, 3, 3)%b';
-    const LOG_FORMAT_TINY = '%n - [' . self::LOG_REVISION . '] **%s** – *by [%an](mailto:%ae) – %ad*';
-
     protected $version;
     protected $currentDate;
     protected $lastGitTag;
@@ -42,8 +38,8 @@ class UpdateChangelog
     {
         $this->version = $version;
 
-        // Format "02 Feb 2018"
-        $this->currentDate = date('d M Y');
+        // Format "02 February 2018"
+        $this->currentDate = date('d F Y');
 
         // Fetches last tag that was added in git
         $this->lastGitTag = trim(shell_exec('git describe --tags --abbrev=0'));
@@ -60,10 +56,10 @@ class UpdateChangelog
      */
     public function run()
     {
-        $features = $this->getLog('FEATURE');
-        $bugfix = $this->getLog('BUGFIX');
-        $important = $this->getLog('!!!');
-        $others = $this->getLogTiny();
+        $features = $this->getLogs('FEATURE');
+        $bugfix = $this->getLogs('BUGFIX');
+        $important = $this->getLogs('!!!');
+        $others = $this->getInvertedLogs('FEATURE', 'BUGFIX', '!!!');
 
         $currentChangelog = file_get_contents(self::CHANGELOG_FILE);
 
@@ -83,28 +79,26 @@ class UpdateChangelog
     protected function getChangelog($features, $bugfix, $important, $others)
     {
         $changelog = "
-v$this->version - $this->currentDate
-====================";
+## v$this->version - $this->currentDate
+
+> ℹ️ *Click on a changelog entry to see more details.*";
 
         if ($features) {
             $changelog .= "
 
-New features
-------------
+### New features
 $features";
         }
 
         if ($bugfix) {
             $changelog .= "
-Bugs fixed
-----------
+### Bugs fixed
 $bugfix";
         }
 
         if ($important) {
             $changelog .= "
-Important
----------
+### Important
 
 **⚠ Please pay attention to the changes below as they might break your TYPO3 installation:** 
 $important";
@@ -112,44 +106,118 @@ $important";
 
         if ($others) {
             $changelog .= "
-Others
-------
+### Others
 $others";
         }
-
-        $changelog .= "
-----
-";
 
         return $changelog;
     }
 
     /**
-     * @param string $type
+     * @param string[] $types
      * @return string
      */
-    protected function getLog($type)
+    protected function getLogs(...$types)
     {
-        $script = "git log HEAD...$this->lastGitTag" .
-            ' --grep="^\[' . $type . '\]"' .
-            ' --date=format:"%d %b %Y"' .
-            ' --pretty=tformat:"' . self::LOG_FORMAT_FULL . '"';
+        $command = $this->getLogsCommand(...$types);
 
-        return $this->sanitizeLog(shell_exec($script));
+        return $this->formatLogs($command);
     }
 
     /**
+     * @param string[] $types
      * @return string
      */
-    protected function getLogTiny()
+    protected function getInvertedLogs(...$types)
     {
-        $script = "git log HEAD...$this->lastGitTag" .
-            ' --grep="^\[BUGFIX\\]" --grep="^\[FEATURE\\]" --grep="^\[!!!\\]"' .
-            ' --invert-grep' .
-            ' --date=format:"%d %b %Y"' .
-            ' --pretty=tformat:"' . self::LOG_FORMAT_TINY . '"';
+        $command = $this->getLogsCommand(...$types);
+        $command .= ' --invert-grep';
 
-        return $this->sanitizeLog(shell_exec($script));
+        return $this->formatLogs($command);
+    }
+
+    /**
+     * @param string[] $types
+     * @return string
+     */
+    protected function getLogsCommand(...$types)
+    {
+        $command = "git log HEAD...$this->lastGitTag" .
+            ' --date=format:"%d %b %Y"';
+
+        foreach ($types as $type) {
+            $command .= ' --grep="^\[' . $type . '\]"';
+        }
+
+        return $command;
+    }
+
+    /**
+     * @param $command
+     * @return string
+     */
+    protected function formatLogs($command)
+    {
+        $title = $this->getGitLog($command, '%s');
+        $revisionShort = $this->getGitLog($command, '%h');
+        $revision = $this->getGitLog($command, '%H');
+        $body = $this->getGitLog($command, '%b');
+        $author = $this->getGitLog($command, '%an');
+        $authorEmail = $this->getGitLog($command, '%ae');
+        $date = $this->getGitLog($command, '%ad');
+
+        $count = count($title);
+
+        if ($count === 0) {
+            return '';
+        }
+
+        $result = '';
+
+        for ($i = 0; $i < count($title); $i++) {
+            $detailedTitle = $this->replaceCodeSections($title[$i]);
+            $pullRequest = null;
+
+            $detailedBody = preg_replace('/\n/', "\n> ", $body[$i]);
+            $detailedBody = $this->addLinkToGitHubIssues($detailedBody);
+
+            // Add a link to detected GitHub issues number.
+            if (preg_match('/#([0-9]+)/', $title[$i], $pullRequestResult)) {
+                $detailedTitle = preg_replace('/ *\(#([0-9]+)\)/', '', $detailedTitle);
+                $detailedTitle = preg_replace('/ *#([0-9]+)/', '', $detailedTitle);
+                $pullRequest = ' / [#' . $pullRequestResult[1] . '](https://github.com/CuyZ/NotiZ/issues/' . $pullRequestResult[1] . ')';
+            }
+
+            $result .= <<<HTML
+
+<details>
+<summary>$detailedTitle</summary>
+
+> *by [$author[$i]](mailto:$authorEmail[$i])* on *$date[$i] / [$revisionShort[$i]](https://github.com/CuyZ/NotiZ/commit/$revision[$i])$pullRequest*
+
+> $detailedBody
+</details>
+
+HTML;
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param string $command
+     * @param string $format
+     * @return array
+     */
+    protected function getGitLog($command, $format)
+    {
+        $result = shell_exec($command . '  --pretty=tformat:"' . $format . '>>>NEXT<<<"');
+        $result = explode('>>>NEXT<<<', $result);
+        $result = array_map('trim', $result);
+        array_pop($result);
+        $result = array_map([$this, 'sanitizeLog'], $result);
+
+        return $result;
     }
 
     /**
@@ -158,13 +226,34 @@ $others";
      */
     protected function sanitizeLog($text)
     {
-        // Add a link to all detected GitHub issues number.
-        $text = preg_replace('/#([0-9]+)/', '[#$1](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/$1)', $text);
-
         // Replace redundant line breaks.
-        $text = preg_replace('/\n\n\n+/', "\n\n", $text);
+        $text = preg_replace('/\n\n\n+/m', "\n\n", $text);
+
+        // Removes the commit prefix.
+        $text = preg_replace('/^\[!!!\](.*)$/', '$1', $text);
+        $text = preg_replace('/^\[[^ \]]+\] (.*)$/', '$1', $text);
 
         return $text;
+    }
+
+    /**
+     * Add a link to all detected GitHub issues number.
+     *
+     * @param string $text
+     * @return string
+     */
+    protected function addLinkToGitHubIssues($text)
+    {
+        return preg_replace('/#([0-9]+)/', '[#$1](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/$1)', $text);
+    }
+
+    /**
+     * @param string $text
+     * @return string
+     */
+    protected function replaceCodeSections($text)
+    {
+        return preg_replace('/`([^`]*)`/', '<code>$1</code>', $text);
     }
 }
 
