@@ -2,6 +2,8 @@
 
 ## v0.5.0 - 26 April 2018
 
+> ℹ️ *Click on a changelog entry to see more details.*
+
 ### New features
 
 <details>
@@ -137,6 +139,8 @@
 </details>
 
 ## v0.4.0 - 01 March 2018
+
+> ℹ️ *Click on a changelog entry to see more details.*
 
 ### New features
 
@@ -363,6 +367,8 @@
 
 ## v0.3.0 - 16 February 2018
 
+> ℹ️ *Click on a changelog entry to see more details.*
+
 ### New features
 
 <details>
@@ -503,6 +509,8 @@
 </details>
 
 ## v0.2.0 - 03 February 2018
+
+> ℹ️ *Click on a changelog entry to see more details.*
 
 ### New features
 

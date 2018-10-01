@@ -79,7 +79,9 @@ class UpdateChangelog
     protected function getChangelog($features, $bugfix, $important, $others)
     {
         $changelog = "
-## v$this->version - $this->currentDate";
+## v$this->version - $this->currentDate
+
+> ℹ️ *Click on a changelog entry to see more details.*";
 
         if ($features) {
             $changelog .= "
