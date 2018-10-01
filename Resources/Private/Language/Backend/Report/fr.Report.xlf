@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+            <!--########################################-->
+            <!--###  BACKEND MODULE - TYPO3 REPORTS  ###-->
+            <!--########################################-->
+
+            <trans-unit id="status.definition">
+                <target>Définition</target>
+            </trans-unit>
+            <trans-unit id="status.definition.ok.body">
+                <target>La définition est valide, les notifications seront correctement traitées.</target>
+            </trans-unit>
+
+            <trans-unit id="status.definition.button.configure_extension">
+                <target>Configurer l'extension</target>
+            </trans-unit>
+            <trans-unit id="status.definition.button.manage_notifications">
+                <target>Gérer les notifications</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

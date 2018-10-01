@@ -16,6 +16,7 @@
 
 namespace CuyZ\Notiz\Service\Extension;
 
+use CuyZ\Notiz\Backend\Report\NotificationStatus;
 use CuyZ\Notiz\Backend\FormEngine\ButtonBar\ShowNotificationDetailsButton;
 use CuyZ\Notiz\Backend\Module\ManagerModuleHandler;
 use CuyZ\Notiz\Core\Support\NotizConstants;
@@ -63,6 +64,7 @@ class TablesConfigurationService implements SingletonInterface
         $this->registerBackendModule();
         $this->registerDetailViewButton();
         $this->registerEntityNotificationControllers();
+        $this->registerReportStatus();
     }
 
     /**
@@ -141,5 +143,13 @@ class TablesConfigurationService implements SingletonInterface
     protected function registerEntityNotificationControllers()
     {
         ManagerModuleHandler::get()->registerEntityNotificationControllers();
+    }
+
+    /**
+     * @see \CuyZ\Notiz\Backend\Report\NotificationStatus
+     */
+    protected function registerReportStatus()
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports']['tx_reports']['status']['providers']['NotiZ'][] = NotificationStatus::class;
     }
 }
