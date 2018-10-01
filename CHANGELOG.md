@@ -1,5 +1,541 @@
 # ![NotiZ](ext_icon.svg) NotiZ – ChangeLog
 
+## v0.6.0 - 01 October 2018
+
+> ℹ️ *Click on a changelog entry to see more details.*
+
+### New features
+
+<details>
+<summary>Add report in TYPO3 module for NotiZ</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *01 Oct 2018 / [a1f6baf](https://github.com/CuyZ/NotiZ/commit/a1f6bafe6f45f31c2ca62dee7fd5e225f8450bfc) / [#105](https://github.com/CuyZ/NotiZ/issues/105)*
+
+> Adds an entry to the status report handled by TYPO3.
+> 
+> If an error is found in the definition, an error report is added to the
+> queue, making it easier for administrators to see that something is
+> wrong with the extension.
+</details>
+
+<details>
+<summary>Introduce notification manager backend module</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *30 Sep 2018 / [e5f73be](https://github.com/CuyZ/NotiZ/commit/e5f73bedf077f04d10eedaeff75f941363609d6d) / [#135](https://github.com/CuyZ/NotiZ/issues/135)*
+
+> This module gives access to different views, where notifications and
+> events can be managed easily. The usefulness is to centralise every
+> notification-related operation in a single place.
+> 
+> Editors can now create and edit notifications in a very simple and
+> intuitive way. They can also see a detailed view of each existing
+> record, including a preview area.
+> 
+> It is advised to configure editors right access to the new module, as
+> well as their abilities to create/see every type of notification.
+</details>
+
+<details>
+<summary>Introduce new view-helper to chunk an array</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *19 Sep 2018 / [ae87c82](https://github.com/CuyZ/NotiZ/commit/ae87c82df28e87793d2f446222505c105b94b4a4) / [#115](https://github.com/CuyZ/NotiZ/issues/115)*
+
+> 
+</details>
+
+<details>
+<summary>Add asynchronous refresh to the notification toolbar</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *18 Sep 2018 / [1afd071](https://github.com/CuyZ/NotiZ/commit/1afd07120594162452bc05d31e58fc490e3a100e) / [#108](https://github.com/CuyZ/NotiZ/issues/108)*
+
+> A periodic asynchronous refresh has been added to the notification
+> toolbar. These Ajax request will reload notification information every
+> 5 minutes in normal time, and every 30 seconds if an error occurred.
+> 
+> Buttons have been added in the toolbar, allowing a manual refresh.
+> 
+> One thing to note is that the first rendering of the toolbar (done
+> during the TYPO3 backend rendering) does not contain information about
+> existing notifications anymore (they will be fetched asynchronously).
+> This can slightly improve performance when a lot of notifications were
+> to be listed.
+> 
+> Co-authored-by: Nathan Boiron <nathan.boiron@gmail.com>
+</details>
+
+<details>
+<summary>Add legacy backend icon view-helper</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *12 Sep 2018 / [5a20a0b](https://github.com/CuyZ/NotiZ/commit/5a20a0b1193b0b96748b2c0dbb83125d02ed76c2) / [#107](https://github.com/CuyZ/NotiZ/issues/107)*
+
+> This view-helper is needed to stay compatible with TYPO3 v7 and v8 
+> without having to check the version every time.
+> 
+> In TYPO3 v7: `<f:be.buttons.icon icon="foo" />`
+> In TYPO3 v8: `<core:icon identifier="foo" />`
+> This ViewHelper: `<nz:core.icon identifier="foo" />`
+</details>
+
+<details>
+<summary>Add description column to notification entities</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *05 Sep 2018 / [6d9231b](https://github.com/CuyZ/NotiZ/commit/6d9231b4877c0b5156e2bc039e42f865baf007a7) / [#100](https://github.com/CuyZ/NotiZ/issues/100)*
+
+> See: https://docs.typo3.org/typo3cms/TCAReference/Ctrl/Index.html#descriptioncolumn
+</details>
+
+<details>
+<summary>Allow events to give example properties</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *28 Aug 2018 / [e22f2c9](https://github.com/CuyZ/NotiZ/commit/e22f2c98dfdd6afd0e43b52e4a56c6005996708a) / [#97](https://github.com/CuyZ/NotiZ/issues/97)*
+
+> These example properties will be used to show a preview of notifications
+> using the events giving these examples.
+</details>
+
+<details>
+<summary>Introduce view-helper to generate link to backend module</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *28 Aug 2018 / [390f5e6](https://github.com/CuyZ/NotiZ/commit/390f5e64fc04c785fcd56cd11cb5555544545d3e) / [#92](https://github.com/CuyZ/NotiZ/issues/92)*
+
+> The old `BackendUriBuilder` has been removed for a module manager to
+> take its place.
+> 
+> This will help new incoming backend modules to have their own handlers.
+</details>
+
+<details>
+<summary>Allow event definition to count notifications bound to it</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *18 May 2018 / [5256b85](https://github.com/CuyZ/NotiZ/commit/5256b85e4ef942f5d4f94027372d0cc57b5616bd) / [#90](https://github.com/CuyZ/NotiZ/issues/90)*
+
+> 
+</details>
+
+<details>
+<summary>Introduce signals to globally manipulate properties</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *18 May 2018 / [af3c379](https://github.com/CuyZ/NotiZ/commit/af3c3797d829ad9bce57e0e488c6a1de61c1fa92) / [#89](https://github.com/CuyZ/NotiZ/issues/89)*
+
+> Can be used for instance to add markers to every notification.
+> 
+> See documentation for more information.
+</details>
+
+<details>
+<summary>Introduce preset argument for the event of a notification</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *08 May 2018 / [6f0c561](https://github.com/CuyZ/NotiZ/commit/6f0c561df2dd2868609903a5f3cf576da43fedad) / [#83](https://github.com/CuyZ/NotiZ/issues/83)*
+
+> An argument `selectedEvent` can be added to a request for the creation
+> of a new notification. This will give a default value to the event of
+> the notification.
+</details>
+
+<details>
+<summary>Introduce <code>nl2brTrim</code> view-helper</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *08 May 2018 / [1089a65](https://github.com/CuyZ/NotiZ/commit/1089a655bccf9d4ea22dd3b0573be932242e94ac) / [#82](https://github.com/CuyZ/NotiZ/issues/82)*
+
+> Will apply a trim on the value, then convert all new lines by an HTML
+> tag `<br />`.
+</details>
+
+<details>
+<summary>Add description to notification definition</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *08 May 2018 / [1e4b2d1](https://github.com/CuyZ/NotiZ/commit/1e4b2d1abba9068926aa37a1fcc9491fbc60afbb) / [#80](https://github.com/CuyZ/NotiZ/issues/80)*
+
+> Allows getting more information about a notification.
+> 
+> A description text has been added for existing notifications.
+</details>
+
+<details>
+<summary>Add description to event definition</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *08 May 2018 / [ffa1cbf](https://github.com/CuyZ/NotiZ/commit/ffa1cbf340d6b07f478bae143763e380f49ec778) / [#79](https://github.com/CuyZ/NotiZ/issues/79)*
+
+> Allows getting more information about an event.
+> 
+> A description text has been added for existing events.
+</details>
+
+<details>
+<summary>Allow getting event from full identifier in definition</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *02 May 2018 / [265123e](https://github.com/CuyZ/NotiZ/commit/265123e7e597e37f05ccb64396ffc3bdbe4f6759) / [#81](https://github.com/CuyZ/NotiZ/issues/81)*
+
+> The full identifier of an event is composed of the identifier of the
+> event group and the identifier of the event itself. Both are separated
+> by a dot.
+</details>
+
+### Bugs fixed
+
+<details>
+<summary>Import namespace in Fluid layout</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Sep 2018 / [affb6c4](https://github.com/CuyZ/NotiZ/commit/affb6c474f878e0830cd9bab4ea35c0bec6bdaf8) / [#128](https://github.com/CuyZ/NotiZ/issues/128)*
+
+> 
+</details>
+
+<details>
+<summary>Make <code>nl2br</code> view-helper compatible with TYPO3 v7</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *26 Sep 2018 / [7bc4999](https://github.com/CuyZ/NotiZ/commit/7bc4999cc401eaa700f530a1b116cc7c62f8a090) / [#126](https://github.com/CuyZ/NotiZ/issues/126)*
+
+> 
+</details>
+
+<details>
+<summary>Move the ViewHelper class to the correct folder</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *25 Sep 2018 / [48f7481](https://github.com/CuyZ/NotiZ/commit/48f74816817eea0861b7f29203853ce86b6d58c8) / [#123](https://github.com/CuyZ/NotiZ/issues/123)*
+
+> 
+</details>
+
+<details>
+<summary>Properly fetch Slack notification message properties</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *05 Sep 2018 / [97805e5](https://github.com/CuyZ/NotiZ/commit/97805e5ab2859ea517f17f537cbc9947acefd058) / [#103](https://github.com/CuyZ/NotiZ/issues/103)*
+
+> 
+</details>
+
+<details>
+<summary>Always return string when converting property to string</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *05 Sep 2018 / [02e23f4](https://github.com/CuyZ/NotiZ/commit/02e23f43f392e17c3c93dd37649634eac661ca0f) / [#102](https://github.com/CuyZ/NotiZ/issues/102)*
+
+> 
+</details>
+
+<details>
+<summary>Make notification entity title static</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *05 Sep 2018 / [72f38d9](https://github.com/CuyZ/NotiZ/commit/72f38d92a5b7cc839a99c1a793d30a367d377f77) / [#101](https://github.com/CuyZ/NotiZ/issues/101)*
+
+> When an error was found in definition, the current implementation would
+> not show the title of the notification; this was leading to
+> misunderstanding in certain modules, for instance in a backend usergroup
+> record access list.
+</details>
+
+### Important
+
+**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:** 
+
+<details>
+<summary>Add way to check if notification has event definition</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *26 Sep 2018 / [a28b914](https://github.com/CuyZ/NotiZ/commit/a28b914e7d4ed8417fda3a6becd96fd3577ddb97) / [#127](https://github.com/CuyZ/NotiZ/issues/127)*
+
+> This patch adds a method to check if a notification has an event definition bound to it.
+> 
+> In addition, the getter now throws an exception if the notification doesn't have an event definition.
+</details>
+
+<details>
+<summary>Make administration module accessible only for admin</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *05 Sep 2018 / [a48ee7e](https://github.com/CuyZ/NotiZ/commit/a48ee7e1279c94824e859d6a31a0373d0b7de103) / [#104](https://github.com/CuyZ/NotiZ/issues/104)*
+
+> 
+</details>
+
+<details>
+<summary>Make notification aware of the event it is bound to</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *31 May 2018 / [c86bca7](https://github.com/CuyZ/NotiZ/commit/c86bca79da065f428dc5a80ae3b9c9d2f9a5a0bb) / [#91](https://github.com/CuyZ/NotiZ/issues/91)*
+
+> A new method is added to the notification interface, that must return
+> the event definition it is bound to.
+</details>
+
+<details>
+<summary>Allow counting notifications using a given event</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *18 May 2018 / [1d4f77f](https://github.com/CuyZ/NotiZ/commit/1d4f77fd1f78c0dd8ff2ff1df363714120e11a00) / [#88](https://github.com/CuyZ/NotiZ/issues/88)*
+
+> A new abstract method is added to the notification processor. A default
+> implementation is added for entity repositories.
+</details>
+
+<details>
+<summary>Make notification aware of its definition</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *18 May 2018 / [24bdcdf](https://github.com/CuyZ/NotiZ/commit/24bdcdf83c0ba961dbd07014e3b80a2fa24d7806) / [#87](https://github.com/CuyZ/NotiZ/issues/87)*
+
+> A new method is added to the notification interface, that must return
+> the notification definition.
+</details>
+
+### Others
+
+<details>
+<summary>Update changelog format</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *01 Oct 2018 / [f489900](https://github.com/CuyZ/NotiZ/commit/f48990070f1229cfa8f2dbdfcf74ac11a722e476) / [#137](https://github.com/CuyZ/NotiZ/issues/137)*
+
+> The format of the automatic changelog script has changed, for a better 
+> rendering on GitHub.
+> 
+> Existing changelog entries have been updated as well.
+</details>
+
+<details>
+<summary>Rename manager module handler</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *30 Sep 2018 / [6d85f7a](https://github.com/CuyZ/NotiZ/commit/6d85f7a92f0ccf9440fe83692605419fcaed68bf) / [#136](https://github.com/CuyZ/NotiZ/issues/136)*
+
+> 
+</details>
+
+<details>
+<summary>Remove untranslated localization content</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Sep 2018 / [22188ac](https://github.com/CuyZ/NotiZ/commit/22188ac95709c71118388c02c70a4b207cdb8a2d) / [#134](https://github.com/CuyZ/NotiZ/issues/134)*
+
+> 
+</details>
+
+<details>
+<summary>Allow editors to create notifications on root page</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Sep 2018 / [2ee9d93](https://github.com/CuyZ/NotiZ/commit/2ee9d933e03167bca451a94ab404d4c04857053a) / [#133](https://github.com/CuyZ/NotiZ/issues/133)*
+
+> 
+</details>
+
+<details>
+<summary>Allow module links inside TYPO3 frame</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Sep 2018 / [8d7930a](https://github.com/CuyZ/NotiZ/commit/8d7930a7e9abdf251de1c19554e20bbec9b24d39) / [#132](https://github.com/CuyZ/NotiZ/issues/132)*
+
+> 
+</details>
+
+<details>
+<summary>Apply trim on lines wrapping</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Sep 2018 / [93691d9](https://github.com/CuyZ/NotiZ/commit/93691d94a49f8b65e0b74259db21945eac7b91a8) / [#131](https://github.com/CuyZ/NotiZ/issues/131)*
+
+> Prevents empty `<p>` tags.
+</details>
+
+<details>
+<summary>Rewrite index page in administration module</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Sep 2018 / [b8e7c41](https://github.com/CuyZ/NotiZ/commit/b8e7c41647b929c7bd9a64697def15e6816977a7) / [#130](https://github.com/CuyZ/NotiZ/issues/130)*
+
+> 
+</details>
+
+<details>
+<summary>Improve the formatting of multi-line strings</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *29 Sep 2018 / [9f58f53](https://github.com/CuyZ/NotiZ/commit/9f58f538a6dc72c6182bc64ea322ea8446bffbca) / [#129](https://github.com/CuyZ/NotiZ/issues/129)*
+
+> 
+</details>
+
+<details>
+<summary>Add a way to mark notifications as viewable by an editor</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *25 Sep 2018 / [cdae4b6](https://github.com/CuyZ/NotiZ/commit/cdae4b6782d024cc920d580460a5d939c3d10962) / [#125](https://github.com/CuyZ/NotiZ/issues/125)*
+
+> 
+</details>
+
+<details>
+<summary>Add a way to mark notifications as editable by an editor</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *25 Sep 2018 / [8ce03cb](https://github.com/CuyZ/NotiZ/commit/8ce03cb4f7089bce824c310f855b6114b614bcb1) / [#124](https://github.com/CuyZ/NotiZ/issues/124)*
+
+> 
+</details>
+
+<details>
+<summary>Add a way to mark notifications as creatable by an editor</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *25 Sep 2018 / [8e746ea](https://github.com/CuyZ/NotiZ/commit/8e746ea084f943788121247eed68905ba33262b0) / [#122](https://github.com/CuyZ/NotiZ/issues/122)*
+
+> 
+</details>
+
+<details>
+<summary>Improve the TCA display for Slack notifications</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *25 Sep 2018 / [e9c972a](https://github.com/CuyZ/NotiZ/commit/e9c972a817a7e2588a0bfae53ca75335991d2362) / [#121](https://github.com/CuyZ/NotiZ/issues/121)*
+
+> 
+</details>
+
+<details>
+<summary>Extract exception handling to dedicated controller</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *25 Sep 2018 / [ddad7d2](https://github.com/CuyZ/NotiZ/commit/ddad7d214decbcbc4accbc44e6d62d4024a8cff7) / [#120](https://github.com/CuyZ/NotiZ/issues/120)*
+
+> 
+</details>
+
+<details>
+<summary>Add right header menu in backend module</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *23 Sep 2018 / [8c9c0f6](https://github.com/CuyZ/NotiZ/commit/8c9c0f66aba089c6eca6879b3a8538ad7d3c7495) / [#119](https://github.com/CuyZ/NotiZ/issues/119)*
+
+> 
+</details>
+
+<details>
+<summary>Add backend user property to entity notification</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *23 Sep 2018 / [4258a99](https://github.com/CuyZ/NotiZ/commit/4258a99b9c7d8bdfb60d02b4bb201aeca992dd19) / [#118](https://github.com/CuyZ/NotiZ/issues/118)*
+
+> 
+</details>
+
+<details>
+<summary>Add header menu in backend module</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *23 Sep 2018 / [7720b6c](https://github.com/CuyZ/NotiZ/commit/7720b6c0c36c5c72a943a4ba8eeead013907d70d) / [#117](https://github.com/CuyZ/NotiZ/issues/117)*
+
+> 
+</details>
+
+<details>
+<summary>Add <code>getTitle</code> method to notification interface</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *23 Sep 2018 / [c45523a](https://github.com/CuyZ/NotiZ/commit/c45523a2ef5d7be49b012a1c396af652aa6d824b) / [#116](https://github.com/CuyZ/NotiZ/issues/116)*
+
+> 
+</details>
+
+<details>
+<summary>Select backend module for links using <code>frame</code> option</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *19 Sep 2018 / [1d8ec75](https://github.com/CuyZ/NotiZ/commit/1d8ec758ccdab6c1278d805943e303580c7b3402) / [#114](https://github.com/CuyZ/NotiZ/issues/114)*
+
+> 
+</details>
+
+<details>
+<summary>Split backend module controller</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *19 Sep 2018 / [3544658](https://github.com/CuyZ/NotiZ/commit/35446589d9375a7c26394b8914020143239e770d) / [#113](https://github.com/CuyZ/NotiZ/issues/113)*
+
+> 
+</details>
+
+<details>
+<summary>Check access to module for backend user</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *19 Sep 2018 / [e3e513c](https://github.com/CuyZ/NotiZ/commit/e3e513cb9da1361292edaeb05c70958509c0cc2f) / [#112](https://github.com/CuyZ/NotiZ/issues/112)*
+
+> 
+</details>
+
+<details>
+<summary>Rename method with reserved keyword name</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *19 Sep 2018 / [dc0f7f6](https://github.com/CuyZ/NotiZ/commit/dc0f7f61585a717248c2fd2754a2bb4652bd863a) / [#111](https://github.com/CuyZ/NotiZ/issues/111)*
+
+> The name `for` is a reserved keyword for PHP < 7.
+</details>
+
+<details>
+<summary>Change link target to avoid anchor being added to URL</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *19 Sep 2018 / [08f33a2](https://github.com/CuyZ/NotiZ/commit/08f33a22081190a565d7a7722c11a49a2b58a7fd) / [#110](https://github.com/CuyZ/NotiZ/issues/110)*
+
+> 
+</details>
+
+<details>
+<summary>Rename "module managers" to "module handlers"</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *19 Sep 2018 / [b44614b](https://github.com/CuyZ/NotiZ/commit/b44614ba16a3cf9f332379b5d94f871a9d951b76) / [#109](https://github.com/CuyZ/NotiZ/issues/109)*
+
+> 
+</details>
+
+<details>
+<summary>Make <code>UriBuilder</code> return instance of PSR-7 <code>Uri</code></summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *13 Sep 2018 / [1df072a](https://github.com/CuyZ/NotiZ/commit/1df072acc7d8d05e4408b29a8be82097506afce4) / [#106](https://github.com/CuyZ/NotiZ/issues/106)*
+
+> The `Uri` class allows more control than a simple string.
+</details>
+
+<details>
+<summary>Add documentation for provided events</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *30 Aug 2018 / [359439c](https://github.com/CuyZ/NotiZ/commit/359439c41b0b5be16339fe5505248486f5169b29) / [#98](https://github.com/CuyZ/NotiZ/issues/98)*
+
+> 
+</details>
+
+<details>
+<summary>Move module header buttons into a partial</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *28 Aug 2018 / [8d09171](https://github.com/CuyZ/NotiZ/commit/8d09171c5b0433fdab7049ebeca1d48a86347bf2) / [#96](https://github.com/CuyZ/NotiZ/issues/96)*
+
+> 
+</details>
+
+<details>
+<summary>Add key on SQL column <code>event</code></summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *28 Aug 2018 / [2c7da20](https://github.com/CuyZ/NotiZ/commit/2c7da20eb379bfe7b6497be7250e295325e981aa) / [#95](https://github.com/CuyZ/NotiZ/issues/95)*
+
+> 
+</details>
+
+<details>
+<summary>Add FlexForm processor for Slack entities</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *28 Aug 2018 / [94c9d2f](https://github.com/CuyZ/NotiZ/commit/94c9d2fe3a7155585e0e997e8b5e2e2ef6bbc3fc) / [#94](https://github.com/CuyZ/NotiZ/issues/94)*
+
+> 
+</details>
+
+<details>
+<summary>Move default event class into <code>Backend</code> namespace</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *28 Aug 2018 / [1fda232](https://github.com/CuyZ/NotiZ/commit/1fda2329c4e2208f58dfccd4ea42ce96e856e0c6) / [#93](https://github.com/CuyZ/NotiZ/issues/93)*
+
+> 
+</details>
+
+<details>
+<summary>Add Slack documentation to summary</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *08 May 2018 / [706de34](https://github.com/CuyZ/NotiZ/commit/706de34409e414dc29decb54f10bccb448b0565e) / [#86](https://github.com/CuyZ/NotiZ/issues/86)*
+
+> 
+</details>
+
+<details>
+<summary>Abstract properties from notification entities</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *02 May 2018 / [9deb43a](https://github.com/CuyZ/NotiZ/commit/9deb43a414972381806103a8564073de793cede7) / [#84](https://github.com/CuyZ/NotiZ/issues/84)*
+
+> 
+</details>
+
+<details>
+<summary>Update icons for email and log notification</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *02 May 2018 / [7571754](https://github.com/CuyZ/NotiZ/commit/7571754de29e86e2c5d949e1a9a70e07461558d7) / [#85](https://github.com/CuyZ/NotiZ/issues/85)*
+
+> - Makes the TYPO3 `icon-color` feature work with TYPO3 v8.7;
+> - Removes the tiny orange bell
+> - Adds a default size (32 * 32)
+</details>
+
 ## v0.5.0 - 26 April 2018
 
 > ℹ️ *Click on a changelog entry to see more details.*

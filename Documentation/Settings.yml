@@ -6,8 +6,8 @@
 conf.py:
   copyright: 2018
   project: NotiZ
-  version: 0.5.0-alpha
-  release: 0.5.0-alpha
+  version: 0.6.0-beta
+  release: 0.6.0-beta
   latex_documents:
   - - Index
     - notiz.tex
