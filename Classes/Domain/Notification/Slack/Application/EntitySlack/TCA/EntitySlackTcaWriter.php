@@ -86,7 +86,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->hasDefinedBot',
                     'config' => [
                         'type' => 'check',
-                        'default' => 0,
+                        'default' => 1,
                     ],
                 ],
 
