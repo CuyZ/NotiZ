@@ -22,7 +22,7 @@ class NotImplementedException extends NotizException
 
     /**
      * @param string $methodName
-     * @return static
+     * @return self
      */
     public static function tcaServiceNotificationIdentifierMissing($methodName)
     {

@@ -51,7 +51,7 @@ class EntryNotFoundException extends NotizException
 
     /**
      * @param string $identifier
-     * @return static
+     * @return self
      */
     public static function definitionSourceNotFound($identifier)
     {
@@ -64,7 +64,7 @@ class EntryNotFoundException extends NotizException
 
     /**
      * @param string $identifier
-     * @return static
+     * @return self
      */
     public static function definitionProcessorNotFound($identifier)
     {
@@ -77,7 +77,7 @@ class EntryNotFoundException extends NotizException
 
     /**
      * @param string $identifier
-     * @return static
+     * @return self
      */
     public static function definitionEventGroupNotFound($identifier)
     {
@@ -90,7 +90,7 @@ class EntryNotFoundException extends NotizException
 
     /**
      * @param string $identifier
-     * @return static
+     * @return self
      */
     public static function definitionEventNotFound($identifier)
     {
@@ -103,7 +103,7 @@ class EntryNotFoundException extends NotizException
 
     /**
      * @param string $fullIdentifier
-     * @return static
+     * @return self
      */
     public static function definitionEventFullIdentifierNotFound($fullIdentifier)
     {
@@ -116,7 +116,7 @@ class EntryNotFoundException extends NotizException
 
     /**
      * @param string $identifier
-     * @return static
+     * @return self
      */
     public static function definitionNotificationNotFound($identifier)
     {
@@ -129,7 +129,7 @@ class EntryNotFoundException extends NotizException
 
     /**
      * @param string $identifier
-     * @return static
+     * @return self
      */
     public static function entityEmailViewLayoutNotFound($identifier)
     {
@@ -145,7 +145,7 @@ class EntryNotFoundException extends NotizException
      * @param string $eventClassName
      * @param string $propertyType
      * @param object $object
-     * @return static
+     * @return self
      */
     public static function propertyEntryNotFound($name, $eventClassName, $propertyType, $object)
     {
@@ -158,7 +158,7 @@ class EntryNotFoundException extends NotizException
 
     /**
      * @param string $key
-     * @return static
+     * @return self
      */
     public static function extensionConfigurationEntryNotFound($key)
     {
@@ -171,7 +171,7 @@ class EntryNotFoundException extends NotizException
 
     /**
      * @param string $key
-     * @return static
+     * @return self
      */
     public static function eventRunnerEntryNotFound($key)
     {
@@ -184,7 +184,7 @@ class EntryNotFoundException extends NotizException
 
     /**
      * @param array $allowedTypes
-     * @return static
+     * @return self
      */
     public static function eventConnectionTypeMissing(array $allowedTypes)
     {
@@ -197,7 +197,7 @@ class EntryNotFoundException extends NotizException
 
     /**
      * @param string $botIdentifier
-     * @return static
+     * @return self
      */
     public static function entitySlackBotNotFound($botIdentifier)
     {
@@ -210,7 +210,7 @@ class EntryNotFoundException extends NotizException
 
     /**
      * @param string $identifier
-     * @return static
+     * @return self
      */
     public static function entitySlackChannelDefinitionNotFound($identifier)
     {

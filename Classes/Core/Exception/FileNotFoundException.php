@@ -22,7 +22,7 @@ class FileNotFoundException extends NotizException
 
     /**
      * @param string $filePath
-     * @return static
+     * @return self
      */
     public static function definitionSourceTypoScriptFileNotFound($filePath)
     {

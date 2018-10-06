@@ -33,7 +33,7 @@ class DuplicateEntryException extends NotizException
     /**
      * @param string $identifier
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function definitionSourceDuplication($identifier, $className)
     {
@@ -47,7 +47,7 @@ class DuplicateEntryException extends NotizException
     /**
      * @param string $identifier
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function definitionProcessorDuplication($identifier, $className)
     {
@@ -62,7 +62,7 @@ class DuplicateEntryException extends NotizException
      * @param string $name
      * @param string $eventClassName
      * @param string $propertyType
-     * @return static
+     * @return self
      */
     public static function propertyEntryDuplication($name, $eventClassName, $propertyType)
     {
@@ -77,7 +77,7 @@ class DuplicateEntryException extends NotizException
      * @param string $identifier
      * @param string $propertyType
      * @param string $assignedPropertyType
-     * @return static
+     * @return self
      */
     public static function tagServiceIdentifierDuplication($identifier, $propertyType, $assignedPropertyType)
     {
@@ -90,7 +90,7 @@ class DuplicateEntryException extends NotizException
 
     /**
      * @param string $name
-     * @return static
+     * @return self
      */
     public static function slotContainerDuplication($name)
     {
@@ -104,7 +104,7 @@ class DuplicateEntryException extends NotizException
     /**
      * @param string $marker
      * @param string $slot
-     * @return static
+     * @return self
      */
     public static function markerAlreadyDefined($marker, $slot)
     {
