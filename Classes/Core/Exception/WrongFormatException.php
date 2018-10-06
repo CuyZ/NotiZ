@@ -31,7 +31,7 @@ class WrongFormatException extends NotizException
      * @param string $identifier
      * @param string $suggestion
      * @param string $rules
-     * @return static
+     * @return self
      */
     public static function tagServiceIdentifierWrongFormat($propertyType, $identifier, $suggestion, $rules)
     {
@@ -45,7 +45,7 @@ class WrongFormatException extends NotizException
     /**
      * @param string $methodName
      * @param Hook $hook
-     * @return static
+     * @return self
      */
     public static function eventHookMethodNameWrongFormat($methodName, Hook $hook)
     {
@@ -58,7 +58,7 @@ class WrongFormatException extends NotizException
 
     /**
      * @param string $name
-     * @return static
+     * @return self
      */
     public static function slotNameWrongFormat($name)
     {

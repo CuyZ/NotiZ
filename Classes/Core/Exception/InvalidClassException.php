@@ -51,7 +51,7 @@ class InvalidClassException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function definitionSourceHasMissingInterface($className)
     {
@@ -64,7 +64,7 @@ class InvalidClassException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function definitionProcessorHasMissingInterface($className)
     {
@@ -77,7 +77,7 @@ class InvalidClassException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function eventHasMissingInterface($className)
     {
@@ -91,7 +91,7 @@ class InvalidClassException extends NotizException
     /**
      * @param string $propertyType
      * @param string $identifier
-     * @return static
+     * @return self
      */
     public static function tagServicePropertyWrongParent($propertyType, $identifier)
     {
@@ -104,7 +104,7 @@ class InvalidClassException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function notificationMissingInterface($className)
     {
@@ -118,7 +118,7 @@ class InvalidClassException extends NotizException
     /**
      * @param string $notificationClassName
      * @param string $processorClassName
-     * @return static
+     * @return self
      */
     public static function notificationProcessorWrongParent($notificationClassName, $processorClassName)
     {
@@ -131,7 +131,7 @@ class InvalidClassException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function notificationSettingsMissingInterface($className)
     {
@@ -144,7 +144,7 @@ class InvalidClassException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function eventConfigurationFlexFormProviderMissingInterface($className)
     {
@@ -157,7 +157,7 @@ class InvalidClassException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function channelSettingsMissingInterface($className)
     {
@@ -170,7 +170,7 @@ class InvalidClassException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function eventPropertyBuilderMissingInterface($className)
     {

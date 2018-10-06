@@ -25,7 +25,7 @@ class PropertyNotAccessibleException extends NotizException
 
     /**
      * @param PropertyEntry $propertyEntry
-     * @return static
+     * @return self
      */
     public static function propertyEntryValueNotAccessible(PropertyEntry $propertyEntry)
     {

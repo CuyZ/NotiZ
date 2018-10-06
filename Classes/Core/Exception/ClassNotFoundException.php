@@ -42,7 +42,7 @@ class ClassNotFoundException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function definitionSourceClassNotFound($className)
     {
@@ -55,7 +55,7 @@ class ClassNotFoundException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function definitionProcessorClassNotFound($className)
     {
@@ -68,7 +68,7 @@ class ClassNotFoundException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function eventClassNotFound($className)
     {
@@ -82,7 +82,7 @@ class ClassNotFoundException extends NotizException
     /**
      * @param string $propertyType
      * @param string $identifier
-     * @return static
+     * @return self
      */
     public static function tagServicePropertyClassNotFound($propertyType, $identifier)
     {
@@ -95,7 +95,7 @@ class ClassNotFoundException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function notificationClassNotFound($className)
     {
@@ -109,7 +109,7 @@ class ClassNotFoundException extends NotizException
     /**
      * @param string $notificationClassName
      * @param string $processorClassName
-     * @return static
+     * @return self
      */
     public static function notificationProcessorClassNotFound($notificationClassName, $processorClassName)
     {
@@ -122,7 +122,7 @@ class ClassNotFoundException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function notificationSettingsClassNotFound($className)
     {
@@ -136,7 +136,7 @@ class ClassNotFoundException extends NotizException
     /**
      * @param string $interface
      * @param Hook $hook
-     * @return static
+     * @return self
      */
     public static function eventHookInterfaceNotFound($interface, Hook $hook)
     {
@@ -152,7 +152,7 @@ class ClassNotFoundException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function eventConfigurationFlexFormProviderClassNotFound($className)
     {
@@ -165,7 +165,7 @@ class ClassNotFoundException extends NotizException
 
     /**
      * @param string $className
-     * @return static
+     * @return self
      */
     public static function channelSettingsClassNotFound($className)
     {

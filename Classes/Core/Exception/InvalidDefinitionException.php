@@ -23,7 +23,7 @@ class InvalidDefinitionException extends NotizException
     const DEFINITION_ERROR_NO_ACCESS = 'The definition contains errors, it is not accessible. Please use method `%s::getValidationResult()`.';
 
     /**
-     * @return static
+     * @return self
      */
     public static function definitionErrorNoAccess()
     {

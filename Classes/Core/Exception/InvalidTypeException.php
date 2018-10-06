@@ -38,7 +38,7 @@ class InvalidTypeException extends NotizException
 
     /**
      * @param mixed $notifications
-     * @return static
+     * @return self
      */
     public static function notificationContainerArrayInvalidType($notifications)
     {
@@ -53,7 +53,7 @@ class InvalidTypeException extends NotizException
      * @param string $key
      * @param mixed $notification
      * @param NotificationDefinition $notificationDefinition
-     * @return static
+     * @return self
      */
     public static function notificationContainerEntryInvalidType($key, $notification, NotificationDefinition $notificationDefinition)
     {
@@ -70,7 +70,7 @@ class InvalidTypeException extends NotizException
 
     /**
      * @param string $channelClassName
-     * @return static
+     * @return self
      */
     public static function channelSupportedNotificationsWrongType($channelClassName)
     {
@@ -84,7 +84,7 @@ class InvalidTypeException extends NotizException
     /**
      * @param string $channelClassName
      * @param array $invalidListEntries
-     * @return static
+     * @return self
      */
     public static function channelSupportedNotificationsInvalidListEntries($channelClassName, array $invalidListEntries)
     {
@@ -101,7 +101,7 @@ class InvalidTypeException extends NotizException
     /**
      * @param Channel                   $channel
      * @param NotificationDefinition $notification
-     * @return static
+     * @return self
      */
     public static function channelUnsupportedNotificationDispatched(Channel $channel, NotificationDefinition $notification)
     {
@@ -117,7 +117,7 @@ class InvalidTypeException extends NotizException
 
     /**
      * @param mixed $value
-     * @return static
+     * @return self
      */
     public static function definitionValidationWrongType($value)
     {
@@ -134,7 +134,7 @@ class InvalidTypeException extends NotizException
     /**
      * @param string $type
      * @param array $allowedTypes
-     * @return static
+     * @return self
      */
     public static function eventConnectionWrongType($type, array $allowedTypes)
     {
