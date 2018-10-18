@@ -74,33 +74,6 @@ abstract class NotificationTcaService implements SingletonInterface
     }
 
     /**
-     * @param array $parameters
-     * @return bool
-     */
-    public function definitionContainsErrors(array $parameters)
-    {
-        $result = !$this->definitionHasErrors();
-
-        if (in_array('inverted', $parameters['conditionParameters'])) {
-            $result = !$result;
-        }
-
-        return $result;
-    }
-
-    /**
-     * @return string
-     */
-    public function getErrorMessage()
-    {
-        $view = $this->viewService->getStandaloneView('Backend/TCA/DefinitionErrorMessage');
-
-        $view->assign('result', $this->definitionService->getValidationResult());
-
-        return $view->render();
-    }
-
-    /**
      * Loads all available events and stores them as an array to be used in the
      * TCA.
      *
