@@ -29,6 +29,8 @@ abstract class EntityTcaWriter implements SingletonInterface
 {
     use SelfInstantiateTrait;
 
+    const ENTITY_NOTIFICATION = '__entityNotification';
+
     const LLL_FIELDS = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Entity/Fields.xlf';
     const LLL_TABS = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Entity/Tabs.xlf';
 
@@ -80,8 +82,9 @@ abstract class EntityTcaWriter implements SingletonInterface
         $this->tableName = $tableName;
 
         if ($this->service->definitionHasErrors()) {
-            // If the definition contains errors, we only show a message.
-            $this->data = $this->getDefinitionErrorTca();
+            $this->data = [
+                'ctrl' => $this->getDefaultCtrl(),
+            ];
         } else {
             // Each sub-class starts to fill the array.
             $this->data = $this->buildTcaArray();
@@ -92,9 +95,6 @@ abstract class EntityTcaWriter implements SingletonInterface
             // The default columns are always the same.
             $this->addDefaultTypo3Columns();
         }
-
-        // This hides all fields if the definition has any error.
-        $this->addDisplayConditionToFields();
 
         return $this->data;
     }
@@ -173,37 +173,6 @@ abstract class EntityTcaWriter implements SingletonInterface
     }
 
     /**
-     * This will add display condition to all fields in the TCA array: if there
-     * exists at least one error in the definition tree, the fields are hidden
-     * and an error message is shown.
-     */
-    private function addDisplayConditionToFields()
-    {
-        $condition = 'USER:' . $this->getNotificationTcaServiceClass() . '->definitionContainsErrors';
-
-        foreach ($this->data['columns'] as $key => $column) {
-            if ($key === 'error_message') {
-                continue;
-            }
-
-            if (isset($column['displayCond'])) {
-                if (isset($column['displayCond']['AND'])) {
-                    $this->data['columns'][$key]['displayCond']['AND'][] = $condition;
-                } else {
-                    $this->data['columns'][$key]['displayCond'] = [
-                        'AND' => [
-                            $condition,
-                            $column['displayCond'],
-                        ],
-                    ];
-                }
-            } else {
-                $this->data['columns'][$key]['displayCond'] = $condition;
-            }
-        }
-    }
-
-    /**
      * @return array
      */
     protected function getDefaultCtrl()
@@ -237,6 +206,9 @@ abstract class EntityTcaWriter implements SingletonInterface
             ],
             'searchFields' => 'title,event',
             'iconfile' => $this->service->getNotificationIconPath(),
+
+            self::ENTITY_NOTIFICATION => true,
+
             DefaultEventFromGet::ENABLE_DEFAULT_VALUE => true,
         ];
     }
@@ -340,8 +312,6 @@ abstract class EntityTcaWriter implements SingletonInterface
     private function addCommonColumns()
     {
         $commonColumns = [
-            'error_message' => $this->getErrorMessageColumn(),
-
             'title' => [
                 'exclude' => 1,
                 'label' => self::LLL_FIELDS . ":field.title",
@@ -411,42 +381,5 @@ abstract class EntityTcaWriter implements SingletonInterface
             $this->data['columns'],
             $commonColumns
         );
-    }
-
-    /**
-     * @return array
-     */
-    private function getDefinitionErrorTca()
-    {
-        return [
-            'ctrl' => $this->getDefaultCtrl(),
-            'types' => [
-                '0' => [
-                    'showitem' => 'error_message',
-                ],
-            ],
-            'columns' => [
-                'error_message' => $this->getErrorMessageColumn(),
-                'title' => [
-                    'config' => [
-                        'type' => 'passthrough',
-                    ],
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    private function getErrorMessageColumn()
-    {
-        return [
-            'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->definitionContainsErrors:inverted',
-            'config' => [
-                'type' => 'user',
-                'userFunc' => $this->getNotificationTcaServiceClass() . '->getErrorMessage',
-            ],
-        ];
     }
 }

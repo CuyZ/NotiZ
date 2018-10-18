@@ -36,7 +36,7 @@ class DefaultEventFromGet implements FormDataProviderInterface
 
     /**
      * @param array $result
-     * @return array Result
+     * @return array
      */
     public function addData(array $result)
     {

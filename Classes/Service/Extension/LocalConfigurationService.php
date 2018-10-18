@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Service\Extension;
 
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefaultEventFromGet;
+use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefinitionError;
 use CuyZ\Notiz\Backend\ToolBarItems\NotificationsToolbarItem;
 use CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder;
 use CuyZ\Notiz\Core\Support\NotizConstants;
@@ -28,6 +29,7 @@ use CuyZ\Notiz\Service\Hook\NotificationFlexFormProcessor;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRecordOverrideValues;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowDefaultValues;
+use TYPO3\CMS\Backend\Form\FormDataProvider\InitializeProcessedTca;
 use TYPO3\CMS\Core\Cache\Backend\FileBackend;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
 use TYPO3\CMS\Core\Database\TableConfigurationPostProcessingHookInterface;
@@ -251,5 +253,8 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
 
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DefaultEventFromGet::class] = $databaseRowDefaultValues;
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DatabaseRecordOverrideValues::class]['depends'][] = DefaultEventFromGet::class;
+
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DefinitionError::class] = [];
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = DefinitionError::class;
     }
 }
