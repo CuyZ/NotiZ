@@ -80,20 +80,14 @@ abstract class EntityTcaWriter implements SingletonInterface
     {
         $this->tableName = $tableName;
 
-        if ($this->service->definitionHasErrors()) {
-            $this->data = [
-                'ctrl' => $this->getDefaultCtrl(),
-            ];
-        } else {
-            // Each sub-class starts to fill the array.
-            $this->data = $this->buildTcaArray();
+        // Each sub-class starts to fill the array.
+        $this->data = $this->buildTcaArray();
 
-            // Some columns are common for all notification types
-            $this->addCommonColumns();
+        // Some columns are common for all notification types
+        $this->addCommonColumns();
 
-            // The default columns are always the same.
-            $this->addDefaultTypo3Columns();
-        }
+        // The default columns are always the same.
+        $this->addDefaultTypo3Columns();
 
         return $this->data;
     }

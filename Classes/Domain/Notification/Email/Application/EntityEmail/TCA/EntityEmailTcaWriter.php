@@ -16,6 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\TCA;
 
+use CuyZ\Notiz\Backend\FormEngine\DataProvider\BodySlotsProvider;
 use CuyZ\Notiz\Core\Notification\TCA\EntityTcaWriter;
 
 class EntityEmailTcaWriter extends EntityTcaWriter
@@ -122,14 +123,16 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                     ],
                 ],
 
+                /**
+                 * This FlexForm field is fully configured in:
+                 * @see \CuyZ\Notiz\Backend\FormEngine\DataProvider\BodySlotsProvider
+                 */
                 'body' => [
                     'exclude' => 1,
                     'label' => self::EMAIL_LLL . ':field.body',
-                    'displayCond' => $this->service->getMailBodyDisplayCond(),
                     'config' => [
                         'type' => 'flex',
                         'ds_pointerField' => 'event',
-                        'ds' => $this->service->getMailBodyFlexFormList(),
                         'behaviour' => [
                             'allowLanguageSynchronization' => true,
                         ],
@@ -259,6 +262,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
 
         $ctrl['requestUpdate'] .= ',sender_custom';
         $ctrl['searchFields'] .= ',sender,sender_custom,send_to,send_to_provided,send_cc,send_cc_provided,send_bcc,send_bcc_provided,subject,body';
+        $ctrl[BodySlotsProvider::COLUMN] = 'body';
 
         return $ctrl;
     }
