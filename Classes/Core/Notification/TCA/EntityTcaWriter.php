@@ -17,13 +17,12 @@
 namespace CuyZ\Notiz\Core\Notification\TCA;
 
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefaultEventFromGet;
-use CuyZ\Notiz\Core\Notification\Service\LegacyNotificationTcaService;
+use CuyZ\Notiz\Backend\FormEngine\DataProvider\EventConfigurationProvider;
 use CuyZ\Notiz\Core\Notification\Service\NotificationTcaService;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 abstract class EntityTcaWriter implements SingletonInterface
 {
@@ -125,54 +124,6 @@ abstract class EntityTcaWriter implements SingletonInterface
     }
 
     /**
-     * Returns the TCA array for the event configuration. It is a FlexForm field
-     * with as many definitions as there are events using FlexForm.
-     *
-     * @return array
-     */
-    private function getEventConfiguration()
-    {
-        if ($this->service->definitionHasErrors()) {
-            return [];
-        }
-
-        $configuration = [];
-        $displayConditions = [];
-
-        foreach ($this->service->getDefinition()->getEvents() as $event) {
-            $provider = $event->getConfiguration()->getFlexFormProvider();
-
-            if ($provider->hasFlexForm()) {
-                $identifier = $event->getFullIdentifier();
-
-                $configuration[$identifier] = $provider->getFlexFormValue();
-                $displayConditions[] = $identifier;
-            }
-        }
-
-        if (empty($configuration)) {
-            return ['config' => ['type' => 'passthrough']];
-        }
-
-        $configuration['default'] = 'FILE:EXT:notiz/Configuration/FlexForm/Event/DefaultEventFlexForm.xml';
-
-        return [
-            'label' => self::LLL_FIELDS . ':field.event_configuration',
-            'displayCond' => version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')
-                ? 'USER:' . LegacyNotificationTcaService::class . '->displayEventFlexForm:' . $this->tableName . ':' . implode(',', $displayConditions)
-                : 'FIELD:event:IN:' . implode(',', $displayConditions),
-            'config' => [
-                'type' => 'flex',
-                'ds_pointerField' => 'event',
-                'ds' => $configuration,
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
-            ],
-        ];
-    }
-
-    /**
      * @return array
      */
     protected function getDefaultCtrl()
@@ -210,6 +161,7 @@ abstract class EntityTcaWriter implements SingletonInterface
             self::ENTITY_NOTIFICATION => true,
 
             DefaultEventFromGet::ENABLE_DEFAULT_VALUE => true,
+            EventConfigurationProvider::COLUMN => 'event_configuration_flex',
         ];
     }
 
@@ -347,7 +299,20 @@ abstract class EntityTcaWriter implements SingletonInterface
                 ],
             ],
 
-            'event_configuration_flex' => $this->getEventConfiguration(),
+            /**
+             * This FlexForm field is fully configured in:
+             * @see \CuyZ\Notiz\Backend\FormEngine\DataProvider\EventConfigurationProvider
+             */
+            'event_configuration_flex' => [
+                'label' => self::LLL_FIELDS . ':field.event_configuration',
+                'config' => [
+                    'type' => 'flex',
+                    'ds_pointerField' => 'event',
+                    'behaviour' => [
+                        'allowLanguageSynchronization' => true,
+                    ],
+                ],
+            ],
 
             // Channel configuration
 

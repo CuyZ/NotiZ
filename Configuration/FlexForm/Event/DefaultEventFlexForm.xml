@@ -3,7 +3,7 @@
         <sDEF>
             <ROOT>
                 <TCEforms>
-                    <sheetTitle>Default event FlexForm</sheetTitle>
+                    <sheetTitle>Deprecated - Must be removed when TYPO3 v7 is not supported anymore.</sheetTitle>
                 </TCEforms>
                 <type>array</type>
                 <el>
