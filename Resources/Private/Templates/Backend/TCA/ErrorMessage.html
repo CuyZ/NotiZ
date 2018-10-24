@@ -1,0 +1,16 @@
+{namespace core=TYPO3\CMS\Core\ViewHelpers}
+{namespace nz=CuyZ\Notiz\ViewHelpers}
+
+<f:be.infobox title="{nz:t(key: 'Backend/TCA/Global:exception_occurred.title')}" state="2">
+    <p>
+        <nz:t key="Backend/TCA/Global:exception_occurred.body" wrapLines="1" />
+    </p>
+
+    <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
+        <hr />
+
+        <f:render partial="Backend/ExceptionDetails"
+                  section="ExceptionDetails"
+                  arguments="{exception: exception, frameSrc: frameSrc}" />
+    </f:if>
+</f:be.infobox>

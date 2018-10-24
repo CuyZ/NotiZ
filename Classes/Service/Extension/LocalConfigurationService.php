@@ -18,6 +18,7 @@ namespace CuyZ\Notiz\Service\Extension;
 
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefaultEventFromGet;
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefinitionError;
+use CuyZ\Notiz\Backend\FormEngine\DataProvider\EventConfigurationProvider;
 use CuyZ\Notiz\Backend\ToolBarItems\NotificationsToolbarItem;
 use CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder;
 use CuyZ\Notiz\Core\Support\NotizConstants;
@@ -254,7 +255,19 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DefaultEventFromGet::class] = $databaseRowDefaultValues;
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DatabaseRecordOverrideValues::class]['depends'][] = DefaultEventFromGet::class;
 
+        /*
+         * A data provider will be used to detect any definition error, in which
+         * case an error message is shown to the user trying to create/edit an
+         * entity notification.
+         */
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DefinitionError::class] = [];
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = DefinitionError::class;
+
+        /*
+         * A data provider is used to dynamically configure the event
+         * configuration fields, that depends on the definition.
+         */
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][EventConfigurationProvider::class] = [];
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = EventConfigurationProvider::class;
     }
 }
