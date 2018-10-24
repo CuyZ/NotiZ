@@ -49,7 +49,12 @@ class ListFormNotifications implements SingletonInterface
             $persistenceIdentifier = $form['persistenceIdentifier'];
             $formDefinition = $this->formPersistenceManager->load($persistenceIdentifier);
 
-            foreach ($formDefinition['finishers'] as $finisher) {
+            // @PHP7
+            $finishers = isset($formDefinition['finishers'])
+                ? $formDefinition['finishers']
+                : [];
+
+            foreach ($finishers as $finisher) {
                 if ($finisher['identifier'] === DispatchFormNotificationFinisher::DISPATCH_NOTIFICATION) {
                     $parameters['items'][] = [
                         $formDefinition['label'] . ' (' . $persistenceIdentifier . ')',
