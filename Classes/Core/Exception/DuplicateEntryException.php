@@ -18,10 +18,6 @@ namespace CuyZ\Notiz\Core\Exception;
 
 class DuplicateEntryException extends NotizException
 {
-    const DEFINITION_SOURCE_DUPLICATION = 'The definition source `%s` was already registered with the class `%s`.';
-
-    const DEFINITION_PROCESSOR_DUPLICATION = 'The definition processor `%s` was already registered with the class `%s`.';
-
     const PROPERTY_ENTRY_DUPLICATION = 'The property `%s` for the event `%s` already has the entry named `%s`.';
 
     const TAG_SERVICE_IDENTIFIER_DUPLICATION = 'The identifier `%s` is already used by the property `%s` (trying to assign it to the property `%s`).';
@@ -29,34 +25,6 @@ class DuplicateEntryException extends NotizException
     const SLOT_CONTAINER_DUPLICATION = 'A slot with the identifier `%s` was already added to the container.';
 
     const MARKER_ALREADY_DEFINED = 'Trying to override an existing marker named `%s` to the slot `%s`.';
-
-    /**
-     * @param string $identifier
-     * @param string $className
-     * @return self
-     */
-    public static function definitionSourceDuplication($identifier, $className)
-    {
-        return self::makeNewInstance(
-            self::DEFINITION_SOURCE_DUPLICATION,
-            1503849691,
-            [$identifier, $className]
-        );
-    }
-
-    /**
-     * @param string $identifier
-     * @param string $className
-     * @return self
-     */
-    public static function definitionProcessorDuplication($identifier, $className)
-    {
-        return self::makeNewInstance(
-            self::DEFINITION_PROCESSOR_DUPLICATION,
-            1503850125,
-            [$identifier, $className]
-        );
-    }
 
     /**
      * @param string $name

@@ -19,7 +19,6 @@ namespace CuyZ\Notiz\Core\Definition\Builder\Component;
 use CuyZ\Notiz\Core\Definition\Builder\Component\Processor\DefinitionProcessor;
 use CuyZ\Notiz\Core\Definition\Builder\Component\Source\DefinitionSource;
 use CuyZ\Notiz\Core\Exception\ClassNotFoundException;
-use CuyZ\Notiz\Core\Exception\DuplicateEntryException;
 use CuyZ\Notiz\Core\Exception\EntryNotFoundException;
 use CuyZ\Notiz\Core\Exception\InvalidClassException;
 use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
@@ -65,59 +64,51 @@ class DefinitionComponents
      *
      * @see \CuyZ\Notiz\Core\Definition\Builder\Component\Source\DefinitionSource
      *
-     * @param string $identifier
      * @param string $className
      * @return DefinitionSource
      *
      * @throws ClassNotFoundException
-     * @throws DuplicateEntryException
      * @throws InvalidClassException
      */
-    public function addSource($identifier, $className)
+    public function addSource($className)
     {
-        if (!class_exists($className)) {
-            throw ClassNotFoundException::definitionSourceClassNotFound($className);
-        }
-
-        if (!in_array(DefinitionSource::class, class_implements($className))) {
-            throw InvalidClassException::definitionSourceHasMissingInterface($className);
-        }
-
-        if (false === $this->hasSource($identifier)) {
-            $this->sources[$identifier] = $this->objectManager->get($className);
-        } else {
-            $existingEntryClass = get_class($this->sources[$identifier]);
-
-            if ($className !== $existingEntryClass) {
-                throw DuplicateEntryException::definitionSourceDuplication($identifier, $existingEntryClass);
+        if (!$this->hasSource($className)) {
+            if (!class_exists($className)) {
+                throw ClassNotFoundException::definitionSourceClassNotFound($className);
             }
+
+            if (!in_array(DefinitionSource::class, class_implements($className))) {
+                throw InvalidClassException::definitionSourceHasMissingInterface($className);
+            }
+
+            $this->sources[$className] = $this->objectManager->get($className);
         }
 
-        return $this->sources[$identifier];
+        return $this->sources[$className];
     }
 
     /**
-     * @param string $identifier
+     * @param string $className
      * @return bool
      */
-    public function hasSource($identifier)
+    public function hasSource($className)
     {
-        return true === isset($this->sources[$identifier]);
+        return true === isset($this->sources[$className]);
     }
 
     /**
-     * @param string $identifier
+     * @param string $className
      * @return DefinitionSource
      *
      * @throws EntryNotFoundException
      */
-    public function getSource($identifier)
+    public function getSource($className)
     {
-        if (false === $this->hasSource($identifier)) {
-            throw EntryNotFoundException::definitionSourceNotFound($identifier);
+        if (false === $this->hasSource($className)) {
+            throw EntryNotFoundException::definitionSourceNotFound($className);
         }
 
-        return $this->sources[$identifier];
+        return $this->sources[$className];
     }
 
     /**
@@ -136,59 +127,51 @@ class DefinitionComponents
      *
      * @see \CuyZ\Notiz\Core\Definition\Builder\Component\Processor\DefinitionProcessor
      *
-     * @param string $identifier
      * @param string $className
      * @return DefinitionProcessor
      *
      * @throws ClassNotFoundException
-     * @throws DuplicateEntryException
      * @throws InvalidClassException
      */
-    public function addProcessor($identifier, $className)
+    public function addProcessor($className)
     {
-        if (!class_exists($className)) {
-            throw ClassNotFoundException::definitionProcessorClassNotFound($className);
-        }
-
-        if (!in_array(DefinitionProcessor::class, class_implements($className))) {
-            throw InvalidClassException::definitionProcessorHasMissingInterface($className);
-        }
-
-        if (false === $this->hasProcessor($identifier)) {
-            $this->processors[$identifier] = $this->objectManager->get($className);
-        } else {
-            $existingEntryClass = get_class($this->processors[$identifier]);
-
-            if ($className !== $existingEntryClass) {
-                throw DuplicateEntryException::definitionProcessorDuplication($identifier, $existingEntryClass);
+        if (false === $this->hasProcessor($className)) {
+            if (!class_exists($className)) {
+                throw ClassNotFoundException::definitionProcessorClassNotFound($className);
             }
+
+            if (!in_array(DefinitionProcessor::class, class_implements($className))) {
+                throw InvalidClassException::definitionProcessorHasMissingInterface($className);
+            }
+
+            $this->processors[$className] = $this->objectManager->get($className);
         }
 
-        return $this->processors[$identifier];
+        return $this->processors[$className];
     }
 
     /**
-     * @param string $identifier
+     * @param string $className
      * @return bool
      */
-    public function hasProcessor($identifier)
+    public function hasProcessor($className)
     {
-        return true === isset($this->processors[$identifier]);
+        return true === isset($this->processors[$className]);
     }
 
     /**
-     * @param string $identifier
+     * @param string $className
      * @return DefinitionProcessor
      *
      * @throws EntryNotFoundException
      */
-    public function getProcessor($identifier)
+    public function getProcessor($className)
     {
-        if (false === $this->hasProcessor($identifier)) {
-            throw EntryNotFoundException::definitionProcessorNotFound($identifier);
+        if (false === $this->hasProcessor($className)) {
+            throw EntryNotFoundException::definitionProcessorNotFound($className);
         }
 
-        return $this->processors[$identifier];
+        return $this->processors[$className];
     }
 
     /**
