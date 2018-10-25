@@ -64,10 +64,7 @@ class DefaultDefinitionComponents implements SingletonInterface
         $this->registrationDone = true;
 
         /** @var TypoScriptDefinitionSource $typoScriptDefinitionSource */
-        $typoScriptDefinitionSource = $components->addSource(
-            DefinitionSource::SOURCE_TYPOSCRIPT,
-            TypoScriptDefinitionSource::class
-        );
+        $typoScriptDefinitionSource = $components->addSource(DefinitionSource::SOURCE_TYPOSCRIPT);
 
         // Default channels.
         $typoScriptDefinitionSource->addTypoScriptFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Channel/Channels.Default.typoscript');
