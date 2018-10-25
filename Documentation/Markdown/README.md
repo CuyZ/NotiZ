@@ -33,6 +33,9 @@ You can find below documentation on how to use and extend NotiZ.
         - Extension `form`
             - [Form finisher](./Form/DispatchFormNotification.md)
 - Developers
-    - [Add TypoScript definition](Developers/Add-TypoScript-definition.md)
+    - Definition
+        - [What is the definition](Developers/Definition/What-is-definition.md)
+        - [Add file definition](Developers/Definition/Add-file-definition.md)
+        - [Advanced definition handling](Developers/Definition/Advanced-definition-handling.md)
     - [Signals provided by the extension](Developers/Signals-connection.md)
 - [Known issues](Known-issues.md)
