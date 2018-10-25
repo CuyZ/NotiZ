@@ -16,41 +16,16 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\TCA;
 
-use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Notification\Service\NotificationTcaService;
 use CuyZ\Notiz\Core\Notification\Settings\NotificationSettings;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\EntityEmailSettings;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\GlobalRecipients\Recipient;
 use CuyZ\Notiz\Domain\Property\Email;
-use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\LocalizationService;
-use CuyZ\Notiz\View\Slot\Service\SlotFlexFormService;
-use CuyZ\Notiz\View\Slot\Service\SlotViewService;
 
 class EntityEmailTcaService extends NotificationTcaService
 {
-    /**
-     * @var SlotViewService
-     */
-    protected $slotViewService;
-
-    /**
-     * @var SlotFlexFormService
-     */
-    protected $slotFlexFormService;
-
-    /**
-     * Manual dependency injection.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->slotViewService = Container::get(SlotViewService::class);
-        $this->slotFlexFormService = Container::get(SlotFlexFormService::class);
-    }
-
     /**
      * Loads all recipients provided by the selected event and stores them as an
      * array to be used in the TCA.
@@ -129,43 +104,6 @@ class EntityEmailTcaService extends NotificationTcaService
                 $layout->getIdentifier(),
             ];
         }
-    }
-
-    /**
-     * Builds a condition allowing the mail body to be shown only if the
-     * selected events does provide slots for the Fluid template.
-     *
-     * By default, an event with no custom Fluid template does have a single
-     * slot.
-     *
-     * @return array
-     */
-    public function getMailBodyDisplayCond()
-    {
-        $eventsWithSlots = [];
-        $events = $this->slotViewService->getEventsWithoutSlots($this->getNotificationSettings()->getView());
-
-        foreach ($events as $event => $view) {
-            /** @var EventDefinition $event */
-            $eventsWithSlots[] = $event->getFullIdentifier();
-        }
-
-        return [
-            'AND' => [
-                'FIELD:event:!IN:' . implode(',', $eventsWithSlots),
-                'FIELD:event:!=:' // Hide the body when no event is selected.
-            ]
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public function getMailBodyFlexFormList()
-    {
-        $viewSettings = $this->getNotificationSettings()->getView();
-
-        return $this->slotFlexFormService->getNotificationFlexFormList($viewSettings);
     }
 
     /**

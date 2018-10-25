@@ -19,6 +19,7 @@ namespace CuyZ\Notiz\Service\Extension;
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefaultEventFromGet;
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefinitionError;
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\EventConfigurationProvider;
+use CuyZ\Notiz\Backend\FormEngine\DataProvider\BodySlotsProvider;
 use CuyZ\Notiz\Backend\ToolBarItems\NotificationsToolbarItem;
 use CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder;
 use CuyZ\Notiz\Core\Support\NotizConstants;
@@ -269,5 +270,12 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
          */
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][EventConfigurationProvider::class] = [];
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = EventConfigurationProvider::class;
+
+        /*
+         * A data provider is used to dynamically configure the body of the mail
+         * notification, which depends on the slots used in its template.
+         */
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][BodySlotsProvider::class] = [];
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = BodySlotsProvider::class;
     }
 }
