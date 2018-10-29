@@ -1,7 +1,7 @@
 # Advanced definition handling
 
 In some cases you may need to manipulate the definition using PHP. To do so, you 
-will need a definition component service that will allow you adding new sources
+will need a definition component service that will allow you to add new sources
 for the definition (for instance TypoScript files), or even modifying the 
 definition object once it has been created.
 
