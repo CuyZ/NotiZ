@@ -67,17 +67,17 @@ class DefaultDefinitionComponents implements SingletonInterface
         $typoScriptDefinitionSource = $components->addSource(DefinitionSource::SOURCE_TYPOSCRIPT);
 
         // Default channels.
-        $typoScriptDefinitionSource->addTypoScriptFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Channel/Channels.Default.typoscript');
+        $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Channel/Channels.Default.typoscript');
 
         // Default notifications.
-        $typoScriptDefinitionSource->addTypoScriptFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Notification/Notifications.typoscript');
+        $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Notification/Notifications.typoscript');
 
         // TYPO3 events can be enabled/disabled in the extension configuration.
         if ($this->extensionConfigurationService->getConfigurationValue('events.typo3')) {
-            $typoScriptDefinitionSource->addTypoScriptFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.TYPO3.typoscript');
+            $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.TYPO3.typoscript');
 
             if (ExtensionManagementUtility::isLoaded('scheduler')) {
-                $typoScriptDefinitionSource->addTypoScriptFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Scheduler.typoscript');
+                $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Scheduler.typoscript');
             }
         }
 
@@ -85,7 +85,7 @@ class DefaultDefinitionComponents implements SingletonInterface
         if (ExtensionManagementUtility::isLoaded('form')
             && version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '>=')
         ) {
-            $typoScriptDefinitionSource->addTypoScriptFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Form.typoscript');
+            $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Form.typoscript');
         }
     }
 }

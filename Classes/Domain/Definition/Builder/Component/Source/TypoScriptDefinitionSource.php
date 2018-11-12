@@ -16,11 +16,8 @@
 
 namespace CuyZ\Notiz\Domain\Definition\Builder\Component\Source;
 
-use CuyZ\Notiz\Core\Definition\Builder\Component\Source\DefinitionSource;
-use CuyZ\Notiz\Core\Exception\FileNotFoundException;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use Romm\ConfigurationObject\ConfigurationObjectInstance;
-use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Service\TypoScriptService;
@@ -29,8 +26,22 @@ use TYPO3\CMS\Extbase\Service\TypoScriptService;
  * This definition source component is used to fetch a definition array from
  * TypoScript files.
  *
- * You can register your own TypoScript definition file in a component
- * registration service (see example below).
+ * Simple TypoScript file registration
+ * -----------------------------------
+ *
+ * To add a TypoScript source file you can add the following line in the
+ * `ext_localconf.php` file of your extension:
+ *
+ * ```
+ * $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['NotiZ']['Definition']['Source'][\CuyZ\Notiz\Domain\Definition\Builder\Component\Source\TypoScriptDefinitionSource::class][]
+ *     = 'EXT:notiz_example/Configuration/TypoScript/Shop.typoscript';
+ * ```
+ *
+ * Advanced TypoScript file registration
+ * -------------------------------------
+ *
+ * In some cases you may need more complex logic to register files; you can then
+ * use a definition component service (see example below).
  *
  * To know how to register a new component:
  *
@@ -41,21 +52,16 @@ use TYPO3\CMS\Extbase\Service\TypoScriptService;
  * {
  *     public function register(\CuyZ\Notiz\Core\Definition\Builder\Component\DefinitionComponents $components)
  *     {
- *         if ($components->hasSource(\CuyZ\Notiz\Core\Definition\Builder\Component\Source\DefinitionSource::SOURCE_TYPOSCRIPT)) {
- *             $components->getSource(\CuyZ\Notiz\Core\Definition\Builder\Component\Source\DefinitionSource::SOURCE_TYPOSCRIPT)
- *                 ->addTypoScriptFilePath("EXT:my_extension/Definition/TypoScript/NotiZ/setup.typoscript")
+ *         if ($this->someCustomCondition()) {
+ *             $typoScriptSource = $components->getSource(\CuyZ\Notiz\Core\Definition\Builder\Component\Source\DefinitionSource::SOURCE_TYPOSCRIPT);
+ *             $typoScriptSource->addFilePath('EXT:my_extension/Definition/TypoScript/NotiZ/setup.typoscript');
  *         }
  *     }
  * }
  * ```
  */
-class TypoScriptDefinitionSource implements DefinitionSource, SingletonInterface
+class TypoScriptDefinitionSource extends FileDefinitionSource
 {
-    /**
-     * @var array
-     */
-    protected $filePaths = [];
-
     /**
      * @var ConfigurationObjectInstance
      */
@@ -72,33 +78,6 @@ class TypoScriptDefinitionSource implements DefinitionSource, SingletonInterface
     public function __construct(TypoScriptService $typoScriptService)
     {
         $this->typoScriptService = $typoScriptService;
-    }
-
-    /**
-     * Registers a TypoScript file that should contain definition for the API.
-     *
-     * See class description for more information.
-     *
-     * @param string $path
-     * @return $this
-     *
-     * @throws FileNotFoundException
-     */
-    public function addTypoScriptFilePath($path)
-    {
-        if (isset($this->filePaths[$path])) {
-            return $this;
-        }
-
-        $absolutePath = GeneralUtility::getFileAbsFileName($path);
-
-        if (false === file_exists($absolutePath)) {
-            throw FileNotFoundException::definitionSourceTypoScriptFileNotFound($path);
-        }
-
-        $this->filePaths[$path] = $absolutePath;
-
-        return $this;
     }
 
     /**
