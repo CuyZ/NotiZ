@@ -87,8 +87,8 @@ class MarkerParser implements SingletonInterface
         preg_match_all(
             '/{
                 (
-                    ([a-z]+[a-z0-1-_]*)           # The root variable
-                    (?:\.[a-z]+[a-z0-1-_]*)*      # The other parts
+                    ([a-z]+[a-z0-9-_]*)           # The root variable
+                    (?:\.[a-z0-9-_]+)*            # The other parts
                 )
             }/xi',
             $string,
