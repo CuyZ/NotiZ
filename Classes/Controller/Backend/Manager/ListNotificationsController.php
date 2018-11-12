@@ -25,8 +25,9 @@ class ListNotificationsController extends ManagerController
 {
     /**
      * @param string $notificationIdentifier
+     * @param string $filterEvent
      */
-    public function processAction($notificationIdentifier)
+    public function processAction($notificationIdentifier, $filterEvent = null)
     {
         $definition = $this->getDefinition();
 
@@ -39,7 +40,21 @@ class ListNotificationsController extends ManagerController
             $this->forward('process', 'Backend\\Manager\\ListNotificationTypes');
         }
 
-        $this->view->assign('notificationDefinition', $definition->getNotification($notificationIdentifier));
+        $notificationDefinition = $definition->getNotification($notificationIdentifier);
+        $processor = $notificationDefinition->getProcessor();
+
+        if ($filterEvent) {
+            $eventDefinition = $definition->getEventFromFullIdentifier($filterEvent);
+            $notifications = $processor->getNotificationsFromEventDefinition($eventDefinition);
+
+            $this->view->assign('eventDefinition', $eventDefinition);
+            $this->view->assign('fullEventIdentifier', $filterEvent);
+        } else {
+            $notifications = $processor->getAllNotifications();
+        }
+
+        $this->view->assign('notificationDefinition', $notificationDefinition);
+        $this->view->assign('notifications', $notifications);
     }
 
     /**
