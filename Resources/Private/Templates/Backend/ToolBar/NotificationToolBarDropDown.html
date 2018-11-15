@@ -7,14 +7,14 @@
 *** BODY
 ********************************************************************************
 <f:section name="BodyTitle">
-    <nz:t key="Backend/Toolbar/Show:title" />
+    <nz:t key="Backend/Toolbar:title" />
 </f:section>
 
 <f:section name="BodyNotificationsLink">
     <nz:backend.module.link module="Manager"
                             frame="1">
         <nz:core.icon identifier="actions-system-list-open" alternativeMarkupIdentifier="inline" />
-        <nz:t key="Backend/Toolbar/Show:body.list_notifications" />
+        <nz:t key="Backend/Toolbar:body.list_notifications" />
     </nz:backend.module.link>
 </f:section>
 
@@ -23,16 +23,16 @@
                             controller="Backend\Administration\ShowDefinition"
                             frame="1">
         <nz:core.icon identifier="actions-system-extension-configure" alternativeMarkupIdentifier="inline" />
-        <nz:t key="Backend/Toolbar/Show:body.show_definition" />
+        <nz:t key="Backend/Toolbar:body.show_definition" />
     </nz:backend.module.link>
 </f:section>
 
 <f:section name="BodyDescriptionNoNotification">
-    <nz:t key="Backend/Toolbar/Show:body.description_notifications_none" />
+    <nz:t key="Backend/Toolbar:body.description_notifications_none" />
 </f:section>
 
 <f:section name="BodyDescriptionNotification">
-    <nz:t key="Backend/Toolbar/Show:body.description_notifications" args="{0: filledNotificationsTotal}" />
+    <nz:t key="Backend/Toolbar:body.description_notifications" args="{0: filledNotificationsTotal}" />
 </f:section>
 
 <f:section name="BodyNotificationIcon">
@@ -53,12 +53,12 @@
                             controller="Backend\Manager\ListNotifications"
                             arguments="{notificationIdentifier: notification.identifier}"
                             frame="1">
-        <nz:t key="Backend/Toolbar/Show:body.notification_label" args="{0: notification.processor.totalNumber}" />
+        <nz:t key="Backend/Toolbar:body.notification_label" args="{0: notification.processor.totalNumber}" />
     </nz:backend.module.link>
 </f:section>
 
 <f:section name="BodySimpleMenu">
-    <nz:t key="Backend/Toolbar/Show:body.simple_menu" />
+    <nz:t key="Backend/Toolbar:body.simple_menu" />
 </f:section>
 
 ********************************************************************************
@@ -68,10 +68,10 @@
 <f:section name="BodyErrorsDescription">
     <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
         <f:then>
-            <nz:t key="Backend/Toolbar/Error:body.errors_description" />
+            <nz:t key="Backend/Toolbar:body.errors_description" />
         </f:then>
         <f:else>
-            <nz:t key="Backend/Toolbar/Error:body.editor.errors_description" />
+            <nz:t key="Backend/Toolbar:body.editor.errors_description" />
         </f:else>
     </f:if>
 </f:section>
@@ -93,8 +93,8 @@
     <f:alias map="{key: '{f:if(condition: \'{result.flattenedErrors}\', then: \'error\', else: \'ok\')}'}">
         <span class="t3js-notiz-data-container"
               data-error="{f:if(condition: '{result.flattenedErrors}', then: '1')}"
-              data-message-title="{nz:t(key: 'Backend/Toolbar/Show:flash.{key}.title')}"
-              data-message-body="{nz:t(key: 'Backend/Toolbar/Show:flash.{key}.body')}"
+              data-message-title="{nz:t(key: 'Backend/Toolbar:flash.{key}.title')}"
+              data-message-body="{nz:t(key: 'Backend/Toolbar:flash.{key}.body')}"
         ></span>
     </f:alias>
 

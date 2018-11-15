@@ -4,7 +4,7 @@
 <f:layout name="Backend/ToolBar/Item/{f:if(condition: legacyLayout, then: 'Legacy', else: 'Default')}" />
 
 <f:section name="Icon">
-    <span title="{nz:t(key: 'Backend/Toolbar/Show:title')}">
+    <span title="{nz:t(key: 'Backend/Toolbar:title')}">
         <f:render partial="Backend/Toolbar/ToolbarIcon"
                   section="Content"
                   arguments="{result: result}" />
@@ -12,5 +12,5 @@
 </f:section>
 
 <f:section name="Title">
-    <nz:t key="Backend/Toolbar/Show:title" />
+    <nz:t key="Backend/Toolbar:title" />
 </f:section>

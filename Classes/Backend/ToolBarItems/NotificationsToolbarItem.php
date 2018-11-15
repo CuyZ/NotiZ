@@ -226,8 +226,8 @@ class NotificationsToolbarItem implements ToolbarItemInterface
 
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Notiz/Toolbar');
         $pageRenderer->addInlineLanguageLabelArray([
-            'notiz.toolbar.error.body' => LocalizationService::localize('Backend/Toolbar/Error:exception'),
-            'notiz.toolbar.error.refresh_label' => LocalizationService::localize('Backend/Toolbar/Show:refresh'),
+            'notiz.toolbar.error.body' => LocalizationService::localize('Backend/Toolbar:exception'),
+            'notiz.toolbar.error.refresh_label' => LocalizationService::localize('Backend/Toolbar:refresh'),
         ]);
     }
 

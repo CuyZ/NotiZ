@@ -1,5 +1,5 @@
 <p class="dropdown-text text-danger">
-    <nz:t key="Backend/Toolbar/Error:exception" />
+    <nz:t key="Backend/Toolbar:exception" />
 </p>
 
 <f:if condition="{isAdmin}">
@@ -8,13 +8,13 @@
     <dl>
         <f:if condition="{exception.code}">
             <dt>
-                <nz:t key="Backend/Toolbar/Error:exception.code" />
+                <nz:t key="Backend/Toolbar:exception.code" />
             </dt>
             <dt>{exception.code}</dt>
         </f:if>
 
         <dt>
-            <nz:t key="Backend/Toolbar/Error:exception.message" />
+            <nz:t key="Backend/Toolbar:exception.message" />
         </dt>
         <dt>{exception.message}</dt>
     </dl>
