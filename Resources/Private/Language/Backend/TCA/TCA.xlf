@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+            <trans-unit id="exception_occurred.title">
+                <source>Configuration error</source>
+            </trans-unit>
+            <trans-unit id="exception_occurred.body">
+                <source><![CDATA[
+                An error occurred, the notification can not be edited.
+
+                If the problem persists, contact your administrator.
+                ]]></source>
+            </trans-unit>
+
+            <!--####################################-->
+            <!--###  SLACK TCA - NO BOT DEFINED  ###-->
+            <!--####################################-->
+
+            <trans-unit id="slack.no_defined_bot.info_box.title">
+                <source>Good to know</source>
+            </trans-unit>
+
+            <trans-unit id="slack.no_defined_bot.info_box.header">
+                <source>You can pre-configure bots</source>
+            </trans-unit>
+            <trans-unit id="slack.no_defined_bot.info_box.body">
+                <source>Bots can be configured in TypoScript to be selectable here instead of defining a custom one:</source>
+            </trans-unit>
+
+            <!--##############################################-->
+            <!--###  SLACK TCA - NO SLACK CHANNEL DEFINED  ###-->
+            <!--##############################################-->
+
+            <trans-unit id="slack.no_defined_channel.info_box.title">
+                <source>Good to know</source>
+            </trans-unit>
+
+            <trans-unit id="slack.no_defined_channel.info_box.header">
+                <source>You can pre-configure Slack channels</source>
+            </trans-unit>
+            <trans-unit id="slack.no_defined_channel.info_box.body">
+                <source>Slack channels can be configured in TypoScript to be selectable here instead of defining a custom one:</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
