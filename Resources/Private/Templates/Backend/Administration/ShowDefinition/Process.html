@@ -8,7 +8,7 @@
 </f:section>
 
 <f:section name="HeaderButtonsRight">
-    <f:alias map="{label: '{nz:t(key: \'Backend/Module/Administration/Definition/Show:refresh\')}'}">
+    <f:alias map="{label: '{nz:t(key: \'Backend/Module/Administration:definition.show.refresh\')}'}">
         <li role="presentation">
             <f:link.action controller="Backend\Administration\ShowDefinition"
                            title="{label}">
@@ -48,7 +48,7 @@
 <f:section name="DefinitionTree">
     <span class="root-definition">
         <nz:core.icon identifier="tx-notiz-icon" size="default" />
-        <nz:t key="Backend/Module/Administration/Definition/Show:definition_tree.root" />
+        <nz:t key="Backend/Module/Administration:definition.show.definition_tree.root" />
     </span>
 
     <f:if condition="{result.flattenedErrors}">
@@ -83,14 +83,14 @@
                     <f:then>{item.value}</f:then>
                     <f:else>
                         <i>
-                            <nz:t key="Backend/Module/Administration/Definition/Show:definition_tree.empty_value" />
+                            <nz:t key="Backend/Module/Administration:definition.show.definition_tree.empty_value" />
                         </i>
                     </f:else>
                 </f:if>
 
                 <span class="notiz-definition-entry">
                     <label>
-                        <span title="{nz:t(key: 'Backend/Module/Administration/Definition/Show:definition_tree.label_show_full_path')}">
+                        <span title="{nz:t(key: 'Backend/Module/Administration:definition.show.definition_tree.label_show_full_path')}">
                             <nz:core.icon identifier="apps-pagetree-page-shortcut-external" />
                         </span>
 
@@ -143,7 +143,7 @@
 
                     <small class="notiz-definition-entry-value bg-info">
                         <i>
-                            <nz:t key="Backend/Module/Administration/Definition/Show:definition_tree.message_code"
+                            <nz:t key="Backend/Module/Administration:definition.show.definition_tree.message_code"
                                          args="{0: '{message.code}'}" />
                         </i>
                     </small>
