@@ -1,7 +1,7 @@
 {namespace nz=CuyZ\Notiz\ViewHelpers}
 
 <f:section name="Buttons">
-    <f:alias map="{label: '{nz:t(key: \'Backend/Module/Administration/Layout:menu.index\')}'}">
+    <f:alias map="{label: '{nz:t(key: \'Backend/Module/Administration:layout.menu.index\')}'}">
         <li role="presentation" class="{f:if(condition: '{menu} == \'index\'', then: 'active')}">
             <f:link.action controller="Backend\Administration\Index"
                            title="{label}">
@@ -10,7 +10,7 @@
         </li>
     </f:alias>
 
-    <f:alias map="{label: '{nz:t(key: \'Backend/Module/Administration/Layout:menu.definition\')}'}">
+    <f:alias map="{label: '{nz:t(key: \'Backend/Module/Administration:layout.menu.definition\')}'}">
         <li role="presentation" class="{f:if(condition: '{menu} == \'definition\'', then: 'active')}">
             <f:link.action controller="Backend\Administration\ShowDefinition" title="{label}">
                 <strong>{label}</strong>
