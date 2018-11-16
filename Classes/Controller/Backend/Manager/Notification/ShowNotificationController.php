@@ -65,7 +65,7 @@ abstract class ShowNotificationController extends ManagerController
     {
         if (!$this->notification) {
             $this->addErrorMessage(
-                'Backend/Module/Manager/ListNotifications:notification_not_found',
+                'Backend/Module/Manager:list_notifications.notification_not_found',
                 $this->notificationDefinition->getLabel(),
                 $this->request->getArgument('notificationIdentifier')
             );
@@ -96,7 +96,7 @@ abstract class ShowNotificationController extends ManagerController
 
         if (!$definition->hasNotification($notificationDefinitionIdentifier)) {
             $this->addErrorMessage(
-                'Backend/Module/Manager/ListNotifications:notification_type_not_found',
+                'Backend/Module/Manager:list_notifications.notification_type_not_found',
                 $notificationDefinitionIdentifier
             );
 

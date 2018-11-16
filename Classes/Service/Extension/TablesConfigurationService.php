@@ -102,7 +102,7 @@ class TablesConfigurationService implements SingletonInterface
             [
                 'access' => 'user,group',
                 'icon' => NotizConstants::EXTENSION_ICON_PATH_MODULE_MANAGER,
-                'labels' => "LLL:EXT:{$this->extensionKey}/Resources/Private/Language/Backend/Module/Manager/Module.xlf",
+                'labels' => "LLL:EXT:{$this->extensionKey}/Resources/Private/Language/Backend/Module/Manager/Manager.xlf",
             ]
         );
 

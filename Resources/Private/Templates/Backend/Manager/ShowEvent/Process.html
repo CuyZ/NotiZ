@@ -15,7 +15,7 @@
     <div class="container">
         <div class="page-header">
             <h1>
-                <nz:t key="Backend/Module/Manager/ShowEvent:show_event.title" args="{0: eventDefinition.label}" />
+                <nz:t key="Backend/Module/Manager:show_event.title" args="{0: eventDefinition.label}" />
             </h1>
         </div>
 
@@ -23,7 +23,7 @@
             <f:link.action controller="Backend\Manager\ListEvents"
                            class="btn btn-default">
                 <nz:core.icon identifier="actions-view-go-back" />
-                <nz:t key="Backend/Module/Manager/Global:show_list_view" />
+                <nz:t key="Backend/Module/Manager:global.show_list_view" />
             </f:link.action>
         </p>
 
@@ -34,7 +34,7 @@
         </f:if>
 
         <h2>
-            <nz:t key="Backend/Module/Manager/ShowEvent:notifications_bound_to_event" />
+            <nz:t key="Backend/Module/Manager:show_event.notifications_bound_to_event" />
         </h2>
 
         <table class="table table-striped table-hover">
@@ -47,7 +47,7 @@
                     <td>
                         <f:link.action controller="Backend\Manager\ListNotifications"
                                        arguments="{notificationIdentifier: notification.definition.identifier, filterEvent: eventDefinition.identifier}"
-                                       title="{nz:t(key: 'Backend/Module/Manager/ShowEvent:show_notifications_bound_to_event', args: '{0: notification.definition.label}')}">{notification.definition.label}</f:link.action>
+                                       title="{nz:t(key: 'Backend/Module/Manager:show_event.show_notifications_bound_to_event', args: '{0: notification.definition.label}')}">{notification.definition.label}</f:link.action>
 
                         <f:if condition="{notification.count}">
                             <span class="badge">{notification.count}</span>
@@ -59,7 +59,7 @@
                             <nz:notification.link.create notificationDefinition="{notification.definition}"
                                                                 eventDefinition="{eventDefinition}"
                                                                 class="btn btn-default"
-                                                                title="{nz:t(key: 'Backend/Module/Manager/Global:create_notification')}">
+                                                                title="{nz:t(key: 'Backend/Module/Manager:global.create_notification')}">
                                 <nz:core.icon identifier="actions-add" />
                                 {notificationDefinition.label}
                             </nz:notification.link.create>
@@ -67,7 +67,7 @@
                             <f:link.action controller="Backend\Manager\ListNotifications"
                                            arguments="{notificationIdentifier: notification.definition.identifier, filterEvent: eventDefinition.identifier}"
                                            class="btn btn-default"
-                                           title="{nz:t(key: 'Backend/Module/Manager/ShowEvent:show_notifications_bound_to_event', args: '{0: notification.definition.label}')}">
+                                           title="{nz:t(key: 'Backend/Module/Manager:show_event.show_notifications_bound_to_event', args: '{0: notification.definition.label}')}">
                                 <nz:core.icon identifier="actions-view" />
                             </f:link.action>
                         </div>
