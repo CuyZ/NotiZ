@@ -136,6 +136,74 @@
                 <source>Follow Nathan Boiron on Twitter</source>
             </trans-unit>
 
+            <!--###########################################-->
+            <!--###  BACKEND MODULE - DEFINITION ERROR  ###-->
+            <!--###########################################-->
+
+            <trans-unit id="definition.error.info_box.title">
+                <source>NotiZ definition error</source>
+            </trans-unit>
+
+            <trans-unit id="definition.error.info_box.error.header">
+                <source>One or more definition errors were found.</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.error.body">
+                <source>You need to fix these errors in order for NotiZ to work properly.</source>
+            </trans-unit>
+
+            <trans-unit id="definition.error.info_box.editor.title">
+                <source>Configuration error</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.editor.error.body">
+                <source>Errors were found in the configuration of the module, please contact your administrator.</source>
+            </trans-unit>
+
+            <trans-unit id="definition.error.info_box.exception.header">
+                <source>A PHP error occurred during the definition building process.</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.body">
+                <source>You need to fix this error in order for NotiZ to work properly. Have you tried:</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.body.help_1">
+                <source>Clearing TYPO3 caches?</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.body.help_2">
+                <source>Clearing caches from the install tool?</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.body.help_3">
+                <source>Analyze the error below and try to fix it yourself?</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.body.help_4">
+                <source><![CDATA[Asking for help in <a href="https://github.com/CuyZ/NotiZ/issues" target="_blank">https://github.com/CuyZ/NotiZ/issues</a>? Please provide error.as much information as possible.]]></source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.body.help_5">
+                <source>Praying the god of TYPO3?</source>
+            </trans-unit>
+
+            <trans-unit id="definition.error.info_box.exception.details">
+                <source>Exception details</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.details.code">
+                <source>Exception code</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.details.message">
+                <source>Exception message</source>
+            </trans-unit>
+
+            <trans-unit id="definition.error.info_box.exception.details_advanced">
+                <source>Advanced details</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.open_in_new_tab">
+                <source>Open in new tab</source>
+            </trans-unit>
+
+            <trans-unit id="definition.error.errors_link.label">
+                <source>Show %s error(s)</source>
+            </trans-unit>
+            <trans-unit id="definition.error.errors_count">
+                <source>%s error(s)</source>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

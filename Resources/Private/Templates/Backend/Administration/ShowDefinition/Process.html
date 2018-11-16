@@ -23,7 +23,7 @@
     <span class="clearfix"></span>
 
     <f:if condition="{result.flattenedErrors}">
-        <f:be.infobox title="{nz:t(key: 'Backend/Module/Administration/Definition/Error:info_box.title')}" state="2">
+        <f:be.infobox title="{nz:t(key: 'Backend/Module/Administration:definition.error.info_box.title')}" state="2">
             <f:if condition="{exception}">
                 <f:then>
                     <f:render partial="Backend/Administration/DefinitionException"
@@ -54,7 +54,7 @@
     <f:if condition="{result.flattenedErrors}">
         &mdash;&nbsp;
         <span class="bg-danger">
-            <nz:t key="Backend/Module/Administration/Definition/Error:errors_count"
+            <nz:t key="Backend/Module/Administration:definition.error.errors_count"
                          args="{0: '{result.flattenedErrors -> f:count()}'}" />
         </span>
     </f:if>

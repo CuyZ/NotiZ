@@ -9,7 +9,7 @@
 <f:section name="Content">
     <div class="container">
         <f:if condition="{result.flattenedErrors}">
-            <f:be.infobox title="{nz:t(key: 'Backend/Module/Administration/Definition/Error:info_box.title')}" state="2">
+            <f:be.infobox title="{nz:t(key: 'Backend/Module/Administration:definition.error.info_box.title')}" state="2">
                 <f:render partial="Backend/Administration/DefinitionError"
                           section="DefinitionError"
                           arguments="{_all}" />
@@ -55,7 +55,7 @@
                     <nz:core.icon identifier="actions-pagetree" />
                     <nz:t key="Backend/Module/Administration:index.block.definition_tree.action.show" />
                     <f:if condition="{result.flattenedErrors}">
-                        ({nz:t(key: 'Backend/Module/Administration/Definition/Error:errors_count', args: '{0: \'{result.flattenedErrors -> f:count()}\'}')})
+                        ({nz:t(key: 'Backend/Module/Administration:definition.error.errors_count', args: '{0: \'{result.flattenedErrors -> f:count()}\'}')})
                     </f:if>
                 </f:link.action>
 

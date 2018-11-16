@@ -16,7 +16,7 @@
                 <strong>{label}</strong>
 
                 <f:if condition="{result.flattenedErrors}">
-                    (<span class="text-danger">{nz:t(key: 'Backend/Module/Administration/Definition/Error:errors_count', args: '{0: \'{result.flattenedErrors -> f:count()}\'}')}</span>)
+                    (<span class="text-danger">{nz:t(key: 'Backend/Module/Administration:definition.error.errors_count', args: '{0: \'{result.flattenedErrors -> f:count()}\'}')}</span>)
                 </f:if>
             </f:link.action>
         </li>
