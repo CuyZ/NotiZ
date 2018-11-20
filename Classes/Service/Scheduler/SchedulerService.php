@@ -98,7 +98,7 @@ class SchedulerService implements SingletonInterface
 
                 $title = $this->scheduler->isValidTaskObject($taskObject)
                     ? $taskObject->getTaskTitle()
-                    : '*' . LocalizationService::localize('Event/Scheduler/SchedulerTask:flex_form.invalid_task') . '*';
+                    : '*' . LocalizationService::localize('Event/Scheduler/Scheduler:task.flex_form.invalid_task') . '*';
 
                 return [
                     $title . ' [' . $uid . ']',

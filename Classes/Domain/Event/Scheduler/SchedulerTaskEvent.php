@@ -47,7 +47,7 @@ abstract class SchedulerTaskEvent extends AbstractEvent implements ProvidesExamp
 
     /**
      * @marker
-     * @label Event/Scheduler/SchedulerTask:marker.data
+     * @label Event/Scheduler/Scheduler:task.marker.data
      *
      * @var array
      */

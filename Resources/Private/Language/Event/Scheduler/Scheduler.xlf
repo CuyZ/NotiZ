@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+            <!--#########################-->
+            <!--###  SCHEDULER TYPO3  ###-->
+            <!--#########################-->
+
+            <trans-unit id="task.flex_form.filter_tasks.label">
+                <source>Select specific tasks?</source>
+            </trans-unit>
+            <trans-unit id="task.flex_form.filtered_tasks.label">
+                <source>Filtered tasks</source>
+            </trans-unit>
+
+            <trans-unit id="task.flex_form.invalid_task">
+                <source>Invalid task</source>
+            </trans-unit>
+
+            <trans-unit id="task.marker.data">
+                <source>Arbitrary data that can be filled by the task and used as markers.</source>
+            </trans-unit>
+
+            <!--#########################-->
+            <!--### EXECUTION FAILED  ###-->
+            <!--#########################-->
+
+            <trans-unit id="task.execution_failed.marker.exception">
+                <source>The message of the exception thrown during the task process.</source>
+            </trans-unit>
+
+            <trans-unit id="task.execution_failed.title">
+                <source>Scheduler task execution failed</source>
+            </trans-unit>
+            <trans-unit id="task.execution_failed.description">
+                <source><![CDATA[
+                    This event will be triggered whenever a task from the scheduler fails during its execution.
+                ]]></source>
+            </trans-unit>
+
+            <!--#########################-->
+            <!--### EXECUTION DONE    ###-->
+            <!--#########################-->
+
+            <trans-unit id="task.execution_done.marker.result">
+                <source>Result of the task process (should be a boolean value).</source>
+            </trans-unit>
+
+            <trans-unit id="task.execution_done.title">
+                <source>Scheduler task was executed</source>
+            </trans-unit>
+            <trans-unit id="task.execution_done.description">
+                <source><![CDATA[
+                    This event will be triggered whenever a task from the scheduler finishes its execution.
+                ]]></source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

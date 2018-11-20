@@ -12,8 +12,8 @@ notiz {
                 * error.
                 */
                 schedulerTaskWasExecuted {
-                    label = Event/Scheduler/SchedulerTaskWasExecuted:title
-                    description = Event/Scheduler/SchedulerTaskWasExecuted:description
+                    label = Event/Scheduler/Scheduler:task.execution_done.title
+                    description = Event/Scheduler/Scheduler:task.execution_done.description
 
                     className = CuyZ\Notiz\Domain\Event\Scheduler\SchedulerTaskWasExecutedEvent
 
@@ -39,8 +39,8 @@ notiz {
                 * execution of a scheduler task.
                 */
                 schedulerTaskExecutionFailed {
-                    label = Event/Scheduler/SchedulerTaskExecutionFailed:title
-                    description = Event/Scheduler/SchedulerTaskExecutionFailed:description
+                    label = Event/Scheduler/Scheduler:task.execution_failed.title
+                    description = Event/Scheduler/Scheduler:task.execution_failed.description
 
                     className = CuyZ\Notiz\Domain\Event\Scheduler\SchedulerTaskExecutionFailedEvent
 
