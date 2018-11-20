@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Controller\Backend\Manager;
 
 use CuyZ\Notiz\Controller\Backend\Menu;
+use CuyZ\Notiz\Core\Notification\Notification;
 
 /**
  * Lists all notifications entries belonging to a given type.
@@ -41,17 +42,7 @@ class ListNotificationsController extends ManagerController
         }
 
         $notificationDefinition = $definition->getNotification($notificationIdentifier);
-        $processor = $notificationDefinition->getProcessor();
-
-        if ($filterEvent) {
-            $eventDefinition = $definition->getEventFromFullIdentifier($filterEvent);
-            $notifications = $processor->getNotificationsFromEventDefinition($eventDefinition);
-
-            $this->view->assign('eventDefinition', $eventDefinition);
-            $this->view->assign('fullEventIdentifier', $filterEvent);
-        } else {
-            $notifications = $processor->getAllNotifications();
-        }
+        $notifications = $this->getNotifications($notificationIdentifier, $filterEvent);
 
         $this->view->assign('notificationDefinition', $notificationDefinition);
         $this->view->assign('notifications', $notifications);
@@ -63,5 +54,29 @@ class ListNotificationsController extends ManagerController
     protected function getMenu()
     {
         return Menu::MANAGER_NOTIFICATIONS;
+    }
+
+    /**
+     * @param string $notificationIdentifier
+     * @param string|null $filterEvent
+     * @return Notification[]
+     */
+    private function getNotifications($notificationIdentifier, $filterEvent)
+    {
+        $definition = $this->getDefinition();
+
+        $notificationDefinition = $definition->getNotification($notificationIdentifier);
+        $processor = $notificationDefinition->getProcessor();
+
+        if ($filterEvent) {
+            $eventDefinition = $definition->getEventFromFullIdentifier($filterEvent);
+
+            $this->view->assign('eventDefinition', $eventDefinition);
+            $this->view->assign('fullEventIdentifier', $filterEvent);
+
+            return $processor->getNotificationsFromEventDefinition($eventDefinition);
+        }
+
+        return $processor->getAllNotifications();
     }
 }
