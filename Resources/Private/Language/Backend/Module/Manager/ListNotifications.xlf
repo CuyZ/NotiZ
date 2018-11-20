@@ -32,6 +32,13 @@
                 <source>Notification of type “%s” with identifier “%s” could not be found.</source>
             </trans-unit>
 
+            <trans-unit id="active_filters">
+                <source>Active event filter:</source>
+            </trans-unit>
+            <trans-unit id="remove_event_filter">
+                <source>Clear filter</source>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

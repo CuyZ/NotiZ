@@ -46,7 +46,7 @@
 
                     <td>
                         <f:link.action controller="Backend\Manager\ListNotifications"
-                                       arguments="{notificationIdentifier: notification.definition.identifier, filterEvent: eventDefinition.identifier}"
+                                       arguments="{notificationIdentifier: notification.definition.identifier, filterEvent: eventDefinition.fullIdentifier}"
                                        title="{nz:t(key: 'Backend/Module/Manager/ShowEvent:show_notifications_bound_to_event', args: '{0: notification.definition.label}')}">{notification.definition.label}</f:link.action>
 
                         <f:if condition="{notification.count}">

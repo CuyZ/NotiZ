@@ -31,9 +31,32 @@
             </nz:notification.link.create>
         </p>
 
-        <f:if condition="{notificationDefinition.processor.totalNumber} > 0">
+        <f:if condition="{eventDefinition}">
+            <f:be.infobox state="-1">
+                <div>
+                    <strong>
+                        <nz:t key="Backend/Module/Manager/ListNotifications:active_filters" />
+                    </strong>
+
+                    <f:link.action controller="Backend\Manager\ShowEvent"
+                                   arguments="{eventIdentifier: eventDefinition.fullIdentifier}"
+                                   title="{nz:t(key: 'Backend/Module/Manager/ListEvents:show_event_details')}">{eventDefinition.label}</f:link.action>
+                </div>
+                <br />
+                <div>
+                    <f:link.action controller="Backend\Manager\ListNotifications"
+                                   arguments="{notificationIdentifier: notificationDefinition.identifier}"
+                                   title="{nz:t(key: 'Backend/Module/Manager/ListEvents:show_event_details')}">
+                        <nz:core.icon identifier="actions-close" />
+                        <nz:t key="Backend/Module/Manager/ListNotifications:remove_event_filter" />
+                    </f:link.action>
+                </div>
+            </f:be.infobox>
+        </f:if>
+
+        <f:if condition="{notifications -> f:count()} > 0">
             <f:then>
-                <f:render section="ListNotifications" arguments="{notificationDefinition: notificationDefinition}" />
+                <f:render section="ListNotifications" arguments="{notificationDefinition: notificationDefinition, notifications: notifications}" />
             </f:then>
             <f:else>
                 <f:be.infobox>
@@ -71,7 +94,7 @@
                 </tr>
                 </thead>
 
-                <f:for each="{notificationDefinition.processor.allNotifications}" as="notification">
+                <f:for each="{notifications}" as="notification">
                     <tr id="{notification.notificationIdentifier}-{notification.uid}">
                         <td>
                             <nz:notification.link.show notification="{notification}"
