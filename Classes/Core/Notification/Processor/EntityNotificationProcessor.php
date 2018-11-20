@@ -42,6 +42,17 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
 
     /**
      * @param EventDefinition $definition
+     * @return Notification[]
+     */
+    public function getNotificationsFromEventDefinitionWithDisabled(EventDefinition $definition)
+    {
+        return $this->notificationRepository
+            ->findFromEventDefinitionWithDisabled($definition)
+            ->toArray();
+    }
+
+    /**
+     * @param EventDefinition $definition
      * @return int
      */
     public function countNotificationsFromEventDefinition(EventDefinition $definition)
@@ -65,6 +76,16 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
     {
         return $this->notificationRepository
             ->findAll()
+            ->toArray();
+    }
+
+    /**
+     * @return Notification[]
+     */
+    public function getAllNotificationsWithDisabled()
+    {
+        return $this->notificationRepository
+            ->findAllWithDisabled()
             ->toArray();
     }
 

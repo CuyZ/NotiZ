@@ -39,12 +39,29 @@ class EntityNotificationRepository extends Repository
     }
 
     /**
+     * @return QueryResultInterface
+     */
+    public function findAllWithDisabled()
+    {
+        return $this->createQueryWithoutEnableStatement()->execute();
+    }
+
+    /**
      * @param EventDefinition $eventDefinition
      * @return QueryResultInterface
      */
     public function findFromEventDefinition(EventDefinition $eventDefinition)
     {
         return $this->getQueryForEvent($eventDefinition)->execute();
+    }
+
+    /**
+     * @param EventDefinition $eventDefinition
+     * @return QueryResultInterface
+     */
+    public function findFromEventDefinitionWithDisabled(EventDefinition $eventDefinition)
+    {
+        return $this->getQueryForEvent($eventDefinition, true)->execute();
     }
 
     /**
@@ -90,16 +107,30 @@ class EntityNotificationRepository extends Repository
 
     /**
      * @param EventDefinition $eventDefinition
+     * @param bool $withDisabled
      * @return QueryInterface
      */
-    protected function getQueryForEvent(EventDefinition $eventDefinition)
+    protected function getQueryForEvent(EventDefinition $eventDefinition, $withDisabled = false)
     {
-        $query = $this->createQuery();
+        $query = $this->createQuery($withDisabled);
 
         $query->matching(
             $query->equals('event', $eventDefinition->getFullIdentifier())
         );
 
         return $query;
+    }
+
+    /**
+     * @param bool $withDisabled
+     * @return QueryInterface
+     */
+    public function createQuery($withDisabled = false)
+    {
+        if (true === $withDisabled) {
+            return $this->createQueryWithoutEnableStatement();
+        }
+
+        return parent::createQuery();
     }
 }

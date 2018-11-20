@@ -42,7 +42,18 @@ class ListNotificationsController extends ManagerController
         }
 
         $notificationDefinition = $definition->getNotification($notificationIdentifier);
-        $notifications = $this->getNotifications($notificationIdentifier, $filterEvent);
+        $allNotifications = $this->getNotifications($notificationIdentifier, $filterEvent);
+
+        $notifications = [
+            'enabled' => [],
+            'disabled' => [],
+        ];
+
+        foreach ($allNotifications as $notification) {
+            $key = $notification->isEnabled() ? 'enabled' : 'disabled';
+
+            $notifications[$key][] = $notification;
+        }
 
         $this->view->assign('notificationDefinition', $notificationDefinition);
         $this->view->assign('notifications', $notifications);
@@ -74,9 +85,9 @@ class ListNotificationsController extends ManagerController
             $this->view->assign('eventDefinition', $eventDefinition);
             $this->view->assign('fullEventIdentifier', $filterEvent);
 
-            return $processor->getNotificationsFromEventDefinition($eventDefinition);
+            return $processor->getNotificationsFromEventDefinitionWithDisabled($eventDefinition);
         }
 
-        return $processor->getAllNotifications();
+        return $processor->getAllNotificationsWithDisabled();
     }
 }

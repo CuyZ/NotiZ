@@ -69,4 +69,9 @@ interface Notification
      * @return array
      */
     public function getEventConfiguration();
+
+    /**
+     * @return bool
+     */
+    public function isEnabled();
 }

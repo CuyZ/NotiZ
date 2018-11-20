@@ -73,6 +73,11 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     protected $backendUser;
 
     /**
+     * @var bool
+     */
+    protected $hidden;
+
+    /**
      * @return string|null
      */
     public function getTitle()
@@ -142,6 +147,14 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     public function setEventConfigurationFlex($eventConfigurationFlex)
     {
         $this->eventConfigurationFlex = $eventConfigurationFlex;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return !$this->hidden;
     }
 
     /**

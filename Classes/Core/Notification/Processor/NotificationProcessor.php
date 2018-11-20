@@ -64,6 +64,12 @@ abstract class NotificationProcessor
 
     /**
      * @param EventDefinition $eventDefinition
+     * @return Notification[]
+     */
+    abstract public function getNotificationsFromEventDefinitionWithDisabled(EventDefinition $eventDefinition);
+
+    /**
+     * @param EventDefinition $eventDefinition
      * @return int
      */
     abstract public function countNotificationsFromEventDefinition(EventDefinition $eventDefinition);
@@ -80,6 +86,13 @@ abstract class NotificationProcessor
      * @return Notification[]
      */
     abstract public function getAllNotifications();
+
+    /**
+     * Returns all notification instances, including disabled ones.
+     *
+     * @return Notification[]
+     */
+    abstract public function getAllNotificationsWithDisabled();
 
     /**
      * @return int
