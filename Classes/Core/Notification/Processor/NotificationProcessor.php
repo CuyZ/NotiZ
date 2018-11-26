@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Core\Notification\Processor;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Notification\Activable;
 use CuyZ\Notiz\Core\Notification\Notification;
 
 /**
@@ -98,4 +99,16 @@ abstract class NotificationProcessor
      * @return int
      */
     abstract public function getTotalNumber();
+
+    /**
+     * @param Activable $notification
+     * @return void
+     */
+    abstract public function enable(Activable $notification);
+
+    /**
+     * @param Activable $notification
+     * @return void
+     */
+    abstract public function disable(Activable $notification);
 }

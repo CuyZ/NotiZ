@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Controller\Backend\Manager;
 
 use CuyZ\Notiz\Controller\Backend\Menu;
+use CuyZ\Notiz\Core\Notification\Activable;
 use CuyZ\Notiz\Core\Notification\Notification;
 
 /**
@@ -45,12 +46,18 @@ class ListNotificationsController extends ManagerController
         $allNotifications = $this->getNotifications($notificationIdentifier, $filterEvent);
 
         $notifications = [
-            'enabled' => [],
-            'disabled' => [],
+            'active' => [],
+            'inactive' => [],
         ];
 
         foreach ($allNotifications as $notification) {
-            $key = $notification->isEnabled() ? 'enabled' : 'disabled';
+            $key = 'active';
+
+            if ($notification instanceof Activable
+                && !$notification->isActive()
+            ) {
+                $key = 'inactive';
+            }
 
             $notifications[$key][] = $notification;
         }

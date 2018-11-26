@@ -56,7 +56,7 @@
 
         <f:if condition="{notifications -> f:count()} > 0">
             <f:then>
-                <f:render section="ListNotifications" arguments="{notificationDefinition: notificationDefinition, notifications: notifications}" />
+                <f:render section="ListNotifications" arguments="{notificationDefinition: notificationDefinition, notifications: notifications, eventDefinition: eventDefinition}" />
             </f:then>
             <f:else>
                 <f:be.infobox>
@@ -94,16 +94,16 @@
                 </tr>
                 </thead>
 
-                <f:render section="notificationList" arguments="{notifications: notifications.enabled}" />
+                <f:render section="notificationList" arguments="{notifications: notifications.active, eventDefinition: eventDefinition}" />
 
-                <f:if condition="{notifications.disabled -> f:count()} > 0">
+                <f:if condition="{notifications.inactive -> f:count()} > 0">
                     <tr>
                         <th colspan="4">
                             Disabled notifications
                         </th>
                     </tr>
 
-                    <f:render section="notificationList" arguments="{notifications: notifications.disabled}" />
+                    <f:render section="notificationList" arguments="{notifications: notifications.inactive, eventDefinition: eventDefinition}" />
                 </f:if>
             </table>
         </div>
@@ -155,6 +155,14 @@
 
             <td align="right">
                 <div class="btn-group" role="group">
+                    <nz:notification.link.activation notification="{notification}"
+                                                     class="btn btn-default"
+                                                     eventDefinition="{eventDefinition}">
+                        <f:if condition="{notification.active}">
+                            <f:then><nz:core.icon identifier="actions-edit-hide" /></f:then>
+                            <f:else><nz:core.icon identifier="actions-edit-unhide" /></f:else>
+                        </f:if>
+                    </nz:notification.link.activation>
                     <nz:notification.link.edit notification="{notification}"
                                                class="btn btn-default"
                                                title="{nz:t(key: 'Backend/Module/Manager/Global:edit_notification')}">

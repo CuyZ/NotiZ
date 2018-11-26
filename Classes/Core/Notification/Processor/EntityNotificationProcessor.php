@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Core\Notification\Processor;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Notification\Activable;
 use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Domain\Repository\EntityNotificationRepository;
 
@@ -97,5 +98,25 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
         return $this->notificationRepository
             ->findAll()
             ->count();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function enable(Activable $notification)
+    {
+        $notification->markAsActive();
+
+        $this->notificationRepository->update($notification);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function disable(Activable $notification)
+    {
+        $notification->markAsInactive();
+
+        $this->notificationRepository->update($notification);
     }
 }
