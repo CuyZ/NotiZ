@@ -17,6 +17,7 @@
 namespace CuyZ\Notiz\Core\Notification\Processor;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Notification\Activable;
 use CuyZ\Notiz\Core\Notification\Notification;
 
 /**
@@ -64,6 +65,12 @@ abstract class NotificationProcessor
 
     /**
      * @param EventDefinition $eventDefinition
+     * @return Notification[]
+     */
+    abstract public function getNotificationsFromEventDefinitionWithDisabled(EventDefinition $eventDefinition);
+
+    /**
+     * @param EventDefinition $eventDefinition
      * @return int
      */
     abstract public function countNotificationsFromEventDefinition(EventDefinition $eventDefinition);
@@ -82,7 +89,26 @@ abstract class NotificationProcessor
     abstract public function getAllNotifications();
 
     /**
+     * Returns all notification instances, including disabled ones.
+     *
+     * @return Notification[]
+     */
+    abstract public function getAllNotificationsWithDisabled();
+
+    /**
      * @return int
      */
     abstract public function getTotalNumber();
+
+    /**
+     * @param Activable $notification
+     * @return void
+     */
+    abstract public function enable(Activable $notification);
+
+    /**
+     * @param Activable $notification
+     * @return void
+     */
+    abstract public function disable(Activable $notification);
 }

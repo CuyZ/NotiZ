@@ -56,7 +56,7 @@
 
         <f:if condition="{notifications -> f:count()} > 0">
             <f:then>
-                <f:render section="ListNotifications" arguments="{notificationDefinition: notificationDefinition, notifications: notifications}" />
+                <f:render section="ListNotifications" arguments="{notificationDefinition: notificationDefinition, notifications: notifications, eventDefinition: eventDefinition}" />
             </f:then>
             <f:else>
                 <f:be.infobox>
@@ -94,66 +94,88 @@
                 </tr>
                 </thead>
 
-                <f:for each="{notifications}" as="notification">
-                    <tr id="{notification.notificationIdentifier}-{notification.uid}">
-                        <td>
-                            <nz:notification.link.show notification="{notification}"
-                                                              graceful="1"
-                                                              title="{nz:t(key: 'Backend/Module/Manager/ListNotifications:action.show', args: {0: notification.title})}">
-                                <strong>{notification.uid}</strong>
-                            </nz:notification.link.show>
-                        </td>
+                <f:render section="notificationList" arguments="{notifications: notifications.active, eventDefinition: eventDefinition}" />
 
-                        <td>
-                            <nz:notification.link.show notification="{notification}"
-                                                              graceful="1"
-                                                              title="{nz:t(key: 'Backend/Module/Manager/ListNotifications:action.show', args: {0: notification.title})}">
-                                <f:if condition="{notification.title}">
-                                    <f:then>{notification.title}</f:then>
-                                    <f:else>
-                                        <em>
-                                            <nz:t key="Backend/Module/Manager/Global:notification.no_title" />
-                                        </em>
-                                    </f:else>
-                                </f:if>
-                            </nz:notification.link.show>
-                        </td>
-
-                        <td>
-                            <f:if condition="{nz:notification.hasEvent(notification: notification)}">
-                                <f:then>
-                                    <f:link.action controller="Backend\Manager\ShowEvent"
-                                                   title="{nz:t(key: 'Backend/Module/Manager/Global:show_event_details', args: {0: notification.eventDefinition.label})}"
-                                                   arguments="{eventIdentifier: notification.eventDefinition.fullIdentifier}">
-                                        {notification.eventDefinition.label} ({notification.eventDefinition.group.label})
-                                    </f:link.action>
-                                </f:then>
-                                <f:else>
-                                    <em>
-                                        <nz:t key="Backend/Module/Manager/Global:notification.no_event" />
-                                    </em>
-                                </f:else>
-                            </f:if>
-                        </td>
-
-                        <td align="right">
-                            <div class="btn-group" role="group">
-                                <nz:notification.link.edit notification="{notification}"
-                                                                  class="btn btn-default"
-                                                                  title="{nz:t(key: 'Backend/Module/Manager/Global:edit_notification')}">
-                                    <nz:core.icon identifier="actions-open" />
-                                </nz:notification.link.edit>
-
-                                <nz:notification.link.show notification="{notification}"
-                                                                  class="btn btn-default"
-                                                                  title="{nz:t(key: 'Backend/Module/Manager/ListNotifications:action.show', args: {0: notification.title})}">
-                                    <nz:core.icon identifier="actions-view" />
-                                </nz:notification.link.show>
-                            </div>
-                        </td>
+                <f:if condition="{notifications.inactive -> f:count()} > 0">
+                    <tr>
+                        <th colspan="4">
+                            Disabled notifications
+                        </th>
                     </tr>
-                </f:for>
+
+                    <f:render section="notificationList" arguments="{notifications: notifications.inactive, eventDefinition: eventDefinition}" />
+                </f:if>
             </table>
         </div>
     </div>
+</f:section>
+
+<f:section name="notificationList">
+    <f:for each="{notifications}" as="notification">
+        <tr id="{notification.notificationIdentifier}-{notification.uid}">
+            <td>
+                <nz:notification.link.show notification="{notification}"
+                                           graceful="1"
+                                           title="{nz:t(key: 'Backend/Module/Manager/ListNotifications:action.show', args: {0: notification.title})}">
+                    <strong>{notification.uid}</strong>
+                </nz:notification.link.show>
+            </td>
+
+            <td>
+                <nz:notification.link.show notification="{notification}"
+                                           graceful="1"
+                                           title="{nz:t(key: 'Backend/Module/Manager/ListNotifications:action.show', args: {0: notification.title})}">
+                    <f:if condition="{notification.title}">
+                        <f:then>{notification.title}</f:then>
+                        <f:else>
+                            <em>
+                                <nz:t key="Backend/Module/Manager/Global:notification.no_title" />
+                            </em>
+                        </f:else>
+                    </f:if>
+                </nz:notification.link.show>
+            </td>
+
+            <td>
+                <f:if condition="{nz:notification.hasEvent(notification: notification)}">
+                    <f:then>
+                        <f:link.action controller="Backend\Manager\ShowEvent"
+                                       title="{nz:t(key: 'Backend/Module/Manager/Global:show_event_details', args: {0: notification.eventDefinition.label})}"
+                                       arguments="{eventIdentifier: notification.eventDefinition.fullIdentifier}">
+                            {notification.eventDefinition.label} ({notification.eventDefinition.group.label})
+                        </f:link.action>
+                    </f:then>
+                    <f:else>
+                        <em>
+                            <nz:t key="Backend/Module/Manager/Global:notification.no_event" />
+                        </em>
+                    </f:else>
+                </f:if>
+            </td>
+
+            <td align="right">
+                <div class="btn-group" role="group">
+                    <nz:notification.link.activate notification="{notification}"
+                                                     class="btn btn-default"
+                                                     eventDefinition="{eventDefinition}">
+                        <f:if condition="{notification.active}">
+                            <f:then><nz:core.icon identifier="actions-edit-hide" /></f:then>
+                            <f:else><nz:core.icon identifier="actions-edit-unhide" /></f:else>
+                        </f:if>
+                    </nz:notification.link.activate>
+                    <nz:notification.link.edit notification="{notification}"
+                                               class="btn btn-default"
+                                               title="{nz:t(key: 'Backend/Module/Manager/Global:edit_notification')}">
+                        <nz:core.icon identifier="actions-open" />
+                    </nz:notification.link.edit>
+
+                    <nz:notification.link.show notification="{notification}"
+                                               class="btn btn-default"
+                                               title="{nz:t(key: 'Backend/Module/Manager/ListNotifications:action.show', args: {0: notification.title})}">
+                        <nz:core.icon identifier="actions-view" />
+                    </nz:notification.link.show>
+                </div>
+            </td>
+        </tr>
+    </f:for>
 </f:section>

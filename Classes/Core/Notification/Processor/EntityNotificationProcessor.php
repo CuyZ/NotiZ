@@ -17,7 +17,9 @@
 namespace CuyZ\Notiz\Core\Notification\Processor;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Notification\Activable;
 use CuyZ\Notiz\Core\Notification\Notification;
+use CuyZ\Notiz\Domain\Notification\EntityNotification;
 use CuyZ\Notiz\Domain\Repository\EntityNotificationRepository;
 
 abstract class EntityNotificationProcessor extends NotificationProcessor
@@ -37,6 +39,17 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
     {
         return $this->notificationRepository
             ->findFromEventDefinition($definition)
+            ->toArray();
+    }
+
+    /**
+     * @param EventDefinition $definition
+     * @return Notification[]
+     */
+    public function getNotificationsFromEventDefinitionWithDisabled(EventDefinition $definition)
+    {
+        return $this->notificationRepository
+            ->findFromEventDefinitionWithDisabled($definition)
             ->toArray();
     }
 
@@ -69,6 +82,16 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
     }
 
     /**
+     * @return Notification[]
+     */
+    public function getAllNotificationsWithDisabled()
+    {
+        return $this->notificationRepository
+            ->findAllWithDisabled()
+            ->toArray();
+    }
+
+    /**
      * @return int
      */
     public function getTotalNumber()
@@ -76,5 +99,25 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
         return $this->notificationRepository
             ->findAll()
             ->count();
+    }
+
+    /**
+     * @param Activable|EntityNotification $notification
+     */
+    public function enable(Activable $notification)
+    {
+        $notification->setActive(true);
+
+        $this->notificationRepository->update($notification);
+    }
+
+    /**
+     * @param Activable|EntityNotification $notification
+     */
+    public function disable(Activable $notification)
+    {
+        $notification->setActive(false);
+
+        $this->notificationRepository->update($notification);
     }
 }
