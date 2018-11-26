@@ -17,6 +17,8 @@
 namespace CuyZ\Notiz\Controller\Backend\Manager;
 
 use CuyZ\Notiz\Controller\Backend\Menu;
+use CuyZ\Notiz\Core\Notification\Activable;
+use CuyZ\Notiz\Core\Notification\Notification;
 
 /**
  * Lists all notifications entries belonging to a given type.
@@ -25,8 +27,9 @@ class ListNotificationsController extends ManagerController
 {
     /**
      * @param string $notificationIdentifier
+     * @param string $filterEvent
      */
-    public function processAction($notificationIdentifier)
+    public function processAction($notificationIdentifier, $filterEvent = null)
     {
         $definition = $this->getDefinition();
 
@@ -39,7 +42,28 @@ class ListNotificationsController extends ManagerController
             $this->forward('process', 'Backend\\Manager\\ListNotificationTypes');
         }
 
-        $this->view->assign('notificationDefinition', $definition->getNotification($notificationIdentifier));
+        $notificationDefinition = $definition->getNotification($notificationIdentifier);
+        $allNotifications = $this->getNotifications($notificationIdentifier, $filterEvent);
+
+        $notifications = [
+            'active' => [],
+            'inactive' => [],
+        ];
+
+        foreach ($allNotifications as $notification) {
+            $key = 'active';
+
+            if ($notification instanceof Activable
+                && !$notification->isActive()
+            ) {
+                $key = 'inactive';
+            }
+
+            $notifications[$key][] = $notification;
+        }
+
+        $this->view->assign('notificationDefinition', $notificationDefinition);
+        $this->view->assign('notifications', $notifications);
     }
 
     /**
@@ -48,5 +72,29 @@ class ListNotificationsController extends ManagerController
     protected function getMenu()
     {
         return Menu::MANAGER_NOTIFICATIONS;
+    }
+
+    /**
+     * @param string $notificationIdentifier
+     * @param string|null $filterEvent
+     * @return Notification[]
+     */
+    private function getNotifications($notificationIdentifier, $filterEvent)
+    {
+        $definition = $this->getDefinition();
+
+        $notificationDefinition = $definition->getNotification($notificationIdentifier);
+        $processor = $notificationDefinition->getProcessor();
+
+        if ($filterEvent) {
+            $eventDefinition = $definition->getEventFromFullIdentifier($filterEvent);
+
+            $this->view->assign('eventDefinition', $eventDefinition);
+            $this->view->assign('fullEventIdentifier', $filterEvent);
+
+            return $processor->getNotificationsFromEventDefinitionWithDisabled($eventDefinition);
+        }
+
+        return $processor->getAllNotificationsWithDisabled();
     }
 }

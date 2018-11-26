@@ -96,6 +96,7 @@ class TablesConfigurationService implements SingletonInterface
             [
                 'Backend\Manager\ListNotificationTypes' => 'process',
                 'Backend\Manager\ListNotifications' => 'process',
+                'Backend\Manager\NotificationActivation' => 'process',
                 'Backend\Manager\ListEvents' => 'process',
                 'Backend\Manager\ShowEvent' => 'process',
             ],

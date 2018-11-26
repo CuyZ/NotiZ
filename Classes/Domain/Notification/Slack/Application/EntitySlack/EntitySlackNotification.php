@@ -16,6 +16,7 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack;
 
+use CuyZ\Notiz\Core\Notification\Activable;
 use CuyZ\Notiz\Core\Notification\Creatable;
 use CuyZ\Notiz\Core\Notification\Viewable;
 use CuyZ\Notiz\Core\Notification\Editable;
@@ -25,7 +26,13 @@ use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Processor\Entit
 use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Settings\EntitySlackSettings;
 use CuyZ\Notiz\Domain\Notification\Slack\SlackNotification;
 
-class EntitySlackNotification extends EntityNotification implements SlackNotification, CustomSettingsNotification, Creatable, Editable, Viewable
+class EntitySlackNotification extends EntityNotification implements
+    SlackNotification,
+    CustomSettingsNotification,
+    Creatable,
+    Editable,
+    Viewable,
+    Activable
 {
     /**
      * @var string
