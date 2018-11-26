@@ -19,6 +19,7 @@ namespace CuyZ\Notiz\Core\Notification\Processor;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Notification\Activable;
 use CuyZ\Notiz\Core\Notification\Notification;
+use CuyZ\Notiz\Domain\Notification\EntityNotification;
 use CuyZ\Notiz\Domain\Repository\EntityNotificationRepository;
 
 abstract class EntityNotificationProcessor extends NotificationProcessor
@@ -101,21 +102,21 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
     }
 
     /**
-     * @inheritdoc
+     * @param Activable|EntityNotification $notification
      */
     public function enable(Activable $notification)
     {
-        $notification->markAsActive();
+        $notification->setActive(true);
 
         $this->notificationRepository->update($notification);
     }
 
     /**
-     * @inheritdoc
+     * @param Activable|EntityNotification $notification
      */
     public function disable(Activable $notification)
     {
-        $notification->markAsInactive();
+        $notification->setActive(false);
 
         $this->notificationRepository->update($notification);
     }

@@ -158,19 +158,12 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     }
 
     /**
+     * @param bool $active
      * @return void
      */
-    public function markAsActive()
+    public function setActive($active)
     {
-        $this->hidden = false;
-    }
-
-    /**
-     * @return void
-     */
-    public function markAsInactive()
-    {
-        $this->hidden = true;
+        $this->hidden = !$active;
     }
 
     /**

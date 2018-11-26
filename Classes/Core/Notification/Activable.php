@@ -26,16 +26,6 @@ interface Activable
     public function isActive();
 
     /**
-     * @return void
-     */
-    public function markAsActive();
-
-    /**
-     * @return void
-     */
-    public function markAsInactive();
-
-    /**
      * @param EventDefinition|null $eventDefinition
      * @return string
      */
