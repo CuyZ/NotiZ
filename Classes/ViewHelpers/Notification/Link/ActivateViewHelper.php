@@ -21,7 +21,7 @@ use CuyZ\Notiz\Core\Notification\Activable;
 use CuyZ\Notiz\Core\Notification\Notification;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
-class ActivationViewHelper extends AbstractTagBasedViewHelper
+class ActivateViewHelper extends AbstractTagBasedViewHelper
 {
     /**
      * @var string

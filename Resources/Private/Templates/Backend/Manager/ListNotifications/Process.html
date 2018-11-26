@@ -155,14 +155,14 @@
 
             <td align="right">
                 <div class="btn-group" role="group">
-                    <nz:notification.link.activation notification="{notification}"
+                    <nz:notification.link.activate notification="{notification}"
                                                      class="btn btn-default"
                                                      eventDefinition="{eventDefinition}">
                         <f:if condition="{notification.active}">
                             <f:then><nz:core.icon identifier="actions-edit-hide" /></f:then>
                             <f:else><nz:core.icon identifier="actions-edit-unhide" /></f:else>
                         </f:if>
-                    </nz:notification.link.activation>
+                    </nz:notification.link.activate>
                     <nz:notification.link.edit notification="{notification}"
                                                class="btn btn-default"
                                                title="{nz:t(key: 'Backend/Module/Manager/Global:edit_notification')}">
