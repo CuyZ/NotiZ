@@ -51,7 +51,7 @@ Email content
 Layout
 ''''''
 
-You can choose the layout used for this email. This can be a custom one:
+A layout must be chosen for this email. This can be a custom one:
 
 .. code-block:: typoscript
 
