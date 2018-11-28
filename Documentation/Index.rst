@@ -41,4 +41,15 @@
     The content of this document is related to TYPO3,
     a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.
 
-    The documentation is not yet available on docs.typo3.org, please go to https://github.com/CuyZ/NotiZ/tree/0.6.0/Documentation/Markdown/README.md
+    **Table of Contents**
+
+.. toctree::
+    :maxdepth: 3
+    :includehidden:
+    :titlesonly:
+    :glob:
+
+    */Index
+
+.. |notiz-icon| image:: Images/Icon/icon-notiz.svg
+    :alt: NotiZ icon

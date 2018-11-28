@@ -74,7 +74,7 @@ use TYPO3\CMS\Extbase\Reflection\PropertyReflection;
  *
  * ```
  * \CuyZ\Notiz\Core\Property\Service\TagsPropertyService::get()
- *     ->addPropertyTagIdentifier(
+ *     ->setPropertyTagIdentifier(
  *         \CuyZ\Notiz\Domain\Property\Marker::class,
  *         'data'
  *     );
