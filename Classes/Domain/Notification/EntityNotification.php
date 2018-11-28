@@ -278,6 +278,15 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     public function isEditable()
     {
         $backendUser = Container::getBackendUser();
+
+        if (!$backendUser) {
+            return false;
+        }
+
+        if (!$backendUser->check('tables_modify', self::getTableName())) {
+            return false;
+        }
+
         $page = Container::getPageRepository()->getPage($this->pid);
         $userPermissionOnPage = $backendUser->calcPerms($page);
 
