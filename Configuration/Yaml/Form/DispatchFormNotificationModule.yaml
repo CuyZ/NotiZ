@@ -6,7 +6,7 @@ TYPO3:
           formEditor:
             translationFile:
               10: 'EXT:form/Resources/Private/Language/Database.xlf'
-              20: 'EXT:notiz/Resources/Private/Language/Event/Form/DispatchFormNotification.xlf'
+              20: 'EXT:notiz/Resources/Private/Language/Event/Form/Form.xlf'
           formElementsDefinition:
             Form:
               formEditor:
@@ -15,7 +15,7 @@ TYPO3:
                     selectOptions:
                       1519552194:
                         value: 'DispatchNotification'
-                        label: 'form_editor.finisher.dispatch_notification.label'
+                        label: 'dispatch_form_notification.form_editor.finisher.dispatch_notification.label'
                 propertyCollections:
                   finishers:
                     1519552194:
@@ -24,4 +24,4 @@ TYPO3:
                         __inheritances:
                           10: 'TYPO3.CMS.Form.mixins.formElementMixins.BaseCollectionEditorsMixin'
                         100:
-                          label: 'form_editor.finisher.dispatch_notification.label'
+                          label: 'dispatch_form_notification.form_editor.finisher.dispatch_notification.label'

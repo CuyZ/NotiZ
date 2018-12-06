@@ -159,7 +159,7 @@ abstract class NotificationTcaService implements SingletonInterface
             $output .= "<tr><td><strong>{$marker->getFormattedName()}</strong></td><td>$label</td></tr>";
         }
 
-        $description = LocalizationService::localize('Notification/Entity/Fields:field.markers.description', [$eventDefinition->getLabel()]);
+        $description = LocalizationService::localize('Notification/Entity:field.markers.description', [$eventDefinition->getLabel()]);
 
         return <<<HTML
 <p>$description</p>
@@ -206,7 +206,7 @@ HTML;
     {
         $preset = $parent['parameters']['preset'];
 
-        $message = LocalizationService::localize('Notification/Entity/Fields:field.rte.ck_editor_preset_missing', [$preset]);
+        $message = LocalizationService::localize('Notification/Entity:field.rte.ck_editor_preset_missing', [$preset]);
         $message = StringService::mark($message, '<code>$1</code>');
 
         return '<span class="bg-danger">' . $message . '</span>';

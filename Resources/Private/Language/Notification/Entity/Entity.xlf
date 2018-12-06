@@ -3,6 +3,10 @@
     <file source-language="en">
         <header/>
         <body>
+            <trans-unit id="button_bar.view_details">
+                <source>View details</source>
+            </trans-unit>
+
             <trans-unit id="field.title">
                 <source>Title</source>
             </trans-unit>
@@ -28,6 +32,13 @@
 
             <trans-unit id="field.rte.ck_editor_preset_missing">
                 <source>Warning: the CKEditor preset “%s” has not been registered. You can register it by adding an entry to `$GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']`.</source>
+            </trans-unit>
+
+            <trans-unit id="tab.event">
+                <source>Event</source>
+            </trans-unit>
+            <trans-unit id="tab.channel">
+                <source>Channel</source>
             </trans-unit>
         </body>
     </file>

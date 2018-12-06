@@ -21,7 +21,7 @@ use CuyZ\Notiz\Core\Notification\TCA\EntityTcaWriter;
 
 class EntityEmailTcaWriter extends EntityTcaWriter
 {
-    const EMAIL_LLL = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Email/Entity.xlf';
+    const EMAIL_LLL = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Email/Email.xlf';
 
     /**
      * @var EntityEmailTcaService
@@ -76,9 +76,9 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                     'showitem' => '
                         error_message,
                         title, description, sys_language_uid, hidden,
-                        --div--;' . self::LLL_TABS . ':tab.event,
+                        --div--;' . self::LLL . ':tab.event,
                             event, event_configuration_flex,
-                        --div--;' . self::LLL_TABS . ':tab.channel,
+                        --div--;' . self::LLL . ':tab.channel,
                             channel,
                         --div--;' . self::EMAIL_LLL . ':tab.mail_configuration,
                             layout,

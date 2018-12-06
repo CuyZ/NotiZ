@@ -12,7 +12,7 @@
                 <el>
                     <formDefinition>
                         <TCEforms>
-                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/Form/DispatchFormNotification.xlf:flex_form.form_definition.label</label>
+                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/Form/Form.xlf:dispatch_form_notification.flex_form.form_definition.label</label>
                             <config>
                                 <type>select</type>
                                 <renderType>selectSingle</renderType>

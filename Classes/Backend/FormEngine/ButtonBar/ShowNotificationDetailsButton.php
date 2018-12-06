@@ -126,7 +126,7 @@ class ShowNotificationDetailsButton implements SingletonInterface
         $button = $buttonBar->makeLinkButton()
             ->setShowLabelText(true)
             ->setHref($notification->getViewUri())
-            ->setTitle(LocalizationService::localize('Notification/Entity/ButtonBar:view_details'))
+            ->setTitle(LocalizationService::localize('Notification/Entity:button_bar.view_details'))
             ->setIcon($this->iconFactory->getIcon(
                 'actions-view',
                 Icon::SIZE_SMALL

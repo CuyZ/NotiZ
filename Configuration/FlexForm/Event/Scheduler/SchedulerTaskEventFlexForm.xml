@@ -12,7 +12,7 @@
                 <el>
                     <doFilterTasks>
                         <TCEforms>
-                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/Scheduler/SchedulerTask.xlf:flex_form.filter_tasks.label</label>
+                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/Scheduler/Scheduler.xlf:task.flex_form.filter_tasks.label</label>
                             <onChange>reload</onChange>
                             <config>
                                 <type>check</type>
@@ -22,7 +22,7 @@
 
                     <filteredTasks>
                         <TCEforms>
-                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/Scheduler/SchedulerTask.xlf:flex_form.filtered_tasks.label</label>
+                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/Scheduler/Scheduler.xlf:task.flex_form.filtered_tasks.label</label>
                             <displayCond>FIELD:doFilterTasks:=:1</displayCond>
                             <config>
                                 <type>select</type>

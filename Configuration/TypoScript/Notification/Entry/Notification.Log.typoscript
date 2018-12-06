@@ -1,8 +1,8 @@
 notiz {
     notifications {
         entityLog {
-            label = Notification/Log/Entity:title
-            description = Notification/Log/Entity:description
+            label = Notification/Log:title
+            description = Notification/Log:description
 
             className = CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\EntityLogNotification
 

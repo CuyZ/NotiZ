@@ -26,7 +26,7 @@ use TYPO3\CMS\Core\Utility\MathUtility;
 class CachesClearedEvent extends AbstractEvent implements ProvidesExampleProperties
 {
     /**
-     * @label Event/TYPO3/CacheCleared:marker.cache_command
+     * @label Event:TYPO3:cache_cleared.marker.cache_command
      * @marker
      *
      * @var string
@@ -34,7 +34,7 @@ class CachesClearedEvent extends AbstractEvent implements ProvidesExamplePropert
     protected $cacheCommand;
 
     /**
-     * @label Event/TYPO3/CacheCleared:marker.page_uid
+     * @label Event:TYPO3:cache_cleared.marker.page_uid
      * @marker
      *
      * @var int
