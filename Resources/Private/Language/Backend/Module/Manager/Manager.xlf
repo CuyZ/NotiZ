@@ -25,6 +25,13 @@
                 <source>Edit notification</source>
             </trans-unit>
 
+            <trans-unit id="global.disable_notification">
+                <source>Disable this notification</source>
+            </trans-unit>
+            <trans-unit id="global.enable_notification">
+                <source>Enable this notification</source>
+            </trans-unit>
+
             <trans-unit id="global.show_event_details">
                 <source>Show details of the event “%s”</source>
             </trans-unit>

@@ -68,7 +68,7 @@ class NotificationStatus implements StatusProviderInterface, SingletonInterface
         return [
             Container::get(
                 Status::class,
-                LocalizationService::localize('Backend/Report/Report:status.definition'),
+                LocalizationService::localize('Backend/Report:status.definition'),
                 $viewMessage->render(),
                 $viewButtons->render(),
                 $result->hasErrors()

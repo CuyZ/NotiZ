@@ -5,14 +5,14 @@
 <f:section name="Content">
     <nz:backend.module.link module="Administration" class="btn btn-default">
         <nz:core.icon identifier="actions-system-extension-configure" />
-        <nz:t key="Backend/Report/Report:status.definition.button.configure_extension" />
+        <nz:t key="Backend/Report:status.definition.button.configure_extension" />
     </nz:backend.module.link>
 
     <f:if condition="{result.flattenedErrors}">
         <f:else>
             <nz:backend.module.link module="Manager" class="btn btn-default">
                 <nz:core.icon identifier="tx-notiz-icon" />
-                <nz:t key="Backend/Report/Report:status.definition.button.manage_notifications" />
+                <nz:t key="Backend/Report:status.definition.button.manage_notifications" />
             </nz:backend.module.link>
         </f:else>
     </f:if>

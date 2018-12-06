@@ -21,7 +21,8 @@
     <p>
         <f:link.action controller="Backend\Manager\ListNotifications"
                        class="btn btn-default"
-                       arguments="{notificationIdentifier: notification.notificationDefinition.identifier}">
+                       arguments="{notificationIdentifier: notification.notificationDefinition.identifier}"
+                       title="{nz:t(key: 'Backend/Module/Manager:global.show_list_view')}">
             <nz:core.icon identifier="actions-view-go-back" />
             <nz:t key="Backend/Module/Manager:global.show_list_view" />
         </f:link.action>

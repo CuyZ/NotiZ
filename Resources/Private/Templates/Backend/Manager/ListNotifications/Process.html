@@ -18,7 +18,8 @@
 
         <p>
             <f:link.action controller="Backend\Manager\ListNotificationTypes"
-                           class="btn btn-default">
+                           class="btn btn-default"
+                           title="{nz:t(key: 'Backend/Module/Manager:global.show_notification_types')}">
                 <nz:core.icon identifier="actions-view-go-back" />
                 <nz:t key="Backend/Module/Manager:global.show_notification_types" />
             </f:link.action>
@@ -157,8 +158,9 @@
                 <div class="btn-group" role="group">
                     <nz:notification.link.activate notification="{notification}"
                                                      class="btn btn-default"
-                                                     eventDefinition="{eventDefinition}">
-                        <f:if condition="{notification.active}">
+                                                     eventDefinition="{eventDefinition}"
+                                                   title="{nz:t(key: 'Backend/Module/Manager:global.{f:if(condition: \'{notification.active}\', then: \'disable_notification\', else: \'enable_notification\')}')}">
+                    <f:if condition="{notification.active}">
                             <f:then><nz:core.icon identifier="actions-edit-hide" /></f:then>
                             <f:else><nz:core.icon identifier="actions-edit-unhide" /></f:else>
                         </f:if>
