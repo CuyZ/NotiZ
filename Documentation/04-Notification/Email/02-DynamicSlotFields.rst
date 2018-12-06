@@ -147,9 +147,9 @@ When calling the view-helper in inline-mode, it will render the processed value.
 Conditional rendering
 '''''''''''''''''''''
 
-If a given slot may be unregistered, the view-helper can be used like a
-basic conditional Fluid view-helper. In this case, a new Fluid variable
-containing the processed value is accessible: ``{slotValue}``
+A slot may be unregistered. In that case, the view-helper can be used like a
+basic conditional Fluid view-helper; a new Fluid variable containing the
+processed value is then accessible: ``{slotValue}``.
 
 .. code-block:: html
 
