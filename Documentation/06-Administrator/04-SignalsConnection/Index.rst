@@ -14,8 +14,8 @@ See chapter “:ref:`notification-email-objectCustomization`”.
 Definition was built
 --------------------
 
-Definition can be used to initialize things in another workflow. Therefore, a
-signal is dispatched when the definition object is built.
+The definition can be used in another workflow to customize a process.
+Therefore, a signal is dispatched when the definition object is built.
 
 .. important::
 
