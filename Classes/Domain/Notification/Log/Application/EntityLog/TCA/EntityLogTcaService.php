@@ -45,7 +45,7 @@ class EntityLogTcaService extends NotificationTcaService
      */
     public function getLogLevelsDescriptions()
     {
-        $lll = 'Notification/Log/Entity';
+        $lll = 'Notification/Log';
 
         $levels = array_map(
             function ($level) use ($lll) {

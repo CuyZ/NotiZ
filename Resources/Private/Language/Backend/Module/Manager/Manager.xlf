@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+            <trans-unit id="mlang_tabs_tab">
+                <source>Manager</source>
+            </trans-unit>
+            <trans-unit id="mlang_labels_tabdescr">
+                <source>Show, create and edit notifications.</source>
+            </trans-unit>
+            <trans-unit id="mlang_labels_tablabel">
+                <source>Managing notifications</source>
+            </trans-unit>
+
+            <!--#################################-->
+            <!--###  BACKEND MODULE - GLOBAL  ###-->
+            <!--#################################-->
+
+            <trans-unit id="global.create_notification">
+                <source>Create a new notification</source>
+            </trans-unit>
+            <trans-unit id="global.edit_notification">
+                <source>Edit notification</source>
+            </trans-unit>
+
+            <trans-unit id="global.disable_notification">
+                <source>Disable this notification</source>
+            </trans-unit>
+            <trans-unit id="global.enable_notification">
+                <source>Enable this notification</source>
+            </trans-unit>
+
+            <trans-unit id="global.show_event_details">
+                <source>Show details of the event “%s”</source>
+            </trans-unit>
+
+            <trans-unit id="global.show_notification_types">
+                <source>Show all notification types</source>
+            </trans-unit>
+            <trans-unit id="global.show_list_view">
+                <source>Go to list view</source>
+            </trans-unit>
+
+            <trans-unit id="global.open_new_tab">
+                <source>Open in a new tab</source>
+            </trans-unit>
+
+            <trans-unit id="global.notification.no_title">
+                <source>[No title]</source>
+            </trans-unit>
+            <trans-unit id="global.notification.no_event">
+                <source>[No event]</source>
+            </trans-unit>
+
+            <!--##############################################-->
+            <!--###  BACKEND MODULE - CREATE NOTIFICATION  ###-->
+            <!--##############################################-->
+
+            <trans-unit id="choose_notification_type">
+                <source>Choose the notification type:</source>
+            </trans-unit>
+
+            <!--#################################-->
+            <!--###  BACKEND MODULE - LAYOUT  ###-->
+            <!--#################################-->
+
+            <trans-unit id="layout.show_notifications">
+                <source>Notifications</source>
+            </trans-unit>
+            <trans-unit id="layout.show_events">
+                <source>Events</source>
+            </trans-unit>
+
+            <!--######################################-->
+            <!--###  BACKEND MODULE - LIST EVENTS  ###-->
+            <!--######################################-->
+
+            <trans-unit id="list_events.title">
+                <source>Available events</source>
+            </trans-unit>
+
+            <trans-unit id="list_events.introduction">
+                <source><![CDATA[
+                    Below are listed all the available events that you can bind your notifications on.
+
+                    You can use the provided buttons to directly create a notification using the wanted event.
+                ]]></source>
+            </trans-unit>
+
+            <trans-unit id="list_events.show_event_details">
+                <source>Show details of this event.</source>
+            </trans-unit>
+
+            <trans-unit id="list_events.create_custom_event.title">
+                <source>Documentation</source>
+            </trans-unit>
+            <trans-unit id="list_events.create_custom_event">
+                <source>How to create a new event</source>
+            </trans-unit>
+
+            <!--#############################################-->
+            <!--###  BACKEND MODULE - LIST NOTIFICATIONS  ###-->
+            <!--#############################################-->
+
+            <trans-unit id="list_notifications.table.header.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="list_notifications.table.header.event">
+                <source>Event</source>
+            </trans-unit>
+            <trans-unit id="list_notifications.table.header.action">
+                <source>Action</source>
+            </trans-unit>
+            <trans-unit id="list_notifications.table.disabled">
+                <source>Disabled notifications</source>
+            </trans-unit>
+
+            <trans-unit id="list_notifications.action.show">
+                <source>Show details of the notification “%s”</source>
+            </trans-unit>
+
+            <trans-unit id="list_notifications.no_notification_found">
+                <source>No notification of type “%s” was found.</source>
+            </trans-unit>
+            <trans-unit id="list_notifications.notification_listing">
+                <source>Below are listed all the notifications of type “%s”.</source>
+            </trans-unit>
+
+            <trans-unit id="list_notifications.notification_type_not_found">
+                <source>Notification of type “%s” was not found in the definition.</source>
+            </trans-unit>
+            <trans-unit id="list_notifications.notification_not_found">
+                <source>Notification of type “%s” with identifier “%s” could not be found.</source>
+            </trans-unit>
+
+            <trans-unit id="list_notifications.active_filters">
+                <source>Active filters:</source>
+            </trans-unit>
+            <trans-unit id="list_notifications.remove_event_filter">
+                <source>Remove filters</source>
+            </trans-unit>
+
+            <!--#################################################-->
+            <!--###  BACKEND MODULE - LIST NOTIFICATION TYPES ###-->
+            <!--#################################################-->
+
+            <trans-unit id="list_notification_types.module.title">
+                <source>Notification types</source>
+            </trans-unit>
+
+            <trans-unit id="list_notification_types.introduction">
+                <source><![CDATA[
+                    Here you can find the list of every notification type that can be managed within this module.
+
+                    Use the provided buttons to list existing notifications or create new ones.
+                ]]></source>
+            </trans-unit>
+
+            <trans-unit id="list_notification_types.no_notification_type_found.title">
+                <source>Whoops!</source>
+            </trans-unit>
+            <trans-unit id="list_notification_types.no_notification_type_found.body.editor">
+                <source><![CDATA[
+                    Something went wrong, notifications could not be displayed.
+
+                    If the problem persists, contact your administrator.
+                ]]></source>
+            </trans-unit>
+            <trans-unit id="list_notification_types.no_notification_type_found.body.admin">
+                <source><![CDATA[
+                    Something went wrong, notifications could not be displayed.
+
+                    Your definition probably contains an error.
+                ]]></source>
+            </trans-unit>
+
+            <trans-unit id="list_notification_types.notification.no_description">
+                <source>No description available…</source>
+            </trans-unit>
+
+            <trans-unit id="list_notification_types.show_notifications">
+                <source>Show %s notification(s)</source>
+            </trans-unit>
+
+            <!--##################################-->
+            <!--###  BACKEND MODULE - PREVIEW  ###-->
+            <!--##################################-->
+
+            <trans-unit id="preview.preview_error">
+                <source><![CDATA[
+                    An error occurred during the generation of the preview.
+
+                    Click on the button below to have more details about the error.
+                ]]></source>
+            </trans-unit>
+            <trans-unit id="preview.preview_error.editor">
+                <source><![CDATA[
+                    An error occurred during the generation of the preview.
+
+                    If the problem persists, contact your administrator.
+                ]]></source>
+            </trans-unit>
+            <trans-unit id="preview.show_error_details">
+                <source>Show error details</source>
+            </trans-unit>
+
+            <!--#####################################-->
+            <!--###  BACKEND MODULE - SHOW EVENT  ###-->
+            <!--#####################################-->
+
+            <trans-unit id="show_event.title">
+                <source>Event&#160;&#8211;&#160;%s</source>
+            </trans-unit>
+
+            <trans-unit id="show_event.show_notifications_bound_to_event">
+                <source>Show notifications of type “%s” that are bound to this event.</source>
+            </trans-unit>
+            <trans-unit id="show_event.notifications_bound_to_event">
+                <source>Notifications bound to this event</source>
+            </trans-unit>
+
+            <trans-unit id="show_event.event_not_found">
+                <source>The event “%s” was not found in the definition.</source>
+            </trans-unit>
+
+            <!--#################################################-->
+            <!--###  BACKEND MODULE - NOTIFICATION - GENERAL  ###-->
+            <!--#################################################-->
+
+            <trans-unit id="notification.general.general_information">
+                <source>General information about the notification</source>
+            </trans-unit>
+
+            <trans-unit id="notification.general.event">
+                <source>Event</source>
+            </trans-unit>
+
+            <trans-unit id="notification.general.created_by">
+                <source>Created by</source>
+            </trans-unit>
+
+            <trans-unit id="notification.general.description">
+                <source>Description</source>
+            </trans-unit>
+
+            <!--############################################-->
+            <!--###  BACKEND MODULE - SHOW ENTITY EMAIL  ###-->
+            <!--############################################-->
+
+            <trans-unit id="notification.show_entity_email.information_mail">
+                <source>Information about the email</source>
+            </trans-unit>
+
+            <trans-unit id="notification.show_entity_email.recipients">
+                <source>Recipients</source>
+            </trans-unit>
+            <trans-unit id="notification.show_entity_email.provided_recipients">
+                <source>Provided recipients</source>
+            </trans-unit>
+            <trans-unit id="notification.show_entity_email.recipients.to">
+                <source>To</source>
+            </trans-unit>
+            <trans-unit id="notification.show_entity_email.recipients.cc">
+                <source>Copy</source>
+            </trans-unit>
+            <trans-unit id="notification.show_entity_email.recipients.bcc">
+                <source>Blind copy</source>
+            </trans-unit>
+
+            <trans-unit id="notification.show_entity_email.preview">
+                <source>Preview</source>
+            </trans-unit>
+
+            <!--##########################################-->
+            <!--###  BACKEND MODULE - SHOW ENTITY LOG  ###-->
+            <!--##########################################-->
+
+            <trans-unit id="notification.show_entity_log.information_log">
+                <source>Information about the log</source>
+            </trans-unit>
+
+            <trans-unit id="notification.show_entity_log.preview">
+                <source>Preview</source>
+            </trans-unit>
+
+            <!--############################################-->
+            <!--###  BACKEND MODULE - SHOW ENTITY SLACK  ###-->
+            <!--############################################-->
+
+            <trans-unit id="notification.show_entity_slack.information_slack">
+                <source>Information about the Slack message</source>
+            </trans-unit>
+
+            <trans-unit id="notification.show_entity_slack.bot">
+                <source>Bot</source>
+            </trans-unit>
+            <trans-unit id="notification.show_entity_slack.bot.name">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="notification.show_entity_slack.bot.avatar">
+                <source>Avatar</source>
+            </trans-unit>
+
+            <trans-unit id="notification.show_entity_slack.channel">
+                <source>Channel</source>
+            </trans-unit>
+            <trans-unit id="notification.show_entity_slack.channel.target">
+                <source>Target</source>
+            </trans-unit>
+            <trans-unit id="notification.show_entity_slack.channel.webhook_url">
+                <source>WebHook URL</source>
+            </trans-unit>
+
+            <trans-unit id="notification.show_entity_slack.preview">
+                <source>Preview</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

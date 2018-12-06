@@ -1,8 +1,8 @@
 notiz {
     notifications {
         entityEmail {
-            label = Notification/Email/Entity:title
-            description = Notification/Email/Entity:description
+            label = Notification/Email:title
+            description = Notification/Email:description
 
             className = CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification
 
@@ -34,7 +34,7 @@ notiz {
                      */
                     layouts {
                         htmlDefault {
-                            label = Notification/Email/Entity:definition.view.layout.default.label
+                            label = Notification/Email:definition.view.layout.default.label
                             path = Html/Default
                         }
                     }

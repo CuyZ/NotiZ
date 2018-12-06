@@ -20,7 +20,7 @@ use CuyZ\Notiz\Core\Notification\TCA\EntityTcaWriter;
 
 class EntityLogTcaWriter extends EntityTcaWriter
 {
-    const LOG_LLL = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Log/Entity.xlf';
+    const LOG_LLL = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Log/Log.xlf';
 
     /**
      * @return string
@@ -62,9 +62,9 @@ class EntityLogTcaWriter extends EntityTcaWriter
                     'showitem' => '
                         error_message,
                         title, description, sys_language_uid, hidden,
-                        --div--;' . self::LLL_TABS . ':tab.event,
+                        --div--;' . self::LLL . ':tab.event,
                             event, event_configuration_flex,
-                        --div--;' . self::LLL_TABS . ':tab.channel,
+                        --div--;' . self::LLL . ':tab.channel,
                             channel,
                         --div--;' . self::LOG_LLL . ':tab.log,
                             --palette--;' . self::LOG_LLL . ':palette.content;content,

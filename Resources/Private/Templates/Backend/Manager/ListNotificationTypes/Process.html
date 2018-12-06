@@ -17,7 +17,7 @@ link is added to list all the notifications.
     <div class="container">
         <div class="page-header">
             <h1>
-                <nz:t key="Backend/Module/Manager/ListNotificationTypes:module.title" />
+                <nz:t key="Backend/Module/Manager:list_notification_types.module.title" />
             </h1>
         </div>
 
@@ -25,7 +25,7 @@ link is added to list all the notifications.
             <f:if condition="{definition.listableNotifications}">
                 <f:then>
                     <f:be.infobox>
-                        <nz:t key="Backend/Module/Manager/ListNotificationTypes:introduction" wrapLines="1" />
+                        <nz:t key="Backend/Module/Manager:list_notification_types.introduction" wrapLines="1" />
                     </f:be.infobox>
 
                     <f:for each="{definition.listableNotifications -> nz:iterator.chunk(count: 2)}" as="notifications">
@@ -39,26 +39,26 @@ link is added to list all the notifications.
                     </f:for>
                 </f:then>
                 <f:else>
-                    <f:be.infobox state="1" title="{nz:t(key: 'Backend/Module/Manager/ListNotificationTypes:no_notification_type_found.title')}">
+                    <f:be.infobox state="1" title="{nz:t(key: 'Backend/Module/Manager:list_notification_types.no_notification_type_found.title')}">
                         <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
                             <f:then>
                                 <p>
-                                    <nz:t key="Backend/Module/Manager/ListNotificationTypes:no_notification_type_found.body.admin" wrapLines="1" />
+                                    <nz:t key="Backend/Module/Manager:list_notification_types.no_notification_type_found.body.admin" wrapLines="1" />
                                 </p>
 
                                 <nz:backend.module.link module="Administration"
                                                         controller="Backend\Administration\ShowDefinition"
-                                                        title="{nz:t(key: 'Backend/Module/Administration/Index/Index:show_definition_tree')}"
+                                                        title="{nz:t(key: 'Backend/Module/Administration:index.show_definition_tree')}"
                                                         class="btn btn-default"
                                                         frame="1"
                                                         parentFrame="1">
                                     <nz:core.icon identifier="actions-pagetree" />
-                                    <nz:t key="Backend/Module/Administration/Index/Index:show_definition_tree" />
+                                    <nz:t key="Backend/Module/Administration:index.show_definition_tree" />
                                 </nz:backend.module.link>
                             </f:then>
                             <f:else>
                                 <p>
-                                    <nz:t key="Backend/Module/Manager/ListNotificationTypes:no_notification_type_found.body.editor" wrapLines="1" />
+                                    <nz:t key="Backend/Module/Manager:list_notification_types.no_notification_type_found.body.editor" wrapLines="1" />
                                 </p>
                             </f:else>
                         </f:if>
@@ -77,7 +77,7 @@ A block that shows information about a given notification type.
         <div class="panel-heading">
             <h2 class="panel-title text-center">
                 <f:link.action controller="Backend\Manager\ListNotifications"
-                               title="{nz:t(key: 'Backend/Module/Manager/ListNotificationTypes:show_notifications', args: {0: notification.processor.totalNumber})}"
+                               title="{nz:t(key: 'Backend/Module/Manager:list_notification_types.show_notifications', args: {0: notification.processor.totalNumber})}"
                                arguments="{notificationIdentifier: notification.identifier}">
                     {notification.label}
                 </f:link.action>
@@ -91,7 +91,7 @@ A block that shows information about a given notification type.
                 </f:then>
                 <f:else>
                     <em>
-                        <nz:t key="Backend/Module/Manager/ListNotificationTypes:notification.no_description" />
+                        <nz:t key="Backend/Module/Manager:list_notification_types.notification.no_description" />
                     </em>
                 </f:else>
             </f:if>
@@ -100,13 +100,13 @@ A block that shows information about a given notification type.
         <div class="panel-footer text-center">
             <nz:notification.link.create notificationDefinition="{notification}"
                                                 class="btn btn-default"
-                                                title="{nz:t(key: 'Backend/Module/Manager/Global:create_notification')}">
+                                                title="{nz:t(key: 'Backend/Module/Manager:global.create_notification')}">
                 <nz:core.icon identifier="actions-add" />
-                <nz:t key="Backend/Module/Manager/Global:create_notification" />
+                <nz:t key="Backend/Module/Manager:global.create_notification" />
             </nz:notification.link.create>
 
             <f:if condition="{notification.processor.totalNumber}">
-                <f:alias map="{label: '{nz:t(key: \'Backend/Module/Manager/ListNotificationTypes:show_notifications\', args: {0: notification.processor.totalNumber})}'}">
+                <f:alias map="{label: '{nz:t(key: \'Backend/Module/Manager:list_notification_types.show_notifications\', args: {0: notification.processor.totalNumber})}'}">
                     <f:link.action controller="Backend\Manager\ListNotifications"
                                    class="btn btn-default"
                                    title="{label}"

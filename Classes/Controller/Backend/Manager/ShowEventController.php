@@ -34,7 +34,7 @@ class ShowEventController extends ManagerController
 
         if (!$definition->hasEventFromFullIdentifier($eventIdentifier)) {
             $this->addErrorMessage(
-                'Backend/Module/Manager/ShowEvent:event_not_found',
+                'Backend/Module/Manager:show_event.event_not_found',
                 $eventIdentifier
             );
 

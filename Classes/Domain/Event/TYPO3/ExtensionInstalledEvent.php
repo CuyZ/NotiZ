@@ -27,7 +27,7 @@ use TYPO3\CMS\Extensionmanager\Utility\ListUtility;
 class ExtensionInstalledEvent extends AbstractEvent implements ProvidesExampleProperties
 {
     /**
-     * @label Event/TYPO3/ExtensionInstalled:marker.key
+     * @label Event/TYPO3:extension_installed.marker.key
      * @marker
      *
      * @var string
@@ -35,7 +35,7 @@ class ExtensionInstalledEvent extends AbstractEvent implements ProvidesExamplePr
     protected $key;
 
     /**
-     * @label Event/TYPO3/ExtensionInstalled:marker.title
+     * @label Event/TYPO3:extension_installed.marker.title
      * @marker
      *
      * @var string
@@ -43,7 +43,7 @@ class ExtensionInstalledEvent extends AbstractEvent implements ProvidesExamplePr
     protected $title;
 
     /**
-     * @label Event/TYPO3/ExtensionInstalled:marker.description
+     * @label Event/TYPO3:extension_installed.marker.description
      * @marker
      *
      * @var string
@@ -51,7 +51,7 @@ class ExtensionInstalledEvent extends AbstractEvent implements ProvidesExamplePr
     protected $description;
 
     /**
-     * @label Event/TYPO3/ExtensionInstalled:marker.version
+     * @label Event/TYPO3:extension_installed.marker.version
      * @marker
      *
      * @var string

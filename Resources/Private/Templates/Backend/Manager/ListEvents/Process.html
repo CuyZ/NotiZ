@@ -15,20 +15,20 @@
     <div class="container">
         <div class="page-header">
             <h1>
-                <nz:t key="Backend/Module/Manager/ListEvents:title" />
+                <nz:t key="Backend/Module/Manager:list_events.title" />
                 <span class="btn btn-sm"
                       data-trigger="hover"
                       data-toggle="popover-hover"
                       data-html="true"
-                      title="{nz:t(key: 'Backend/Module/Manager/ListEvents:create_custom_event.title')}"
-                      data-content="<a href='{documentationUrl}' target='_blank' class='nz-external-link'>{nz:t(key: 'Backend/Module/Manager/ListEvents:create_custom_event')}</a>">
+                      title="{nz:t(key: 'Backend/Module/Manager:list_events.create_custom_event.title')}"
+                      data-content="<a href='{documentationUrl}' target='_blank' class='nz-external-link'>{nz:t(key: 'Backend/Module/Manager:list_events.create_custom_event')}</a>">
                     <nz:core.icon identifier="info-circle" />
                 </span>
             </h1>
         </div>
 
         <f:be.infobox>
-            <nz:t key="Backend/Module/Manager/ListEvents:introduction" wrapLines="1" />
+            <nz:t key="Backend/Module/Manager:list_events.introduction" wrapLines="1" />
         </f:be.infobox>
 
         <div class="row">
@@ -46,7 +46,7 @@
                                 <td>
                                     <f:link.action controller="Backend\Manager\ShowEvent"
                                                    arguments="{eventIdentifier: event.fullIdentifier}"
-                                                   title="{nz:t(key: 'Backend/Module/Manager/ListEvents:show_event_details')}">{event.label}</f:link.action>
+                                                   title="{nz:t(key: 'Backend/Module/Manager:list_events.show_event_details')}">{event.label}</f:link.action>
 
                                     <f:if condition="{event.notificationNumber}">
                                         <span class="badge">{event.notificationNumber}</span>
@@ -62,7 +62,7 @@
                                 <td align="right">
                                     <div class="btn-group" role="group">
                                         <a href="#"
-                                           title="{nz:t(key: 'Backend/Module/Manager/Global:create_notification')}"
+                                           title="{nz:t(key: 'Backend/Module/Manager:global.create_notification')}"
                                            class="link-create-notification btn btn-default"
                                            data-toggle="modal"
                                            data-target="#create-notification"
@@ -73,7 +73,7 @@
                                         <f:link.action controller="Backend\Manager\ShowEvent"
                                                        arguments="{eventIdentifier: event.fullIdentifier}"
                                                        class="btn btn-default"
-                                                       title="{nz:t(key: 'Backend/Module/Manager/ListEvents:show_event_details')}">
+                                                       title="{nz:t(key: 'Backend/Module/Manager:list_events.show_event_details')}">
                                             <nz:core.icon identifier="actions-view" />
                                         </f:link.action>
                                     </div>

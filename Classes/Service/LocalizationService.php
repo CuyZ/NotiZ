@@ -47,7 +47,7 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  *
  * ...will actually fetch:
  *
- * `LLL:EXT:my_extension/Resources/Private/Language/Events/MyEvent.xlf:some_event.label`
+ * `LLL:EXT:my_extension/Resources/Private/Language/Events/MyEvent/MyEvent.xlf:some_event.label`
  *
  * To register a new extension key to be used in the shorten version, put the
  * following code in your `ext_localconf.php` file:
@@ -144,6 +144,14 @@ class LocalizationService implements SingletonInterface
     {
         return array_map(
             function ($extensionKey) use ($file, $key) {
+                /**
+                 * We consider that each translation directory must have a file
+                 * named after the directory.
+                 *
+                 * For example, the path `Foo/Bar` will generate the path `Foo/Bar/Bar.xlf`
+                 */
+                $file = $file . '/' . end(explode('/', $file));
+
                 return 'LLL:EXT:' . $extensionKey . '/Resources/Private/Language/' . $file . '.xlf:' . $key;
             },
             $this->extensionKeys

@@ -35,7 +35,7 @@ use TYPO3\CMS\Form\Mvc\Persistence\FormPersistenceManagerInterface;
 class DispatchFormNotificationEvent extends AbstractEvent implements ProvidesExampleProperties
 {
     /**
-     * @label Event/Form/DispatchFormNotification:marker.form_values
+     * @label Event/Form:dispatch_form_notification.marker.form_values
      * @marker
      *
      * @var array
@@ -43,7 +43,7 @@ class DispatchFormNotificationEvent extends AbstractEvent implements ProvidesExa
     protected $formValues;
 
     /**
-     * @label Event/Form/DispatchFormNotification:marker.form_runtime
+     * @label Event/Form:dispatch_form_notification.marker.form_runtime
      * @marker
      *
      * @var FormRuntime
@@ -51,7 +51,7 @@ class DispatchFormNotificationEvent extends AbstractEvent implements ProvidesExa
     protected $formRuntime;
 
     /**
-     * @label Event/Form/DispatchFormNotification:marker.controller_context
+     * @label Event/Form:dispatch_form_notification.marker.controller_context
      * @marker
      *
      * @var ControllerContext

@@ -4,27 +4,27 @@
     <thead>
         <tr>
             <th colspan="2">
-                <nz:t key="Backend/Module/Manager/Notification/General:general_information" />
+                <nz:t key="Backend/Module/Manager:notification.general.general_information" />
             </th>
         </tr>
     </thead>
 
     <tr>
         <td>
-            <nz:t key="Backend/Module/Manager/Notification/General:event" />
+            <nz:t key="Backend/Module/Manager:notification.general.event" />
         </td>
         <td>
             <f:if condition="{nz:notification.hasEvent(notification: notification)}">
                 <f:then>
                     <f:link.action controller="Backend\Manager\ShowEvent"
                                    arguments="{eventIdentifier: notification.eventDefinition.fullIdentifier}"
-                                   title="{nz:t(key: 'Backend/Module/Manager/Global:show_event_details', args: {0: notification.eventDefinition.label})}">
+                                   title="{nz:t(key: 'Backend/Module/Manager:global.show_event_details', args: {0: notification.eventDefinition.label})}">
                         {notification.eventDefinition.label} ({notification.eventDefinition.group.label})
                     </f:link.action>
                 </f:then>
                 <f:else>
                     <em>
-                        <nz:t key="Backend/Module/Manager/Global:notification.no_event" />
+                        <nz:t key="Backend/Module/Manager:global.notification.no_event" />
                     </em>
                 </f:else>
             </f:if>
@@ -32,7 +32,7 @@
     </tr>
     <tr>
         <td>
-            <nz:t key="Backend/Module/Manager/Notification/General:created_by" />
+            <nz:t key="Backend/Module/Manager:notification.general.created_by" />
         </td>
         <td>
             <b:avatar backendUser="{notification.backendUser.uid}" />
@@ -45,7 +45,7 @@
     <f:if condition="{notification.description}">
         <tr>
             <td>
-                <nz:t key="Backend/Module/Manager/Notification/General:description" />
+                <nz:t key="Backend/Module/Manager:notification.general.description" />
             </td>
             <td>
                 <f:format.nl2br>{notification.description}</f:format.nl2br>

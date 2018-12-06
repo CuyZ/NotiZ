@@ -15,8 +15,8 @@ notiz {
                  * Event firing whenever a TYPO3 extension is installed.
                  */
                 extensionInstalled {
-                    label = Event/TYPO3/ExtensionInstalled:title
-                    description = Event/TYPO3/ExtensionInstalled:description
+                    label = Event/TYPO3:extension_installed.title
+                    description = Event/TYPO3:extension_installed.description
 
                     className = CuyZ\Notiz\Domain\Event\TYPO3\ExtensionInstalledEvent
 
@@ -35,8 +35,8 @@ notiz {
                  * Event firing whenever the TYPO3 caches are cleared.
                  */
                 cachesCleared {
-                    label = Event/TYPO3/CacheCleared:title
-                    description = Event/TYPO3/CacheCleared:description
+                    label = Event/TYPO3:cache_cleared.title
+                    description = Event/TYPO3:cache_cleared.description
 
                     className = CuyZ\Notiz\Domain\Event\TYPO3\CachesClearedEvent
 

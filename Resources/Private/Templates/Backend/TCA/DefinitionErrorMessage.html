@@ -1,15 +1,15 @@
 {namespace core=TYPO3\CMS\Core\ViewHelpers}
 {namespace nz=CuyZ\Notiz\ViewHelpers}
 
-<f:be.infobox title="{nz:t(key: 'Backend/Module/Administration/Definition/Error:info_box.title')}" state="2">
+<f:be.infobox title="{nz:t(key: 'Backend/Module/Administration:definition.error.info_box.title')}" state="2">
     <p>
         <b>
-            <nz:t key="Backend/Module/Administration/Definition/Error:info_box.error.header" />
+            <nz:t key="Backend/Module/Administration:definition.error.info_box.error.header" />
         </b>
     </p>
 
     <p>
-        <nz:t key="Backend/Module/Administration/Definition/Error:info_box.error.body" />
+        <nz:t key="Backend/Module/Administration:definition.error.info_box.error.body" />
     </p>
 
     <p>
@@ -18,7 +18,7 @@
                                 frame="1"
                                 parentFrame="1">
             <nz:core.icon identifier="actions-system-extension-configure" />
-            <nz:t key="Backend/Module/Administration/Definition/Error:errors_link.label"
+            <nz:t key="Backend/Module/Administration:definition.error.errors_link.label"
                   args="{0: '{result.flattenedErrors -> f:count()}'}" />
         </nz:backend.module.link>
     </p>

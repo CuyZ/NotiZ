@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+            <trans-unit id="mlang_tabs_tab">
+                <source>Administration</source>
+            </trans-unit>
+            <trans-unit id="mlang_labels_tabdescr">
+                <source>Configure the extension and show the full definition tree.</source>
+            </trans-unit>
+            <trans-unit id="mlang_labels_tablabel">
+                <source>Notification administration</source>
+            </trans-unit>
+
+            <!--#################################-->
+            <!--###  BACKEND MODULE - LAYOUT  ###-->
+            <!--#################################-->
+
+            <trans-unit id="layout.menu.index">
+                <source>Index</source>
+            </trans-unit>
+            <trans-unit id="layout.menu.definition">
+                <source>Definition</source>
+            </trans-unit>
+
+            <!--##########################################-->
+            <!--###       BACKEND MODULE - INDEX       ###-->
+            <!--##########################################-->
+
+            <trans-unit id="index.block.definition_tree.title">
+                <source>Definition tree</source>
+            </trans-unit>
+            <trans-unit id="index.block.definition_tree.content">
+                <source><![CDATA[
+                The definition tree represents the configuration for events and notifications; it will be used by the whole system to handle notifications dispatching.
+
+                A valid dindex.efinition is essential for the extension to run correctly, so you need to pay attention when modifying it; any error will prevent all notifications from being dispatched.
+
+                The definition can be edited by configuring so-called “sources” and “processors”.
+                ]]></source>
+            </trans-unit>
+            <trans-unit id="index.block.definition_tree.action.show">
+                <source>Show definition tree</source>
+            </trans-unit>
+            <trans-unit id="index.block.definition_tree.action.doc_add_definition">
+                <source>How to add custom definition</source>
+            </trans-unit>
+
+            <trans-unit id="index.block.documentation.title">
+                <source>Documentation</source>
+            </trans-unit>
+            <trans-unit id="index.block.documentation.content">
+                <source><![CDATA[
+                The documentation contains useful information both for administrators and editors.
+
+                By reading it, you will find how to:
+                ]]></source>
+            </trans-unit>
+            <trans-unit id="index.block.documentation.list.1">
+                <source>create and edit notifications in the TYPO3 backend;</source>
+            </trans-unit>
+            <trans-unit id="index.block.documentation.list.2">
+                <source>register new events for your notifications;</source>
+            </trans-unit>
+            <trans-unit id="index.block.documentation.list.3">
+                <source>customize notifications behaviour;</source>
+            </trans-unit>
+            <trans-unit id="index.block.documentation.list.4">
+                <source>and more…</source>
+            </trans-unit>
+            <trans-unit id="index.block.definition_tree.action.documentation_url">
+                <source>Read documentation</source>
+            </trans-unit>
+
+            <trans-unit id="index.block.configuration.title">
+                <source>Extension configuration</source>
+            </trans-unit>
+            <trans-unit id="index.block.configuration.content">
+                <source><![CDATA[
+                The extension configuration is generally accessed via the extension manager.
+
+                In there you can configure low-level features of the extension.
+                ]]></source>
+            </trans-unit>
+            <trans-unit id="index.block.configuration.action.configure">
+                <source>Configure extension</source>
+            </trans-unit>
+
+            <trans-unit id="index.block.feedback.title">
+                <source>Feedback</source>
+            </trans-unit>
+            <trans-unit id="index.block.feedback.content">
+                <source><![CDATA[
+                You found an issue?
+
+                You would like to suggest something?
+
+                Please, tell us! We will be pleased to look into it.
+                ]]></source>
+            </trans-unit>
+            <trans-unit id="index.block.feedback.action.report">
+                <source>Send feedback</source>
+            </trans-unit>
+
+            <trans-unit id="index.block.support.title">
+                <source>Support us</source>
+            </trans-unit>
+            <trans-unit id="index.block.support.content">
+                <source><![CDATA[
+                We are not asking for money to use this extension, but kind words are the best reward you can give us.
+
+                You can do the following:
+                ]]></source>
+            </trans-unit>
+            <trans-unit id="index.block.support.action.github">
+                <source>Give a ★ to the GitHub repository</source>
+            </trans-unit>
+            <trans-unit id="index.block.support.action.email">
+                <source>Send us an email</source>
+            </trans-unit>
+            <trans-unit id="index.block.support.action.slack">
+                <source>Join us on Slack</source>
+            </trans-unit>
+            <trans-unit id="index.block.support.action.slack.popover.title">
+                <source>You don't have an account?</source>
+            </trans-unit>
+            <trans-unit id="index.block.support.action.slack.popover.content">
+                <source>Create an account for the TYPO3 slack at %s.</source>
+            </trans-unit>
+            <trans-unit id="index.block.support.action.twitter_rommsteinz">
+                <source>Follow Romain Canon on Twitter</source>
+            </trans-unit>
+            <trans-unit id="index.block.support.action.twitter_lopom">
+                <source>Follow Nathan Boiron on Twitter</source>
+            </trans-unit>
+
+            <!--###########################################-->
+            <!--###  BACKEND MODULE - DEFINITION ERROR  ###-->
+            <!--###########################################-->
+
+            <trans-unit id="definition.error.info_box.title">
+                <source>NotiZ definition error</source>
+            </trans-unit>
+
+            <trans-unit id="definition.error.info_box.error.header">
+                <source>One or more definition errors were found.</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.error.body">
+                <source>You need to fix these errors in order for NotiZ to work properly.</source>
+            </trans-unit>
+
+            <trans-unit id="definition.error.info_box.editor.title">
+                <source>Configuration error</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.editor.error.body">
+                <source>Errors were found in the configuration of the module, please contact your administrator.</source>
+            </trans-unit>
+
+            <trans-unit id="definition.error.info_box.exception.header">
+                <source>A PHP error occurred during the definition building process.</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.body">
+                <source>You need to fix this error in order for NotiZ to work properly. Have you tried:</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.body.help_1">
+                <source>Clearing TYPO3 caches?</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.body.help_2">
+                <source>Clearing caches from the install tool?</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.body.help_3">
+                <source>Analyze the error below and try to fix it yourself?</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.body.help_4">
+                <source><![CDATA[Asking for help in <a href="https://github.com/CuyZ/NotiZ/issues" target="_blank">https://github.com/CuyZ/NotiZ/issues</a>? Please provide error.as much information as possible.]]></source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.body.help_5">
+                <source>Praying the god of TYPO3?</source>
+            </trans-unit>
+
+            <trans-unit id="definition.error.info_box.exception.details">
+                <source>Exception details</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.details.code">
+                <source>Exception code</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.details.message">
+                <source>Exception message</source>
+            </trans-unit>
+
+            <trans-unit id="definition.error.info_box.exception.details_advanced">
+                <source>Advanced details</source>
+            </trans-unit>
+            <trans-unit id="definition.error.info_box.exception.open_in_new_tab">
+                <source>Open in new tab</source>
+            </trans-unit>
+
+            <trans-unit id="definition.error.errors_link.label">
+                <source>Show %s error(s)</source>
+            </trans-unit>
+            <trans-unit id="definition.error.errors_count">
+                <source>%s error(s)</source>
+            </trans-unit>
+
+            <!--##########################################-->
+            <!--###  BACKEND MODULE - SHOW DEFINITION  ###-->
+            <!--##########################################-->
+
+            <trans-unit id="definition.show.refresh">
+                <source>Refresh</source>
+            </trans-unit>
+
+            <trans-unit id="definition.show.definition_tree.root">
+                <source>NotiZ Definition</source>
+            </trans-unit>
+            <trans-unit id="definition.show.definition_tree.empty_value">
+                <source>empty</source>
+            </trans-unit>
+            <trans-unit id="definition.show.definition_tree.label_show_full_path">
+                <source>Show full path to this definition value.</source>
+            </trans-unit>
+            <trans-unit id="definition.show.definition_tree.message_code">
+                <source>Code: %s</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

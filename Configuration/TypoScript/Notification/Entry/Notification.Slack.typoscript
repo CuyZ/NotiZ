@@ -1,8 +1,8 @@
 notiz {
     notifications {
         entitySlack {
-            label = Notification/Slack/Entity:title
-            description = Notification/Slack/Entity:description
+            label = Notification/Slack:title
+            description = Notification/Slack:description
 
             className = CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\EntitySlackNotification
 

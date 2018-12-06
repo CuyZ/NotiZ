@@ -7,10 +7,10 @@
         <f:be.infobox state="1">
             <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
                 <f:then>
-                    <nz:t key="Backend/Module/Manager/Preview:preview_error" wrapLines="1" />
+                    <nz:t key="Backend/Module/Manager:preview.preview_error" wrapLines="1" />
                 </f:then>
                 <f:else>
-                    <nz:t key="Backend/Module/Manager/Preview:preview_error.editor" wrapLines="1" />
+                    <nz:t key="Backend/Module/Manager:preview.preview_error.editor" wrapLines="1" />
                 </f:else>
             </f:if>
         </f:be.infobox>
@@ -18,7 +18,7 @@
         <f:if condition="{nz:backend.module.hasAccess(module: 'Administration')}">
             <div class="text-center">
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#errorDetails" aria-expanded="false" aria-controls="errorDetails">
-                    <nz:t key="Backend/Module/Manager/Preview:show_error_details" />
+                    <nz:t key="Backend/Module/Manager:preview.show_error_details" />
                 </button>
             </div>
 

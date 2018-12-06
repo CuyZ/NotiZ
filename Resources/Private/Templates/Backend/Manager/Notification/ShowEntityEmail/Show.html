@@ -34,29 +34,29 @@ General information about the mail notification.
     <thead>
         <tr>
             <th colspan="2">
-                <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:information_mail" />
+                <nz:t key="Backend/Module/Manager:notification.show_entity_email.information_mail" />
             </th>
         </tr>
     </thead>
 
     <tr>
         <td>
-            <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients" />
+            <nz:t key="Backend/Module/Manager:notification.show_entity_email.recipients" />
         </td>
         <td>
             <dl>
                 <dt>
-                    <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients.to" />
+                    <nz:t key="Backend/Module/Manager:notification.show_entity_email.recipients.to" />
                 </dt>
                 <dd>{notification.sendTo}</dd>
 
                 <dt>
-                    <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients.cc" />
+                    <nz:t key="Backend/Module/Manager:notification.show_entity_email.recipients.cc" />
                 </dt>
                 <dd>{notification.sendCc}</dd>
 
                 <dt>
-                    <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients.bcc" />
+                    <nz:t key="Backend/Module/Manager:notification.show_entity_email.recipients.bcc" />
                 </dt>
                 <dd>{notification.sendBcc}</dd>
             </dl>
@@ -65,26 +65,26 @@ General information about the mail notification.
 
     <tr>
         <td>
-            <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:provided_recipients" />
+            <nz:t key="Backend/Module/Manager:notification.show_entity_email.provided_recipients" />
         </td>
         <td>
             <dl>
                 <dt>
-                    <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients.to" />
+                    <nz:t key="Backend/Module/Manager:notification.show_entity_email.recipients.to" />
                 </dt>
                 <dd>
                     <f:render section="ProvidedRecipients" arguments="{recipients: notification.selectedSendToProvided}" />
                 </dd>
 
                 <dt>
-                    <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients.cc" />
+                    <nz:t key="Backend/Module/Manager:notification.show_entity_email.recipients.cc" />
                 </dt>
                 <dd>
                     <f:render section="ProvidedRecipients" arguments="{recipients: notification.selectedSendCcProvided}" />
                 </dd>
 
                 <dt>
-                    <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:recipients.bcc" />
+                    <nz:t key="Backend/Module/Manager:notification.show_entity_email.recipients.bcc" />
                 </dt>
                 <dd>
                     <f:render section="ProvidedRecipients" arguments="{recipients: notification.selectedSendBccProvided}" />
@@ -101,10 +101,10 @@ Preview of the whole mail body.
     <thead>
         <tr>
             <th colspan="2">
-                <nz:t key="Backend/Module/Manager/Notification/ShowEntityEmail:preview" />
+                <nz:t key="Backend/Module/Manager:notification.show_entity_email.preview" />
 
                 <a href="{f:uri.action(action: 'preview', arguments: {notificationIdentifier: notification.uid})}"
-                   title="{nz:t(key: 'Backend/Module/Manager/Global:open_new_tab')}"
+                   title="{nz:t(key: 'Backend/Module/Manager:global.open_new_tab')}"
                    target="_blank">
                     <nz:core.icon identifier="actions-window-open" />
                 </a>

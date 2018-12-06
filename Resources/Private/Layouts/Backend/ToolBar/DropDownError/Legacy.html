@@ -2,7 +2,7 @@
 
 <ul class="dropdown-list">
     <li class="text-danger">
-        <nz:t key="Backend/Toolbar/Error:exception" />
+        <nz:t key="Backend/Toolbar:exception" />
     </li>
 
     <f:if condition="{isAdmin}">
@@ -12,13 +12,13 @@
             <dl class="dl-horizontal">
                 <f:if condition="{exception.code}">
                     <dt>
-                        <nz:t key="Backend/Toolbar/Error:exception.code" />
+                        <nz:t key="Backend/Toolbar:exception.code" />
                     </dt>
                     <dt>{exception.code}</dt>
                 </f:if>
 
                 <dt>
-                    <nz:t key="Backend/Toolbar/Error:exception.message" />
+                    <nz:t key="Backend/Toolbar:exception.message" />
                 </dt>
                 <dt>{exception.message}</dt>
             </dl>

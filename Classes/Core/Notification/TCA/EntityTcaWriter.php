@@ -30,8 +30,7 @@ abstract class EntityTcaWriter implements SingletonInterface
 
     const ENTITY_NOTIFICATION = '__entityNotification';
 
-    const LLL_FIELDS = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Entity/Fields.xlf';
-    const LLL_TABS = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Entity/Tabs.xlf';
+    const LLL = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Entity/Entity.xlf';
 
     /**
      * Contains the name of the TCA table.
@@ -114,7 +113,7 @@ abstract class EntityTcaWriter implements SingletonInterface
      */
     protected function getChannelLabel()
     {
-        return self::LLL_FIELDS . ':field.channel';
+        return self::LLL . ':field.channel';
     }
 
     /**
@@ -260,7 +259,7 @@ abstract class EntityTcaWriter implements SingletonInterface
         $commonColumns = [
             'title' => [
                 'exclude' => 1,
-                'label' => self::LLL_FIELDS . ":field.title",
+                'label' => self::LLL . ":field.title",
                 'config' => [
                     'type' => 'input',
                     'size' => 30,
@@ -270,7 +269,7 @@ abstract class EntityTcaWriter implements SingletonInterface
 
             'description' => [
                 'exclude' => 1,
-                'label' => self::LLL_FIELDS . ":field.description",
+                'label' => self::LLL . ":field.description",
                 'config' => [
                     'type' => 'text',
                     'cols' => 40,
@@ -282,7 +281,7 @@ abstract class EntityTcaWriter implements SingletonInterface
 
             'event' => [
                 'exclude' => 1,
-                'label' => self::LLL_FIELDS . ":field.event",
+                'label' => self::LLL . ":field.event",
                 'l10n_mode' => 'exclude',
                 'l10n_display' => 'defaultAsReadonly',
                 'config' => [
@@ -298,7 +297,7 @@ abstract class EntityTcaWriter implements SingletonInterface
              * @see \CuyZ\Notiz\Backend\FormEngine\DataProvider\EventConfigurationProvider
              */
             'event_configuration_flex' => [
-                'label' => self::LLL_FIELDS . ':field.event_configuration',
+                'label' => self::LLL . ':field.event_configuration',
                 'config' => [
                     'type' => 'flex',
                     'ds_pointerField' => 'event',
@@ -327,7 +326,7 @@ abstract class EntityTcaWriter implements SingletonInterface
 
             'markers' => [
                 'exclude' => 1,
-                'label' => self::LLL_FIELDS . ":field.markers",
+                'label' => self::LLL . ":field.markers",
                 'l10n_display' => 'defaultAsReadonly',
                 'config' => [
                     'type' => 'user',

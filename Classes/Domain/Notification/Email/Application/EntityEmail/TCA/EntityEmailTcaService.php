@@ -63,11 +63,11 @@ class EntityEmailTcaService extends NotificationTcaService
         );
 
         if (!empty($eventRecipients)) {
-            $this->appendOptionGroup($eventRecipients, LocalizationService::localize('Notification/Email/Entity:field.recipients.event_recipients'));
+            $this->appendOptionGroup($eventRecipients, LocalizationService::localize('Notification/Email:field.recipients.event_recipients'));
         }
 
         if (!empty($globalRecipients)) {
-            $this->appendOptionGroup($globalRecipients, LocalizationService::localize('Notification/Email/Entity:field.recipients.global_recipients'));
+            $this->appendOptionGroup($globalRecipients, LocalizationService::localize('Notification/Email:field.recipients.global_recipients'));
         }
 
         $recipients = array_merge_recursive($eventRecipients, $globalRecipients);
@@ -97,7 +97,7 @@ class EntityEmailTcaService extends NotificationTcaService
         foreach ($layouts as $key => $layout) {
             $label = $layout->hasLabel()
                 ? $layout->getLabel()
-                : LocalizationService::localize('Notification/Email/Entity:field.layout.undefined_label', [$key]);
+                : LocalizationService::localize('Notification/Email:field.layout.undefined_label', [$key]);
 
             $parameters['items'][] = [
                 $label,

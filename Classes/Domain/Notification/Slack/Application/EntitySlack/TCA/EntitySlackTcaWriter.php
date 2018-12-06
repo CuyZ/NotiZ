@@ -21,7 +21,7 @@ use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 class EntitySlackTcaWriter extends EntityTcaWriter
 {
-    const SLACK_LLL = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Slack/Entity.xlf';
+    const SLACK_LLL = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Slack/Slack.xlf';
 
     /**
      * @return array
@@ -55,9 +55,9 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'showitem' => '
                 error_message,
                 title, description, sys_language_uid, hidden,
-                --div--;' . self::LLL_TABS . ':tab.event,
+                --div--;' . self::LLL . ':tab.event,
                     event, event_configuration_flex,
-                --div--;' . self::LLL_TABS . ':tab.channel,
+                --div--;' . self::LLL . ':tab.channel,
                     channel,
                 --div--;' . self::SLACK_LLL . ':tab.content,
                     --palette--;' . self::SLACK_LLL . ':palette.content;content,
