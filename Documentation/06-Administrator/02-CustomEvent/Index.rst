@@ -59,7 +59,7 @@ method. This method takes the signal/hook arguments as parameters.
     If one needs a more specific implementation for an event, the interface
     ``\CuyZ\Notiz\Core\Event\Event`` can be implemented instead.
 
-Here is an event bound to our previous sent signal:
+Here is an event bound to our previously sent signal:
 
 .. code-block:: php
 
