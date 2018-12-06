@@ -65,11 +65,11 @@ define([
                         } else {
                             timer.defaultTick();
                         }
+
+                        timer.launch();
                     })
                     .fail(menu.error)
                     .always(function () {
-                        timer.launch();
-
                         if (typeof callback !== 'undefined') {
                             callback();
                         }
@@ -99,8 +99,6 @@ define([
              * message is displayed.
              */
             error: function () {
-                timer.fastTick();
-
                 // Reset the icon with its initial value.
                 icon.update();
 

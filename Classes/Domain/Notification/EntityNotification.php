@@ -172,17 +172,23 @@ abstract class EntityNotification extends AbstractEntity implements Notification
      */
     public function getSwitchActivationUri(EventDefinition $eventDefinition = null)
     {
+        $arguments = [
+            'notificationType' => $this->getNotificationDefinition()->getIdentifier(),
+            'notificationIdentifier' => $this->getUid(),
+        ];
+
+        if ($eventDefinition) {
+            $arguments['filterEvent'] = $eventDefinition->getFullIdentifier();
+        }
+
         $managerModuleHandler = Container::get(ManagerModuleHandler::class);
 
         return $managerModuleHandler
             ->getUriBuilder()
             ->forController('Backend\\Manager\\NotificationActivation')
             ->forAction('process')
-            ->withArguments([
-                'notificationType' => $this->getNotificationDefinition()->getIdentifier(),
-                'notificationIdentifier' => $this->getUid(),
-                'filterEvent' => $eventDefinition->getFullIdentifier(),
-            ]);
+            ->withArguments($arguments)
+            ->build();
     }
 
     /**
