@@ -144,7 +144,7 @@ Global recipients can also be defined and will be available in any email
 notification; a good use-case is adding an administrator address as a global
 recipient.
 
-They can can be configured in the definition at the path:
+They can be configured in the definition at the path:
 ``notiz.notifications.entityEmail.settings.globalRecipients``.
 
 .. figure:: /Images/04-Notification/Email/notification-email-recipients.png

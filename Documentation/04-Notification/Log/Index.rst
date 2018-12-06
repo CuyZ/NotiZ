@@ -46,7 +46,7 @@ The logger that will do the actual sending must be selected.
 .. figure:: /Images/04-Notification/Log/notification-log-channel.png
     :alt: Log tab channel
 
-Log content
+Log configuration
 -----------
 
 On this tab, the log message and level can be configured.
@@ -71,4 +71,4 @@ On this tab, the log message and level can be configured.
 .. figure:: /Images/04-Notification/Log/notification-log-configuration.png
     :alt: Log tab configuration
 
-.. _PSR-3 Log Level: http://www.php-fig.org/psr/psr-3/#psrlogloglevel
+.. _PSR-3 Log Level: https://www.php-fig.org/psr/psr-3/#5-psrlogloglevel

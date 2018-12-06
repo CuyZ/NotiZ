@@ -17,12 +17,12 @@ Three phases need to be done in order to register custom events:
 1. Dispatch the event
 ---------------------
 
-The most common way to send an event is to use TYPO3 signal API. This signal
+The most common way to send an event is to use the TYPO3 signal API. This signal
 can afterwards be used to dispatch notifications.
 
 .. note::
 
-    Hooks may also be used, even if signals should be preferred.
+    Hooks may also be used, but signals should be preferred.
 
 .. code-block:: php
 
@@ -56,7 +56,7 @@ method. This method takes the signal/hook arguments as parameters.
 
 .. hint::
 
-    If one need a more specific implementation for an event, the interface
+    If one needs a more specific implementation for an event, the interface
     ``\CuyZ\Notiz\Core\Event\Event`` can be implemented instead.
 
 Here is an event bound to our previous sent signal:
@@ -111,7 +111,7 @@ Here is an event bound to our previous sent signal:
     some notifications fields, for instance:
 
     - In an email, they will be available in the subject and body;
-    - In a log, the will be available in the message.
+    - In a log, they will be available in the message.
     - …and so on.
 
     For instance, the property ``$name`` from the example above can be used as

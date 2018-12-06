@@ -17,7 +17,7 @@ Provided events
 The extension comes with several events out of the box. They can be used right
 after installation.
 
-See chapter “:ref:`events-providedEvent`” for a full list of all provided
+See chapter “:ref:`events-providedEvent`” for a full list of provided
 events.
 
 Add custom event
