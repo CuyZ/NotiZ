@@ -1,7 +1,7 @@
 notiz {
     eventGroups {
         form {
-            label = Event/Form/Form:event_group.title
+            label = Event/Form:event_group.title
 
             events {
                 /*
@@ -12,8 +12,8 @@ notiz {
                 * notification dispatch finisher is submitted.
                 */
                 dispatchFormNotification {
-                    label = Event/Form/Form:dispatch_form_notification.title
-                    description = Event/Form/Form:dispatch_form_notification.description
+                    label = Event/Form:dispatch_form_notification.title
+                    description = Event/Form:dispatch_form_notification.description
 
                     className = CuyZ\Notiz\Domain\Event\Form\DispatchFormNotificationEvent
 

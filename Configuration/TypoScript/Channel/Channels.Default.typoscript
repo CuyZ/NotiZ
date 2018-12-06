@@ -3,21 +3,21 @@ notiz {
         email {
             typo3 {
                 className = CuyZ\Notiz\Domain\Channel\Email\TYPO3\EmailChannel
-                label = Channel/Email/Email:title
+                label = Channel/Email:title
             }
         }
 
         logs {
             typo3 {
                 className = CuyZ\Notiz\Domain\Channel\Log\Typo3LogChannel
-                label = Channel/Log/Log:title
+                label = Channel/Log:title
             }
         }
 
         slack {
             typo3 {
                 className = CuyZ\Notiz\Domain\Channel\Slack\Typo3SlackChannel
-                label = Channel/Slack/Slack:title
+                label = Channel/Slack:title
             }
         }
     }

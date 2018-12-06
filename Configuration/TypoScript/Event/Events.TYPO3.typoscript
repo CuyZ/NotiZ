@@ -35,8 +35,8 @@ notiz {
                  * Event firing whenever the TYPO3 caches are cleared.
                  */
                 cachesCleared {
-                    label = Event:TYPO3:cache_cleared.title
-                    description = Event:TYPO3:cache_cleared.description
+                    label = Event/TYPO3:cache_cleared.title
+                    description = Event/TYPO3:cache_cleared.description
 
                     className = CuyZ\Notiz\Domain\Event\TYPO3\CachesClearedEvent
 
