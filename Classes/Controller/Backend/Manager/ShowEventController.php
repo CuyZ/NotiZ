@@ -38,7 +38,7 @@ class ShowEventController extends ManagerController
                 $eventIdentifier
             );
 
-            $this->forward('process', 'ListEvents');
+            $this->forward('process', 'Backend\Manager\ListEvents');
         }
 
         $eventDefinition = $definition->getEventFromFullIdentifier($eventIdentifier);
