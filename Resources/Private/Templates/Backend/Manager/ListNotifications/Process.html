@@ -35,7 +35,7 @@
             <f:be.infobox state="-1">
                 <div>
                     <strong>
-                        <nz:t key="Backend/Module/Manager/ListNotifications:active_filters" />
+                        <nz:t key="Backend/Module/Manager:list_notifications.active_filters" />
                     </strong>
 
                     <f:link.action controller="Backend\Manager\ShowEvent"
@@ -48,7 +48,7 @@
                                    arguments="{notificationIdentifier: notificationDefinition.identifier}"
                                    title="{nz:t(key: 'Backend/Module/Manager/ListEvents:show_event_details')}">
                         <nz:core.icon identifier="actions-close" />
-                        <nz:t key="Backend/Module/Manager/ListNotifications:remove_event_filter" />
+                        <nz:t key="Backend/Module/Manager:list_notifications.remove_event_filter" />
                     </f:link.action>
                 </div>
             </f:be.infobox>
@@ -99,7 +99,7 @@
                 <f:if condition="{notifications.inactive -> f:count()} > 0">
                     <tr>
                         <th colspan="4">
-                            Disabled notifications
+                            <nz:t key="Backend/Module/Manager:list_notifications.table.disabled" />
                         </th>
                     </tr>
 

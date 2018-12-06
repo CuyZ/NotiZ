@@ -106,6 +106,9 @@
             <trans-unit id="list_notifications.table.header.action">
                 <source>Action</source>
             </trans-unit>
+            <trans-unit id="list_notifications.table.disabled">
+                <source>Disabled notifications</source>
+            </trans-unit>
 
             <trans-unit id="list_notifications.action.show">
                 <source>Show details of the notification “%s”</source>
@@ -123,6 +126,13 @@
             </trans-unit>
             <trans-unit id="list_notifications.notification_not_found">
                 <source>Notification of type “%s” with identifier “%s” could not be found.</source>
+            </trans-unit>
+
+            <trans-unit id="list_notifications.active_filters">
+                <source>Active filters:</source>
+            </trans-unit>
+            <trans-unit id="list_notifications.remove_event_filter">
+                <source>Remove filters</source>
             </trans-unit>
 
             <!--#################################################-->

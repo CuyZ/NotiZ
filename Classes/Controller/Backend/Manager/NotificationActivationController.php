@@ -33,7 +33,7 @@ class NotificationActivationController extends ManagerController
 
         if (!$definition->hasNotification($notificationType)) {
             $this->addErrorMessage(
-                'Backend/Module/Manager/ListNotifications:notification_type_not_found',
+                'Backend/Module/Manager:notification_type_not_found',
                 $notificationType
             );
 
