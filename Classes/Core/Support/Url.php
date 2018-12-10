@@ -20,9 +20,9 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 class Url
 {
-    const DOCUMENTATION_ROOT = 'https://github.com/CuyZ/NotiZ/blob/%s/Documentation/Markdown/README.md#-notiz--documentation';
-    const DOCUMENTATION_CREATE_CUSTOM_EVENT = 'https://github.com/CuyZ/NotiZ/blob/%s/Documentation/Markdown/Events/Create-a-custom-event.md#create-a-custom-event';
-    const DOCUMENTATION_ADD_TYPOSCRIPT_DEFINITION = 'https://github.com/CuyZ/NotiZ/blob/%s/Documentation/Markdown/Developers/Add-TypoScript-definition.md#add-typoscript-definition';
+    const DOCUMENTATION_ROOT = 'https://docs.typo3.org/typo3cms/extensions/notiz/%s/';
+    const DOCUMENTATION_CREATE_CUSTOM_EVENT = self::DOCUMENTATION_ROOT . '06-Administrator/02-CustomEvent/Index.html';
+    const DOCUMENTATION_ADD_TYPOSCRIPT_DEFINITION = self::DOCUMENTATION_ROOT . '06-Administrator/01-Definition/02-AddFileDefinition.html';
 
     const REPOSITORY = 'https://github.com/CuyZ/NotiZ';
     const NEW_ISSUE = 'https://github.com/CuyZ/NotiZ/issues/new';

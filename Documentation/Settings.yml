@@ -5,7 +5,7 @@
 ---
 conf.py:
   copyright: 2018
-  project: NotiZ
+  project: NotiZ • Powerful notification dispatcher
   version: 0.6.0-beta
   release: 0.6.0-beta
   latex_documents:
