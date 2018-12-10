@@ -5,8 +5,6 @@
 Example & Screenshots
 =====================
 
-@todo notiz-demo.gif
-
 In this simple example we are going to create a notification to send an email
 every time an extension is installed in the backend.
 
