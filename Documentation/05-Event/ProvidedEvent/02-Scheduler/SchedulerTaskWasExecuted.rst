@@ -17,7 +17,7 @@ The following properties can be used in notifications:
 Property     Description
 ============ ===================================================================
 uid          Uid of the task, for instance ``123``
-title        Title of the task, for instance `Reporting`
+title        Title of the task, for instance ``Reporting``
 description  Description of the task
 data         Arbitrary data that can be filled by the task and used as markers
 result       Result of the task process (should be a boolean value)
