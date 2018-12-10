@@ -1,5 +1,236 @@
 # ![NotiZ](ext_icon.svg) NotiZ – ChangeLog
 
+## v1.0.0 - 10 December 2018
+
+> ℹ️ *Click on a changelog entry to see more details.*
+
+### New features
+
+<details>
+<summary>Handle disabled notifications in the manager</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *26 nov 2018 / [eb40888](https://github.com/CuyZ/NotiZ/commit/eb408888ac5abb8d337b68a26e4364d4bd1e23b4) / [#159](https://github.com/CuyZ/NotiZ/issues/159)*
+
+> 
+</details>
+
+<details>
+<summary>Filter notifications by event and show a clear button</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *20 nov 2018 / [c2c83c6](https://github.com/CuyZ/NotiZ/commit/c2c83c6f3fdec122d17b2b7df6aff16fac3a0bd8) / [#158](https://github.com/CuyZ/NotiZ/issues/158)*
+
+> 
+</details>
+
+<details>
+<summary>Introduce simple definition file registration</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *12 nov 2018 / [444a2bb](https://github.com/CuyZ/NotiZ/commit/444a2bb01bf8b46f5fcbd0efc792c168cf721eb2) / [#151](https://github.com/CuyZ/NotiZ/issues/151)*
+
+> Files containing definition values can now be added in a dramatically
+> more simple way: registering a definition component service is not
+> absolutely needed anymore.
+> 
+> One can just add the following piece of code to the `ext_localconf.php`
+> file of his/her extension:
+> 
+> ```
+> $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['NotiZ']['Definition']['Source'][\CuyZ\Notiz\Domain\Definition\Builder\Component\Source\TypoScriptDefinitionSource::class][]
+>     = 'EXT:my_extension/Configuration/TypoScript/MyCustomDefinition.typoscript';
+> ```
+> 
+> Please note that the following method has been renamed. Calls to this
+> method must be changed as well.
+> 
+> ```
+> \CuyZ\Notiz\Domain\Definition\Builder\Component\Source\TypoScriptDefinitionSource::addTypoScriptFilePath($path)
+> ```
+> 
+> now becomes:
+> 
+> ```
+> \CuyZ\Notiz\Domain\Definition\Builder\Component\Source\TypoScriptDefinitionSource::addFilePath($path)
+> ```
+</details>
+
+### Bugs fixed
+
+<details>
+<summary>Forward to correct controller when an event is not found</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *06 déc 2018 / [ef0032a](https://github.com/CuyZ/NotiZ/commit/ef0032a62fefa067c851eec22dddb86b7061e27e) / [#165](https://github.com/CuyZ/NotiZ/issues/165)*
+
+> 
+</details>
+
+<details>
+<summary>Correctly check if notification entity is editable</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *06 déc 2018 / [3e832c4](https://github.com/CuyZ/NotiZ/commit/3e832c4a404b137f28d76af07017339a5235bd4f) / [#163](https://github.com/CuyZ/NotiZ/issues/163)*
+
+> 
+</details>
+
+<details>
+<summary>Prevent toolbar Ajax request to run again when it failed</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *28 nov 2018 / [30a51b0](https://github.com/CuyZ/NotiZ/commit/30a51b0b7fd2d8cc4cd615bb4a8f1bd27356b698) / [#161](https://github.com/CuyZ/NotiZ/issues/161)*
+
+> In order to prevent potential error log spamming, when the toolbar Ajax
+> request fails, it won't automatically run again.
+</details>
+
+<details>
+<summary>Fix the activation link generation</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *26 nov 2018 / [77a8bce](https://github.com/CuyZ/NotiZ/commit/77a8bcea0d1901b0fc11f8426bc4a388dae3e1cc) / [#160](https://github.com/CuyZ/NotiZ/issues/160)*
+
+> 
+</details>
+
+<details>
+<summary>Allow access to array values from a scalar index</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *12 nov 2018 / [801c531](https://github.com/CuyZ/NotiZ/commit/801c531f47cb2be7cef4962297ed033bc64c70f9) / [#156](https://github.com/CuyZ/NotiZ/issues/156)*
+
+> For an array like this:
+> ```
+> $data = [
+>     ['foo' => 'value 0'],
+>     ['foo' => 'value 1'],
+> ];
+> ```
+> 
+> It is now possible to use this marker: `{data.0.foo}`
+</details>
+
+<details>
+<summary>Use correct display-condition syntax for TYPO3 v8</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *12 nov 2018 / [e49cebf](https://github.com/CuyZ/NotiZ/commit/e49cebfa4306a367255e2870649fd293b605215c) / [#152](https://github.com/CuyZ/NotiZ/issues/152)*
+
+> 
+</details>
+
+<details>
+<summary>Move body slots TCA to graceful data provider</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *25 oct 2018 / [47dc15e](https://github.com/CuyZ/NotiZ/commit/47dc15e317ec19d49b8a68c8a8bb3fc706332eca) / [#148](https://github.com/CuyZ/NotiZ/issues/148)*
+
+> Prevents a crash of the whole TYPO3 backend under certain circumstances.
+</details>
+
+<details>
+<summary>Handle empty form finisher list</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *24 oct 2018 / [662d569](https://github.com/CuyZ/NotiZ/commit/662d5696ba839659a2f8214e76e378ebd36e68b1) / [#147](https://github.com/CuyZ/NotiZ/issues/147)*
+
+> 
+</details>
+
+<details>
+<summary>Move event configuration TCA to graceful data provider</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *24 oct 2018 / [4d07418](https://github.com/CuyZ/NotiZ/commit/4d07418e71457a2cc4528c37b7f34610f78afcc9) / [#146](https://github.com/CuyZ/NotiZ/issues/146)*
+
+> Prevents a crash of the whole TYPO3 backend under certain circumstances.
+</details>
+
+<details>
+<summary>Set the default value of <code>custom_bot</code> column to <code>1</code></summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *06 oct 2018 / [3c13e9f](https://github.com/CuyZ/NotiZ/commit/3c13e9ff9663cd523593e04b9b6acf5c5389b5d0) / [#140](https://github.com/CuyZ/NotiZ/issues/140)*
+
+> When there are no configured Slack bot, the `custom_bot` checkbox does
+> not appear and is set to `false`. The custom bot could not be detected.
+</details>
+
+### Important
+
+**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:** 
+
+<details>
+<summary>Merge languages files</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *06 déc 2018 / [6c50b84](https://github.com/CuyZ/NotiZ/commit/6c50b848cc6efad7f8afc5d281e0574512215250) / [#164](https://github.com/CuyZ/NotiZ/issues/164)*
+
+> The project started to have too many language files and it became hard
+> to understand where to put translations.
+> 
+> Other languages were removed to instead use the TYPO3 translation
+> server: https://translation.typo3.org/
+</details>
+
+<details>
+<summary>Remove definition components identifier</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *25 oct 2018 / [a9c836b](https://github.com/CuyZ/NotiZ/commit/a9c836bac284c571ca12a59456c65706db7a83c1) / [#150](https://github.com/CuyZ/NotiZ/issues/150)*
+
+> Adding new definition components (source or processor) doesn't require
+> an identifier anymore.
+> 
+> Because these components are actually classes that must implement their
+> own interfaces, the class name itself is a unique identifier.
+> 
+> Current code that uses the following methods should remove the first
+> parameter and leave the second one:
+> 
+> ```
+> \CuyZ\Notiz\Core\Definition\Builder\Component\DefinitionComponents::addSource($className)
+> \CuyZ\Notiz\Core\Definition\Builder\Component\DefinitionComponents::addProcessor($className)
+> ```
+</details>
+
+### Others
+
+<details>
+<summary>Rewrite documentation to RST format</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *10 déc 2018 / [9f514b5](https://github.com/CuyZ/NotiZ/commit/9f514b502e83c811e98ff065bd152771dba2da3e) / [#162](https://github.com/CuyZ/NotiZ/issues/162)*
+
+> Co-authored-by: Nathan Boiron <nathan.boiron@gmail.com>
+</details>
+
+<details>
+<summary>Use new marker syntax</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *25 oct 2018 / [d163c65](https://github.com/CuyZ/NotiZ/commit/d163c6591aff1adc95cac64000c4310ec90cfa31) / [#149](https://github.com/CuyZ/NotiZ/issues/149)*
+
+> 
+</details>
+
+<details>
+<summary>Move exception details panel into partial</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *18 oct 2018 / [74e2834](https://github.com/CuyZ/NotiZ/commit/74e2834f0180e819c575b5688b30fe8b50f5dd9b) / [#145](https://github.com/CuyZ/NotiZ/issues/145)*
+
+> 
+</details>
+
+<details>
+<summary>Separate definition error handling in TCA</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *18 oct 2018 / [68f11e3](https://github.com/CuyZ/NotiZ/commit/68f11e39809ce1080da9b6961ea4ba7395048f7f) / [#144](https://github.com/CuyZ/NotiZ/issues/144)*
+
+> Changes the way the definition error is handled within entity
+> notifications.
+> 
+> The old way consisted in adding display conditions to every field to
+> check if the definition contains error.
+> 
+> Now, a data provider does the same job, and replaces the whole TCA if an
+> error is found.
+</details>
+
+<details>
+<summary>Make exception return type consistent</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *06 oct 2018 / [5896793](https://github.com/CuyZ/NotiZ/commit/5896793c982c7aec35ac44faafabf0337b2c6d01) / [#142](https://github.com/CuyZ/NotiZ/issues/142)*
+
+> Using `static` was not correct and would make IDE not understand the
+> type of the exception in all situations.
+</details>
+
 ## v0.6.0 - 01 October 2018
 
 > ℹ️ *Click on a changelog entry to see more details.*
