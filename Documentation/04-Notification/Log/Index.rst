@@ -47,7 +47,7 @@ The logger that will do the actual sending must be selected.
     :alt: Log tab channel
 
 Log configuration
------------
+-----------------
 
 On this tab, the log message and level can be configured.
 

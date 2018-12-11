@@ -7,7 +7,7 @@ We are not asking for money to use this extension, but kind words are the best r
 
 You can do the following:
 
-- `Give a ★ to the GitHub repository <https://github.com/CuyZ/NotiZ>`_
+- `Give a star to the GitHub repository <https://github.com/CuyZ/NotiZ>`_
 
 - `Send us an email <mailto:team.cuyz@gmail.com>`_
 
