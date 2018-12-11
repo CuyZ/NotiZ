@@ -1,5 +1,18 @@
 # ![NotiZ](ext_icon.svg) NotiZ – ChangeLog
 
+## v1.0.1 - 11 December 2018
+
+> ℹ️ *Click on a changelog entry to see more details.*
+### Others
+
+<details>
+<summary>Fix documentation settings and build warnings</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *11 Dec 2018 / [947af7e](https://github.com/CuyZ/NotiZ/commit/947af7e5ce5cc4f779826e1b1593b013d4f00823) / [#167](https://github.com/CuyZ/NotiZ/issues/167)*
+
+> 
+</details>
+
 ## v1.0.0 - 10 December 2018
 
 > ℹ️ *Click on a changelog entry to see more details.*
