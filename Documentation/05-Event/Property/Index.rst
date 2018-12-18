@@ -54,6 +54,14 @@ Email
 An email property contains a valid email address. These properties can be used
 in the recipient fields of an email notification.
 
+.. hint::
+
+    Value of property annotated with ``@email`` can be:
+
+    - Without the name: ``john@example.com, max@example.com``
+    - With the name: ``John Smith <john@example.com>, Max Mustermann <max@example.com>``
+
+
 .. code-block:: php
     :caption: ``EXT:my_extension/Classes/Domain/Event/MyCustomEvent.php``
 
