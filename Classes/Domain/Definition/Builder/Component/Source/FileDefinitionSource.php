@@ -18,6 +18,7 @@ namespace CuyZ\Notiz\Domain\Definition\Builder\Component\Source;
 
 use CuyZ\Notiz\Core\Definition\Builder\Component\Source\DefinitionSource;
 use CuyZ\Notiz\Core\Exception\FileNotFoundException;
+use Generator;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -33,7 +34,7 @@ abstract class FileDefinitionSource implements DefinitionSource, SingletonInterf
     /**
      * @var array
      */
-    protected $filePaths = [];
+    private $filePaths = [];
 
     /**
      * When the class is initialized, configured files are automatically
@@ -47,26 +48,48 @@ abstract class FileDefinitionSource implements DefinitionSource, SingletonInterf
     /**
      * Registers a path to a file that should contain definition for the API.
      *
+     * The highest the given priority is, the sooner the file will be handled.
+     * Files with the lowest priority have more chance to override definition
+     * values.
+     *
      * @param string $path
+     * @param int $priority
      * @return $this
      *
      * @throws FileNotFoundException
      */
-    public function addFilePath($path)
+    public function addFilePath($path, $priority = 0)
     {
-        if (isset($this->filePaths[$path])) {
+        if (!isset($this->filePaths[$priority])) {
+            $this->filePaths[$priority] = [];
+            krsort($this->filePaths);
+        }
+
+        if (isset($this->filePaths[$priority][$path])) {
             return $this;
         }
 
         $absolutePath = GeneralUtility::getFileAbsFileName($path);
 
         if (false === file_exists($absolutePath)) {
-            throw FileNotFoundException::definitionSourceTypoScriptFileNotFound($path);
+            throw FileNotFoundException::definitionSourceFileNotFound($path);
         }
 
-        $this->filePaths[$path] = $absolutePath;
+        $this->filePaths[$priority][$path] = $absolutePath;
 
         return $this;
+    }
+
+    /**
+     * @return Generator
+     */
+    final protected function filePaths()
+    {
+        foreach ($this->filePaths as $priority => $paths) {
+            foreach ($paths as $path) {
+                yield $priority => $path;
+            }
+        }
     }
 
     /**

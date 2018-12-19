@@ -92,7 +92,7 @@ class TypoScriptDefinitionSource extends FileDefinitionSource
     {
         $content = '';
 
-        foreach ($this->filePaths as $path) {
+        foreach ($this->filePaths() as $path) {
             $content .= GeneralUtility::getUrl($path) . LF;
         }
 
