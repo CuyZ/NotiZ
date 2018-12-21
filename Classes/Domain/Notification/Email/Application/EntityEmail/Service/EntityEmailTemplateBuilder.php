@@ -101,6 +101,8 @@ class EntityEmailTemplateBuilder
 
         $view->assign('layout', $layout->getPath());
         $view->assign('markers', $this->markers);
+        $view->assign('notification', $this->notification);
+        $view->assign('event', $this->event);
 
         return $view->renderWithSlots($this->notification->getBodySlots(), $this->markers);
     }
