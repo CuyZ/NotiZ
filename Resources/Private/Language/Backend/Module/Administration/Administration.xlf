@@ -36,7 +36,7 @@
                 <source><![CDATA[
                 The definition tree represents the configuration for events and notifications; it will be used by the whole system to handle notifications dispatching.
 
-                A valid dindex.efinition is essential for the extension to run correctly, so you need to pay attention when modifying it; any error will prevent all notifications from being dispatched.
+                A valid definition is essential for the extension to run correctly, so you need to pay attention when modifying it; any error will prevent all notifications from being dispatched.
 
                 The definition can be edited by configuring so-called “sources” and “processors”.
                 ]]></source>
