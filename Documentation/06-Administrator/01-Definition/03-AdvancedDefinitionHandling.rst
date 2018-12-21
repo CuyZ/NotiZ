@@ -57,6 +57,20 @@ Now the actual definition component service can be written:
         }
     }
 
+.. hint::
+
+    A priority can be given to the file for sorting purposes. The files with the
+    highest priority will be handled first; this means that the files with the
+    lowest priority have more chance to override definition values.
+
+    By default, a file has a priority of ``0``.
+
+    .. code-block:: php
+
+        // The definition values from `$file2` will override the ones from `$file1`.
+        $typoScriptSource->addFilePath($file1, 50);
+        $typoScriptSource->addFilePath($file2, 10);
+
 3. Write definition in the file
 -------------------------------
 

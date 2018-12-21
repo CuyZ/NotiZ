@@ -31,6 +31,8 @@ use TYPO3\CMS\Core\Utility\VersionNumberUtility;
  */
 class DefaultDefinitionComponents implements SingletonInterface
 {
+    const DEFAULT_DEFINITION_FILE_PRIORITY = 1337;
+
     /**
      * @var bool
      */
@@ -66,18 +68,27 @@ class DefaultDefinitionComponents implements SingletonInterface
         /** @var TypoScriptDefinitionSource $typoScriptDefinitionSource */
         $typoScriptDefinitionSource = $components->addSource(DefinitionSource::SOURCE_TYPOSCRIPT);
 
-        // Default channels.
-        $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Channel/Channels.Default.typoscript');
+        foreach ($this->getDefaultFiles() as $file) {
+            $typoScriptDefinitionSource->addFilePath($file, self::DEFAULT_DEFINITION_FILE_PRIORITY);
+        }
+    }
 
-        // Default notifications.
-        $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Notification/Notifications.typoscript');
+    /**
+     * @return array
+     */
+    private function getDefaultFiles()
+    {
+        $defaultFiles = [
+            NotizConstants::TYPOSCRIPT_PATH . 'Channel/Channels.Default.typoscript',
+            NotizConstants::TYPOSCRIPT_PATH . 'Notification/Notifications.typoscript',
+        ];
 
         // TYPO3 events can be enabled/disabled in the extension configuration.
         if ($this->extensionConfigurationService->getConfigurationValue('events.typo3')) {
-            $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.TYPO3.typoscript');
+            $defaultFiles[] = NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.TYPO3.typoscript';
 
             if (ExtensionManagementUtility::isLoaded('scheduler')) {
-                $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Scheduler.typoscript');
+                $defaultFiles[] = NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Scheduler.typoscript';
             }
         }
 
@@ -85,7 +96,9 @@ class DefaultDefinitionComponents implements SingletonInterface
         if (ExtensionManagementUtility::isLoaded('form')
             && version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '>=')
         ) {
-            $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Form.typoscript');
+            $defaultFiles[] = NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Form.typoscript';
         }
+
+        return $defaultFiles;
     }
 }
