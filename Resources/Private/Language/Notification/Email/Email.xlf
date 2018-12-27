@@ -10,13 +10,7 @@
                 <source>Email</source>
             </trans-unit>
             <trans-unit id="description">
-                <source><![CDATA[
-                    Emails will be sent to configured recipients.
-
-                    Custom layouts can be used to change the rendering of the mail body.
-
-                    Markers can be used within the title and the body to be replaced with dynamic values when the event is dispatched.
-                ]]></source>
+                <source>Emails will be sent to configured recipients.&#xA;Custom layouts can be used to change the rendering of the mail body.&#xA;Markers can be used within the title and the body to be replaced with dynamic values when the event is dispatched.</source>
             </trans-unit>
 
             <!-- DEFINITION -->
