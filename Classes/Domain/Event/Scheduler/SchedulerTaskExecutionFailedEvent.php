@@ -27,7 +27,7 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
 class SchedulerTaskExecutionFailedEvent extends SchedulerTaskEvent
 {
     /**
-     * @label Event/Scheduler/Scheduler:task.execution_failed.marker.exception
+     * @label Event/Scheduler:task.execution_failed.marker.exception
      * @marker
      *
      * @var Throwable
