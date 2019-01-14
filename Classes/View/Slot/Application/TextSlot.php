@@ -82,7 +82,7 @@ class TextSlot extends Slot
          */
         return "
                 <type>user</type>
-                <userFunc>CuyZ\Notiz\Notification\Service\NotificationTcaService->showCKEditorPresetMissing</userFunc>
+                <userFunc>CuyZ\Notiz\Core\Notification\TCA\User\MissingCkEditorPreset->process</userFunc>
                 <parameters>
                     <preset>$this->rteMode</preset>
                 </parameters>";
