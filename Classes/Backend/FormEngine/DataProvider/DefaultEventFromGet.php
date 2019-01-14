@@ -18,6 +18,7 @@ namespace CuyZ\Notiz\Backend\FormEngine\DataProvider;
 
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
+use CuyZ\Notiz\Core\Notification\TCA\EntityTcaWriter;
 use CuyZ\Notiz\Service\Container;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -46,7 +47,7 @@ class DefaultEventFromGet implements FormDataProviderInterface
         }
 
         // The feature needs to be enabled in the `ctrl` section of the TCA.
-        if (!isset($result['processedTca']['ctrl'][self::ENABLE_DEFAULT_VALUE])) {
+        if (!isset($result['processedTca']['ctrl'][EntityTcaWriter::NOTIFICATION_ENTITY]['dataProvider'][self::ENABLE_DEFAULT_VALUE])) {
             return $result;
         }
 

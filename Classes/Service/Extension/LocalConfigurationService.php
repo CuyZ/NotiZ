@@ -18,10 +18,9 @@ namespace CuyZ\Notiz\Service\Extension;
 
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefaultEventFromGet;
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefinitionError;
-use CuyZ\Notiz\Backend\FormEngine\DataProvider\EventConfigurationProvider;
-use CuyZ\Notiz\Backend\FormEngine\DataProvider\BodySlotsProvider;
 use CuyZ\Notiz\Backend\ToolBarItems\NotificationsToolbarItem;
 use CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder;
+use CuyZ\Notiz\Core\Notification\TCA\Processor\GracefulProcessorRunner;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Domain\Definition\Builder\Component\DefaultDefinitionComponents;
 use CuyZ\Notiz\Service\Container;
@@ -90,6 +89,7 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
         $this->registerNotificationFlexFormProcessorHook();
         $this->registerInternalCache();
         $this->registerIcons();
+        $this->registerNotificationProcessorRunner();
         $this->registerFormEngineComponents();
         $this->resetTypeConvertersArray();
         $this->overrideScheduler();
@@ -240,6 +240,16 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
     }
 
     /**
+     * Registers the notification processor runner.
+     *
+     * @see \CuyZ\Notiz\Core\Notification\TCA\Processor\GracefulProcessorRunner
+     */
+    protected function registerNotificationProcessorRunner()
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['extTablesInclusion-PostProcessing'][] = GracefulProcessorRunner::class;
+    }
+
+    /**
      * Registers components for TYPO3 form engine.
      */
     protected function registerFormEngineComponents()
@@ -263,19 +273,5 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
          */
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DefinitionError::class] = [];
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = DefinitionError::class;
-
-        /*
-         * A data provider is used to dynamically configure the event
-         * configuration fields, that depends on the definition.
-         */
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][EventConfigurationProvider::class] = [];
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = EventConfigurationProvider::class;
-
-        /*
-         * A data provider is used to dynamically configure the body of the mail
-         * notification, which depends on the slots used in its template.
-         */
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][BodySlotsProvider::class] = [];
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = BodySlotsProvider::class;
     }
 }

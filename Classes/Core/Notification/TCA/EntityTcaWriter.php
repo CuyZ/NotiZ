@@ -17,8 +17,8 @@
 namespace CuyZ\Notiz\Core\Notification\TCA;
 
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefaultEventFromGet;
-use CuyZ\Notiz\Backend\FormEngine\DataProvider\EventConfigurationProvider;
 use CuyZ\Notiz\Core\Notification\Service\NotificationTcaService;
+use CuyZ\Notiz\Core\Notification\TCA\Processor\EventConfigurationProcessor;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
@@ -28,7 +28,7 @@ abstract class EntityTcaWriter implements SingletonInterface
 {
     use SelfInstantiateTrait;
 
-    const ENTITY_NOTIFICATION = '__entityNotification';
+    const NOTIFICATION_ENTITY = 'notificationEntity';
 
     const LLL = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Entity/Entity.xlf';
 
@@ -151,10 +151,14 @@ abstract class EntityTcaWriter implements SingletonInterface
             'searchFields' => 'title,event',
             'iconfile' => $this->service->getNotificationIconPath(),
 
-            self::ENTITY_NOTIFICATION => true,
-
-            DefaultEventFromGet::ENABLE_DEFAULT_VALUE => true,
-            EventConfigurationProvider::COLUMN => 'event_configuration_flex',
+            self::NOTIFICATION_ENTITY => [
+                'processor' => [
+                    EventConfigurationProcessor::class,
+                ],
+                'dataProvider' => [
+                    DefaultEventFromGet::ENABLE_DEFAULT_VALUE => true,
+                ]
+            ],
         ];
     }
 
@@ -294,7 +298,7 @@ abstract class EntityTcaWriter implements SingletonInterface
 
             /**
              * This FlexForm field is fully configured in:
-             * @see \CuyZ\Notiz\Backend\FormEngine\DataProvider\EventConfigurationProvider
+             * @see \CuyZ\Notiz\Core\Notification\TCA\Processor\EventConfigurationProcessor
              */
             'event_configuration_flex' => [
                 'label' => self::LLL . ':field.event_configuration',

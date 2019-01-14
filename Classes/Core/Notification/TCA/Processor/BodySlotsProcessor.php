@@ -14,7 +14,7 @@
  * http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace CuyZ\Notiz\Backend\FormEngine\DataProvider;
+namespace CuyZ\Notiz\Core\Notification\TCA\Processor;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Notification\Settings\NotificationSettings;
@@ -30,9 +30,9 @@ use CuyZ\Notiz\View\Slot\Service\SlotViewService;
  * The body is a FlexForm field, where definition sheets are handled with
  * so-called "slot" that can be registered within the template of the mail.
  */
-class BodySlotsProvider extends GracefulProvider
+class BodySlotsProcessor extends GracefulProcessor
 {
-    const COLUMN = '__mailBody';
+    const COLUMN = 'body';
 
     /**
      * @var SlotViewService
@@ -56,27 +56,12 @@ class BodySlotsProvider extends GracefulProvider
     }
 
     /**
-     * @param array $result
-     * @return array
+     * @param string $tableName
      */
-    public function process(array $result)
+    public function doProcess($tableName)
     {
-        $tableName = $result['tableName'];
-
-        if (!isset($GLOBALS['TCA'][$tableName]['ctrl'][self::COLUMN])) {
-            return $result;
-        }
-
-        $columnName = $GLOBALS['TCA'][$tableName]['ctrl'][self::COLUMN];
-
-        if (!isset($GLOBALS['TCA'][$tableName]['columns'][$columnName])) {
-            return $result;
-        }
-
-        $GLOBALS['TCA'][$tableName]['columns'][$columnName]['displayCond'] = $this->getMailBodyDisplayCond();
-        $GLOBALS['TCA'][$tableName]['columns'][$columnName]['config']['ds'] = $this->getMailBodyFlexFormList();
-
-        return $result;
+        $GLOBALS['TCA'][$tableName]['columns'][self::COLUMN]['displayCond'] = $this->getMailBodyDisplayCond();
+        $GLOBALS['TCA'][$tableName]['columns'][self::COLUMN]['config']['ds'] = $this->getMailBodyFlexFormList();
     }
 
     /**
