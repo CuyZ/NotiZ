@@ -16,7 +16,6 @@
 
 namespace CuyZ\Notiz\Core\Notification\TCA\Processor;
 
-use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Notification\Settings\NotificationSettings;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\EntityEmailSettings;
@@ -78,9 +77,8 @@ class BodySlotsProcessor extends GracefulProcessor
         $eventsWithoutSlots = [];
         $events = $this->slotViewService->getEventsWithoutSlots($this->getNotificationSettings()->getView());
 
-        foreach ($events as $event => $view) {
-            /** @var EventDefinition $event */
-            $eventsWithoutSlots[] = $event->getFullIdentifier();
+        foreach ($events as $view) {
+            $eventsWithoutSlots[] = $view->getEventDefinition()->getFullIdentifier();
         }
 
         return [
