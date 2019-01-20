@@ -8,9 +8,7 @@
                 <source>Caches cleared</source>
             </trans-unit>
             <trans-unit id="cache_cleared.description">
-                <source><![CDATA[
-                    This event will be triggered whenever caches are manually cleared within the TYPO3 instance.
-                ]]></source>
+                <source>This event will be triggered whenever caches are manually cleared within the TYPO3 instance.</source>
             </trans-unit>
 
             <trans-unit id="cache_cleared.flex_form.allowed_commands.label">
@@ -29,9 +27,7 @@
                 <source>Extension installed</source>
             </trans-unit>
             <trans-unit id="extension_installed.description">
-                <source><![CDATA[
-                    This event will be triggered when an extension is installed on the TYPO3 instance.
-                ]]></source>
+                <source>This event will be triggered when an extension is installed on the TYPO3 instance.</source>
             </trans-unit>
 
             <trans-unit id="extension_installed.marker.key">

@@ -196,23 +196,6 @@ HTML;
     }
 
     /**
-     * If a RTE is using a missing CKEditor preset, a message is shown to the
-     * user to help him fix it.
-     *
-     * @param array $parent
-     * @return string
-     */
-    public function showCKEditorPresetMissing(array $parent)
-    {
-        $preset = $parent['parameters']['preset'];
-
-        $message = LocalizationService::localize('Notification/Entity:field.rte.ck_editor_preset_missing', [$preset]);
-        $message = StringService::mark($message, '<code>$1</code>');
-
-        return '<span class="bg-danger">' . $message . '</span>';
-    }
-
-    /**
      * Returns a notification object based on an array containing the
      * notification properties.
      *

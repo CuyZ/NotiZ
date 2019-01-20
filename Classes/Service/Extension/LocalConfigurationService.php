@@ -18,6 +18,7 @@ namespace CuyZ\Notiz\Service\Extension;
 
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefaultEventFromGet;
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefinitionError;
+use CuyZ\Notiz\Backend\FormEngine\DataProvider\HideColumns;
 use CuyZ\Notiz\Backend\ToolBarItems\NotificationsToolbarItem;
 use CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder;
 use CuyZ\Notiz\Core\Notification\TCA\Processor\GracefulProcessorRunner;
@@ -273,5 +274,12 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
          */
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DefinitionError::class] = [];
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = DefinitionError::class;
+
+        /*
+         * A data provider is used to hide all columns when no event has been
+         * selected for a notification entity.
+         */
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][HideColumns::class] = [];
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = HideColumns::class;
     }
 }

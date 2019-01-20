@@ -24,7 +24,7 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
 class SchedulerTaskWasExecutedEvent extends SchedulerTaskEvent
 {
     /**
-     * @label Event/Scheduler/Scheduler:task.execution_done.marker.result
+     * @label Event/Scheduler:task.execution_done.marker.result
      * @marker
      *
      * @var bool

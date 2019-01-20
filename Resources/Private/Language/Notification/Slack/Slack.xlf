@@ -11,11 +11,7 @@
                 <source>Slack</source>
             </trans-unit>
             <trans-unit id="description">
-                <source><![CDATA[
-                    Messages can be sent to channels or users of a configured Slack workspace. Basic markdown syntax is available to customize the rendering of the message.
-
-                    Bots that send messages can have a custom name and avatar.
-                ]]></source>
+                <source>Messages can be sent to channels or users of a configured Slack workspace. Basic markdown syntax is available to customize the rendering of the message.&#xA;Bots that send messages can have a custom name and avatar.</source>
             </trans-unit>
 
             <!-- TABS -->
