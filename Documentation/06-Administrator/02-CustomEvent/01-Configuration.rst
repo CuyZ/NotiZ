@@ -57,7 +57,10 @@ The configuration is done using a FlexForm:
 
 ----
 
-This FlexForm must be saved into a file and configured in TypoScript:
+This FlexForm must be saved into a file and configured in the definition
+at the path ``notiz.eventGroups.contactEvents.events.messageSent.configuration.flexForm``.
+
+For example in TypoScript:
 
 .. code-block:: typoscript
     :caption: ``my_extension/Configuration/TypoScript/NotiZ.typoscript``
@@ -169,7 +172,7 @@ You can then access the extra configuration inside the event via the
 
         /**
          * @param string $key
-         * @return DateTime
+         * @return DateTime|null
          */
         private function getTime(string $key): ?DateTime
         {
