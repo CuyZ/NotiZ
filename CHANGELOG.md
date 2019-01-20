@@ -1,5 +1,121 @@
 # ![NotiZ](ext_icon.svg) NotiZ – ChangeLog
 
+## v1.1.0 - 20 January 2019
+
+> ℹ️ *Click on a changelog entry to see more details.*
+
+### New features
+
+<details>
+<summary>Assign notification and event instances to email view</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *21 Dec 2018 / [af8cb88](https://github.com/CuyZ/NotiZ/commit/af8cb881221ca2e777aad5d4d5cd3c6205eada19) / [#176](https://github.com/CuyZ/NotiZ/issues/176)*
+
+> Two new variables become accessible in the template of an email:
+> 
+> - `{notification}` – contains the notification instance
+> - `{event}` – contains the event instance
+</details>
+
+<details>
+<summary>Handle priority for file definition sources</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *21 Dec 2018 / [911c135](https://github.com/CuyZ/NotiZ/commit/911c1359be3aebdb119891fc12f7bbf5c585beea) / [#173](https://github.com/CuyZ/NotiZ/issues/173)*
+
+> The file definition sources are now sorted by the priority they are
+> given.
+> 
+> Default definition files have a high priority, to easily allow other
+> files to override definition values.
+</details>
+
+### Bugs fixed
+
+<details>
+<summary>Distinct TCA processors and data providers</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *20 Jan 2019 / [a339bf1](https://github.com/CuyZ/NotiZ/commit/a339bf1604779a7591b80b2b50230e62dc380d4e) / [#184](https://github.com/CuyZ/NotiZ/issues/184)*
+
+> Some data providers were actually not acting on an actual notification
+> record, but modifying global TCA configuration instead.
+> 
+> Because of this, TYPO3 core would misunderstand things, like FlexForm
+> configuration done dynamically. This would result in strange behaviour
+> like empty paragraph added on text columns with RTE inside FlexForm
+> fields.
+> 
+> This commit separates these processors in a distinct namespace, with a
+> brand new role and interface.
+> 
+> Fixes [#181](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/181)
+</details>
+
+<details>
+<summary>Show message when CKEditor preset is missing in slot</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *20 Jan 2019 / [fb61c9b](https://github.com/CuyZ/NotiZ/commit/fb61c9b50110ba9416b58f3df3de5ff90afcec0a) / [#182](https://github.com/CuyZ/NotiZ/issues/182)*
+
+> 
+</details>
+
+<details>
+<summary>Make email property handle multiple email addresses</summary>
+
+> *by [ogrosko](mailto:ogrosko@gmail.com)* on *18 Dec 2018 / [82a78b9](https://github.com/CuyZ/NotiZ/commit/82a78b9cea8783afb03b7bf4e3dc40c12a02c6f9) / [#171](https://github.com/CuyZ/NotiZ/issues/171)*
+
+> closes [#170](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/170)
+</details>
+
+### Others
+
+<details>
+<summary>Add documentation on how to add custom config to events</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *20 Jan 2019 / [9296c10](https://github.com/CuyZ/NotiZ/commit/9296c1073d0a67ec91813fb2d0a8f3c9510b19cb) / [#185](https://github.com/CuyZ/NotiZ/issues/185)*
+
+> 
+</details>
+
+<details>
+<summary>Fix wrong locallang references for scheduler events</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *20 Jan 2019 / [9fba3d5](https://github.com/CuyZ/NotiZ/commit/9fba3d5daa99e499d02dffa238e8fcf2550c53ac) / [#183](https://github.com/CuyZ/NotiZ/issues/183)*
+
+> 
+</details>
+
+<details>
+<summary>Hide columns of notification entity when no event is selected</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *20 Jan 2019 / [cf28edd](https://github.com/CuyZ/NotiZ/commit/cf28eddae73c6d6b843c82d9797a962586f6419b) / [#178](https://github.com/CuyZ/NotiZ/issues/178)*
+
+> Closes [#31](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/31)
+</details>
+
+<details>
+<summary>Change line feeds in localization files</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *20 Jan 2019 / [a35699e](https://github.com/CuyZ/NotiZ/commit/a35699edea32ccfd0a1af7b7daedbfcd19987717) / [#177](https://github.com/CuyZ/NotiZ/issues/177)*
+
+> 
+</details>
+
+<details>
+<summary>Fix a typo in the admin module language file</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *21 Dec 2018 / [6282982](https://github.com/CuyZ/NotiZ/commit/628298206d1b0e95b99b59d9b8c5cffa0fe8c9ce) / [#175](https://github.com/CuyZ/NotiZ/issues/175)*
+
+> 
+</details>
+
+<details>
+<summary>Add <code>.idea</code> to <code>.gitignore</code></summary>
+
+> *by [ogrosko](mailto:ogrosko@gmail.com)* on *18 Dec 2018 / [9ca335d](https://github.com/CuyZ/NotiZ/commit/9ca335d3acd259a262ed39e49b971faccfb4f64f) / [#172](https://github.com/CuyZ/NotiZ/issues/172)*
+
+> 
+</details>
+
 ## v1.0.1 - 11 December 2018
 
 > ℹ️ *Click on a changelog entry to see more details.*
