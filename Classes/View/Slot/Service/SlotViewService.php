@@ -116,7 +116,7 @@ class SlotViewService implements SingletonInterface
 
     /**
      * @param ViewPathsAware $viewPaths
-     * @return Generator
+     * @return Generator|SlotView[]
      */
     public function getEventsWithoutSlots(ViewPathsAware $viewPaths)
     {

@@ -36,7 +36,7 @@ class HideColumns implements FormDataProviderInterface
     {
         $tableName = $result['tableName'];
 
-        if (!isset($GLOBALS['TCA'][$tableName]['ctrl'][EntityTcaWriter::ENTITY_NOTIFICATION])) {
+        if (!isset($GLOBALS['TCA'][$tableName]['ctrl'][EntityTcaWriter::NOTIFICATION_ENTITY])) {
             return $result;
         }
 
