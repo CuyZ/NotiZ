@@ -17,7 +17,6 @@
 namespace CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\TCA;
 
 use CuyZ\Notiz\Core\Notification\TCA\EntityTcaWriter;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 class EntitySlackTcaWriter extends EntityTcaWriter
 {
@@ -126,24 +125,12 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 'name' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.name',
-                    'displayCond' => call_user_func(function () {
-                        /**
-                         * @deprecated First level "AND" must be removed when
-                         *             TYPO3 v7 is not supported anymore.
-                         */
-                        $result = [
-                            'OR' => [
-                                'FIELD:custom_bot:=:1',
-                                'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedBot',
-                            ],
-                        ];
-
-                        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')) {
-                            $result = ['AND' => $result];
-                        }
-
-                        return $result;
-                    }),
+                    'displayCond' => [
+                        'OR' => [
+                            'FIELD:custom_bot:=:1',
+                            'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedBot',
+                        ],
+                    ],
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
@@ -154,24 +141,12 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 'avatar' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.avatar',
-                    'displayCond' => call_user_func(function () {
-                        /**
-                         * @deprecated First level "AND" must be removed when
-                         *             TYPO3 v7 is not supported anymore.
-                         */
-                        $result = [
-                            'OR' => [
-                                'FIELD:custom_bot:=:1',
-                                'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedBot',
-                            ],
-                        ];
-
-                        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')) {
-                            $result = ['AND' => $result];
-                        }
-
-                        return $result;
-                    }),
+                    'displayCond' => [
+                        'OR' => [
+                            'FIELD:custom_bot:=:1',
+                            'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedBot',
+                        ],
+                    ],
                     'config' => [
                         'type' => 'input',
                         'size' => 255,

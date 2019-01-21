@@ -30,7 +30,6 @@ use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
@@ -240,9 +239,6 @@ class NotificationsToolbarItem implements ToolbarItemInterface
         $view = $this->viewService->getStandaloneView($templateName);
 
         $view->assign('result', $this->definitionService->getValidationResult());
-
-        $legacyLayout = version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<');
-        $view->assign('legacyLayout', $legacyLayout);
 
         return $view;
     }

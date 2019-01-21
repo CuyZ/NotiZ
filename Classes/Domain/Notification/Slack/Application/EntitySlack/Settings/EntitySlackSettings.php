@@ -62,6 +62,8 @@ class EntitySlackSettings extends AbstractDefinitionComponent implements Notific
     /**
      * @param string $identifier
      * @return Channels\Channel
+     *
+     * @throws EntryNotFoundException
      */
     public function getChannel($identifier)
     {

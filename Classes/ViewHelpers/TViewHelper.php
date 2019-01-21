@@ -18,9 +18,9 @@ namespace CuyZ\Notiz\ViewHelpers;
 
 use CuyZ\Notiz\Service\LocalizationService;
 use CuyZ\Notiz\Service\StringService;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 class TViewHelper extends AbstractViewHelper implements CompilableInterface
 {

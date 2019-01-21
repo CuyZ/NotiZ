@@ -18,10 +18,8 @@ namespace CuyZ\Notiz\Service\Scheduler;
 
 use CuyZ\Notiz\Service\LocalizationService;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Scheduler\Scheduler as CoreScheduler;
 use TYPO3\CMS\Scheduler\Task\AbstractTask;
 
@@ -51,35 +49,22 @@ class SchedulerService implements SingletonInterface
      */
     public function getTasksList()
     {
-        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.3.0', '<')) {
-            /** @var DatabaseConnection $database */
-            $database = $GLOBALS['TYPO3_DB'];
+        /** @var ConnectionPool $connectionPool */
+        $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
 
-            $tasks = $database->exec_SELECTgetRows(
-                '*',
-                'tx_scheduler_task',
-                'disable=0'
-            );
-        } else {
-            /** @var ConnectionPool $connectionPool */
-            $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+        $queryBuilder = $connectionPool->getQueryBuilderForTable('tx_scheduler_task');
+        $queryBuilder->getRestrictions()->removeAll();
 
-            $queryBuilder = $connectionPool->getQueryBuilderForTable('tx_scheduler_task');
-            $queryBuilder->getRestrictions()->removeAll();
-
-            $tasks = $queryBuilder->select('*')
-                ->from('tx_scheduler_task')
-                ->where(
-                    $queryBuilder->expr()->eq(
-                        'disable',
-                        $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
-                    )
+        return $queryBuilder->select('*')
+            ->from('tx_scheduler_task')
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'disable',
+                    $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
                 )
-                ->execute()
+            )
+            ->execute()
                 ->fetchAll();
-        }
-
-        return $tasks;
     }
 
     /**

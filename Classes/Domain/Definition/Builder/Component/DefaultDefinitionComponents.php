@@ -23,7 +23,6 @@ use CuyZ\Notiz\Domain\Definition\Builder\Component\Source\TypoScriptDefinitionSo
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /**
  * Service used for registration of default definition components supplied by
@@ -93,9 +92,7 @@ class DefaultDefinitionComponents implements SingletonInterface
         }
 
         // The core extension "form" can dispatch events.
-        if (ExtensionManagementUtility::isLoaded('form')
-            && version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '>=')
-        ) {
+        if (ExtensionManagementUtility::isLoaded('form')) {
             $defaultFiles[] = NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Form.typoscript';
         }
 

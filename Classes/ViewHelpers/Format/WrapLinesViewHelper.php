@@ -18,9 +18,8 @@ namespace CuyZ\Notiz\ViewHelpers\Format;
 
 use Closure;
 use CuyZ\Notiz\Service\StringService;
-use TYPO3\CMS\Fluid\Core\Parser\SyntaxTree\AbstractNode;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 class WrapLinesViewHelper extends AbstractViewHelper

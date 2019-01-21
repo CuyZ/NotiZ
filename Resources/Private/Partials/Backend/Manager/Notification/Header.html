@@ -3,7 +3,7 @@
 <f:section name="Content">
     <div class="page-header">
         <h1>
-            <nz:core.icon identifier="{notification.notificationDefinition.iconIdentifier}" size="default" />
+            <core:icon identifier="{notification.notificationDefinition.iconIdentifier}" size="default" />
 
             <f:if condition="{notification.title}">
                 <f:then>{notification.title}</f:then>
@@ -23,14 +23,14 @@
                        class="btn btn-default"
                        arguments="{notificationIdentifier: notification.notificationDefinition.identifier}"
                        title="{nz:t(key: 'Backend/Module/Manager:global.show_list_view')}">
-            <nz:core.icon identifier="actions-view-go-back" />
+            <core:icon identifier="actions-view-go-back" />
             <nz:t key="Backend/Module/Manager:global.show_list_view" />
         </f:link.action>
 
         <nz:notification.link.edit notification="{notification}"
                                           class="btn btn-default"
                                           title="{nz:t(key: 'Backend/Module/Manager:global.edit_notification')}">
-            <nz:core.icon identifier="actions-open" />
+            <core:icon identifier="actions-open" />
             <nz:t key="Backend/Module/Manager:global.edit_notification" />
         </nz:notification.link.edit>
     </p>

@@ -19,8 +19,8 @@ namespace CuyZ\Notiz\Domain\Definition\Builder\Component\Source;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use Romm\ConfigurationObject\ConfigurationObjectInstance;
 use TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
 
 /**
  * This definition source component is used to fetch a definition array from

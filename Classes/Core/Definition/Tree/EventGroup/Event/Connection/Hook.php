@@ -23,7 +23,6 @@ use CuyZ\Notiz\Core\Event\Runner\EventRunnerContainer;
 use CuyZ\Notiz\Core\Exception\ClassNotFoundException;
 use CuyZ\Notiz\Core\Exception\WrongFormatException;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 class Hook extends AbstractDefinitionComponent implements Connection
@@ -84,10 +83,6 @@ class Hook extends AbstractDefinitionComponent implements Connection
         }
 
         $this->injectHookInGlobalArray($closure);
-
-        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')) {
-            $this->injectHookInFrontendController($closure);
-        }
     }
 
     /**
@@ -101,25 +96,6 @@ class Hook extends AbstractDefinitionComponent implements Connection
             $closure,
             '|'
         );
-    }
-
-    /**
-     * @param Closure|string $closure
-     *
-     * @deprecated Must be removed when TYPO3 v7 is not supported anymore.
-     */
-    protected function injectHookInFrontendController($closure)
-    {
-        $tsfe = $this->getTypoScriptFrontendController();
-
-        if ($tsfe) {
-            $tsfe->TYPO3_CONF_VARS['SC_OPTIONS'] = ArrayUtility::setValueByPath(
-                $tsfe->TYPO3_CONF_VARS['SC_OPTIONS'],
-                $this->getFullPath(),
-                $closure,
-                '|'
-            );
-        }
     }
 
     /**

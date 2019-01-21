@@ -16,9 +16,6 @@
 
 namespace CuyZ\Notiz\Core\Notification\TCA\Processor;
 
-use CuyZ\Notiz\Core\Notification\Service\LegacyNotificationTcaService;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
-
 /**
  * Builds the TCA array for the event configuration.
  *
@@ -35,7 +32,9 @@ class EventConfigurationProcessor extends GracefulProcessor
      */
     protected function doProcess($tableName)
     {
-        $flexFormDs = [];
+        $flexFormDs = [
+            'default' => '',
+        ];
         $displayConditions = [];
 
         foreach ($this->definitionService->getDefinition()->getEvents() as $event) {
@@ -54,15 +53,7 @@ class EventConfigurationProcessor extends GracefulProcessor
             $GLOBALS['TCA'][$tableName]['columns'][self::COLUMN]['config'] = ['type' => 'passthrough'];
         }
 
-        /**
-         * @deprecated Value can be empty when TYPO3 v7 is not supported anymore.
-         */
-        $flexFormDs['default'] = 'FILE:EXT:notiz/Configuration/FlexForm/Event/DefaultEventFlexForm.xml';
-
         $GLOBALS['TCA'][$tableName]['columns'][self::COLUMN]['config']['ds'] = $flexFormDs;
-
-        $GLOBALS['TCA'][$tableName]['columns'][self::COLUMN]['displayCond'] = version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')
-            ? 'USER:' . LegacyNotificationTcaService::class . '->displayEventFlexForm:' . $tableName . ':' . implode(',', $displayConditions)
-            : 'FIELD:event:IN:' . implode(',', $displayConditions);
+        $GLOBALS['TCA'][$tableName]['columns'][self::COLUMN]['displayCond'] = 'FIELD:event:IN:' . implode(',', $displayConditions);
     }
 }

@@ -1,4 +1,3 @@
-{namespace core=TYPO3\CMS\Core\ViewHelpers}
 {namespace nz=CuyZ\Notiz\ViewHelpers}
 
 <f:layout name="Backend/Default" />
@@ -12,7 +11,7 @@
         <li role="presentation">
             <f:link.action controller="Backend\Administration\ShowDefinition"
                            title="{label}">
-                <nz:core.icon identifier="actions-refresh" />
+                <core:icon identifier="actions-refresh" />
                 <strong>{label}</strong>
             </f:link.action>
         </li>
@@ -47,7 +46,7 @@
 
 <f:section name="DefinitionTree">
     <span class="root-definition">
-        <nz:core.icon identifier="tx-notiz-icon" size="default" />
+        <core:icon identifier="tx-notiz-icon" size="default" />
         <nz:t key="Backend/Module/Administration:definition.show.definition_tree.root" />
     </span>
 
@@ -91,7 +90,7 @@
                 <span class="notiz-definition-entry">
                     <label>
                         <span title="{nz:t(key: 'Backend/Module/Administration:definition.show.definition_tree.label_show_full_path')}">
-                            <nz:core.icon identifier="apps-pagetree-page-shortcut-external" />
+                            <core:icon identifier="apps-pagetree-page-shortcut-external" />
                         </span>
 
                         <input type="checkbox" />
@@ -131,13 +130,13 @@
 <f:section name="Messages">
     <f:for each="{messages}" as="message">
         <li>
-            <nz:core.icon identifier="{icon}" />
+            <core:icon identifier="{icon}" />
 
             <span class="{background}" title="code: {message.code}">{message -> nz:mark()}</span>
 
             <span class="notiz-definition-entry">
                 <label>
-                    <nz:core.icon identifier="actions-search" />
+                    <core:icon identifier="actions-search" />
 
                     <input type="checkbox" />
 
