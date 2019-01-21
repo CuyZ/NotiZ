@@ -41,13 +41,13 @@
 
                     <f:link.action controller="Backend\Manager\ShowEvent"
                                    arguments="{eventIdentifier: eventDefinition.fullIdentifier}"
-                                   title="{nz:t(key: 'Backend/Module/Manager/ListEvents:show_event_details')}">{eventDefinition.label}</f:link.action>
+                                   title="{nz:t(key: 'Backend/Module/Manager:global.show_event_details', args: {0: eventDefinition.label})}">{eventDefinition.label}</f:link.action>
                 </div>
                 <br />
                 <div>
                     <f:link.action controller="Backend\Manager\ListNotifications"
                                    arguments="{notificationIdentifier: notificationDefinition.identifier}"
-                                   title="{nz:t(key: 'Backend/Module/Manager/ListEvents:show_event_details')}">
+                                   title="{nz:t(key: 'Backend/Module/Manager:global.show_event_details', args: {0: eventDefinition.label})}">
                         <nz:core.icon identifier="actions-close" />
                         <nz:t key="Backend/Module/Manager:list_notifications.remove_event_filter" />
                     </f:link.action>
