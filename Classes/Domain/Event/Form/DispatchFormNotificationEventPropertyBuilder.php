@@ -81,10 +81,7 @@ class DispatchFormNotificationEventPropertyBuilder implements PropertyBuilder, S
 
         $eventConfiguration = $notification->getEventConfiguration();
 
-        // @PHP7
-        $identifier = isset($eventConfiguration['formDefinition'])
-            ? $eventConfiguration['formDefinition']
-            : null;
+        $identifier = $eventConfiguration['formDefinition'] ?? null;
 
         if (!$identifier) {
             return;

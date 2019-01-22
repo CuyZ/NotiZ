@@ -103,10 +103,7 @@ abstract class FileDefinitionSource implements DefinitionSource, SingletonInterf
      */
     private function includeConfiguredSources()
     {
-        // @PHP7
-        $configuredSources = isset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['NotiZ']['Definition']['Source'][static::class])
-            ? $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['NotiZ']['Definition']['Source'][static::class]
-            : [];
+        $configuredSources = $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['NotiZ']['Definition']['Source'][static::class] ?? [];
 
         foreach ($configuredSources as $configuredSource) {
             $this->addFilePath((string)$configuredSource);

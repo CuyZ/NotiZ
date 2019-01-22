@@ -32,12 +32,9 @@ class GracefulProcessorRunner implements SingletonInterface, TableConfigurationP
     public function processData()
     {
         foreach ($GLOBALS['TCA'] as $tableName => $configuration) {
-            // @PHP7
-            if (!isset($configuration['ctrl'][EntityTcaWriter::NOTIFICATION_ENTITY]['processor'])) {
-                continue;
-            }
+            $processors = $configuration['ctrl'][EntityTcaWriter::NOTIFICATION_ENTITY]['processor'] ?? [];
 
-            foreach ($configuration['ctrl'][EntityTcaWriter::NOTIFICATION_ENTITY]['processor'] as $processorClassName) {
+            foreach ($processors as $processorClassName) {
                 /** @var GracefulProcessor $processor */
                 $processor = GeneralUtility::makeInstance($processorClassName);
 

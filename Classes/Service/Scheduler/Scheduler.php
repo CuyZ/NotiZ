@@ -16,7 +16,6 @@
 
 namespace CuyZ\Notiz\Service\Scheduler;
 
-use Exception;
 use CuyZ\Notiz\Service\Container;
 use Throwable;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
@@ -87,7 +86,6 @@ class Scheduler extends \TYPO3\CMS\Scheduler\Scheduler
      */
     public function executeTask(AbstractTask $task)
     {
-        $result = false;
         $exception = null;
 
         try {
@@ -98,12 +96,9 @@ class Scheduler extends \TYPO3\CMS\Scheduler\Scheduler
                 self::SIGNAL_TASK_EXECUTED,
                 [$task, $result]
             );
-        } catch (Throwable $exception) {
-        } catch (Exception $exception) {
-            // @PHP7
-        }
 
-        if ($exception) {
+            return $result;
+        } catch (Throwable $exception) {
             $this->dispatcher->dispatch(
                 __CLASS__,
                 self::SIGNAL_TASK_FAILED,
@@ -112,7 +107,5 @@ class Scheduler extends \TYPO3\CMS\Scheduler\Scheduler
 
             throw $exception;
         }
-
-        return $result;
     }
 }

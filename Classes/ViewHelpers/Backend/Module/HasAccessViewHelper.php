@@ -41,6 +41,6 @@ class HasAccessViewHelper extends AbstractViewHelper
      */
     public function render()
     {
-        return ModuleHandler::forModule($this->arguments['module'])->canBeAccessed();
+        return ModuleHandler::for($this->arguments['module'])->canBeAccessed();
     }
 }

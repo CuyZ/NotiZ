@@ -226,10 +226,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
      */
     protected static function fetchSettingsClassName(array $data)
     {
-        // @PHP7
-        $notificationClassName = isset($data['className'])
-            ? $data['className']
-            : null;
+        $notificationClassName = $data['className'] ?? null;
 
         if (class_exists($notificationClassName)
             && in_array(CustomSettingsNotification::class, class_implements($notificationClassName))

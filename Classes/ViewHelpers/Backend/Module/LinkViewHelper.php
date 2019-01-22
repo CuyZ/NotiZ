@@ -80,7 +80,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     {
         $content = $this->renderChildren();
 
-        $moduleHandler = ModuleHandler::forModule($this->arguments['module']);
+        $moduleHandler = ModuleHandler::for($this->arguments['module']);
 
         if (!$moduleHandler->canBeAccessed()) {
             return $content;

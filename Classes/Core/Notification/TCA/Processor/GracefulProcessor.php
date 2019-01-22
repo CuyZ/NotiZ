@@ -19,7 +19,6 @@ namespace CuyZ\Notiz\Core\Notification\TCA\Processor;
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ViewService;
-use Exception;
 use Throwable;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
@@ -75,11 +74,6 @@ abstract class GracefulProcessor implements SingletonInterface
         try {
             $this->doProcess($tableName);
         } catch (Throwable $exception) {
-        } catch (Exception $exception) {
-            // @PHP7
-        }
-
-        if ($exception) {
             if (GeneralUtility::_GET('showException')) {
                 throw $exception;
             }

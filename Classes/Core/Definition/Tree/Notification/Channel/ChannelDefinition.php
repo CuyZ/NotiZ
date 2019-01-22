@@ -136,10 +136,7 @@ class ChannelDefinition extends AbstractDefinitionComponent implements DataPrePr
      */
     protected static function fetchSettingsClassName(array $data)
     {
-        // @PHP7
-        $channelClassName = isset($data['className'])
-            ? $data['className']
-            : null;
+        $channelClassName = $data['className'] ?? null;
 
         if (class_exists($channelClassName)
             && in_array(Channel::class, class_implements($channelClassName))

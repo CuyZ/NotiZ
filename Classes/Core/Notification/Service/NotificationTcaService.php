@@ -119,7 +119,6 @@ abstract class NotificationTcaService implements SingletonInterface
         $event = $definition->getFirstEventGroup()->getFirstEvent();
 
         if (isset($row['event'])) {
-            // @PHP7
             $eventValue = is_array($row['event'])
                 ? $row['event'][0]
                 : $row['event'];

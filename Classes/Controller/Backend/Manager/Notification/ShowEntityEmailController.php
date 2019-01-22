@@ -19,7 +19,6 @@ namespace CuyZ\Notiz\Controller\Backend\Manager\Notification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Service\EntityEmailTemplateBuilder;
 use CuyZ\Notiz\Domain\Property\Email;
-use Exception;
 use Throwable;
 
 class ShowEntityEmailController extends ShowNotificationController
@@ -58,11 +57,8 @@ class ShowEntityEmailController extends ShowNotificationController
         try {
             return $this->getEmailPreview();
         } catch (Throwable $e) {
-        } catch (Exception $e) {
-            // @PHP7
+            return null;
         }
-
-        return null;
     }
 
     /**

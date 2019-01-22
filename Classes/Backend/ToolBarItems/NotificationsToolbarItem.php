@@ -22,7 +22,6 @@ use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use CuyZ\Notiz\Service\LocalizationService;
 use CuyZ\Notiz\Service\ViewService;
-use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Throwable;
@@ -127,11 +126,8 @@ class NotificationsToolbarItem implements ToolbarItemInterface
         try {
             return $this->getDropDownFromDefinition();
         } catch (Throwable $exception) {
-        } catch (Exception $exception) {
-            // @PHP7
+            return $this->getErrorDropDown($exception);
         }
-
-        return $this->getErrorDropDown($exception);
     }
 
     /**

@@ -45,12 +45,10 @@ abstract class ModuleHandler implements SingletonInterface
     /**
      * Returns the manager instance for the given module.
      *
-     * @PHP7 rename method to `for`
-     *
      * @param string $module
      * @return ModuleHandler
      */
-    public static function forModule($module)
+    public static function for($module)
     {
         /** @var ModuleHandler $moduleHandler */
         $moduleHandler = Container::get(__NAMESPACE__ . '\\' . $module . 'ModuleHandler');
