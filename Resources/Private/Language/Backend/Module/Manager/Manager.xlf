@@ -82,7 +82,7 @@
             </trans-unit>
 
             <trans-unit id="list_events.introduction">
-                <source>Below are listed all the available events that you can bind your notifications on.&#xA;You can use the provided buttons to directly create a notification using the wanted event.</source>
+                <source>Below are listed all the available events that you can bind your notifications on. #LF# You can use the provided buttons to directly create a notification using the wanted event.</source>
             </trans-unit>
 
             <trans-unit id="list_events.show_event_details">
@@ -147,17 +147,17 @@
             </trans-unit>
 
             <trans-unit id="list_notification_types.introduction">
-                <source>Here you can find the list of every notification type that can be managed within this module.&#xA;Use the provided buttons to list existing notifications or create new ones.</source>
+                <source>Here you can find the list of every notification type that can be managed within this module. #LF# Use the provided buttons to list existing notifications or create new ones.</source>
             </trans-unit>
 
             <trans-unit id="list_notification_types.no_notification_type_found.title">
                 <source>Whoops!</source>
             </trans-unit>
             <trans-unit id="list_notification_types.no_notification_type_found.body.editor">
-                <source>Something went wrong, notifications could not be displayed.&#xA;If the problem persists, contact your administrator.</source>
+                <source>Something went wrong, notifications could not be displayed. #LF# If the problem persists, contact your administrator.</source>
             </trans-unit>
             <trans-unit id="list_notification_types.no_notification_type_found.body.admin">
-                <source>Something went wrong, notifications could not be displayed.&#xA;Your definition probably contains an error.</source>
+                <source>Something went wrong, notifications could not be displayed. #LF# Your definition probably contains an error.</source>
             </trans-unit>
 
             <trans-unit id="list_notification_types.notification.no_description">
@@ -173,10 +173,10 @@
             <!--##################################-->
 
             <trans-unit id="preview.preview_error">
-                <source>An error occurred during the generation of the preview.&#xA;Click on the button below to have more details about the error.</source>
+                <source>An error occurred during the generation of the preview. #LF# Click on the button below to have more details about the error.</source>
             </trans-unit>
             <trans-unit id="preview.preview_error.editor">
-                <source>An error occurred during the generation of the preview.&#xA;If the problem persists, contact your administrator.</source>
+                <source>An error occurred during the generation of the preview. #LF# If the problem persists, contact your administrator.</source>
             </trans-unit>
             <trans-unit id="preview.show_error_details">
                 <source>Show error details</source>

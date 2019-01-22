@@ -124,6 +124,7 @@ class StringService implements SingletonInterface
             return "<p>$line</p>";
         };
 
+        $text = preg_replace('/ ?#LF# ?/', "\n", $text);
         $lines = explode("\n", $text);
         $lines = array_map('trim', $lines);
         $lines = array_filter($lines);
