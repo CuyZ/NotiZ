@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -21,7 +22,7 @@ class InputSlot extends Slot
     /**
      * @return string
      */
-    public function getFlexFormConfiguration()
+    public function getFlexFormConfiguration(): string
     {
         return <<<XML
     <type>input</type>

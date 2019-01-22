@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -93,7 +94,7 @@ class UriBuilder
     /**
      * @return UriInterface
      */
-    public function build()
+    public function build(): UriInterface
     {
         $module = $this->moduleHandler->getModuleName();
         $controller = $this->controller ?: $this->moduleHandler->getDefaultControllerName();

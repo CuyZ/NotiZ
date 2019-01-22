@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -47,7 +48,7 @@ class EventGroup extends AbstractDefinitionComponent implements DataPreProcessor
     /**
      * @param string $identifier
      */
-    public function __construct($identifier)
+    public function __construct(string $identifier)
     {
         $this->identifier = $identifier;
     }
@@ -55,7 +56,7 @@ class EventGroup extends AbstractDefinitionComponent implements DataPreProcessor
     /**
      * @return string
      */
-    public function getIdentifier()
+    public function getIdentifier(): string
     {
         return $this->identifier;
     }
@@ -63,7 +64,7 @@ class EventGroup extends AbstractDefinitionComponent implements DataPreProcessor
     /**
      * @return string
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         return LocalizationService::localize($this->label);
     }
@@ -71,7 +72,7 @@ class EventGroup extends AbstractDefinitionComponent implements DataPreProcessor
     /**
      * @return EventDefinition[]
      */
-    public function getEvents()
+    public function getEvents(): array
     {
         return $this->events;
     }
@@ -80,7 +81,7 @@ class EventGroup extends AbstractDefinitionComponent implements DataPreProcessor
      * @param string $identifier
      * @return bool
      */
-    public function hasEvent($identifier)
+    public function hasEvent(string $identifier): bool
     {
         return true === isset($this->events[$identifier]);
     }
@@ -91,7 +92,7 @@ class EventGroup extends AbstractDefinitionComponent implements DataPreProcessor
      *
      * @throws EntryNotFoundException
      */
-    public function getEvent($identifier)
+    public function getEvent(string $identifier): EventDefinition
     {
         if (false === $this->hasEvent($identifier)) {
             throw EntryNotFoundException::definitionEventNotFound($identifier);
@@ -103,7 +104,7 @@ class EventGroup extends AbstractDefinitionComponent implements DataPreProcessor
     /**
      * @return EventDefinition
      */
-    public function getFirstEvent()
+    public function getFirstEvent(): EventDefinition
     {
         return array_pop(array_reverse($this->getEvents()));
     }

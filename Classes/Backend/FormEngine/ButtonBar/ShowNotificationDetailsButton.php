@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -81,7 +82,7 @@ class ShowNotificationDetailsButton implements SingletonInterface
     /**
      * @param NotificationDefinition $notificationDefinition
      * @param EditDocumentController $controller
-     * @return Viewable
+     * @return Viewable|null [PHP 7.1]
      */
     protected function getNotification(NotificationDefinition $notificationDefinition, EditDocumentController $controller)
     {
@@ -108,7 +109,7 @@ class ShowNotificationDetailsButton implements SingletonInterface
         }
 
         /** @var Viewable $notification */
-        $notification = $notificationDefinition->getProcessor()->getNotificationFromIdentifier($uid);
+        $notification = $notificationDefinition->getProcessor()->getNotificationFromIdentifier((string)$uid);
 
         return $notification;
     }
@@ -142,7 +143,7 @@ class ShowNotificationDetailsButton implements SingletonInterface
      * @param EditDocumentController $controller
      * @return ModuleTemplate
      */
-    protected function getModuleTemplate(EditDocumentController $controller)
+    protected function getModuleTemplate(EditDocumentController $controller): ModuleTemplate
     {
         $reflection = new ReflectionClass($controller);
         $property = $reflection->getProperty('moduleTemplate');

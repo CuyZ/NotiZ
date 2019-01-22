@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -55,7 +56,7 @@ class EntityLogMessageBuilder
     /**
      * @return string
      */
-    public function getMessage()
+    public function getMessage(): string
     {
         return $this->markerParser->replaceMarkers(
             $this->notification->getMessage(),

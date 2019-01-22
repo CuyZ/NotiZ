@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -61,7 +62,7 @@ class CachesClearedEvent extends AbstractEvent implements ProvidesExamplePropert
     /**
      * @return array
      */
-    public function getExampleProperties()
+    public function getExampleProperties(): array
     {
         return [
             'cacheCommand' => 'page',

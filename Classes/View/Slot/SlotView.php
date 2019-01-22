@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -54,7 +55,7 @@ class SlotView extends StandaloneView
      *
      * @return SlotContainer
      */
-    public function getSlots()
+    public function getSlots(): SlotContainer
     {
         if (!$this->slots) {
             $this->slots = GeneralUtility::makeInstance(SlotContainer::class);
@@ -79,7 +80,7 @@ class SlotView extends StandaloneView
      * @param array $markers
      * @return string
      */
-    public function renderWithSlots(array $slotsValues, array $markers)
+    public function renderWithSlots(array $slotsValues, array $markers): string
     {
         $viewHelperVariableContainer = $this->baseRenderingContext->getViewHelperVariableContainer();
 
@@ -93,7 +94,7 @@ class SlotView extends StandaloneView
     /**
      * @return EventDefinition
      */
-    public function getEventDefinition()
+    public function getEventDefinition(): EventDefinition
     {
         return $this->eventDefinition;
     }

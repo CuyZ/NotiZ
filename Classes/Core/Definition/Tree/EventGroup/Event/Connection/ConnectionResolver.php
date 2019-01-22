@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -66,7 +67,7 @@ class ConnectionResolver implements SingletonInterface, MixedTypesInterface
      * @throws EntryNotFoundException
      * @throws InvalidTypeException
      */
-    protected static function getConnectionType(MixedTypesResolver $resolver)
+    protected static function getConnectionType(MixedTypesResolver $resolver): string
     {
         $data = $resolver->getData();
         $data = is_array($data)

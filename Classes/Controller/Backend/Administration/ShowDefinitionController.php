@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -46,7 +47,7 @@ class ShowDefinitionController extends BackendController
     /**
      * @inheritdoc
      */
-    protected function getMenu()
+    protected function getMenu(): string
     {
         return Menu::ADMINISTRATION_DEFINITION;
     }

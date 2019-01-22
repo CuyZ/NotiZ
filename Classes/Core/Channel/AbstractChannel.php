@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -132,7 +133,7 @@ abstract class AbstractChannel implements Channel
      * @param NotificationDefinition $notification
      * @return bool
      */
-    public static function supportsNotification(NotificationDefinition $notification)
+    public static function supportsNotification(NotificationDefinition $notification): bool
     {
         self::checkSupportedNotifications();
 
@@ -189,7 +190,7 @@ abstract class AbstractChannel implements Channel
      *
      * @return string
      */
-    public static function getSettingsClassName()
+    public static function getSettingsClassName(): string
     {
         /** @var ReflectionService $reflectionService */
         $reflectionService = Container::get(ReflectionService::class);

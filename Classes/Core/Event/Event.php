@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -92,10 +93,10 @@ interface Event
      *
      * @return EventDefinition
      */
-    public function getDefinition();
+    public function getDefinition(): EventDefinition;
 
     /**
      * @return Notification
      */
-    public function getNotification();
+    public function getNotification(): Notification;
 }

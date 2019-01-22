@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -78,7 +79,7 @@ class EventDefinitionRegisterer implements SingletonInterface, TableConfiguratio
      *
      * @return bool
      */
-    protected function clearingInstallToolCache()
+    protected function clearingInstallToolCache(): bool
     {
         return false === CacheService::getInstance()->cacheIsRegistered()
             && isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][NotizConstants::CACHE_ID]);

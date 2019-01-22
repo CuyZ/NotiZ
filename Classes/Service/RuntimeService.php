@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -42,7 +43,7 @@ class RuntimeService implements SingletonInterface
     /**
      * @param Throwable $exception
      */
-    public function setException($exception)
+    public function setException(Throwable $exception)
     {
         $error = new Error('Runtime exception: ' . $exception->getMessage(), 1507489776);
         DefinitionService::get()->getValidationResult()->addError($error);
@@ -51,7 +52,7 @@ class RuntimeService implements SingletonInterface
     }
 
     /**
-     * @return Throwable
+     * @return Throwable|null [PHP 7.1]
      */
     public function getException()
     {

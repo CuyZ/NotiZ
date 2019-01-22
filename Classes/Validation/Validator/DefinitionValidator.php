@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -91,7 +92,7 @@ class DefinitionValidator extends AbstractValidator
      * @param int $code
      * @param array $arguments
      */
-    protected function addPropertyError($path, $message, $code, array $arguments = [])
+    protected function addPropertyError(string $path, string $message, int $code, array $arguments = [])
     {
         $error = new Error($message, $code, $arguments);
         $this->result->forProperty($path)->addError($error);

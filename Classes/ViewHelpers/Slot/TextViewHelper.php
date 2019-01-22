@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -35,7 +36,7 @@ class TextViewHelper extends SlotViewHelper
     /**
      * @return Slot
      */
-    protected function getSlot()
+    protected function getSlot(): Slot
     {
         $rte = $this->arguments['rte'];
         $rteMode = $this->arguments['rteMode'];

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -54,7 +55,7 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
     /**
      * @return EventGroup[]
      */
-    public function getEventGroups()
+    public function getEventGroups(): array
     {
         return $this->eventGroups;
     }
@@ -62,7 +63,7 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
     /**
      * @return Generator|EventDefinition[]
      */
-    public function getEvents()
+    public function getEvents(): Generator
     {
         foreach ($this->eventGroups as $eventGroup) {
             foreach ($eventGroup->getEvents() as $event) {
@@ -75,7 +76,7 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
      * @param string $identifier
      * @return bool
      */
-    public function hasEventGroup($identifier)
+    public function hasEventGroup(string $identifier): bool
     {
         return true === isset($this->eventGroups[$identifier]);
     }
@@ -86,7 +87,7 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
      *
      * @throws EntryNotFoundException
      */
-    public function getEventGroup($identifier)
+    public function getEventGroup(string $identifier): EventGroup
     {
         if (false === $this->hasEventGroup($identifier)) {
             throw EntryNotFoundException::definitionEventGroupNotFound($identifier);
@@ -101,7 +102,7 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
      *
      * @throws EntryNotFoundException
      */
-    public function getEventFromFullIdentifier($fullIdentifier)
+    public function getEventFromFullIdentifier(string $fullIdentifier): EventDefinition
     {
         if (!$this->hasEventFromFullIdentifier($fullIdentifier)) {
             throw EntryNotFoundException::definitionEventFullIdentifierNotFound($fullIdentifier);
@@ -116,7 +117,7 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
      * @param string $fullIdentifier
      * @return bool
      */
-    public function hasEventFromFullIdentifier($fullIdentifier)
+    public function hasEventFromFullIdentifier(string $fullIdentifier): bool
     {
         list($eventGroup, $event) = explode('.', $fullIdentifier);
 
@@ -127,7 +128,7 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
     /**
      * @return EventGroup
      */
-    public function getFirstEventGroup()
+    public function getFirstEventGroup(): EventGroup
     {
         return array_pop(array_reverse($this->getEventGroups()));
     }
@@ -135,7 +136,7 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
     /**
      * @return NotificationDefinition[]
      */
-    public function getNotifications()
+    public function getNotifications(): array
     {
         return $this->notifications;
     }
@@ -143,7 +144,7 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
     /**
      * @return NotificationDefinition[]
      */
-    public function getListableNotifications()
+    public function getListableNotifications(): array
     {
         return array_filter(
             $this->notifications,
@@ -157,7 +158,7 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
      * @param $identifier
      * @return bool
      */
-    public function hasNotification($identifier)
+    public function hasNotification($identifier): bool
     {
         return true === isset($this->notifications[$identifier]);
     }
@@ -168,7 +169,7 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
      *
      * @throws EntryNotFoundException
      */
-    public function getNotification($identifier)
+    public function getNotification(string $identifier): NotificationDefinition
     {
         if (false === $this->hasNotification($identifier)) {
             throw EntryNotFoundException::definitionNotificationNotFound($identifier);

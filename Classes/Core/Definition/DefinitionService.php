@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -96,7 +97,7 @@ class DefinitionService implements SingletonInterface
     /**
      * @return Result
      */
-    public function getValidationResult()
+    public function getValidationResult(): Result
     {
         $this->buildDefinitionObject();
 
@@ -108,7 +109,7 @@ class DefinitionService implements SingletonInterface
      *
      * @throws InvalidDefinitionException
      */
-    public function getDefinition()
+    public function getDefinition(): Definition
     {
         $this->buildDefinitionObject();
 
@@ -128,7 +129,7 @@ class DefinitionService implements SingletonInterface
      *
      * @return array
      */
-    public function getDefinitionArray()
+    public function getDefinitionArray(): array
     {
         $this->buildDefinitionObject();
 

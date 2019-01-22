@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -22,13 +23,14 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 trait ExtendedSelfInstantiateTrait
 {
     /**
-     * @return self|object
+     * @return self
      */
-    public static function get()
+    public static function get(): self
     {
         /** @var ObjectManager $objectManager */
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
 
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $objectManager->get(static::class);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -63,7 +64,7 @@ abstract class GracefulProcessor implements SingletonInterface
      * @param string $tableName
      * @throws Throwable
      */
-    final public function process($tableName)
+    final public function process(string $tableName)
     {
         if ($this->definitionService->getValidationResult()->hasErrors()) {
             return;
@@ -88,13 +89,13 @@ abstract class GracefulProcessor implements SingletonInterface
     /**
      * @param string $tableName
      */
-    abstract protected function doProcess($tableName);
+    abstract protected function doProcess(string $tableName);
 
     /**
      * @param Throwable $exception
      * @return array
      */
-    private function getDefinitionErrorTca($exception)
+    private function getDefinitionErrorTca(Throwable $exception): array
     {
         return [
             'types' => [
@@ -120,7 +121,7 @@ abstract class GracefulProcessor implements SingletonInterface
      * @param array $arguments
      * @return string
      */
-    public function getErrorMessage($arguments)
+    public function getErrorMessage($arguments): string
     {
         $view = $this->viewService->getStandaloneView('Backend/TCA/ErrorMessage');
 

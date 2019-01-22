@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -47,7 +48,7 @@ class SchedulerService implements SingletonInterface
      *
      * @return array
      */
-    public function getTasksList()
+    public function getTasksList(): array
     {
         /** @var ConnectionPool $connectionPool */
         $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);

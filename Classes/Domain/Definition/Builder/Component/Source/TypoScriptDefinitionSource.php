@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -88,7 +89,7 @@ class TypoScriptDefinitionSource extends FileDefinitionSource
      *
      * @return array
      */
-    public function getDefinitionArray()
+    public function getDefinitionArray(): array
     {
         $content = '';
 

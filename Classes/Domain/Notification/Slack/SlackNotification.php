@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -24,17 +25,17 @@ interface SlackNotification extends Notification, MultipleChannelsNotification
     /**
      * @return string
      */
-    public function getMessage();
+    public function getMessage(): string;
 
     /**
      * @return bool
      */
-    public function hasCustomBot();
+    public function hasCustomBot(): bool;
 
     /**
      * @return string
      */
-    public function getBot();
+    public function getBot(): string;
 
     /**
      * This method should return `true` if the notification has a custom
@@ -42,30 +43,30 @@ interface SlackNotification extends Notification, MultipleChannelsNotification
      *
      * @return bool
      */
-    public function hasCustomSlackChannel();
+    public function hasCustomSlackChannel(): bool;
 
     /**
      * @return string
      */
-    public function getSlackChannel();
+    public function getSlackChannel(): string;
 
     /**
      * @return string
      */
-    public function getTarget();
+    public function getTarget(): string;
 
     /**
      * @return string
      */
-    public function getWebhookUrl();
+    public function getWebhookUrl(): string;
 
     /**
      * @return string
      */
-    public function getName();
+    public function getName(): string;
 
     /**
      * @return string
      */
-    public function getAvatar();
+    public function getAvatar(): string;
 }

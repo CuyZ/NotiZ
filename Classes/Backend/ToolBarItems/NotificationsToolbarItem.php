@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -97,7 +98,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return bool
      */
-    public function checkAccess()
+    public function checkAccess(): bool
     {
         return $this->managerModuleHandler->canBeAccessed();
     }
@@ -105,7 +106,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return string
      */
-    public function getItem()
+    public function getItem(): string
     {
         return $this->getFluidTemplateObject('Backend/ToolBar/NotificationToolBarItem')->render();
     }
@@ -113,7 +114,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return bool
      */
-    public function hasDropDown()
+    public function hasDropDown(): bool
     {
         return true;
     }
@@ -121,7 +122,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return string
      */
-    public function getDropDown()
+    public function getDropDown(): string
     {
         try {
             return $this->getDropDownFromDefinition();
@@ -137,7 +138,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
      * @param ResponseInterface $response
      * @return ResponseInterface
      */
-    public function renderMenuAction(ServerRequestInterface $request, ResponseInterface $response)
+    public function renderMenuAction(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
         $this->fullMenu = true;
 
@@ -149,7 +150,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return string
      */
-    protected function getDropDownFromDefinition()
+    protected function getDropDownFromDefinition(): string
     {
         $view = $this->getFluidTemplateObject('Backend/ToolBar/NotificationToolBarDropDown');
 
@@ -184,7 +185,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
      * @param Throwable $exception
      * @return string
      */
-    protected function getErrorDropDown($exception)
+    protected function getErrorDropDown(Throwable $exception): string
     {
         $view = $this->getFluidTemplateObject('Backend/ToolBar/NotificationToolBarDropDownError');
         $view->assign('exception', $exception);
@@ -196,7 +197,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return array
      */
-    public function getAdditionalAttributes()
+    public function getAdditionalAttributes(): array
     {
         return [];
     }
@@ -204,11 +205,11 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return int
      */
-    public function getIndex()
+    public function getIndex(): int
     {
         $index = $this->extensionConfigurationService->getConfigurationValue('toolbar.index');
 
-        return max(min($index, 100), 0);
+        return (int)max(min($index, 100), 0);
     }
 
     /**
@@ -230,7 +231,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
      * @param string $templateName
      * @return StandaloneView
      */
-    protected function getFluidTemplateObject($templateName)
+    protected function getFluidTemplateObject(string $templateName): StandaloneView
     {
         $view = $this->viewService->getStandaloneView($templateName);
 
@@ -240,10 +241,11 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     }
 
     /**
-     * @return PageRenderer|object
+     * @return PageRenderer
      */
-    protected function getPageRenderer()
+    protected function getPageRenderer(): PageRenderer
     {
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
         return GeneralUtility::makeInstance(PageRenderer::class);
     }
 }

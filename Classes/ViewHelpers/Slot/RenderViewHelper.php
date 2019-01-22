@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -160,7 +161,7 @@ class RenderViewHelper extends AbstractConditionViewHelper
      *
      * @throws DuplicateEntryException
      */
-    public static function getSlotValue(array $arguments, RenderingContextInterface $renderingContext)
+    public static function getSlotValue(array $arguments, RenderingContextInterface $renderingContext): string
     {
         self::$currentVariableContainer = $renderingContext->getViewHelperVariableContainer();
 
@@ -200,7 +201,7 @@ class RenderViewHelper extends AbstractConditionViewHelper
      * @param array $arguments
      * @return bool
      */
-    protected static function evaluateCondition($arguments = null)
+    protected static function evaluateCondition($arguments = null): bool
     {
         return self::getSlotContainer()->has($arguments['name']);
     }
@@ -208,7 +209,7 @@ class RenderViewHelper extends AbstractConditionViewHelper
     /**
      * @return SlotContainer
      */
-    protected static function getSlotContainer()
+    protected static function getSlotContainer(): SlotContainer
     {
         return self::$currentVariableContainer->get(SlotView::class, SlotView::SLOT_CONTAINER);
     }
@@ -216,7 +217,7 @@ class RenderViewHelper extends AbstractConditionViewHelper
     /**
      * @return array
      */
-    protected static function getSlotValues()
+    protected static function getSlotValues(): array
     {
         return self::$currentVariableContainer->get(SlotView::class, SlotView::SLOT_VALUES);
     }
@@ -224,7 +225,7 @@ class RenderViewHelper extends AbstractConditionViewHelper
     /**
      * @return array
      */
-    protected static function getMarkers()
+    protected static function getMarkers(): array
     {
         return self::$currentVariableContainer->get(SlotView::class, SlotView::MARKERS);
     }

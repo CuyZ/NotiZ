@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -51,7 +52,7 @@ class Container implements SingletonInterface
      * @param mixed ...$arguments
      * @return object
      */
-    public static function get($className, ...$arguments)
+    public static function get(string $className, ...$arguments)
     {
         return static::getInstance()->objectManager->get($className, ...$arguments);
     }
@@ -59,7 +60,7 @@ class Container implements SingletonInterface
     /**
      * @return BackendUserAuthentication
      */
-    public static function getBackendUser()
+    public static function getBackendUser(): BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
     }
@@ -67,7 +68,7 @@ class Container implements SingletonInterface
     /**
      * @return PageRepository
      */
-    public static function getPageRepository()
+    public static function getPageRepository(): PageRepository
     {
         $instance = self::getInstance();
 

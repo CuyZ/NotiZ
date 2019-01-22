@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -30,7 +31,7 @@ class GlobalRecipients extends AbstractDefinitionComponent implements DataPrePro
     /**
      * @return Recipient[]
      */
-    public function getRecipients()
+    public function getRecipients(): array
     {
         return $this->recipients;
     }

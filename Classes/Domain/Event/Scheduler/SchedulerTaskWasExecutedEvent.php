@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -35,7 +36,7 @@ class SchedulerTaskWasExecutedEvent extends SchedulerTaskEvent
      * @param AbstractTask $task
      * @param bool $result
      */
-    public function run(AbstractTask $task, $result)
+    public function run(AbstractTask $task, bool $result)
     {
         $this->checkTaskFilter($task);
         $this->fillTaskData($task);
@@ -46,7 +47,7 @@ class SchedulerTaskWasExecutedEvent extends SchedulerTaskEvent
     /**
      * @return array
      */
-    public function getExampleProperties()
+    public function getExampleProperties(): array
     {
         return parent::getExampleProperties() +
             [

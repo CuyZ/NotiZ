@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -77,7 +78,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getMessage()
+    public function getMessage(): string
     {
         return $this->message;
     }
@@ -85,7 +86,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @param string $message
      */
-    public function setMessage($message)
+    public function setMessage(string $message)
     {
         $this->message = $message;
     }
@@ -93,7 +94,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @return bool
      */
-    public function hasCustomBot()
+    public function hasCustomBot(): bool
     {
         return $this->customBot;
     }
@@ -101,7 +102,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @param bool $customBot
      */
-    public function setCustomBot($customBot)
+    public function setCustomBot(bool $customBot)
     {
         $this->customBot = $customBot;
     }
@@ -109,7 +110,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getBot()
+    public function getBot(): string
     {
         return $this->bot;
     }
@@ -117,7 +118,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @param string $bot
      */
-    public function setBot($bot)
+    public function setBot(string $bot)
     {
         $this->bot = $bot;
     }
@@ -125,7 +126,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @return bool
      */
-    public function hasCustomSlackChannel()
+    public function hasCustomSlackChannel(): bool
     {
         return !empty($this->target) || !empty($this->webhookUrl);
     }
@@ -133,7 +134,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getSlackChannel()
+    public function getSlackChannel(): string
     {
         return $this->slackChannel;
     }
@@ -141,7 +142,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @param string $slackChannel
      */
-    public function setSlackChannel($slackChannel)
+    public function setSlackChannel(string $slackChannel)
     {
         $this->slackChannel = $slackChannel;
     }
@@ -149,7 +150,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getWebhookUrl()
+    public function getWebhookUrl(): string
     {
         return $this->webhookUrl;
     }
@@ -157,7 +158,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @param string $webhookUrl
      */
-    public function setWebhookUrl($webhookUrl)
+    public function setWebhookUrl(string $webhookUrl)
     {
         $this->webhookUrl = $webhookUrl;
     }
@@ -165,7 +166,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getTarget()
+    public function getTarget(): string
     {
         return $this->target;
     }
@@ -173,7 +174,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @param string $target
      */
-    public function setTarget($target)
+    public function setTarget(string $target)
     {
         $this->target = $target;
     }
@@ -181,7 +182,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -189,7 +190,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -197,7 +198,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getAvatar()
+    public function getAvatar(): string
     {
         return $this->avatar;
     }
@@ -205,7 +206,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @param string $avatar
      */
-    public function setAvatar($avatar)
+    public function setAvatar(string $avatar)
     {
         $this->avatar = $avatar;
     }
@@ -213,7 +214,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public static function getProcessorClassName()
+    public static function getProcessorClassName(): string
     {
         return EntitySlackNotificationProcessor::class;
     }
@@ -221,7 +222,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public static function getSettingsClassName()
+    public static function getSettingsClassName(): string
     {
         return EntitySlackSettings::class;
     }
@@ -229,7 +230,7 @@ class EntitySlackNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public static function getDefinitionIdentifier()
+    public static function getDefinitionIdentifier(): string
     {
         return 'entitySlack';
     }

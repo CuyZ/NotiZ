@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -75,7 +76,7 @@ class DefaultDefinitionComponents implements SingletonInterface
     /**
      * @return array
      */
-    private function getDefaultFiles()
+    private function getDefaultFiles(): array
     {
         $defaultFiles = [
             NotizConstants::TYPOSCRIPT_PATH . 'Channel/Channels.Default.typoscript',

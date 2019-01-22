@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -66,7 +67,7 @@ abstract class EntityTcaWriter implements SingletonInterface
      *
      * @return array
      */
-    abstract protected function buildTcaArray();
+    abstract protected function buildTcaArray(): array;
 
     /**
      * This method builds a TCA array and returns it to be used in a
@@ -75,7 +76,7 @@ abstract class EntityTcaWriter implements SingletonInterface
      * @param string $tableName
      * @return array
      */
-    final public function getTcaArray($tableName)
+    final public function getTcaArray(string $tableName): array
     {
         $this->tableName = $tableName;
 
@@ -97,21 +98,21 @@ abstract class EntityTcaWriter implements SingletonInterface
      *
      * @return string
      */
-    abstract protected function getNotificationTcaServiceClass();
+    abstract protected function getNotificationTcaServiceClass(): string;
 
     /**
      * Returns the title of the entity, can be a LLL reference.
      *
      * @return string
      */
-    abstract protected function getEntityTitle();
+    abstract protected function getEntityTitle(): string;
 
     /**
      * This method returns the LLL string to use for the `channel` column.
      *
      * @return string
      */
-    protected function getChannelLabel()
+    protected function getChannelLabel(): string
     {
         return self::LLL . ':field.channel';
     }
@@ -119,7 +120,7 @@ abstract class EntityTcaWriter implements SingletonInterface
     /**
      * @return array
      */
-    protected function getDefaultCtrl()
+    protected function getDefaultCtrl(): array
     {
         return [
             'title' => $this->getEntityTitle(),

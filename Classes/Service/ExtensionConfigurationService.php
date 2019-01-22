@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -46,7 +47,7 @@ class ExtensionConfigurationService implements SingletonInterface
      *
      * @throws EntryNotFoundException
      */
-    public function getConfiguration($key)
+    public function getConfiguration(string $key): array
     {
         if (!isset($this->configuration[$key])) {
             throw EntryNotFoundException::extensionConfigurationEntryNotFound($key);
@@ -59,7 +60,7 @@ class ExtensionConfigurationService implements SingletonInterface
      * @param string $key
      * @return mixed
      */
-    public function getConfigurationValue($key)
+    public function getConfigurationValue(string $key)
     {
         $configuration = $this->getConfiguration($key);
 

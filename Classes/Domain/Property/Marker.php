@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -33,7 +34,7 @@ class Marker extends PropertyEntry
      *
      * @return string
      */
-    public function getFormattedName()
+    public function getFormattedName(): string
     {
         return sprintf(
             NotizConstants::DEFAULT_MARKER_FORMAT,

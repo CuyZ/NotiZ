@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -84,7 +85,7 @@ class Scheduler extends \TYPO3\CMS\Scheduler\Scheduler
      *
      * @throws Throwable
      */
-    public function executeTask(AbstractTask $task)
+    public function executeTask(AbstractTask $task): bool
     {
         $exception = null;
 

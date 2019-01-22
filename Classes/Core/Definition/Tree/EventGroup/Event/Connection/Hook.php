@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -53,7 +54,7 @@ class Hook extends AbstractDefinitionComponent implements Connection
     /**
      * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }
@@ -114,7 +115,7 @@ class Hook extends AbstractDefinitionComponent implements Connection
      * @throws ClassNotFoundException
      * @throws WrongFormatException
      */
-    protected function preventEvalNeverIdealStuff(EventRunner $eventRunner)
+    protected function preventEvalNeverIdealStuff(EventRunner $eventRunner): string
     {
         $className = 'notiz_hook_' . sha1($eventRunner->getEventDefinition()->getFullIdentifier());
 
@@ -151,7 +152,7 @@ class Hook extends AbstractDefinitionComponent implements Connection
      * @param EventRunner $eventRunner
      * @return string
      */
-    protected function anotherNonUsefulSystem($className, $implements, $method, EventRunner $eventRunner)
+    protected function anotherNonUsefulSystem(string $className, string $implements, string $method, EventRunner $eventRunner): string
     {
         $eventRunnerContainerClass = EventRunnerContainer::class;
 
@@ -171,7 +172,7 @@ PHP;
     /**
      * @return bool
      */
-    protected function hookIsRegistered()
+    protected function hookIsRegistered(): bool
     {
         return ArrayUtility::isValidPath($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'], $this->getFullPath(), '|');
     }
@@ -179,7 +180,7 @@ PHP;
     /**
      * @return string
      */
-    protected function getFullPath()
+    protected function getFullPath(): string
     {
         return $this->path . '|' . self::INTERNAL_HOOK_KEY;
     }
@@ -187,7 +188,7 @@ PHP;
     /**
      * @return TypoScriptFrontendController
      */
-    protected function getTypoScriptFrontendController()
+    protected function getTypoScriptFrontendController(): TypoScriptFrontendController
     {
         return $GLOBALS['TSFE'];
     }

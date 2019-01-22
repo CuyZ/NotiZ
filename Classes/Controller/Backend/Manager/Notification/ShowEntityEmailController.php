@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -50,7 +51,7 @@ class ShowEntityEmailController extends ShowNotificationController
      * by the notification. Example values may be added to simulate fake markers
      * in the view.
      *
-     * @return string
+     * @return string|null [PHP 7.1]
      */
     public function previewAction()
     {
@@ -72,7 +73,7 @@ class ShowEntityEmailController extends ShowNotificationController
     /**
      * @return string
      */
-    protected function getEmailPreview()
+    protected function getEmailPreview(): string
     {
         if (!$this->notification->hasEventDefinition()) {
             return $this->notification->getBody();
@@ -87,7 +88,7 @@ class ShowEntityEmailController extends ShowNotificationController
     /**
      * @return string
      */
-    public function getNotificationDefinitionIdentifier()
+    public function getNotificationDefinitionIdentifier(): string
     {
         return EntityEmailNotification::getDefinitionIdentifier();
     }

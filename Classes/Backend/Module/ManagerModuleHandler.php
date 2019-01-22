@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -25,7 +26,7 @@ class ManagerModuleHandler extends ModuleHandler
     /**
      * @return string
      */
-    public function getDefaultControllerName()
+    public function getDefaultControllerName(): string
     {
         return 'Backend\\Manager\\ListNotificationTypes';
     }
@@ -33,7 +34,7 @@ class ManagerModuleHandler extends ModuleHandler
     /**
      * @return string
      */
-    public function getModuleName()
+    public function getModuleName(): string
     {
         return 'NotizNotiz_NotizNotizManager';
     }

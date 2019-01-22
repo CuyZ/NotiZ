@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -25,11 +26,11 @@ interface Creatable
     /**
      * @return bool
      */
-    public static function isCreatable();
+    public static function isCreatable(): bool;
 
     /**
      * @param string $selectedEvent
      * @return string
      */
-    public static function getCreationUri($selectedEvent = null);
+    public static function getCreationUri(string $selectedEvent = null): string;
 }

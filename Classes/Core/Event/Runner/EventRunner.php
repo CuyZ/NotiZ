@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -156,7 +157,7 @@ class EventRunner
     /**
      * @return callable
      */
-    public function getCallable()
+    public function getCallable(): callable
     {
         return [$this, 'process'];
     }
@@ -164,7 +165,7 @@ class EventRunner
     /**
      * @return EventDefinition
      */
-    public function getEventDefinition()
+    public function getEventDefinition(): EventDefinition
     {
         return $this->eventDefinition;
     }
@@ -179,7 +180,7 @@ class EventRunner
      *
      * @return array
      */
-    public function __sleep()
+    public function __sleep(): array
     {
         return [];
     }

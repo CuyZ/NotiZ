@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -47,7 +48,7 @@ class NotificationContainer
      * @param EventDefinition $eventDefinition
      * @return Generator
      */
-    public function fetchFromEventDefinition(EventDefinition $eventDefinition)
+    public function fetchFromEventDefinition(EventDefinition $eventDefinition): Generator
     {
         $processor = $this->notificationDefinition->getProcessor();
         $notifications = $processor->getNotificationsFromEventDefinition($eventDefinition);
@@ -61,7 +62,7 @@ class NotificationContainer
      *
      * @return Generator
      */
-    public function fetchAll()
+    public function fetchAll(): Generator
     {
         $processor = $this->notificationDefinition->getProcessor();
         $notifications = $processor->getAllNotifications();
@@ -78,7 +79,7 @@ class NotificationContainer
      *
      * @throws InvalidTypeException
      */
-    protected function loop($notifications)
+    protected function loop($notifications): Generator
     {
         if (!is_array($notifications)) {
             throw InvalidTypeException::notificationContainerArrayInvalidType($notifications);
