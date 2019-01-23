@@ -27,7 +27,6 @@ use CuyZ\Notiz\Domain\Definition\Builder\Component\DefaultDefinitionComponents;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use CuyZ\Notiz\Service\Hook\EventDefinitionRegisterer;
-use CuyZ\Notiz\Service\Hook\NotificationFlexFormProcessor;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRecordOverrideValues;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowDefaultValues;
@@ -41,7 +40,6 @@ use TYPO3\CMS\Core\Imaging\IconRegistry;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 use TYPO3\CMS\Scheduler\Scheduler;
 
@@ -87,7 +85,6 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
         $this->registerLaterProcessHook();
         $this->registerDefinitionComponents();
         $this->registerEventDefinitionHook();
-        $this->registerNotificationFlexFormProcessorHook();
         $this->registerInternalCache();
         $this->registerIcons();
         $this->registerNotificationProcessorRunner();
@@ -145,16 +142,6 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
     }
 
     /**
-     * @deprecated Must be removed when TYPO3 v7 is not supported anymore.
-     */
-    protected function registerNotificationFlexFormProcessorHook()
-    {
-        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')) {
-            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass'][] = NotificationFlexFormProcessor::class;
-        }
-    }
-
-    /**
      * Internal cache used by the extension.
      */
     protected function registerInternalCache()
@@ -189,10 +176,6 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
             ],
         ];
 
-        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')) {
-            $iconsList[FontawesomeIconProvider::class]['actions-pagetree'] = ['name' => 'list-ul'];
-        }
-
         foreach ($iconsList as $provider => $icons) {
             foreach ($icons as $name => $configuration) {
                 $this->iconRegistry->registerIcon($name, $provider, $configuration);
@@ -220,7 +203,7 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
      *
      * @link https://forge.typo3.org/issues/82651
      *
-     * @deprecated This method should be removed when the patch has been merged.
+     * @deprecated Must be removed when TYPO3 v8 is not supported anymore.
      */
     protected function resetTypeConvertersArray()
     {

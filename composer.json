@@ -22,7 +22,7 @@
     }
   ],
   "require": {
-    "typo3/cms": "^7.6.0 || ^8.7.0",
+    "typo3/cms": "^8.7.0",
     "romm/configuration-object": "^1.10"
   },
   "require-dev": {

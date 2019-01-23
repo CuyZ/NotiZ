@@ -153,6 +153,8 @@ abstract class AbstractEvent implements Event, HasProperties
      * `MyVendor\MyExtension\Domain\Event\MyEventPropertyBuilder` -> Builder
      *
      * @return PropertyBuilder
+     *
+     * @throws InvalidClassException
      */
     public static function getPropertyBuilder()
     {

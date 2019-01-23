@@ -20,7 +20,6 @@ use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\ViewHelpers\Slot\SlotViewHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class SlotView extends StandaloneView
@@ -69,18 +68,7 @@ class SlotView extends StandaloneView
                 'definition' => DefinitionService::get()->getDefinition(),
             ];
 
-            if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '>=')) {
-                $this->renderSection('Slots', $variables, true);
-            } else {
-                /**
-                 * @deprecated Must be removed when TYPO3 v7 is not supported anymore.
-                 */
-                $parsedTemplate = $this->templateParser->parse($this->getTemplateSource());
-
-                $this->startRendering(self::RENDERING_TEMPLATE, $parsedTemplate, $this->baseRenderingContext);
-                $this->renderSection('Slots', $variables, true);
-                $this->stopRendering();
-            }
+            $this->renderSection('Slots', $variables, true);
         }
 
         return $this->slots;

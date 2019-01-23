@@ -24,7 +24,6 @@ use CuyZ\Notiz\View\Slot\SlotView;
 use CuyZ\Notiz\View\ViewPathsAware;
 use Generator;
 use TYPO3\CMS\Core\SingletonInterface;
-use TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException;
 
 class SlotViewService implements SingletonInterface
 {
@@ -61,15 +60,7 @@ class SlotViewService implements SingletonInterface
         $view->setLayoutRootPaths($viewPaths->getLayoutRootPaths());
         $view->setTemplateRootPaths($viewPaths->getTemplateRootPaths());
         $view->setPartialRootPaths($viewPaths->getPartialRootPaths());
-
-        try {
-            $view->setTemplate($this->getEventTemplatePath($eventDefinition));
-        } catch (InvalidTemplateResourceException $exception) {
-            /**
-             * @deprecated This try/catch block can be removed when TYPO3 v7 is
-             *             not supported anymore.
-             */
-        }
+        $view->setTemplate($this->getEventTemplatePath($eventDefinition));
 
         if (!$view->hasTemplate()) {
             $view->setTemplate('Default');

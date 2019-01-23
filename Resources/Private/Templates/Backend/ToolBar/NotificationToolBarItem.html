@@ -1,16 +1,17 @@
-{namespace core=TYPO3\CMS\Core\ViewHelpers}
 {namespace nz=CuyZ\Notiz\ViewHelpers}
 
-<f:layout name="Backend/ToolBar/Item/{f:if(condition: legacyLayout, then: 'Legacy', else: 'Default')}" />
+<f:layout name="Default" />
 
-<f:section name="Icon">
-    <span title="{nz:t(key: 'Backend/Toolbar:title')}">
-        <f:render partial="Backend/Toolbar/ToolbarIcon"
-                  section="Content"
-                  arguments="{result: result}" />
+<f:section name="Content">
+    <span class="toolbar-item-icon" title="{nz:t(key: 'Backend/Toolbar:title')}">
+        <span title="{nz:t(key: 'Backend/Toolbar:title')}">
+            <f:render partial="Backend/Toolbar/ToolbarIcon"
+                      section="Content"
+                      arguments="{result: result}" />
+        </span>
     </span>
-</f:section>
 
-<f:section name="Title">
-    <nz:t key="Backend/Toolbar:title" />
+    <span class="toolbar-item-title">
+        <nz:t key="Backend/Toolbar:title" />
+    </span>
 </f:section>

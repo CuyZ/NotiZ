@@ -52,7 +52,7 @@ link is added to list all the notifications.
                                                         class="btn btn-default"
                                                         frame="1"
                                                         parentFrame="1">
-                                    <nz:core.icon identifier="actions-pagetree" />
+                                    <core:icon identifier="actions-pagetree" />
                                     <nz:t key="Backend/Module/Administration:index.show_definition_tree" />
                                 </nz:backend.module.link>
                             </f:then>
@@ -101,7 +101,7 @@ A block that shows information about a given notification type.
             <nz:notification.link.create notificationDefinition="{notification}"
                                                 class="btn btn-default"
                                                 title="{nz:t(key: 'Backend/Module/Manager:global.create_notification')}">
-                <nz:core.icon identifier="actions-add" />
+                <core:icon identifier="actions-add" />
                 <nz:t key="Backend/Module/Manager:global.create_notification" />
             </nz:notification.link.create>
 
@@ -112,7 +112,7 @@ A block that shows information about a given notification type.
                                    title="{label}"
                                    arguments="{notificationIdentifier: notification.identifier}">
 
-                        <nz:core.icon identifier="{notification.iconIdentifier}" />
+                        <core:icon identifier="{notification.iconIdentifier}" />
                         {label}
                     </f:link.action>
                 </f:alias>

@@ -1,7 +1,6 @@
-{namespace core=TYPO3\CMS\Core\ViewHelpers}
 {namespace nz=CuyZ\Notiz\ViewHelpers}
 
-<f:layout name="Backend/ToolBar/DropDown/{f:if(condition: legacyLayout, then: 'Legacy', else: 'Default')}" />
+<f:layout name="Backend/ToolBar/DropDown" />
 
 ********************************************************************************
 *** BODY
@@ -13,7 +12,7 @@
 <f:section name="BodyNotificationsLink">
     <nz:backend.module.link module="Manager"
                             frame="1">
-        <nz:core.icon identifier="actions-system-list-open" alternativeMarkupIdentifier="inline" />
+        <core:icon identifier="actions-system-list-open" alternativeMarkupIdentifier="inline" />
         <nz:t key="Backend/Toolbar:body.list_notifications" />
     </nz:backend.module.link>
 </f:section>
@@ -22,7 +21,7 @@
     <nz:backend.module.link module="Administration"
                             controller="Backend\Administration\ShowDefinition"
                             frame="1">
-        <nz:core.icon identifier="actions-system-extension-configure" alternativeMarkupIdentifier="inline" />
+        <core:icon identifier="actions-system-extension-configure" alternativeMarkupIdentifier="inline" />
         <nz:t key="Backend/Toolbar:body.show_definition" />
     </nz:backend.module.link>
 </f:section>
@@ -36,7 +35,7 @@
 </f:section>
 
 <f:section name="BodyNotificationIcon">
-    <nz:core.icon identifier="{notification.iconIdentifier}" alternativeMarkupIdentifier="inline" />
+    <core:icon identifier="{notification.iconIdentifier}" alternativeMarkupIdentifier="inline" />
 </f:section>
 
 <f:section name="BodyNotificationIdentifier">
@@ -80,7 +79,7 @@
     <nz:backend.module.link module="Administration"
                             controller="Backend\Administration\ShowDefinition"
                             frame="1">
-        <nz:core.icon identifier="actions-search" alternativeMarkupIdentifier="inline" />
+        <core:icon identifier="actions-search" alternativeMarkupIdentifier="inline" />
         <nz:t key="Backend/Module/Administration:definition.error.errors_link.label"
               args="{0: '{result.flattenedErrors -> f:count()}'}" />
     </nz:backend.module.link>

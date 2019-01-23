@@ -22,7 +22,7 @@
                       data-html="true"
                       title="{nz:t(key: 'Backend/Module/Manager:list_events.create_custom_event.title')}"
                       data-content="<a href='{documentationUrl}' target='_blank' class='nz-external-link'>{nz:t(key: 'Backend/Module/Manager:list_events.create_custom_event')}</a>">
-                    <nz:core.icon identifier="info-circle" />
+                    <core:icon identifier="info-circle" />
                 </span>
             </h1>
         </div>
@@ -67,14 +67,14 @@
                                            data-toggle="modal"
                                            data-target="#create-notification"
                                            data-event-identifier="{event.fullIdentifier}">
-                                            <nz:core.icon identifier="actions-add" />
+                                            <core:icon identifier="actions-add" />
                                         </a>
 
                                         <f:link.action controller="Backend\Manager\ShowEvent"
                                                        arguments="{eventIdentifier: event.fullIdentifier}"
                                                        class="btn btn-default"
                                                        title="{nz:t(key: 'Backend/Module/Manager:list_events.show_event_details')}">
-                                            <nz:core.icon identifier="actions-view" />
+                                            <core:icon identifier="actions-view" />
                                         </f:link.action>
                                     </div>
                                 </td>
