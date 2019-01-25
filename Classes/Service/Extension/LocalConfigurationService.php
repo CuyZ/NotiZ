@@ -29,8 +29,9 @@ use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use CuyZ\Notiz\Service\Hook\EventDefinitionRegisterer;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
+use Doctrine\Common\Annotations\AnnotationReader;
+use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseEditRow;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRecordOverrideValues;
-use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowDefaultValues;
 use TYPO3\CMS\Backend\Form\FormDataProvider\InitializeProcessedTca;
 use TYPO3\CMS\Core\Cache\Backend\FileBackend;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
@@ -92,6 +93,7 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
         $this->registerFormEngineComponents();
         $this->resetTypeConvertersArray();
         $this->overrideScheduler();
+        $this->ignoreDoctrineAnnotation();
     }
 
     /**
@@ -246,9 +248,7 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
          * notification record, if an argument `selectedEvent` exists in the
          * request and matches a valid event identifier.
          */
-        $databaseRowDefaultValues = $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DatabaseRowDefaultValues::class];
-
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DefaultEventFromGet::class] = $databaseRowDefaultValues;
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DefaultEventFromGet::class] = ['depends' => [DatabaseEditRow::class]];
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DatabaseRecordOverrideValues::class]['depends'][] = DefaultEventFromGet::class;
 
         /*
@@ -264,6 +264,18 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
          * selected for a notification entity.
          */
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][HideColumns::class] = [];
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = HideColumns::class;
+    }
+
+    /**
+     * Some annotations are used by this extension and can be confusing for
+     * Doctrine.
+     */
+    protected function ignoreDoctrineAnnotation()
+    {
+        if (class_exists(AnnotationReader::class)) {
+            AnnotationReader::addGlobalIgnoredName('label');
+            AnnotationReader::addGlobalIgnoredName('marker');
+            AnnotationReader::addGlobalIgnoredName('email');
+        }
     }
 }

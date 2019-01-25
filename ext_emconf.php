@@ -15,8 +15,8 @@ $EM_CONF[$_EXTKEY] = [
 
     'constraints' => [
         'depends' => [
-            'typo3' => '8.7.0-8.7.99',
-            'configuration_object' => '1.10.0-1.99.99',
+            'typo3' => '8.7.0-9.5.99',
+            'configuration_object' => '1.10.0-2.99.99',
         ],
     ],
 ];

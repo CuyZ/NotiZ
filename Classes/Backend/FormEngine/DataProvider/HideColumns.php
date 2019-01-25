@@ -35,14 +35,12 @@ class HideColumns implements FormDataProviderInterface
      */
     public function addData(array $result): array
     {
-        $tableName = $result['tableName'];
-
-        if (!isset($GLOBALS['TCA'][$tableName]['ctrl'][EntityTcaWriter::NOTIFICATION_ENTITY])) {
+        if (!isset($result['processedTca']['ctrl'][EntityTcaWriter::NOTIFICATION_ENTITY])) {
             return $result;
         }
 
         if (empty($result['databaseRow']['event'])) {
-            $GLOBALS['TCA'][$tableName]['types'][0]['showitem'] = 'title,description,--div--;' . EntityTcaWriter::LLL . ':tab.event,event';
+            $result['processedTca']['types'][0]['showitem'] = 'title,description,--div--;' . EntityTcaWriter::LLL . ':tab.event,event';
         }
 
         return $result;

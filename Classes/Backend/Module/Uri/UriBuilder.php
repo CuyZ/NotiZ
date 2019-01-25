@@ -101,7 +101,14 @@ class UriBuilder
 
         $uri = $this->uriBuilder
             ->reset()
-            ->setArguments(['M' => $module])
+            ->setArguments([
+                /*
+                 * @deprecated `M` arguments must be removed when TYPO3 v8 is
+                 * not supported anymore.
+                 */
+                'M' => $module,
+                'route' => $module,
+            ])
             ->uriFor(
                 $this->action,
                 $this->arguments,

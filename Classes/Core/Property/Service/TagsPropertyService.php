@@ -26,9 +26,10 @@ use CuyZ\Notiz\Core\Property\PropertyEntry;
 use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Reflection\ClassReflection;
-use TYPO3\CMS\Extbase\Reflection\PropertyReflection;
+use TYPO3\CMS\Extbase\Reflection\ReflectionService;
 
 /**
  * This service allows filling properties entry in a property definition, from
@@ -138,6 +139,51 @@ class TagsPropertyService implements SingletonInterface
      */
     public function fillPropertyDefinition(PropertyDefinition $definition)
     {
+        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '9.0.0', '<')) {
+            $this->fillPropertyDefinitionLegacy($definition);
+            return;
+        }
+
+        $identifier = $this->getPropertyTagIdentifier($definition);
+
+        /** @var ReflectionService $reflectionService */
+        $reflectionService = $this->objectManager->get(ReflectionService::class);
+
+        $classSchema = $reflectionService->getClassSchema($definition->getEventClassName());
+
+        foreach ($classSchema->getProperties() as $name => $property) {
+            if (!isset($property['tags'][$identifier])) {
+                continue;
+            }
+
+            $entry = $definition->addEntry($name);
+
+            $label = $property['tags']['label'][0] ?? '';
+            $entry->setLabel($label);
+
+            /*
+             * @deprecated Must be removed when TYPO3 v9 is not supported
+             * anymore.
+             *
+             * @see https://review.typo3.org/c/58923/
+             */
+            $defaultProperty = isset($property['defaultValue'])
+                ? $property['defaultValue']
+                : (new \ReflectionClass($definition->getEventClassName()))->getDefaultProperties()[$name];
+
+            if ($defaultProperty) {
+                $entry->setValue($defaultProperty);
+            }
+        }
+    }
+
+    /**
+     * @param PropertyDefinition $definition
+     *
+     * @deprecated Must be removed when TYPO3 v8 is not supported anymore.
+     */
+    private function fillPropertyDefinitionLegacy(PropertyDefinition $definition)
+    {
         $identifier = $this->getPropertyTagIdentifier($definition);
 
         /** @var ClassReflection $eventReflection */
@@ -147,15 +193,21 @@ class TagsPropertyService implements SingletonInterface
         $eventDefaultProperties = $eventReflection->getDefaultProperties();
 
         foreach ($eventProperties as $classProperty) {
-            if ($classProperty->isTaggedWith($identifier)) {
-                $name = $classProperty->getName();
-                $entry = $definition->addEntry($name);
+            if (!$classProperty->isTaggedWith($identifier)) {
+                continue;
+            }
 
-                $entry->setLabel($this->getPropertyLabel($classProperty));
+            $name = $classProperty->getName();
+            $entry = $definition->addEntry($name);
 
-                if (null !== $eventDefaultProperties[$name]) {
-                    $entry->setValue($eventDefaultProperties[$name]);
-                }
+            $label = $classProperty->isTaggedWith('label')
+                ? reset($classProperty->getTagValues('label'))
+                : '';
+
+            $entry->setLabel($label);
+
+            if (null !== $eventDefaultProperties[$name]) {
+                $entry->setValue($eventDefaultProperties[$name]);
             }
         }
     }
@@ -199,17 +251,6 @@ class TagsPropertyService implements SingletonInterface
         }
 
         $this->propertyTagIdentifier[$propertyType] = $identifier;
-    }
-
-    /**
-     * @param PropertyReflection $property
-     * @return string
-     */
-    protected function getPropertyLabel(PropertyReflection $property): string
-    {
-        return $property->isTaggedWith('label')
-            ? reset($property->getTagValues('label'))
-            : '';
     }
 
     /**

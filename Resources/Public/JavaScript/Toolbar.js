@@ -2,15 +2,25 @@ define([
     'jquery',
     'TYPO3/CMS/Backend/Icons',
     'TYPO3/CMS/Backend/Notification',
-    'TYPO3/CMS/Backend/Storage',
+    // @deprecated Must be removed when TYPO3 v8 is not supported anymore.
+    require.defined('TYPO3/CMS/Backend/Storage/Persistent')
+        ? 'TYPO3/CMS/Backend/Storage/Persistent'
+        : 'TYPO3/CMS/Backend/Storage',
     'TYPO3/CMS/Backend/Viewport'
 ], function ($, Icons, Notification, Storage, Viewport) {
     'use strict';
 
+    // @deprecated Must be removed when TYPO3 v8 is not supported anymore.
+    if (Storage.Persistent) {
+        Storage = Storage.Persistent;
+    }
+
     var selector = {
         toolbarContainer: '#cuyz-notiz-backend-toolbaritems-notificationstoolbaritem',
         menuContainer: '.dropdown-menu',
-        toolbarIcon: '.toolbar-item-icon .t3js-icon'
+        toolbarIcon: '.toolbar-item-icon .t3js-icon',
+        dataContainer: '.t3js-notiz-data-container',
+        iconContainer: '.t3js-notiz-icon'
     };
 
     var menu = (function () {
@@ -65,7 +75,7 @@ define([
                     })
                     .fail(menu.error)
                     .always(function () {
-                        if (typeof callback !== 'undefined') {
+                        if (typeof callback === 'function') {
                             callback();
                         }
                     });
@@ -203,15 +213,11 @@ define([
                             return;
                         }
 
-                        var lastType = Storage.Persistent.isset(typeKey)
-                            ? Storage.Persistent.get(typeKey)
-                            : null;
-
                         /*
                          * We display the message only if it was not displayed
                          * previously.
                          */
-                        if (lastType === type) {
+                        if (Storage.get(typeKey) === type) {
                             return;
                         }
 
@@ -221,7 +227,7 @@ define([
                             Notification.success(title, body, 10);
                         }
 
-                        Storage.Persistent.set(typeKey, type);
+                        Storage.set(typeKey, type);
                     }
                 }
             }
