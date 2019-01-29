@@ -119,7 +119,7 @@ abstract class NotificationTcaService implements SingletonInterface
         // The first configured event is selected by default.
         $event = $definition->getFirstEventGroup()->getFirstEvent();
 
-        if (isset($row['event'])) {
+        if (isset($row['event']) && !empty($row['event'])) {
             $eventValue = is_array($row['event'])
                 ? $row['event'][0]
                 : $row['event'];

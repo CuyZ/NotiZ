@@ -26,7 +26,7 @@ use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
 use CuyZ\Notiz\Core\Notification\MultipleChannelsNotification;
 use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Service\Container;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -259,7 +259,10 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     {
         $tableName = static::getTableName();
 
-        $href = BackendUtility::getModuleUrl(
+        /** @var UriBuilder $uriBuilder */
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+
+        $href = (string)$uriBuilder->buildUriFromRoute(
             'record_edit',
             [
                 "edit[$tableName][0]" => 'new',
@@ -307,7 +310,10 @@ abstract class EntityNotification extends AbstractEntity implements Notification
         $tableName = static::getTableName();
         $uid = $this->getUid();
 
-        return BackendUtility::getModuleUrl(
+        /** @var UriBuilder $uriBuilder */
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+
+        return (string)$uriBuilder->buildUriFromRoute(
             'record_edit',
             [
                 "edit[$tableName][$uid]" => 'edit',
