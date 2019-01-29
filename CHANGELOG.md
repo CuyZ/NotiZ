@@ -1,5 +1,68 @@
 # ![NotiZ](ext_icon.svg) NotiZ – ChangeLog
 
+## v2.0.0 - 29 January 2019
+
+> ℹ️ *Click on a changelog entry to see more details.*
+
+### New features
+
+<details>
+<summary>Introduce support for TYPO3 v9 LTS</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *25 Jan 2019 / [383ad51](https://github.com/CuyZ/NotiZ/commit/383ad511c933b2e0a71e3fc87148be0740b41842)*
+
+> 
+</details>
+
+### Important
+
+**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:** 
+
+<details>
+<summary>Use strict types for PHP classes</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Jan 2019 / [f143481](https://github.com/CuyZ/NotiZ/commit/f143481e26877aea7598b2492e20df1b093dd263) / [#191](https://github.com/CuyZ/NotiZ/issues/191)*
+
+> The extension now uses PHP 7.0 strict types in its API.
+> 
+> Third-party extensions which extend classes of the core may have to
+> adapt their code to follow the new methods signatures.
+</details>
+
+<details>
+<summary>Drop support for TYPO3 7.6</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *23 Jan 2019 / [e6253af](https://github.com/CuyZ/NotiZ/commit/e6253af702b4fb04bf7a51f1cacdccff73c56567) / [#190](https://github.com/CuyZ/NotiZ/issues/190)*
+
+> Further versions of this extension will not support TYPO3 7.6 anymore.
+</details>
+
+### Others
+
+<details>
+<summary>Fix wrong locallang reference for notifications listing</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *22 Jan 2019 / [e31cd20](https://github.com/CuyZ/NotiZ/commit/e31cd20d67116ab9c1907860e897e66e2792173a) / [#189](https://github.com/CuyZ/NotiZ/issues/189)*
+
+> 
+</details>
+
+<details>
+<summary>Change line feed character in locallang files</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *22 Jan 2019 / [273c01a](https://github.com/CuyZ/NotiZ/commit/273c01a34a6e7bd39b697a0f18176a59ecdbec05) / [#188](https://github.com/CuyZ/NotiZ/issues/188)*
+
+> 
+</details>
+
+<details>
+<summary>Fix wrong locallang reference for notifications listing</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *22 Jan 2019 / [9ea07ef](https://github.com/CuyZ/NotiZ/commit/9ea07efad666bb02c1d9ee8e66d15df58093dc00) / [#187](https://github.com/CuyZ/NotiZ/issues/187)*
+
+> 
+</details>
+
 ## v1.1.0 - 20 January 2019
 
 > ℹ️ *Click on a changelog entry to see more details.*
