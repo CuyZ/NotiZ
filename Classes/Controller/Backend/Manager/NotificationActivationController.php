@@ -25,7 +25,7 @@ class NotificationActivationController extends ManagerController
     /**
      * @param string $notificationType
      * @param string $notificationIdentifier
-     * @param string $filterEvent
+     * @param string|null $filterEvent
      */
     public function processAction(string $notificationType, string $notificationIdentifier, string $filterEvent = null)
     {
