@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -32,7 +33,7 @@ class HideColumns implements FormDataProviderInterface
      * @param array $result
      * @return array
      */
-    public function addData(array $result)
+    public function addData(array $result): array
     {
         $tableName = $result['tableName'];
 

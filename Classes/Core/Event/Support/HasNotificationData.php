@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -59,5 +60,5 @@ interface HasNotificationData
      *
      * @return array
      */
-    public function getNotificationData();
+    public function getNotificationData(): array;
 }

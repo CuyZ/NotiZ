@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -35,7 +36,7 @@ class SlackBot
      * @param string $name
      * @param string $avatar
      */
-    private function __construct($name, $avatar)
+    private function __construct(string $name, string $avatar)
     {
         $this->name = $name;
         $this->avatar = $avatar;
@@ -45,7 +46,7 @@ class SlackBot
      * @param SlackNotification $notification
      * @return static
      */
-    public static function fromNotification(SlackNotification $notification)
+    public static function fromNotification(SlackNotification $notification): self
     {
         return new static($notification->getName(), $notification->getAvatar());
     }
@@ -54,7 +55,7 @@ class SlackBot
      * @param Bot $bot
      * @return static
      */
-    public static function fromBotDefinition(Bot $bot)
+    public static function fromBotDefinition(Bot $bot): self
     {
         return new static($bot->getName(), $bot->getAvatar());
     }
@@ -62,7 +63,7 @@ class SlackBot
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -70,7 +71,7 @@ class SlackBot
     /**
      * @return string
      */
-    public function getAvatar()
+    public function getAvatar(): string
     {
         return $this->avatar;
     }
@@ -78,7 +79,7 @@ class SlackBot
     /**
      * @return bool
      */
-    public function hasEmojiAvatar()
+    public function hasEmojiAvatar(): bool
     {
         return substr($this->avatar, 0, 1) === ':'
             && substr($this->avatar, -1, 1) === ':';

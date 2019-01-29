@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -42,7 +43,7 @@ class EventConfiguration extends AbstractDefinitionComponent implements DataPreP
     /**
      * @return EventFlexFormProvider
      */
-    public function getFlexFormProvider()
+    public function getFlexFormProvider(): EventFlexFormProvider
     {
         return $this->flexForm;
     }
@@ -83,7 +84,7 @@ class EventConfiguration extends AbstractDefinitionComponent implements DataPreP
      * @throws ClassNotFoundException
      * @throws InvalidClassException
      */
-    protected static function setFlexFormProviderClassName(array $data)
+    protected static function setFlexFormProviderClassName(array $data): array
     {
         if (isset($data['flexFormProviderClassName'])) {
             $className = $data['flexFormProviderClassName'];

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -70,13 +71,15 @@ class LocalizationService implements SingletonInterface
     /**
      * Static proxy to the method `doLocalize()`.
      *
-     * @param string $key
+     * @param string|null $key [PHP 7.1]
      * @param array $arguments
      * @return string
      */
-    public static function localize($key, array $arguments = [])
+    public static function localize($key, array $arguments = []): string
     {
-        return self::get()->doLocalize($key, $arguments);
+        return $key
+            ? self::get()->doLocalize($key, $arguments)
+            : '';
     }
 
     /**
@@ -86,7 +89,7 @@ class LocalizationService implements SingletonInterface
      * @param array $arguments
      * @return string
      */
-    public function doLocalize($path, array $arguments = [])
+    public function doLocalize(string $path, array $arguments = []): string
     {
         if (false === strpos($path, ':')) {
             $possiblePaths = $this->getPossiblePaths('locallang', $path);
@@ -128,7 +131,7 @@ class LocalizationService implements SingletonInterface
      *
      * @param string $extensionKey
      */
-    public function addExtensionKey($extensionKey)
+    public function addExtensionKey(string $extensionKey)
     {
         if (!in_array($extensionKey, $this->extensionKeys)) {
             $this->extensionKeys[] = $extensionKey;
@@ -140,7 +143,7 @@ class LocalizationService implements SingletonInterface
      * @param string $key
      * @return array
      */
-    protected function getPossiblePaths($file, $key)
+    protected function getPossiblePaths(string $file, string $key): array
     {
         return array_map(
             function ($extensionKey) use ($file, $key) {
@@ -163,9 +166,9 @@ class LocalizationService implements SingletonInterface
      *
      * @param string $key
      * @param array $arguments
-     * @return string
+     * @return string|null [PHP 7.1]
      */
-    protected function localizeInternal($key, array $arguments)
+    protected function localizeInternal(string $key, array $arguments)
     {
         return LocalizationUtility::translate(
             $key,

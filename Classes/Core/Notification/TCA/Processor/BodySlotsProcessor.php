@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -57,7 +58,7 @@ class BodySlotsProcessor extends GracefulProcessor
     /**
      * @param string $tableName
      */
-    public function doProcess($tableName)
+    public function doProcess(string $tableName)
     {
         $GLOBALS['TCA'][$tableName]['columns'][self::COLUMN]['displayCond'] = $this->getMailBodyDisplayCond();
         $GLOBALS['TCA'][$tableName]['columns'][self::COLUMN]['config']['ds'] = $this->getMailBodyFlexFormList();
@@ -72,7 +73,7 @@ class BodySlotsProcessor extends GracefulProcessor
      *
      * @return array
      */
-    private function getMailBodyDisplayCond()
+    private function getMailBodyDisplayCond(): array
     {
         $eventsWithoutSlots = [];
         $events = $this->slotViewService->getEventsWithoutSlots($this->getNotificationSettings()->getView());
@@ -92,7 +93,7 @@ class BodySlotsProcessor extends GracefulProcessor
     /**
      * @return array
      */
-    private function getMailBodyFlexFormList()
+    private function getMailBodyFlexFormList(): array
     {
         $viewSettings = $this->getNotificationSettings()->getView();
 
@@ -102,7 +103,7 @@ class BodySlotsProcessor extends GracefulProcessor
     /**
      * @return EntityEmailSettings|NotificationSettings
      */
-    private function getNotificationSettings()
+    private function getNotificationSettings(): EntityEmailSettings
     {
         return $this->definitionService
             ->getDefinition()

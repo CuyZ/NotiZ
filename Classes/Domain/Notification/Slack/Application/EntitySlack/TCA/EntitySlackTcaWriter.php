@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -25,7 +26,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
     /**
      * @return array
      */
-    protected function buildTcaArray()
+    protected function buildTcaArray(): array
     {
         return [
             'ctrl' => $this->getCtrl(),
@@ -203,7 +204,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
     /**
      * @return array
      */
-    protected function getCtrl()
+    protected function getCtrl(): array
     {
         $ctrl = $this->getDefaultCtrl();
 
@@ -215,7 +216,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
     /**
      * @return string
      */
-    protected function getNotificationTcaServiceClass()
+    protected function getNotificationTcaServiceClass(): string
     {
         return EntitySlackTcaService::class;
     }
@@ -223,7 +224,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
     /**
      * @return string
      */
-    protected function getEntityTitle()
+    protected function getEntityTitle(): string
     {
         return self::SLACK_LLL . ':title';
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -64,7 +65,7 @@ class EntityEmailAddressMapper
      *
      * @return string
      */
-    public function getSender()
+    public function getSender(): string
     {
         return $this->notification->isSenderCustom()
             ? $this->notification->getSender()
@@ -77,7 +78,7 @@ class EntityEmailAddressMapper
      *
      * @return array
      */
-    public function getSendTo()
+    public function getSendTo(): array
     {
         return $this->getMergedRecipients(
             $this->notification->getSendTo(),
@@ -91,7 +92,7 @@ class EntityEmailAddressMapper
      *
      * @return array
      */
-    public function getSendCc()
+    public function getSendCc(): array
     {
         return $this->getMergedRecipients(
             $this->notification->getSendCc(),
@@ -105,7 +106,7 @@ class EntityEmailAddressMapper
      *
      * @return array
      */
-    public function getSendBcc()
+    public function getSendBcc(): array
     {
         return $this->getMergedRecipients(
             $this->notification->getSendBcc(),
@@ -120,7 +121,7 @@ class EntityEmailAddressMapper
      * @param string $provided
      * @return array
      */
-    protected function getMergedRecipients($manual, $provided)
+    protected function getMergedRecipients(string $manual, string $provided): array
     {
         $manual = $this->recipientStringToArray($manual);
         $provided = $this->recipientStringToArray($provided);
@@ -144,7 +145,7 @@ class EntityEmailAddressMapper
      * @param $recipients
      * @return array
      */
-    protected function recipientStringToArray($recipients)
+    protected function recipientStringToArray($recipients): array
     {
         $recipients = trim($recipients);
         $recipients = str_replace(',', ';', $recipients);
@@ -162,7 +163,7 @@ class EntityEmailAddressMapper
      * @param array $recipients
      * @return array
      */
-    protected function parseRecipientsStrings(array $recipients)
+    protected function parseRecipientsStrings(array $recipients): array
     {
         return array_map(
             [StringService::get(), 'formatEmailAddress'],
@@ -177,7 +178,7 @@ class EntityEmailAddressMapper
      * @param array $recipientsIdentifiers
      * @return array
      */
-    protected function mapRecipients(array $recipientsIdentifiers)
+    protected function mapRecipients(array $recipientsIdentifiers): array
     {
         $recipients = [];
 
@@ -211,7 +212,7 @@ class EntityEmailAddressMapper
      * @param array $recipients
      * @return array
      */
-    protected function prepareRecipientsForMailMessage(array $recipients)
+    protected function prepareRecipientsForMailMessage(array $recipients): array
     {
         $emails = [];
 
@@ -232,7 +233,7 @@ class EntityEmailAddressMapper
      * @param array $recipients
      * @return array
      */
-    protected function cleanupRecipients(array $recipients)
+    protected function cleanupRecipients(array $recipients): array
     {
         $uniqueRecipients = [];
 

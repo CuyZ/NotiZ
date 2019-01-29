@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -41,7 +42,7 @@ class EntityNotificationRepository extends Repository
     /**
      * @return QueryResultInterface
      */
-    public function findAllWithDisabled()
+    public function findAllWithDisabled(): QueryResultInterface
     {
         return $this->createQueryWithoutEnableStatement()->execute();
     }
@@ -50,7 +51,7 @@ class EntityNotificationRepository extends Repository
      * @param EventDefinition $eventDefinition
      * @return QueryResultInterface
      */
-    public function findFromEventDefinition(EventDefinition $eventDefinition)
+    public function findFromEventDefinition(EventDefinition $eventDefinition): QueryResultInterface
     {
         return $this->getQueryForEvent($eventDefinition)->execute();
     }
@@ -59,7 +60,7 @@ class EntityNotificationRepository extends Repository
      * @param EventDefinition $eventDefinition
      * @return QueryResultInterface
      */
-    public function findFromEventDefinitionWithDisabled(EventDefinition $eventDefinition)
+    public function findFromEventDefinitionWithDisabled(EventDefinition $eventDefinition): QueryResultInterface
     {
         return $this->getQueryForEvent($eventDefinition, true)->execute();
     }
@@ -68,7 +69,7 @@ class EntityNotificationRepository extends Repository
      * @param EventDefinition $eventDefinition
      * @return int
      */
-    public function countFromEventDefinition(EventDefinition $eventDefinition)
+    public function countFromEventDefinition(EventDefinition $eventDefinition): int
     {
         return $this->getQueryForEvent($eventDefinition)->count();
     }
@@ -77,9 +78,9 @@ class EntityNotificationRepository extends Repository
      * Returns the wanted notification even if it was disabled.
      *
      * @param mixed $identifier
-     * @return EntityNotification|object
+     * @return EntityNotification
      */
-    public function findByIdentifierForce($identifier)
+    public function findByIdentifierForce($identifier): EntityNotification
     {
         $query = $this->createQueryWithoutEnableStatement();
 
@@ -90,13 +91,14 @@ class EntityNotificationRepository extends Repository
             )
         );
 
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $query->execute()->getFirst();
     }
 
     /**
      * @return QueryInterface
      */
-    protected function createQueryWithoutEnableStatement()
+    protected function createQueryWithoutEnableStatement(): QueryInterface
     {
         $query = $this->createQuery();
         $query->getQuerySettings()
@@ -110,7 +112,7 @@ class EntityNotificationRepository extends Repository
      * @param bool $withDisabled
      * @return QueryInterface
      */
-    protected function getQueryForEvent(EventDefinition $eventDefinition, $withDisabled = false)
+    protected function getQueryForEvent(EventDefinition $eventDefinition, bool $withDisabled = false): QueryInterface
     {
         $query = $this->createQuery($withDisabled);
 
@@ -125,7 +127,7 @@ class EntityNotificationRepository extends Repository
      * @param bool $withDisabled
      * @return QueryInterface
      */
-    public function createQuery($withDisabled = false)
+    public function createQuery(bool $withDisabled = false): QueryInterface
     {
         if (true === $withDisabled) {
             return $this->createQueryWithoutEnableStatement();

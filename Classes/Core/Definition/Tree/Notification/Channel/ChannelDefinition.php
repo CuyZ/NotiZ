@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -59,7 +60,7 @@ class ChannelDefinition extends AbstractDefinitionComponent implements DataPrePr
     /**
      * @param string $identifier
      */
-    public function __construct($identifier)
+    public function __construct(string $identifier)
     {
         $this->identifier = $identifier;
     }
@@ -67,7 +68,7 @@ class ChannelDefinition extends AbstractDefinitionComponent implements DataPrePr
     /**
      * @return string
      */
-    public function getIdentifier()
+    public function getIdentifier(): string
     {
         return $this->identifier;
     }
@@ -75,7 +76,7 @@ class ChannelDefinition extends AbstractDefinitionComponent implements DataPrePr
     /**
      * @return string
      */
-    public function getClassName()
+    public function getClassName(): string
     {
         return $this->className;
     }
@@ -83,7 +84,7 @@ class ChannelDefinition extends AbstractDefinitionComponent implements DataPrePr
     /**
      * @return string
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         return LocalizationService::localize($this->label);
     }
@@ -91,7 +92,7 @@ class ChannelDefinition extends AbstractDefinitionComponent implements DataPrePr
     /**
      * @return ChannelSettings
      */
-    public function getSettings()
+    public function getSettings(): ChannelSettings
     {
         return $this->settings;
     }
@@ -134,12 +135,9 @@ class ChannelDefinition extends AbstractDefinitionComponent implements DataPrePr
      * @throws ClassNotFoundException
      * @throws InvalidClassException
      */
-    protected static function fetchSettingsClassName(array $data)
+    protected static function fetchSettingsClassName(array $data): array
     {
-        // @PHP7
-        $channelClassName = isset($data['className'])
-            ? $data['className']
-            : null;
+        $channelClassName = $data['className'] ?? null;
 
         if (class_exists($channelClassName)
             && in_array(Channel::class, class_implements($channelClassName))

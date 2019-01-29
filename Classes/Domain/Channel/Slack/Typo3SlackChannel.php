@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -106,7 +107,7 @@ class Typo3SlackChannel extends AbstractChannel
      * @param string $webhookUrl
      * @param array $data
      */
-    protected function callSlack($webhookUrl, array $data)
+    protected function callSlack(string $webhookUrl, array $data)
     {
         /** @var RequestFactory $factory */
         $factory = GeneralUtility::makeInstance(RequestFactory::class);

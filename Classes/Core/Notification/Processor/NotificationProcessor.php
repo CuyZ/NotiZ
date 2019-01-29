@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -49,7 +50,7 @@ abstract class NotificationProcessor
      *
      * @param string $notificationClassName
      */
-    public function __construct($notificationClassName)
+    public function __construct(string $notificationClassName)
     {
         $this->notificationClassName = $notificationClassName;
     }
@@ -61,44 +62,44 @@ abstract class NotificationProcessor
      * @param EventDefinition $eventDefinition
      * @return Notification[]
      */
-    abstract public function getNotificationsFromEventDefinition(EventDefinition $eventDefinition);
+    abstract public function getNotificationsFromEventDefinition(EventDefinition $eventDefinition): array;
 
     /**
      * @param EventDefinition $eventDefinition
      * @return Notification[]
      */
-    abstract public function getNotificationsFromEventDefinitionWithDisabled(EventDefinition $eventDefinition);
+    abstract public function getNotificationsFromEventDefinitionWithDisabled(EventDefinition $eventDefinition): array;
 
     /**
      * @param EventDefinition $eventDefinition
      * @return int
      */
-    abstract public function countNotificationsFromEventDefinition(EventDefinition $eventDefinition);
+    abstract public function countNotificationsFromEventDefinition(EventDefinition $eventDefinition): int;
 
     /**
      * @param string $identifier
      * @return Notification
      */
-    abstract public function getNotificationFromIdentifier($identifier);
+    abstract public function getNotificationFromIdentifier(string $identifier): Notification;
 
     /**
      * Returns all notification instances.
      *
      * @return Notification[]
      */
-    abstract public function getAllNotifications();
+    abstract public function getAllNotifications(): array;
 
     /**
      * Returns all notification instances, including disabled ones.
      *
      * @return Notification[]
      */
-    abstract public function getAllNotificationsWithDisabled();
+    abstract public function getAllNotificationsWithDisabled(): array;
 
     /**
      * @return int
      */
-    abstract public function getTotalNumber();
+    abstract public function getTotalNumber(): int;
 
     /**
      * @param Activable $notification

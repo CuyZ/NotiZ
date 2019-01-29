@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -39,7 +40,7 @@ class DefaultEventFromGet implements FormDataProviderInterface
      * @param array $result
      * @return array
      */
-    public function addData(array $result)
+    public function addData(array $result): array
     {
         // This feature is available for new records only.
         if ($result['command'] !== 'new') {
@@ -73,7 +74,7 @@ class DefaultEventFromGet implements FormDataProviderInterface
     /**
      * @return Definition
      */
-    protected function getDefinition()
+    protected function getDefinition(): Definition
     {
         /** @var DefinitionService $definitionService */
         $definitionService = Container::get(DefinitionService::class);

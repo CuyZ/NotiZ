@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -35,7 +36,7 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
      * @param EventDefinition $definition
      * @return Notification[]
      */
-    public function getNotificationsFromEventDefinition(EventDefinition $definition)
+    public function getNotificationsFromEventDefinition(EventDefinition $definition): array
     {
         return $this->notificationRepository
             ->findFromEventDefinition($definition)
@@ -46,7 +47,7 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
      * @param EventDefinition $definition
      * @return Notification[]
      */
-    public function getNotificationsFromEventDefinitionWithDisabled(EventDefinition $definition)
+    public function getNotificationsFromEventDefinitionWithDisabled(EventDefinition $definition): array
     {
         return $this->notificationRepository
             ->findFromEventDefinitionWithDisabled($definition)
@@ -57,16 +58,16 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
      * @param EventDefinition $definition
      * @return int
      */
-    public function countNotificationsFromEventDefinition(EventDefinition $definition)
+    public function countNotificationsFromEventDefinition(EventDefinition $definition): int
     {
         return $this->notificationRepository->countFromEventDefinition($definition);
     }
 
     /**
      * @param string $identifier
-     * @return Notification|object
+     * @return Notification
      */
-    public function getNotificationFromIdentifier($identifier)
+    public function getNotificationFromIdentifier(string $identifier): Notification
     {
         return $this->notificationRepository->findByIdentifierForce($identifier);
     }
@@ -74,7 +75,7 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
     /**
      * @return Notification[]
      */
-    public function getAllNotifications()
+    public function getAllNotifications(): array
     {
         return $this->notificationRepository
             ->findAll()
@@ -84,7 +85,7 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
     /**
      * @return Notification[]
      */
-    public function getAllNotificationsWithDisabled()
+    public function getAllNotificationsWithDisabled(): array
     {
         return $this->notificationRepository
             ->findAllWithDisabled()
@@ -94,7 +95,7 @@ abstract class EntityNotificationProcessor extends NotificationProcessor
     /**
      * @return int
      */
-    public function getTotalNumber()
+    public function getTotalNumber(): int
     {
         return $this->notificationRepository
             ->findAll()

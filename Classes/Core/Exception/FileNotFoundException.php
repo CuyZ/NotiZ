@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -24,7 +25,7 @@ class FileNotFoundException extends NotizException
      * @param string $filePath
      * @return self
      */
-    public static function definitionSourceFileNotFound($filePath)
+    public static function definitionSourceFileNotFound(string $filePath): self
     {
         return self::makeNewInstance(
             self::DEFINITION_SOURCE_FILE_NOT_FOUND,

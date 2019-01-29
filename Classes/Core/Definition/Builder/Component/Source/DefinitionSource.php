@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -35,5 +36,5 @@ interface DefinitionSource
      *
      * @return array
      */
-    public function getDefinitionArray();
+    public function getDefinitionArray(): array;
 }

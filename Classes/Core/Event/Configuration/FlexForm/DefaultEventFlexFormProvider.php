@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -33,7 +34,7 @@ class DefaultEventFlexFormProvider implements EventFlexFormProvider
     /**
      * @param string $file
      */
-    public function __construct($file = '')
+    public function __construct(string $file = '')
     {
         $this->file = $file;
     }
@@ -41,7 +42,7 @@ class DefaultEventFlexFormProvider implements EventFlexFormProvider
     /**
      * @return string
      */
-    public function getFlexFormValue()
+    public function getFlexFormValue(): string
     {
         return 'FILE:' . $this->file;
     }
@@ -49,7 +50,7 @@ class DefaultEventFlexFormProvider implements EventFlexFormProvider
     /**
      * @return bool
      */
-    public function hasFlexForm()
+    public function hasFlexForm(): bool
     {
         return !empty($this->file);
     }
@@ -57,7 +58,7 @@ class DefaultEventFlexFormProvider implements EventFlexFormProvider
     /**
      * @return string
      */
-    public function getFile()
+    public function getFile(): string
     {
         return $this->file;
     }

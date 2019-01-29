@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -23,30 +24,30 @@ interface EmailNotification extends Notification
     /**
      * @return string
      */
-    public function getSender();
+    public function getSender(): string;
 
     /**
      * @return string
      */
-    public function getSendTo();
+    public function getSendTo(): string;
 
     /**
      * @return string
      */
-    public function getSendCc();
+    public function getSendCc(): string;
 
     /**
      * @return string
      */
-    public function getSendBcc();
+    public function getSendBcc(): string;
 
     /**
      * @return string
      */
-    public function getSubject();
+    public function getSubject(): string;
 
     /**
      * @return string
      */
-    public function getBody();
+    public function getBody(): string;
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -66,7 +67,7 @@ class EntitySlackTcaService extends NotificationTcaService
     /**
      * @return bool
      */
-    public function hasDefinedBot()
+    public function hasDefinedBot(): bool
     {
         if ($this->definitionHasErrors()) {
             return false;
@@ -78,7 +79,7 @@ class EntitySlackTcaService extends NotificationTcaService
     /**
      * @return bool
      */
-    public function hasNoDefinedBot()
+    public function hasNoDefinedBot(): bool
     {
         return !$this->hasDefinedBot();
     }
@@ -86,7 +87,7 @@ class EntitySlackTcaService extends NotificationTcaService
     /**
      * @return string
      */
-    public function getNoDefinedBotText()
+    public function getNoDefinedBotText(): string
     {
         $view = $this->viewService->getStandaloneView('Backend/TCA/NoDefinedBotMessage');
 
@@ -96,7 +97,7 @@ class EntitySlackTcaService extends NotificationTcaService
     /**
      * @return bool
      */
-    public function hasDefinedSlackChannel()
+    public function hasDefinedSlackChannel(): bool
     {
         if ($this->definitionHasErrors()) {
             return false;
@@ -108,7 +109,7 @@ class EntitySlackTcaService extends NotificationTcaService
     /**
      * @return bool
      */
-    public function hasNoDefinedSlackChannel()
+    public function hasNoDefinedSlackChannel(): bool
     {
         return !$this->hasDefinedSlackChannel();
     }
@@ -116,7 +117,7 @@ class EntitySlackTcaService extends NotificationTcaService
     /**
      * @return string
      */
-    public function getNoDefinedSlackChannelText()
+    public function getNoDefinedSlackChannelText(): string
     {
         $view = $this->viewService->getStandaloneView('Backend/TCA/NoDefinedSlackChannel');
 
@@ -126,7 +127,7 @@ class EntitySlackTcaService extends NotificationTcaService
     /**
      * @return EntitySlackSettings|NotificationSettings
      */
-    protected function getNotificationSettings()
+    protected function getNotificationSettings(): EntitySlackSettings
     {
         return $this->getNotificationDefinition()->getSettings();
     }
@@ -134,7 +135,7 @@ class EntitySlackTcaService extends NotificationTcaService
     /**
      * @return string
      */
-    protected function getDefinitionIdentifier()
+    protected function getDefinitionIdentifier(): string
     {
         return EntitySlackNotification::getDefinitionIdentifier();
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -21,15 +22,15 @@ interface ViewPathsAware
     /**
      * @return array
      */
-    public function getLayoutRootPaths();
+    public function getLayoutRootPaths(): array;
 
     /**
      * @return array
      */
-    public function getTemplateRootPaths();
+    public function getTemplateRootPaths(): array;
 
     /**
      * @return array
      */
-    public function getPartialRootPaths();
+    public function getPartialRootPaths(): array;
 }

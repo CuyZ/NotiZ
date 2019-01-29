@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -21,7 +22,6 @@ use CuyZ\Notiz\Core\Definition\Tree\Definition;
 use CuyZ\Notiz\Core\Exception\InvalidDefinitionException;
 use CuyZ\Notiz\Service\RuntimeService;
 use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
-use Exception;
 use Romm\ConfigurationObject\ConfigurationObjectInstance;
 use Throwable;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -97,7 +97,7 @@ class DefinitionService implements SingletonInterface
     /**
      * @return Result
      */
-    public function getValidationResult()
+    public function getValidationResult(): Result
     {
         $this->buildDefinitionObject();
 
@@ -109,7 +109,7 @@ class DefinitionService implements SingletonInterface
      *
      * @throws InvalidDefinitionException
      */
-    public function getDefinition()
+    public function getDefinition(): Definition
     {
         $this->buildDefinitionObject();
 
@@ -129,7 +129,7 @@ class DefinitionService implements SingletonInterface
      *
      * @return array
      */
-    public function getDefinitionArray()
+    public function getDefinitionArray(): array
     {
         $this->buildDefinitionObject();
 
@@ -160,11 +160,6 @@ class DefinitionService implements SingletonInterface
                 $this->definitionObject = $this->builder->buildDefinition();
                 $this->validationResult = $this->definitionObject->getValidationResult();
             } catch (Throwable $exception) {
-            } catch (Exception $exception) {
-                // @PHP7
-            }
-
-            if ($exception) {
                 $this->exception = $exception;
                 $this->validationResult = new Result;
 

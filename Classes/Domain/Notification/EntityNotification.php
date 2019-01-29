@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -88,7 +89,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -96,7 +97,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -104,7 +105,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -112,7 +113,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return string
      */
-    public function getEvent()
+    public function getEvent(): string
     {
         return $this->event;
     }
@@ -120,7 +121,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @param string $event
      */
-    public function setEvent($event)
+    public function setEvent(string $event)
     {
         $this->event = $event;
     }
@@ -128,7 +129,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return string
      */
-    public function getChannel()
+    public function getChannel(): string
     {
         return $this->channel;
     }
@@ -136,7 +137,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @param string $channel
      */
-    public function setChannel($channel)
+    public function setChannel(string $channel)
     {
         $this->channel = $channel;
     }
@@ -144,7 +145,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @param string $eventConfigurationFlex
      */
-    public function setEventConfigurationFlex($eventConfigurationFlex)
+    public function setEventConfigurationFlex(string $eventConfigurationFlex)
     {
         $this->eventConfigurationFlex = $eventConfigurationFlex;
     }
@@ -152,7 +153,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return bool
      */
-    public function isActive()
+    public function isActive(): bool
     {
         return !$this->hidden;
     }
@@ -161,16 +162,16 @@ abstract class EntityNotification extends AbstractEntity implements Notification
      * @param bool $active
      * @return void
      */
-    public function setActive($active)
+    public function setActive(bool $active)
     {
         $this->hidden = !$active;
     }
 
     /**
-     * @param EventDefinition|null $eventDefinition
+     * @param EventDefinition|null $eventDefinition [PHP 7.1]
      * @return string
      */
-    public function getSwitchActivationUri(EventDefinition $eventDefinition = null)
+    public function getSwitchActivationUri(EventDefinition $eventDefinition = null): string
     {
         $arguments = [
             'notificationType' => $this->getNotificationDefinition()->getIdentifier(),
@@ -181,9 +182,10 @@ abstract class EntityNotification extends AbstractEntity implements Notification
             $arguments['filterEvent'] = $eventDefinition->getFullIdentifier();
         }
 
+        /** @var ManagerModuleHandler $managerModuleHandler */
         $managerModuleHandler = Container::get(ManagerModuleHandler::class);
 
-        return $managerModuleHandler
+        return (string)$managerModuleHandler
             ->getUriBuilder()
             ->forController('Backend\\Manager\\NotificationActivation')
             ->forAction('process')
@@ -194,7 +196,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return NotificationDefinition
      */
-    public function getNotificationDefinition()
+    public function getNotificationDefinition(): NotificationDefinition
     {
         return self::getDefinition()->getNotification(static::getDefinitionIdentifier());
     }
@@ -202,7 +204,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return bool
      */
-    public function hasEventDefinition()
+    public function hasEventDefinition(): bool
     {
         return self::getDefinition()->hasEventFromFullIdentifier($this->getEvent());
     }
@@ -210,7 +212,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return EventDefinition
      */
-    public function getEventDefinition()
+    public function getEventDefinition(): EventDefinition
     {
         return self::getDefinition()->getEventFromFullIdentifier($this->getEvent());
     }
@@ -220,7 +222,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
      *
      * @return array
      */
-    public function getEventConfiguration()
+    public function getEventConfiguration(): array
     {
         if (null === $this->eventConfiguration) {
             /** @var FlexFormService $flexFormService */
@@ -243,7 +245,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return bool
      */
-    public static function isCreatable()
+    public static function isCreatable(): bool
     {
         return Container::getBackendUser()
             && Container::getBackendUser()->check('tables_modify', self::getTableName());
@@ -253,7 +255,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
      * @param string $selectedEvent
      * @return string
      */
-    public static function getCreationUri($selectedEvent = null)
+    public static function getCreationUri(string $selectedEvent = null): string
     {
         $tableName = static::getTableName();
 
@@ -275,7 +277,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return bool
      */
-    public function isEditable()
+    public function isEditable(): bool
     {
         $backendUser = Container::getBackendUser();
 
@@ -299,7 +301,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return string
      */
-    public function getEditionUri()
+    public function getEditionUri(): string
     {
         $identifier = $this->getNotificationDefinition()->getIdentifier();
         $tableName = static::getTableName();
@@ -317,7 +319,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return bool
      */
-    public static function isListable()
+    public static function isListable(): bool
     {
         return Container::getBackendUser()
             && Container::getBackendUser()->check('tables_select', self::getTableName());
@@ -326,7 +328,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return bool
      */
-    public function isViewable()
+    public function isViewable(): bool
     {
         return self::isListable();
     }
@@ -334,15 +336,16 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return string
      */
-    public function getViewUri()
+    public function getViewUri(): string
     {
         $notificationDefinition = $this->getNotificationDefinition();
 
         $controller = 'Backend\\Manager\\Notification\\Show' . ucfirst($notificationDefinition->getIdentifier());
 
+        /** @var ManagerModuleHandler $managerModuleHandler */
         $managerModuleHandler = Container::get(ManagerModuleHandler::class);
 
-        return $managerModuleHandler
+        return (string)$managerModuleHandler
             ->getUriBuilder()
             ->forController($controller)
             ->forAction('show')
@@ -355,7 +358,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
      *
      * @inheritdoc
      */
-    public function shouldDispatch(ChannelDefinition $definition)
+    public function shouldDispatch(ChannelDefinition $definition): bool
     {
         return $definition->getClassName() === $this->getChannel();
     }
@@ -366,7 +369,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
      *
      * @return string
      */
-    public static function getTableName()
+    public static function getTableName(): string
     {
         /** @var ConfigurationManagerInterface $configurationManager */
         $configurationManager = Container::get(ConfigurationManagerInterface::class);
@@ -382,12 +385,12 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     /**
      * @return string
      */
-    abstract public static function getDefinitionIdentifier();
+    abstract public static function getDefinitionIdentifier(): string;
 
     /**
      * @return Definition
      */
-    protected static function getDefinition()
+    protected static function getDefinition(): Definition
     {
         return DefinitionService::get()->getDefinition();
     }

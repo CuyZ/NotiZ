@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -31,7 +32,7 @@ interface HasProperties
      *
      * @return PropertyBuilder
      */
-    public static function getPropertyBuilder();
+    public static function getPropertyBuilder(): PropertyBuilder;
 
     /**
      * Method called to fill the values of the properties that were added during

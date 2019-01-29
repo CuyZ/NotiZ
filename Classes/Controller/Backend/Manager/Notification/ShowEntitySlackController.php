@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -52,7 +53,7 @@ class ShowEntitySlackController extends ShowNotificationController
     /**
      * @return string
      */
-    public function getNotificationDefinitionIdentifier()
+    public function getNotificationDefinitionIdentifier(): string
     {
         return EntitySlackNotification::getDefinitionIdentifier();
     }

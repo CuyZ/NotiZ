@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -79,7 +80,7 @@ class EntityEmailTemplateBuilder
     /**
      * @return string
      */
-    public function getSubject()
+    public function getSubject(): string
     {
         return $this->markerParser->replaceMarkers(
             $this->notification->getSubject(),
@@ -90,7 +91,7 @@ class EntityEmailTemplateBuilder
     /**
      * @return string
      */
-    public function getBody()
+    public function getBody(): string
     {
         $eventDefinition = $this->event->getDefinition();
         $viewSettings = $this->notificationSettings->getView();

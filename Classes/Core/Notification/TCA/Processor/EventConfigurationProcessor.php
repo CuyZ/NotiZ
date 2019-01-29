@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -30,7 +31,7 @@ class EventConfigurationProcessor extends GracefulProcessor
     /**
      * @param string $tableName
      */
-    protected function doProcess($tableName)
+    protected function doProcess(string $tableName)
     {
         $flexFormDs = [
             'default' => '',

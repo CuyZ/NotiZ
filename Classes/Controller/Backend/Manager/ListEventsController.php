@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -32,7 +33,7 @@ class ListEventsController extends ManagerController
     /**
      * @return string
      */
-    protected function getMenu()
+    protected function getMenu(): string
     {
         return Menu::MANAGER_EVENTS;
     }

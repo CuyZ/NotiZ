@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -31,7 +32,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     /**
      * @return string
      */
-    protected function getNotificationTcaServiceClass()
+    protected function getNotificationTcaServiceClass(): string
     {
         return EntityEmailTcaService::class;
     }
@@ -39,7 +40,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     /**
      * @return string
      */
-    protected function getChannelLabel()
+    protected function getChannelLabel(): string
     {
         return self::EMAIL_LLL . ':field.mailer';
     }
@@ -47,7 +48,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     /**
      * @inheritdoc
      */
-    protected function buildTcaArray()
+    protected function buildTcaArray(): array
     {
         return [
             'ctrl' => $this->getCtrl(),
@@ -256,7 +257,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     /**
      * @return array
      */
-    protected function getCtrl()
+    protected function getCtrl(): array
     {
         $ctrl = $this->getDefaultCtrl();
 
@@ -271,7 +272,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     /**
      * @return string
      */
-    protected function getEntityTitle()
+    protected function getEntityTitle(): string
     {
         return self::EMAIL_LLL . ':title';
     }

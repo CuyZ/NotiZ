@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -156,7 +157,7 @@ abstract class AbstractEvent implements Event, HasProperties
      *
      * @throws InvalidClassException
      */
-    public static function getPropertyBuilder()
+    public static function getPropertyBuilder(): PropertyBuilder
     {
         $builderClassName = static::class . static::BUILDER_SUFFIX;
 
@@ -191,7 +192,7 @@ abstract class AbstractEvent implements Event, HasProperties
     /**
      * @return EventDefinition
      */
-    public function getDefinition()
+    public function getDefinition(): EventDefinition
     {
         return $this->eventDefinition;
     }
@@ -199,7 +200,7 @@ abstract class AbstractEvent implements Event, HasProperties
     /**
      * @return Notification
      */
-    public function getNotification()
+    public function getNotification(): Notification
     {
         return $this->notification;
     }

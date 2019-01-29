@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -40,9 +41,9 @@ class TextSlot extends Slot
      * @param string $name
      * @param string $label
      * @param bool $rte
-     * @param string $rteMode
+     * @param string|null $rteMode [PHP 7.1]
      */
-    public function __construct($name, $label, $rte, $rteMode)
+    public function __construct(string $name, string $label, bool $rte, $rteMode)
     {
         parent::__construct($name, $label);
 
@@ -53,7 +54,7 @@ class TextSlot extends Slot
     /**
      * @return string
      */
-    public function getFlexFormConfiguration()
+    public function getFlexFormConfiguration(): string
     {
         $flexForm = '
             <type>text</type>
@@ -91,7 +92,7 @@ class TextSlot extends Slot
     /**
      * @return string
      */
-    public function getFlexFormAdditionalConfiguration()
+    public function getFlexFormAdditionalConfiguration(): string
     {
         $flexForm = '';
 
@@ -107,7 +108,7 @@ class TextSlot extends Slot
     /**
      * @return bool
      */
-    private function isUsingLegacyRte()
+    private function isUsingLegacyRte(): bool
     {
         return ExtensionManagementUtility::isLoaded('rtehtmlarea')
             && !ExtensionManagementUtility::isLoaded('rte_ckeditor');

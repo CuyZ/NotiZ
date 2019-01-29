@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -29,5 +30,5 @@ interface CustomSettingsNotification
      *
      * @return string
      */
-    public static function getSettingsClassName();
+    public static function getSettingsClassName(): string;
 }

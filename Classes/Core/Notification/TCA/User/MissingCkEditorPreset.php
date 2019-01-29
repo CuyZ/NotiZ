@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -29,7 +30,7 @@ class MissingCkEditorPreset implements SingletonInterface
      * @param array $parent
      * @return string
      */
-    public function process(array $parent)
+    public function process(array $parent): string
     {
         $preset = $parent['parameters']['preset'];
 

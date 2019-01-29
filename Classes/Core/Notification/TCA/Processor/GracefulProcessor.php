@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -19,7 +20,6 @@ namespace CuyZ\Notiz\Core\Notification\TCA\Processor;
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ViewService;
-use Exception;
 use Throwable;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
@@ -64,7 +64,7 @@ abstract class GracefulProcessor implements SingletonInterface
      * @param string $tableName
      * @throws Throwable
      */
-    final public function process($tableName)
+    final public function process(string $tableName)
     {
         if ($this->definitionService->getValidationResult()->hasErrors()) {
             return;
@@ -75,11 +75,6 @@ abstract class GracefulProcessor implements SingletonInterface
         try {
             $this->doProcess($tableName);
         } catch (Throwable $exception) {
-        } catch (Exception $exception) {
-            // @PHP7
-        }
-
-        if ($exception) {
             if (GeneralUtility::_GET('showException')) {
                 throw $exception;
             }
@@ -94,13 +89,13 @@ abstract class GracefulProcessor implements SingletonInterface
     /**
      * @param string $tableName
      */
-    abstract protected function doProcess($tableName);
+    abstract protected function doProcess(string $tableName);
 
     /**
      * @param Throwable $exception
      * @return array
      */
-    private function getDefinitionErrorTca($exception)
+    private function getDefinitionErrorTca(Throwable $exception): array
     {
         return [
             'types' => [
@@ -126,7 +121,7 @@ abstract class GracefulProcessor implements SingletonInterface
      * @param array $arguments
      * @return string
      */
-    public function getErrorMessage($arguments)
+    public function getErrorMessage($arguments): string
     {
         $view = $this->viewService->getStandaloneView('Backend/TCA/ErrorMessage');
 

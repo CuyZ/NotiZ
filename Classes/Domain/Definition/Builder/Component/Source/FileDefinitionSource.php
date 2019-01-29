@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -58,7 +59,7 @@ abstract class FileDefinitionSource implements DefinitionSource, SingletonInterf
      *
      * @throws FileNotFoundException
      */
-    public function addFilePath($path, $priority = 0)
+    public function addFilePath(string $path, int $priority = 0)
     {
         if (!isset($this->filePaths[$priority])) {
             $this->filePaths[$priority] = [];
@@ -83,7 +84,7 @@ abstract class FileDefinitionSource implements DefinitionSource, SingletonInterf
     /**
      * @return Generator
      */
-    final protected function filePaths()
+    final protected function filePaths(): Generator
     {
         foreach ($this->filePaths as $priority => $paths) {
             foreach ($paths as $path) {
@@ -103,10 +104,7 @@ abstract class FileDefinitionSource implements DefinitionSource, SingletonInterf
      */
     private function includeConfiguredSources()
     {
-        // @PHP7
-        $configuredSources = isset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['NotiZ']['Definition']['Source'][static::class])
-            ? $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['NotiZ']['Definition']['Source'][static::class]
-            : [];
+        $configuredSources = $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['NotiZ']['Definition']['Source'][static::class] ?? [];
 
         foreach ($configuredSources as $configuredSource) {
             $this->addFilePath((string)$configuredSource);

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -27,7 +28,7 @@ class PropertyNotAccessibleException extends NotizException
      * @param PropertyEntry $propertyEntry
      * @return self
      */
-    public static function propertyEntryValueNotAccessible(PropertyEntry $propertyEntry)
+    public static function propertyEntryValueNotAccessible(PropertyEntry $propertyEntry): self
     {
         return self::makeNewInstance(
             self::PROPERTY_ENTRY_VALUE_NOT_ACCESSIBLE,

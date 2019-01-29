@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -39,7 +40,7 @@ class IndexController extends BackendController
     /**
      * @inheritdoc
      */
-    protected function getMenu()
+    protected function getMenu(): string
     {
         return Menu::ADMINISTRATION_INDEX;
     }
@@ -50,7 +51,7 @@ class IndexController extends BackendController
      *
      * @return string
      */
-    protected function getExtensionConfigurationUri()
+    protected function getExtensionConfigurationUri(): string
     {
         return $this->uriBuilder
             ->reset()

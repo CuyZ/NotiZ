@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -171,7 +172,7 @@ class TagsPropertyService implements SingletonInterface
      * @throws InvalidClassException
      * @throws WrongFormatException
      */
-    public function setPropertyTagIdentifier($propertyType, $identifier)
+    public function setPropertyTagIdentifier(string $propertyType, string $identifier)
     {
         if (false === class_exists($propertyType)) {
             throw ClassNotFoundException::tagServicePropertyClassNotFound($propertyType, $identifier);
@@ -204,7 +205,7 @@ class TagsPropertyService implements SingletonInterface
      * @param PropertyReflection $property
      * @return string
      */
-    protected function getPropertyLabel(PropertyReflection $property)
+    protected function getPropertyLabel(PropertyReflection $property): string
     {
         return $property->isTaggedWith('label')
             ? reset($property->getTagValues('label'))
@@ -215,7 +216,7 @@ class TagsPropertyService implements SingletonInterface
      * @param PropertyDefinition $definition
      * @return string
      */
-    protected function getPropertyTagIdentifier(PropertyDefinition $definition)
+    protected function getPropertyTagIdentifier(PropertyDefinition $definition): string
     {
         $type = $definition->getPropertyType();
 
@@ -228,7 +229,7 @@ class TagsPropertyService implements SingletonInterface
      * @param string $identifier
      * @return string
      */
-    private function getFormattedIdentifier($identifier)
+    private function getFormattedIdentifier(string $identifier): string
     {
         // Converting case: `fooBar` will become `foo_bar`.
         $identifier = GeneralUtility::camelCaseToLowerCaseUnderscored($identifier);
@@ -244,7 +245,7 @@ class TagsPropertyService implements SingletonInterface
      * @param string $className
      * @return string
      */
-    private function getClassShortName($className)
+    private function getClassShortName(string $className): string
     {
         // Getting the last backslash of the class name.
         $className = strrchr($className, '\\');

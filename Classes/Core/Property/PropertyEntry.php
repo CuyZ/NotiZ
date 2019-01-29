@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -59,7 +60,7 @@ abstract class PropertyEntry
     /**
      * @param string $name
      */
-    public function __construct($name)
+    public function __construct(string $name)
     {
         $this->name = $name;
     }
@@ -67,7 +68,7 @@ abstract class PropertyEntry
     /**
      * @return string
      */
-    final public function getName()
+    final public function getName(): string
     {
         return $this->name;
     }
@@ -75,7 +76,7 @@ abstract class PropertyEntry
     /**
      * @return string
      */
-    final public function getValue()
+    final public function getValue(): string
     {
         return $this->value;
     }
@@ -100,7 +101,7 @@ abstract class PropertyEntry
     /**
      * @return string
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         return LocalizationService::localize($this->label);
     }
@@ -109,7 +110,7 @@ abstract class PropertyEntry
      * @param string $label
      * @return $this
      */
-    public function setLabel($label)
+    public function setLabel(string $label)
     {
         $this->label = $label;
 
@@ -130,7 +131,7 @@ abstract class PropertyEntry
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return (string)$this->getValue();
     }

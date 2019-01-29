@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -48,11 +49,7 @@ class ListFormNotifications implements SingletonInterface
         foreach ($this->formPersistenceManager->listForms() as $form) {
             $persistenceIdentifier = $form['persistenceIdentifier'];
             $formDefinition = $this->formPersistenceManager->load($persistenceIdentifier);
-
-            // @PHP7
-            $finishers = isset($formDefinition['finishers'])
-                ? $formDefinition['finishers']
-                : [];
+            $finishers = $formDefinition['finishers'] ?? [];
 
             foreach ($finishers as $finisher) {
                 if ($finisher['identifier'] === DispatchFormNotificationFinisher::DISPATCH_NOTIFICATION) {

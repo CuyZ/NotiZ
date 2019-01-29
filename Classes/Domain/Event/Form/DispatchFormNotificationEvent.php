@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -113,7 +114,7 @@ class DispatchFormNotificationEvent extends AbstractEvent implements ProvidesExa
     /**
      * @return array
      */
-    public function getExampleProperties()
+    public function getExampleProperties(): array
     {
         return [
             'formValues' => [

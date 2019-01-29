@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -40,7 +41,7 @@ class ChannelFactory implements SingletonInterface
      * @param ChannelDefinition $channelDefinition
      * @return Channel
      */
-    public function create(ChannelDefinition $channelDefinition)
+    public function create(ChannelDefinition $channelDefinition): Channel
     {
         $settings = clone $channelDefinition->getSettings();
 

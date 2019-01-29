@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -20,7 +21,6 @@ use CuyZ\Notiz\Core\Event\Service\EventRegistry;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Service\CacheService;
 use CuyZ\Notiz\Service\RuntimeService;
-use Exception;
 use Throwable;
 use TYPO3\CMS\Core\Database\TableConfigurationPostProcessingHookInterface;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -63,9 +63,6 @@ class EventDefinitionRegisterer implements SingletonInterface, TableConfiguratio
             EventRegistry::get()->registerEvents();
         } catch (Throwable $exception) {
             RuntimeService::get()->setException($exception);
-        } catch (Exception $exception) {
-            // @PHP7
-            RuntimeService::get()->setException($exception);
         }
     }
 
@@ -82,7 +79,7 @@ class EventDefinitionRegisterer implements SingletonInterface, TableConfiguratio
      *
      * @return bool
      */
-    protected function clearingInstallToolCache()
+    protected function clearingInstallToolCache(): bool
     {
         return false === CacheService::getInstance()->cacheIsRegistered()
             && isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][NotizConstants::CACHE_ID]);

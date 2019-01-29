@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -52,7 +53,7 @@ class SlotViewService implements SingletonInterface
      * @param ViewPathsAware $viewPaths
      * @return SlotView
      */
-    public function buildView(EventDefinition $eventDefinition, ViewPathsAware $viewPaths)
+    public function buildView(EventDefinition $eventDefinition, ViewPathsAware $viewPaths): SlotView
     {
         /** @var SlotView $view */
         $view = Container::get(SlotView::class, $eventDefinition);
@@ -76,7 +77,7 @@ class SlotViewService implements SingletonInterface
      * @param ViewPathsAware $viewPaths
      * @return Generator
      */
-    public function getEventsViews(ViewPathsAware $viewPaths)
+    public function getEventsViews(ViewPathsAware $viewPaths): Generator
     {
         if ($this->definitionService->getValidationResult()->hasErrors()) {
             return;
@@ -95,7 +96,7 @@ class SlotViewService implements SingletonInterface
      * @param ViewPathsAware $viewPaths
      * @return Generator
      */
-    public function getEventsWithSlots(ViewPathsAware $viewPaths)
+    public function getEventsWithSlots(ViewPathsAware $viewPaths): Generator
     {
         foreach ($this->getEventsViews($viewPaths) as $event => $view) {
             /** @var SlotView $view */
@@ -109,7 +110,7 @@ class SlotViewService implements SingletonInterface
      * @param ViewPathsAware $viewPaths
      * @return Generator|SlotView[]
      */
-    public function getEventsWithoutSlots(ViewPathsAware $viewPaths)
+    public function getEventsWithoutSlots(ViewPathsAware $viewPaths): Generator
     {
         foreach ($this->getEventsViews($viewPaths) as $event => $view) {
             /** @var SlotView $view */
@@ -130,7 +131,7 @@ class SlotViewService implements SingletonInterface
      * @param EventDefinition $eventDefinition
      * @return string
      */
-    protected function getEventTemplatePath(EventDefinition $eventDefinition)
+    protected function getEventTemplatePath(EventDefinition $eventDefinition): string
     {
         $groupPath = $this->stringService->upperCamelCase($eventDefinition->getGroup()->getIdentifier());
         $eventPath = $this->stringService->upperCamelCase($eventDefinition->getIdentifier());

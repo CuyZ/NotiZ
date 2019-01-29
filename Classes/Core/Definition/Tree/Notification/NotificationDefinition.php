@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -86,7 +87,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     /**
      * @param string $identifier
      */
-    public function __construct($identifier)
+    public function __construct(string $identifier)
     {
         $this->identifier = $identifier;
     }
@@ -94,7 +95,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     /**
      * @return string
      */
-    public function getIdentifier()
+    public function getIdentifier(): string
     {
         return $this->identifier;
     }
@@ -102,7 +103,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     /**
      * @return string
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         return $this->label
             ? LocalizationService::localize($this->label)
@@ -112,7 +113,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return LocalizationService::localize($this->description);
     }
@@ -120,7 +121,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     /**
      * @return string
      */
-    public function getClassName()
+    public function getClassName(): string
     {
         return $this->className;
     }
@@ -128,7 +129,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     /**
      * @return NotificationSettings
      */
-    public function getSettings()
+    public function getSettings(): NotificationSettings
     {
         return $this->settings;
     }
@@ -136,7 +137,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     /**
      * @return ChannelDefinition[]
      */
-    public function getChannels()
+    public function getChannels(): array
     {
         return $this->channels;
     }
@@ -144,7 +145,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     /**
      * @return string
      */
-    public function getIconPath()
+    public function getIconPath(): string
     {
         return $this->iconPath ?: self::DEFAULT_ICON_PATH;
     }
@@ -155,7 +156,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
      *
      * @return string
      */
-    public function getIconIdentifier()
+    public function getIconIdentifier(): string
     {
         return IconService::get()->registerNotificationIcon($this);
     }
@@ -163,7 +164,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     /**
      * @return NotificationProcessor
      */
-    public function getProcessor()
+    public function getProcessor(): NotificationProcessor
     {
         return NotificationProcessorFactory::get()->getFromNotificationClassName($this->getClassName());
     }
@@ -171,7 +172,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     /**
      * @return bool
      */
-    public function isListable()
+    public function isListable(): bool
     {
         /** @var Viewable $className */
         $className = $this->getClassName();
@@ -224,12 +225,9 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
      * @throws ClassNotFoundException
      * @throws InvalidClassException
      */
-    protected static function fetchSettingsClassName(array $data)
+    protected static function fetchSettingsClassName(array $data): array
     {
-        // @PHP7
-        $notificationClassName = isset($data['className'])
-            ? $data['className']
-            : null;
+        $notificationClassName = $data['className'] ?? null;
 
         if (class_exists($notificationClassName)
             && in_array(CustomSettingsNotification::class, class_implements($notificationClassName))

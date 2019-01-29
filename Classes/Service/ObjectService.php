@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -27,7 +28,7 @@ class ObjectService implements SingletonInterface
      * @param string $instanceName
      * @return bool
      */
-    public static function classInstanceOf($className, $instanceName)
+    public static function classInstanceOf(string $className, string $instanceName): bool
     {
         if (interface_exists($instanceName)
             && in_array($instanceName, class_implements($className))
