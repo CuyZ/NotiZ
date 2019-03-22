@@ -66,7 +66,7 @@ abstract class SlotViewHelper extends AbstractViewHelper
             $label = $this->renderChildren();
         }
 
-        return $label;
+        return (string)$label;
     }
 
     /**
