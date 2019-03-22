@@ -43,7 +43,7 @@ abstract class PropertyEntry
     private $name;
 
     /**
-     * @var string
+     * @var mixed
      */
     private $value;
 
@@ -74,9 +74,9 @@ abstract class PropertyEntry
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    final public function getValue(): string
+    final public function getValue()
     {
         return $this->value;
     }
