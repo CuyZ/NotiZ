@@ -1,5 +1,23 @@
 # ![NotiZ](ext_icon.svg) NotiZ – ChangeLog
 
+## v2.0.1 - 22 March 2019
+
+> ℹ️ *Click on a changelog entry to see more details.*
+
+### Bugs fixed
+
+<details>
+<summary>Always return slot label as string</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *22 Mar 2019 / [35fd39a](https://github.com/CuyZ/NotiZ/commit/35fd39a9622f2c02713ba9a27f4b9c1daf3288c3) / [#196](https://github.com/CuyZ/NotiZ/issues/196)*
+</details>
+
+<details>
+<summary>Allow any value for a property entry</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *22 Mar 2019 / [85a3af0](https://github.com/CuyZ/NotiZ/commit/85a3af04980d6b530d92c6250ce7826691f3823e) / [#195](https://github.com/CuyZ/NotiZ/issues/195)*
+</details>
+
 ## v2.0.0 - 29 January 2019
 
 > ℹ️ *Click on a changelog entry to see more details.*
