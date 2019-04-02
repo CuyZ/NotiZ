@@ -138,8 +138,6 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'ignoreRootLevelRestriction' => true,
             ],
 
-            'requestUpdate' => 'event',
-
             'languageField' => 'sys_language_uid',
             'transOrigPointerField' => 'l10n_parent',
             'transOrigDiffSourceField' => 'l10n_diffsource',
@@ -174,6 +172,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
                 'config' => [
                     'type' => 'select',
+                    'renderType' => 'selectSingle',
                     'foreign_table' => 'sys_language',
                     'foreign_table_where' => 'ORDER BY sys_language.title',
                     'items' => [
@@ -189,6 +188,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'l10n_display' => 'defaultAsReadonly',
                 'config' => [
                     'type' => 'select',
+                    'renderType' => 'selectSingle',
                     'foreign_table' => $this->tableName,
                     'foreign_table_where' => "AND {$this->tableName}.pid=###CURRENT_PID### AND {$this->tableName}.sys_language_uid IN (-1,0)",
                     'items' => [
@@ -218,35 +218,29 @@ abstract class EntityTcaWriter implements SingletonInterface
             ],
             'starttime' => [
                 'exclude' => 1,
-                'l10n_mode' => 'mergeIfNotBlank',
                 'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
                 'config' => [
                     'type' => 'input',
-                    'size' => 13,
-                    'max' => 20,
+                    'renderType' => 'inputDateTime',
                     'eval' => 'datetime',
-                    'checkbox' => 0,
                     'default' => 0,
-                    'range' => [
-                        'lower' => mktime(0, 0, 0, (int)date('m'), (int)date('d'), (int)date('Y')),
-                    ],
-                ],
+                    'behaviour' => [
+                        'allowLanguageSynchronization' => true,
+                    ]
+                ]
             ],
             'endtime' => [
                 'exclude' => 1,
-                'l10n_mode' => 'mergeIfNotBlank',
                 'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
                 'config' => [
                     'type' => 'input',
-                    'size' => 13,
-                    'max' => 20,
+                    'renderType' => 'inputDateTime',
                     'eval' => 'datetime',
-                    'checkbox' => 0,
                     'default' => 0,
-                    'range' => [
-                        'lower' => mktime(0, 0, 0, (int)date('m'), (int)date('d'), (int)date('Y')),
-                    ],
-                ],
+                    'behaviour' => [
+                        'allowLanguageSynchronization' => true,
+                    ]
+                ]
             ],
         ];
 
@@ -289,8 +283,10 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'label' => self::LLL . ":field.event",
                 'l10n_mode' => 'exclude',
                 'l10n_display' => 'defaultAsReadonly',
+                'onChange' => 'reload',
                 'config' => [
                     'type' => 'select',
+                    'renderType' => 'selectSingle',
                     'size' => 8,
                     'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getEventsList',
                     'eval' => 'required',
