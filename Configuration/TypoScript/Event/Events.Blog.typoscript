@@ -1,0 +1,30 @@
+notiz {
+    eventGroups {
+        blog {
+            label = Event/Blog:event_group.title
+
+            events {
+                /*
+                * A comment is added
+                * ------------------
+                *
+                * This event is triggered when a user submits a new comment on a
+                * blog post
+                */
+                commentAdded {
+                    label = Event/Blog:comment_added.title
+                    description = Event/Blog:comment_added.description
+
+                    className = CuyZ\Notiz\Domain\Event\Blog\CommentAddedEvent
+
+                    connection {
+                        type = signal
+
+                        className = CuyZ\Notiz\Domain\Event\Blog\Processor\BlogNotificationProcessor
+                        name = T3G\AgencyPack\Blog\Notification\CommentAddedNotification
+                    }
+                }
+            }
+        }
+    }
+}

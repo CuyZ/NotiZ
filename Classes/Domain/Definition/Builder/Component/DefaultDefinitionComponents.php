@@ -97,6 +97,12 @@ class DefaultDefinitionComponents implements SingletonInterface
             $defaultFiles[] = NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Form.typoscript';
         }
 
+        if (ExtensionManagementUtility::isLoaded('blog')
+            && version_compare(ExtensionManagementUtility::getExtensionVersion('blog'), '9.0.0', '>')
+        ) {
+            $defaultFiles[] = NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Blog.typoscript';
+        }
+
         return $defaultFiles;
     }
 }
