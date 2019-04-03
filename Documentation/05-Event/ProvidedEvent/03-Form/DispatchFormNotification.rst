@@ -5,8 +5,7 @@ Form – Notification finisher
 
 .. important::
 
-    To use this event, `TYPO3 v8.5`_ at least must be used and the
-    `Form extension`_ must be installed and active.
+    To use this event, the `Form extension`_ must be installed and active.
 
 -----
 
@@ -38,5 +37,4 @@ selected as well:
 .. figure:: /Images/05-Events/ProvidedEvent/Form/notification-event.png
     :alt: Form notification event
 
-.. _TYPO3 v8.5: https://docs.typo3.org/typo3cms/extensions/core/Changelog/8.5/Feature-77910-EXTform-IntroduceNewFormFramework.html
 .. _Form extension: https://docs.typo3.org/typo3cms/extensions/form/Index.html
