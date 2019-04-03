@@ -34,7 +34,7 @@ class EventConfigurationProcessor extends GracefulProcessor
     protected function doProcess(string $tableName)
     {
         $flexFormDs = [
-            'default' => '',
+            'default' => 'FILE:EXT:notiz/Configuration/FlexForm/Event/Default.xml',
         ];
         $displayConditions = [];
 

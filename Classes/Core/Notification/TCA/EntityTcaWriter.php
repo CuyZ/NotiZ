@@ -288,7 +288,6 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'exclude' => 1,
                 'label' => self::LLL . ":field.event",
                 'l10n_mode' => 'exclude',
-                'l10n_display' => 'defaultAsReadonly',
                 'config' => [
                     'type' => 'select',
                     'size' => 8,
