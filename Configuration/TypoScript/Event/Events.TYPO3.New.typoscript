@@ -1,0 +1,29 @@
+notiz {
+    eventGroups {
+        typo3 {
+            label = TYPO3
+
+            events {
+                /*
+                * BACKEND USER LOGGED IN
+                * ----------------------
+                *
+                * Event firing when a backend user successfully logged into the
+                * TYPO3 backend.
+                */
+                backendUserLoggedIn {
+                    label = Event/TYPO3:backend_user_logged_in.title
+                    description = Event/TYPO3:backend_user_logged_in.description
+
+                    className = CuyZ\Notiz\Domain\Event\TYPO3\BackendUserLoggedIn
+
+                    connection {
+                        type = hook
+
+                        path = t3lib/class.t3lib_userauthgroup.php|backendUserLogin
+                    }
+                }
+            }
+        }
+    }
+}

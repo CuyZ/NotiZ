@@ -4,6 +4,10 @@
         <header/>
         <body>
 
+            <!--#########################-->
+            <!--###   CACHE CLEARED   ###-->
+            <!--#########################-->
+
             <trans-unit id="cache_cleared.title">
                 <source>Caches cleared</source>
             </trans-unit>
@@ -22,6 +26,9 @@
                 <source>If the executed cache command is `page`, this marker contains the uid of the page of which cache was cleared.</source>
             </trans-unit>
 
+            <!--#############################-->
+            <!--###  EXTENSION INSTALLED  ###-->
+            <!--#############################-->
 
             <trans-unit id="extension_installed.title">
                 <source>Extension installed</source>
@@ -41,6 +48,24 @@
             </trans-unit>
             <trans-unit id="extension_installed.marker.version">
                 <source>Version of the extension, for instance `1.4.2`.</source>
+            </trans-unit>
+
+            <!--################################-->
+            <!--###  BACKEND USER LOGGED IN  ###-->
+            <!--################################-->
+
+            <trans-unit id="backend_user_logged_in.title">
+                <source>Backend user logged in</source>
+            </trans-unit>
+            <trans-unit id="backend_user_logged_in.description">
+                <source>This event will be triggered when a backend user just logged in (with success).</source>
+            </trans-unit>
+
+            <trans-unit id="backend_user_logged_in.marker.user">
+                <source>Information about the user that just logged in.</source>
+            </trans-unit>
+            <trans-unit id="backend_user_logged_in.marker.email">
+                <source>User that just logged in</source>
             </trans-unit>
 
         </body>

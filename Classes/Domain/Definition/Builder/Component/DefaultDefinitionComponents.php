@@ -24,6 +24,7 @@ use CuyZ\Notiz\Domain\Definition\Builder\Component\Source\TypoScriptDefinitionSo
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /**
  * Service used for registration of default definition components supplied by
@@ -89,6 +90,11 @@ class DefaultDefinitionComponents implements SingletonInterface
 
             if (ExtensionManagementUtility::isLoaded('scheduler')) {
                 $defaultFiles[] = NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Scheduler.typoscript';
+            }
+
+            // @deprecated Must be removed when TYPO3 v8 is not supported anymore.
+            if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '9.1.0', '>=')) {
+                $defaultFiles[] = NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.TYPO3.New.typoscript';
             }
         }
 
