@@ -23,8 +23,8 @@ translations, meaning you may encounter issues when working with translated
 notifications.
 
 At the moment, we do not provide a working solution for this for TYPO3 8.7
-instances. If this is a concern for you, please consider contacting us for
-trying to find a solution together.
+instances. If this is a concern for you, please consider contacting us to
+try to find a solution together.
 
 .. note::
 
