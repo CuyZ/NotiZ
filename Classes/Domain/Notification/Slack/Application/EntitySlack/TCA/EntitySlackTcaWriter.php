@@ -29,7 +29,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
     protected function buildTcaArray(): array
     {
         return [
-            'ctrl' => $this->getCtrl(),
+            'ctrl' => $this->getDefaultCtrl(),
 
             'palettes' => [
                 'content' => [
@@ -85,6 +85,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.custom_bot',
                     'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->hasDefinedBot',
+                    'onChange' => 'reload',
                     'config' => [
                         'type' => 'check',
                         'default' => 1,
@@ -102,6 +103,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     ],
                     'config' => [
                         'type' => 'select',
+                        'renderType' => 'selectSingle',
                         'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getBotsList',
                         'size' => 1,
                         'maxitems' => 1,
@@ -199,18 +201,6 @@ class EntitySlackTcaWriter extends EntityTcaWriter
 
             ],
         ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function getCtrl(): array
-    {
-        $ctrl = $this->getDefaultCtrl();
-
-        $ctrl['requestUpdate'] .= ',custom_bot';
-
-        return $ctrl;
     }
 
     /**

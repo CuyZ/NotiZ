@@ -105,6 +105,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                     'l10n_display' => 'defaultAsReadonly',
                     'config' => [
                         'type' => 'select',
+                        'renderType' => 'selectSingle',
                         'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getLayoutList',
                         'size' => 1,
                         'maxitems' => 1,
@@ -145,6 +146,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                 'sender_custom' => [
                     'exclude' => 1,
                     'label' => self::EMAIL_LLL . ':field.sender_custom',
+                    'onChange' => 'reload',
                     'config' => [
                         'type' => 'check',
                         'default' => 0,
@@ -259,7 +261,6 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     {
         $ctrl = $this->getDefaultCtrl();
 
-        $ctrl['requestUpdate'] .= ',sender_custom';
         $ctrl['searchFields'] .= ',sender,sender_custom,send_to,send_to_provided,send_cc,send_cc_provided,send_bcc,send_bcc_provided,subject,body';
 
         $ctrl[self::NOTIFICATION_ENTITY]['processor'][] = BodySlotsProcessor::class;
