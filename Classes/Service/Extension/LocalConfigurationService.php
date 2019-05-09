@@ -25,11 +25,13 @@ use CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder;
 use CuyZ\Notiz\Core\Notification\TCA\Processor\GracefulProcessorRunner;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Domain\Definition\Builder\Component\DefaultDefinitionComponents;
+use CuyZ\Notiz\Domain\Event\Blog\Processor\BlogNotificationProcessor;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use CuyZ\Notiz\Service\Hook\EventDefinitionRegisterer;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use Doctrine\Common\Annotations\AnnotationReader;
+use T3G\AgencyPack\Blog\Notification\CommentAddedNotification;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseEditRow;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRecordOverrideValues;
 use TYPO3\CMS\Backend\Form\FormDataProvider\InitializeProcessedTca;
@@ -94,6 +96,7 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
         $this->resetTypeConvertersArray();
         $this->overrideScheduler();
         $this->ignoreDoctrineAnnotation();
+        $this->registerBlogNotificationProcessors();
     }
 
     /**
@@ -276,6 +279,18 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
             AnnotationReader::addGlobalIgnoredName('label');
             AnnotationReader::addGlobalIgnoredName('marker');
             AnnotationReader::addGlobalIgnoredName('email');
+        }
+    }
+
+    /**
+     * Registering a blog processor for each notification it provides.
+     */
+    protected function registerBlogNotificationProcessors()
+    {
+        if (ExtensionManagementUtility::isLoaded('blog')
+            && version_compare(ExtensionManagementUtility::getExtensionVersion('blog'), '9.0.0', '>')
+        ) {
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['Blog']['notificationRegistry'][CommentAddedNotification::class][] = BlogNotificationProcessor::class;
         }
     }
 }
