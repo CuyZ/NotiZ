@@ -62,7 +62,7 @@ class EntityLogTcaWriter extends EntityTcaWriter
                 '0' => [
                     'showitem' => '
                         error_message,
-                        title, description, sys_language_uid, hidden,
+                        title, description, hidden,
                         --div--;' . self::LLL . ':tab.event,
                             event, event_configuration_flex,
                         --div--;' . self::LLL . ':tab.channel,

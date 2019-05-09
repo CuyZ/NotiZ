@@ -84,6 +84,9 @@ class EntityNotificationRepository extends Repository
     {
         $query = $this->createQueryWithoutEnableStatement();
 
+        // Do not force the language so the correct notification is returned.
+        $query->getQuerySettings()->setRespectSysLanguage(false);
+
         $query->matching(
             $query->logicalAnd(
                 $query->equals('uid', $identifier),

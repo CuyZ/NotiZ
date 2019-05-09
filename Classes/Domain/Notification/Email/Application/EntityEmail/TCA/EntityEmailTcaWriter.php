@@ -76,7 +76,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                 '0' => [
                     'showitem' => '
                         error_message,
-                        title, description, sys_language_uid, hidden,
+                        title, description, hidden,
                         --div--;' . self::LLL . ':tab.event,
                             event, event_configuration_flex,
                         --div--;' . self::LLL . ':tab.channel,
@@ -167,8 +167,6 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                     'exclude' => 1,
                     'label' => self::EMAIL_LLL . ':field.sender',
                     'displayCond' => 'FIELD:sender_custom:=:1',
-                    'l10n_mode' => 'exclude',
-                    'l10n_display' => 'defaultAsReadonly',
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
