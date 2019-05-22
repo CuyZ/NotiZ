@@ -185,7 +185,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
-                        'eval' => 'trim,required',
+                        'eval' => 'trim',
                     ],
                 ],
 
@@ -195,7 +195,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
-                        'eval' => 'trim,required',
+                        'eval' => 'trim',
                     ],
                 ],
 
