@@ -1,5 +1,69 @@
 # ![NotiZ](ext_icon.svg) NotiZ – ChangeLog
 
+## v2.1.0 - 01 July 2019
+
+> ℹ️ *Click on a changelog entry to see more details.*
+
+### New features
+
+<details>
+<summary>Introduce event for new comment submission with EXT:blog</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *09 May 2019 / [9b2dc98](https://github.com/CuyZ/NotiZ/commit/9b2dc98fd46b1b7df7a754f4cb89a3a5edb0886b) / [#203](https://github.com/CuyZ/NotiZ/issues/203)*
+
+> A new event is added, it is triggered whenever a user submits a new
+> comment on a blog post.
+> 
+> Both the comment and the post data can be used within a notification.
+</details>
+
+### Bugs fixed
+
+<details>
+<summary>Repair notification entities translation</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *09 May 2019 / [48b2bdd](https://github.com/CuyZ/NotiZ/commit/48b2bdd6d21cb33cb1bc3b9b445490cf73a0949e) / [#201](https://github.com/CuyZ/NotiZ/issues/201)*
+
+> Some love has been given to the notification translation inside TYPO3
+> backend.
+> 
+> Unfortunately, since 2ee9d93 the translation is broken on TYPO3 8.7
+> instances. Because this issue is already fixed with TYPO3 9.5, no fix
+> has been done yet. Instead, a new section inside the "Known issues"
+> documentation chapter has been added to explain it.
+</details>
+
+### Others
+
+<details>
+<summary>Make Slack additional channel not required</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *01 Jul 2019 / [8c4f544](https://github.com/CuyZ/NotiZ/commit/8c4f5444c770b28885d99d77c3999a9e32a2ac0e) / [#206](https://github.com/CuyZ/NotiZ/issues/206)*
+
+> Because another field (`slack_channel`) can be used to select a channel
+> where to send the Slack message, the additional channel has no reason to
+> be required.
+> 
+> Fixes [#204](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/204)
+</details>
+
+<details>
+<summary>Remove useless TYPO3 constraint</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *09 May 2019 / [909f95a](https://github.com/CuyZ/NotiZ/commit/909f95ae0fbb84d6a10cdd4be6557e41c8f01feb) / [#202](https://github.com/CuyZ/NotiZ/issues/202)*
+
+> Since v2.0 of this extension, the TYPO3 requirement is higher than the
+> one written in documentation.
+</details>
+
+<details>
+<summary>Apply TCA migrations</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *09 May 2019 / [d669d4b](https://github.com/CuyZ/NotiZ/commit/d669d4b2133c2444008f88c06c6d97532e8165c6) / [#200](https://github.com/CuyZ/NotiZ/issues/200)*
+
+> Fixes [#198](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/198)
+</details>
+
 ## v2.0.1 - 22 March 2019
 
 > ℹ️ *Click on a changelog entry to see more details.*
