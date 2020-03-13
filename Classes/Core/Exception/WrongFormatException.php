@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -33,7 +34,7 @@ class WrongFormatException extends NotizException
      * @param string $rules
      * @return self
      */
-    public static function tagServiceIdentifierWrongFormat($propertyType, $identifier, $suggestion, $rules)
+    public static function tagServiceIdentifierWrongFormat(string $propertyType, string $identifier, string $suggestion, string $rules): self
     {
         return self::makeNewInstance(
             self::TAG_SERVICE_IDENTIFIER_WRONG_FORMAT,
@@ -47,7 +48,7 @@ class WrongFormatException extends NotizException
      * @param Hook $hook
      * @return self
      */
-    public static function eventHookMethodNameWrongFormat($methodName, Hook $hook)
+    public static function eventHookMethodNameWrongFormat(string $methodName, Hook $hook): self
     {
         return self::makeNewInstance(
             self::EVENT_HOOK_METHOD_NAME_WRONG_FORMAT,
@@ -60,7 +61,7 @@ class WrongFormatException extends NotizException
      * @param string $name
      * @return self
      */
-    public static function slotNameWrongFormat($name)
+    public static function slotNameWrongFormat(string $name): self
     {
         return self::makeNewInstance(
             self::SLOT_NAME_WRONG_FORMAT,

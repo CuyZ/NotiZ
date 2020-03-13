@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -35,7 +36,7 @@ class SlackChannel
      * @param string $webhookUrl
      * @param string $target
      */
-    private function __construct($webhookUrl, $target)
+    private function __construct(string $webhookUrl, string $target)
     {
         $this->webhookUrl = $webhookUrl;
         $this->target = $target;
@@ -45,7 +46,7 @@ class SlackChannel
      * @param EntitySlackNotification $notification
      * @return static
      */
-    public static function fromNotification(EntitySlackNotification $notification)
+    public static function fromNotification(EntitySlackNotification $notification): self
     {
         return new static(
             $notification->getWebhookUrl(),
@@ -57,7 +58,7 @@ class SlackChannel
      * @param ChannelDefinition $channel
      * @return static
      */
-    public static function fromDefinition(ChannelDefinition $channel)
+    public static function fromDefinition(ChannelDefinition $channel): self
     {
         return new static($channel->getWebhookUrl(), $channel->getTarget());
     }
@@ -65,7 +66,7 @@ class SlackChannel
     /**
      * @return string
      */
-    public function getWebhookUrl()
+    public function getWebhookUrl(): string
     {
         return $this->webhookUrl;
     }
@@ -73,7 +74,7 @@ class SlackChannel
     /**
      * @return string
      */
-    public function getTarget()
+    public function getTarget(): string
     {
         return $this->target;
     }

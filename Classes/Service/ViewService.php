@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -27,7 +28,7 @@ class ViewService implements SingletonInterface
      * @param string $templateName
      * @return StandaloneView
      */
-    public function getStandaloneView($templateName)
+    public function getStandaloneView(string $templateName): StandaloneView
     {
         /** @var StandaloneView $view */
         $view = GeneralUtility::makeInstance(StandaloneView::class);

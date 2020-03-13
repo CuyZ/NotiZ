@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -65,7 +66,7 @@ class CacheService implements SingletonInterface
      * @param string $key
      * @return mixed
      */
-    public function get($key)
+    public function get(string $key)
     {
         return $this->getCacheInstance()->get($key);
     }
@@ -78,7 +79,7 @@ class CacheService implements SingletonInterface
      * @param array $tags
      * @return $this
      */
-    public function set($key, $data, array $tags = [])
+    public function set(string $key, $data, array $tags = [])
     {
         $this->getCacheInstance()->set($key, $data, $tags);
 
@@ -91,7 +92,7 @@ class CacheService implements SingletonInterface
      * @param string $key
      * @return bool
      */
-    public function has($key)
+    public function has(string $key): bool
     {
         return $this->getCacheInstance()->has($key);
     }
@@ -102,7 +103,7 @@ class CacheService implements SingletonInterface
      *
      * @return bool
      */
-    public function cacheIsRegistered()
+    public function cacheIsRegistered(): bool
     {
         return $this->cacheManager->hasCache(NotizConstants::CACHE_ID);
     }
@@ -116,7 +117,7 @@ class CacheService implements SingletonInterface
      *
      * @return FrontendInterface
      */
-    protected function getCacheInstance()
+    protected function getCacheInstance(): FrontendInterface
     {
         if (null === $this->cacheInstance) {
             $this->cacheInstance = $this->cacheManager->hasCache(NotizConstants::CACHE_ID)
@@ -136,7 +137,7 @@ class CacheService implements SingletonInterface
      *
      * @return VariableFrontend
      */
-    protected function getBackupCache()
+    protected function getBackupCache(): VariableFrontend
     {
         $logger = $this->logManager->getLogger(__CLASS__);
         $logger->warning(self::BACKUP_CACHE_WARNING_MESSAGE);

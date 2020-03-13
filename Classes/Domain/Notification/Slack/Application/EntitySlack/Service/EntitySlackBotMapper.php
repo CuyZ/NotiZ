@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -49,7 +50,7 @@ class EntitySlackBotMapper
      * @return SlackBot
      * @throws EntryNotFoundException
      */
-    public function getBot()
+    public function getBot(): SlackBot
     {
         if ($this->notification->hasCustomBot()) {
             return SlackBot::fromNotification($this->notification);

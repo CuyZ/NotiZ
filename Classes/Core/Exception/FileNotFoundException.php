@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -18,16 +19,16 @@ namespace CuyZ\Notiz\Core\Exception;
 
 class FileNotFoundException extends NotizException
 {
-    const DEFINITION_SOURCE_TYPOSCRIPT_FILE_NOT_FOUND = 'The TypoScript definition file at path `%s` was not found.';
+    const DEFINITION_SOURCE_FILE_NOT_FOUND = 'The definition file at path `%s` was not found.';
 
     /**
      * @param string $filePath
      * @return self
      */
-    public static function definitionSourceTypoScriptFileNotFound($filePath)
+    public static function definitionSourceFileNotFound(string $filePath): self
     {
         return self::makeNewInstance(
-            self::DEFINITION_SOURCE_TYPOSCRIPT_FILE_NOT_FOUND,
+            self::DEFINITION_SOURCE_FILE_NOT_FOUND,
             1503853091,
             [$filePath]
         );

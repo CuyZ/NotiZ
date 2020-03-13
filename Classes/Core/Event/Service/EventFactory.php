@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -54,7 +55,7 @@ class EventFactory implements SingletonInterface
      * @throws ClassNotFoundException
      * @throws InvalidClassException
      */
-    public function create(EventDefinition $eventDefinition, Notification $notification)
+    public function create(EventDefinition $eventDefinition, Notification $notification): Event
     {
         $className = $eventDefinition->getClassName();
 

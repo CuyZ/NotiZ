@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -83,7 +84,7 @@ abstract class ShowNotificationController extends ManagerController
     /**
      * @return string
      */
-    abstract public function getNotificationDefinitionIdentifier();
+    abstract public function getNotificationDefinitionIdentifier(): string;
 
     /**
      * Checks that an argument `notificationIdentifier` exists for the request,
@@ -115,7 +116,7 @@ abstract class ShowNotificationController extends ManagerController
     /**
      * @return Payload
      */
-    protected function getPreviewPayload()
+    protected function getPreviewPayload(): Payload
     {
         $fakeEvent = $this->eventFactory->create($this->notification->getEventDefinition(), $this->notification);
 
@@ -153,7 +154,7 @@ abstract class ShowNotificationController extends ManagerController
     /**
      * @return string
      */
-    protected function getMenu()
+    protected function getMenu(): string
     {
         return Menu::MANAGER_NOTIFICATIONS;
     }

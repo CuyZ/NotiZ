@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -22,11 +23,11 @@ abstract class NotizException extends Exception
 {
     /**
      * @param string $message
-     * @param string $code
+     * @param int $code
      * @param array $arguments
      * @return static
      */
-    protected static function makeNewInstance($message, $code, array $arguments = [])
+    protected static function makeNewInstance(string $message, int $code, array $arguments = []): self
     {
         return new static(vsprintf($message, $arguments), $code);
     }

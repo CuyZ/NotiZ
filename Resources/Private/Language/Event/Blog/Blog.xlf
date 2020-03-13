@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en">
+        <header/>
+        <body>
+
+            <trans-unit id="event_group.title">
+                <source>Blog</source>
+            </trans-unit>
+
+            <!--#########################-->
+            <!--###   COMMENT ADDED   ###-->
+            <!--#########################-->
+
+            <trans-unit id="comment_added.title">
+                <source>A comment is submitted</source>
+            </trans-unit>
+            <trans-unit id="comment_added.description">
+                <source>This event will be triggered whenever a user submits a comment on a blog post.</source>
+            </trans-unit>
+
+            <trans-unit id="comment_added.marker.comment">
+                <source>The comment that was submitted by the user.</source>
+            </trans-unit>
+            <trans-unit id="comment_added.marker.post">
+                <source>The post on which the comment was submitted by the user.</source>
+            </trans-unit>
+            <trans-unit id="comment_added.email.comment_email">
+                <source>Email submitted in the comment</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

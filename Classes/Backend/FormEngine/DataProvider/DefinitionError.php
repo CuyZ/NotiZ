@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -52,11 +53,11 @@ class DefinitionError implements FormDataProviderInterface
      * @param array $result
      * @return array
      */
-    public function addData(array $result)
+    public function addData(array $result): array
     {
         $tableName = $result['tableName'];
 
-        if (!isset($GLOBALS['TCA'][$tableName]['ctrl'][EntityTcaWriter::ENTITY_NOTIFICATION])) {
+        if (!isset($GLOBALS['TCA'][$tableName]['ctrl'][EntityTcaWriter::NOTIFICATION_ENTITY])) {
             return $result;
         }
 
@@ -70,7 +71,7 @@ class DefinitionError implements FormDataProviderInterface
     /**
      * @return array
      */
-    private function getDefinitionErrorTca()
+    private function getDefinitionErrorTca(): array
     {
         return [
             'types' => [
@@ -92,7 +93,7 @@ class DefinitionError implements FormDataProviderInterface
     /**
      * @return string
      */
-    public function getDefinitionErrorMessage()
+    public function getDefinitionErrorMessage(): string
     {
         $view = $this->viewService->getStandaloneView('Backend/TCA/DefinitionErrorMessage');
 

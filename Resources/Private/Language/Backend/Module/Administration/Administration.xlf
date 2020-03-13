@@ -33,13 +33,7 @@
                 <source>Definition tree</source>
             </trans-unit>
             <trans-unit id="index.block.definition_tree.content">
-                <source><![CDATA[
-                The definition tree represents the configuration for events and notifications; it will be used by the whole system to handle notifications dispatching.
-
-                A valid dindex.efinition is essential for the extension to run correctly, so you need to pay attention when modifying it; any error will prevent all notifications from being dispatched.
-
-                The definition can be edited by configuring so-called “sources” and “processors”.
-                ]]></source>
+                <source>The definition tree represents the configuration for events and notifications; it will be used by the whole system to handle notifications dispatching. #LF# A valid definition is essential for the extension to run correctly, so you need to pay attention when modifying it; any error will prevent all notifications from being dispatched. #LF# The definition can be edited by configuring so-called “sources” and “processors”.</source>
             </trans-unit>
             <trans-unit id="index.block.definition_tree.action.show">
                 <source>Show definition tree</source>
@@ -52,11 +46,7 @@
                 <source>Documentation</source>
             </trans-unit>
             <trans-unit id="index.block.documentation.content">
-                <source><![CDATA[
-                The documentation contains useful information both for administrators and editors.
-
-                By reading it, you will find how to:
-                ]]></source>
+                <source>The documentation contains useful information both for administrators and editors. #LF# By reading it, you will find how to:</source>
             </trans-unit>
             <trans-unit id="index.block.documentation.list.1">
                 <source>create and edit notifications in the TYPO3 backend;</source>
@@ -78,11 +68,7 @@
                 <source>Extension configuration</source>
             </trans-unit>
             <trans-unit id="index.block.configuration.content">
-                <source><![CDATA[
-                The extension configuration is generally accessed via the extension manager.
-
-                In there you can configure low-level features of the extension.
-                ]]></source>
+                <source>The extension configuration is generally accessed via the extension manager. #LF# In there you can configure low-level features of the extension.</source>
             </trans-unit>
             <trans-unit id="index.block.configuration.action.configure">
                 <source>Configure extension</source>
@@ -92,13 +78,7 @@
                 <source>Feedback</source>
             </trans-unit>
             <trans-unit id="index.block.feedback.content">
-                <source><![CDATA[
-                You found an issue?
-
-                You would like to suggest something?
-
-                Please, tell us! We will be pleased to look into it.
-                ]]></source>
+                <source>You found an issue? #LF# You would like to suggest something? #LF# Please, tell us! We will be pleased to look into it.</source>
             </trans-unit>
             <trans-unit id="index.block.feedback.action.report">
                 <source>Send feedback</source>
@@ -108,11 +88,7 @@
                 <source>Support us</source>
             </trans-unit>
             <trans-unit id="index.block.support.content">
-                <source><![CDATA[
-                We are not asking for money to use this extension, but kind words are the best reward you can give us.
-
-                You can do the following:
-                ]]></source>
+                <source>We are not asking for money to use this extension, but kind words are the best reward you can give us. #LF# You can do the following:</source>
             </trans-unit>
             <trans-unit id="index.block.support.action.github">
                 <source>Give a ★ to the GitHub repository</source>

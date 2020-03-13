@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -27,7 +28,7 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
 class SchedulerTaskExecutionFailedEvent extends SchedulerTaskEvent
 {
     /**
-     * @label Event/Scheduler/Scheduler:task.execution_failed.marker.exception
+     * @label Event/Scheduler:task.execution_failed.marker.exception
      * @marker
      *
      * @var Throwable
@@ -38,7 +39,7 @@ class SchedulerTaskExecutionFailedEvent extends SchedulerTaskEvent
      * @param AbstractTask $task
      * @param Throwable $exception
      */
-    public function run(AbstractTask $task, $exception)
+    public function run(AbstractTask $task, Throwable $exception)
     {
         $this->checkTaskFilter($task);
         $this->fillTaskData($task);
@@ -49,7 +50,7 @@ class SchedulerTaskExecutionFailedEvent extends SchedulerTaskEvent
     /**
      * @return array
      */
-    public function getExampleProperties()
+    public function getExampleProperties(): array
     {
         return parent::getExampleProperties() +
             [

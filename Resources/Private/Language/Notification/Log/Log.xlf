@@ -10,11 +10,7 @@
                 <source>Log</source>
             </trans-unit>
             <trans-unit id="description">
-                <source><![CDATA[
-                    Logs can be used to record specific events that occur in your application, in order to help understand the activity of your system.
-
-                    By default logs are stored in a file of the TYPO3 temporary folder.
-                ]]></source>
+                <source>Logs can be used to record specific events that occur in your application, in order to help understand the activity of your system. #LF# By default logs are stored in a file of the TYPO3 temporary folder.</source>
             </trans-unit>
 
             <!-- TABS -->

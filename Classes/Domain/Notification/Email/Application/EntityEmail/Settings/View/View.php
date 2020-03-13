@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -47,7 +48,7 @@ class View extends AbstractDefinitionComponent implements ViewPathsAware, DataPr
     /**
      * @return Layout[]
      */
-    public function getLayouts()
+    public function getLayouts(): array
     {
         return $this->layouts;
     }
@@ -56,7 +57,7 @@ class View extends AbstractDefinitionComponent implements ViewPathsAware, DataPr
      * @param string $identifier
      * @return bool
      */
-    public function hasLayout($identifier)
+    public function hasLayout(string $identifier): bool
     {
         return true === isset($this->layouts[$identifier]);
     }
@@ -67,7 +68,7 @@ class View extends AbstractDefinitionComponent implements ViewPathsAware, DataPr
      *
      * @throws EntryNotFoundException
      */
-    public function getLayout($identifier)
+    public function getLayout(string $identifier): Layout
     {
         if (false === $this->hasLayout($identifier)) {
             throw EntryNotFoundException::entityEmailViewLayoutNotFound($identifier);
@@ -79,7 +80,7 @@ class View extends AbstractDefinitionComponent implements ViewPathsAware, DataPr
     /**
      * @return array
      */
-    public function getLayoutRootPaths()
+    public function getLayoutRootPaths(): array
     {
         return $this->layoutRootPaths;
     }
@@ -87,7 +88,7 @@ class View extends AbstractDefinitionComponent implements ViewPathsAware, DataPr
     /**
      * @return array
      */
-    public function getTemplateRootPaths()
+    public function getTemplateRootPaths(): array
     {
         return $this->templateRootPaths;
     }
@@ -95,7 +96,7 @@ class View extends AbstractDefinitionComponent implements ViewPathsAware, DataPr
     /**
      * @return array
      */
-    public function getPartialRootPaths()
+    public function getPartialRootPaths(): array
     {
         return $this->partialRootPaths;
     }

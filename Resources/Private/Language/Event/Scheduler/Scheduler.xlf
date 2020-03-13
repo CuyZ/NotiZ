@@ -35,9 +35,7 @@
                 <source>Scheduler task execution failed</source>
             </trans-unit>
             <trans-unit id="task.execution_failed.description">
-                <source><![CDATA[
-                    This event will be triggered whenever a task from the scheduler fails during its execution.
-                ]]></source>
+                <source>This event will be triggered whenever a task from the scheduler fails during its execution.</source>
             </trans-unit>
 
             <!--#########################-->
@@ -52,9 +50,7 @@
                 <source>Scheduler task was executed</source>
             </trans-unit>
             <trans-unit id="task.execution_done.description">
-                <source><![CDATA[
-                    This event will be triggered whenever a task from the scheduler finishes its execution.
-                ]]></source>
+                <source>This event will be triggered whenever a task from the scheduler finishes its execution.</source>
             </trans-unit>
 
         </body>

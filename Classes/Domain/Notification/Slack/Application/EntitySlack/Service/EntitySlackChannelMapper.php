@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -48,7 +49,7 @@ class EntitySlackChannelMapper
      *
      * @return SlackChannel[]
      */
-    public function getChannels()
+    public function getChannels(): array
     {
         $channels = [];
 

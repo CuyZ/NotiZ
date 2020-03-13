@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -33,10 +34,10 @@ interface EventFlexFormProvider
      *
      * @return string
      */
-    public function getFlexFormValue();
+    public function getFlexFormValue(): string;
 
     /**
      * @return bool
      */
-    public function hasFlexForm();
+    public function hasFlexForm(): bool;
 }

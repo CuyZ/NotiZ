@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -16,8 +17,8 @@
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\TCA;
 
-use CuyZ\Notiz\Backend\FormEngine\DataProvider\BodySlotsProvider;
 use CuyZ\Notiz\Core\Notification\TCA\EntityTcaWriter;
+use CuyZ\Notiz\Core\Notification\TCA\Processor\BodySlotsProcessor;
 
 class EntityEmailTcaWriter extends EntityTcaWriter
 {
@@ -31,7 +32,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     /**
      * @return string
      */
-    protected function getNotificationTcaServiceClass()
+    protected function getNotificationTcaServiceClass(): string
     {
         return EntityEmailTcaService::class;
     }
@@ -39,7 +40,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     /**
      * @return string
      */
-    protected function getChannelLabel()
+    protected function getChannelLabel(): string
     {
         return self::EMAIL_LLL . ':field.mailer';
     }
@@ -47,7 +48,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     /**
      * @inheritdoc
      */
-    protected function buildTcaArray()
+    protected function buildTcaArray(): array
     {
         return [
             'ctrl' => $this->getCtrl(),
@@ -75,7 +76,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                 '0' => [
                     'showitem' => '
                         error_message,
-                        title, description, sys_language_uid, hidden,
+                        title, description, hidden,
                         --div--;' . self::LLL . ':tab.event,
                             event, event_configuration_flex,
                         --div--;' . self::LLL . ':tab.channel,
@@ -104,6 +105,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                     'l10n_display' => 'defaultAsReadonly',
                     'config' => [
                         'type' => 'select',
+                        'renderType' => 'selectSingle',
                         'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getLayoutList',
                         'size' => 1,
                         'maxitems' => 1,
@@ -125,7 +127,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
 
                 /**
                  * This FlexForm field is fully configured in:
-                 * @see \CuyZ\Notiz\Backend\FormEngine\DataProvider\BodySlotsProvider
+                 * @see \CuyZ\Notiz\Core\Notification\TCA\Processor\BodySlotsProcessor
                  */
                 'body' => [
                     'exclude' => 1,
@@ -144,6 +146,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                 'sender_custom' => [
                     'exclude' => 1,
                     'label' => self::EMAIL_LLL . ':field.sender_custom',
+                    'onChange' => 'reload',
                     'config' => [
                         'type' => 'check',
                         'default' => 0,
@@ -164,8 +167,6 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                     'exclude' => 1,
                     'label' => self::EMAIL_LLL . ':field.sender',
                     'displayCond' => 'FIELD:sender_custom:=:1',
-                    'l10n_mode' => 'exclude',
-                    'l10n_display' => 'defaultAsReadonly',
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
@@ -256,13 +257,13 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     /**
      * @return array
      */
-    protected function getCtrl()
+    protected function getCtrl(): array
     {
         $ctrl = $this->getDefaultCtrl();
 
-        $ctrl['requestUpdate'] .= ',sender_custom';
         $ctrl['searchFields'] .= ',sender,sender_custom,send_to,send_to_provided,send_cc,send_cc_provided,send_bcc,send_bcc_provided,subject,body';
-        $ctrl[BodySlotsProvider::COLUMN] = 'body';
+
+        $ctrl[self::NOTIFICATION_ENTITY]['processor'][] = BodySlotsProcessor::class;
 
         return $ctrl;
     }
@@ -270,7 +271,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
     /**
      * @return string
      */
-    protected function getEntityTitle()
+    protected function getEntityTitle(): string
     {
         return self::EMAIL_LLL . ':title';
     }

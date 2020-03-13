@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -23,7 +24,6 @@ use CuyZ\Notiz\Core\Event\Runner\EventRunnerContainer;
 use CuyZ\Notiz\Core\Exception\ClassNotFoundException;
 use CuyZ\Notiz\Core\Exception\WrongFormatException;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 class Hook extends AbstractDefinitionComponent implements Connection
@@ -54,7 +54,7 @@ class Hook extends AbstractDefinitionComponent implements Connection
     /**
      * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }
@@ -84,10 +84,6 @@ class Hook extends AbstractDefinitionComponent implements Connection
         }
 
         $this->injectHookInGlobalArray($closure);
-
-        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')) {
-            $this->injectHookInFrontendController($closure);
-        }
     }
 
     /**
@@ -101,25 +97,6 @@ class Hook extends AbstractDefinitionComponent implements Connection
             $closure,
             '|'
         );
-    }
-
-    /**
-     * @param Closure|string $closure
-     *
-     * @deprecated Must be removed when TYPO3 v7 is not supported anymore.
-     */
-    protected function injectHookInFrontendController($closure)
-    {
-        $tsfe = $this->getTypoScriptFrontendController();
-
-        if ($tsfe) {
-            $tsfe->TYPO3_CONF_VARS['SC_OPTIONS'] = ArrayUtility::setValueByPath(
-                $tsfe->TYPO3_CONF_VARS['SC_OPTIONS'],
-                $this->getFullPath(),
-                $closure,
-                '|'
-            );
-        }
     }
 
     /**
@@ -138,7 +115,7 @@ class Hook extends AbstractDefinitionComponent implements Connection
      * @throws ClassNotFoundException
      * @throws WrongFormatException
      */
-    protected function preventEvalNeverIdealStuff(EventRunner $eventRunner)
+    protected function preventEvalNeverIdealStuff(EventRunner $eventRunner): string
     {
         $className = 'notiz_hook_' . sha1($eventRunner->getEventDefinition()->getFullIdentifier());
 
@@ -175,7 +152,7 @@ class Hook extends AbstractDefinitionComponent implements Connection
      * @param EventRunner $eventRunner
      * @return string
      */
-    protected function anotherNonUsefulSystem($className, $implements, $method, EventRunner $eventRunner)
+    protected function anotherNonUsefulSystem(string $className, string $implements, string $method, EventRunner $eventRunner): string
     {
         $eventRunnerContainerClass = EventRunnerContainer::class;
 
@@ -195,7 +172,7 @@ PHP;
     /**
      * @return bool
      */
-    protected function hookIsRegistered()
+    protected function hookIsRegistered(): bool
     {
         return ArrayUtility::isValidPath($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'], $this->getFullPath(), '|');
     }
@@ -203,7 +180,7 @@ PHP;
     /**
      * @return string
      */
-    protected function getFullPath()
+    protected function getFullPath(): string
     {
         return $this->path . '|' . self::INTERNAL_HOOK_KEY;
     }
@@ -211,7 +188,7 @@ PHP;
     /**
      * @return TypoScriptFrontendController
      */
-    protected function getTypoScriptFrontendController()
+    protected function getTypoScriptFrontendController(): TypoScriptFrontendController
     {
         return $GLOBALS['TSFE'];
     }

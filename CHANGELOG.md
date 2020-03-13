@@ -1,5 +1,266 @@
 # ![NotiZ](ext_icon.svg) NotiZ – ChangeLog
 
+## v2.1.0 - 01 July 2019
+
+> ℹ️ *Click on a changelog entry to see more details.*
+
+### New features
+
+<details>
+<summary>Introduce event for new comment submission with EXT:blog</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *09 May 2019 / [9b2dc98](https://github.com/CuyZ/NotiZ/commit/9b2dc98fd46b1b7df7a754f4cb89a3a5edb0886b) / [#203](https://github.com/CuyZ/NotiZ/issues/203)*
+
+> A new event is added, it is triggered whenever a user submits a new
+> comment on a blog post.
+> 
+> Both the comment and the post data can be used within a notification.
+</details>
+
+### Bugs fixed
+
+<details>
+<summary>Repair notification entities translation</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *09 May 2019 / [48b2bdd](https://github.com/CuyZ/NotiZ/commit/48b2bdd6d21cb33cb1bc3b9b445490cf73a0949e) / [#201](https://github.com/CuyZ/NotiZ/issues/201)*
+
+> Some love has been given to the notification translation inside TYPO3
+> backend.
+> 
+> Unfortunately, since 2ee9d93 the translation is broken on TYPO3 8.7
+> instances. Because this issue is already fixed with TYPO3 9.5, no fix
+> has been done yet. Instead, a new section inside the "Known issues"
+> documentation chapter has been added to explain it.
+</details>
+
+### Others
+
+<details>
+<summary>Make Slack additional channel not required</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *01 Jul 2019 / [8c4f544](https://github.com/CuyZ/NotiZ/commit/8c4f5444c770b28885d99d77c3999a9e32a2ac0e) / [#206](https://github.com/CuyZ/NotiZ/issues/206)*
+
+> Because another field (`slack_channel`) can be used to select a channel
+> where to send the Slack message, the additional channel has no reason to
+> be required.
+> 
+> Fixes [#204](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/204)
+</details>
+
+<details>
+<summary>Remove useless TYPO3 constraint</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *09 May 2019 / [909f95a](https://github.com/CuyZ/NotiZ/commit/909f95ae0fbb84d6a10cdd4be6557e41c8f01feb) / [#202](https://github.com/CuyZ/NotiZ/issues/202)*
+
+> Since v2.0 of this extension, the TYPO3 requirement is higher than the
+> one written in documentation.
+</details>
+
+<details>
+<summary>Apply TCA migrations</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *09 May 2019 / [d669d4b](https://github.com/CuyZ/NotiZ/commit/d669d4b2133c2444008f88c06c6d97532e8165c6) / [#200](https://github.com/CuyZ/NotiZ/issues/200)*
+
+> Fixes [#198](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/198)
+</details>
+
+## v2.0.1 - 22 March 2019
+
+> ℹ️ *Click on a changelog entry to see more details.*
+
+### Bugs fixed
+
+<details>
+<summary>Always return slot label as string</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *22 Mar 2019 / [35fd39a](https://github.com/CuyZ/NotiZ/commit/35fd39a9622f2c02713ba9a27f4b9c1daf3288c3) / [#196](https://github.com/CuyZ/NotiZ/issues/196)*
+</details>
+
+<details>
+<summary>Allow any value for a property entry</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *22 Mar 2019 / [85a3af0](https://github.com/CuyZ/NotiZ/commit/85a3af04980d6b530d92c6250ce7826691f3823e) / [#195](https://github.com/CuyZ/NotiZ/issues/195)*
+</details>
+
+## v2.0.0 - 29 January 2019
+
+> ℹ️ *Click on a changelog entry to see more details.*
+
+### New features
+
+<details>
+<summary>Introduce support for TYPO3 v9 LTS</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *25 Jan 2019 / [383ad51](https://github.com/CuyZ/NotiZ/commit/383ad511c933b2e0a71e3fc87148be0740b41842)*
+
+> 
+</details>
+
+### Important
+
+**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:** 
+
+<details>
+<summary>Use strict types for PHP classes</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Jan 2019 / [f143481](https://github.com/CuyZ/NotiZ/commit/f143481e26877aea7598b2492e20df1b093dd263) / [#191](https://github.com/CuyZ/NotiZ/issues/191)*
+
+> The extension now uses PHP 7.0 strict types in its API.
+> 
+> Third-party extensions which extend classes of the core may have to
+> adapt their code to follow the new methods signatures.
+</details>
+
+<details>
+<summary>Drop support for TYPO3 7.6</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *23 Jan 2019 / [e6253af](https://github.com/CuyZ/NotiZ/commit/e6253af702b4fb04bf7a51f1cacdccff73c56567) / [#190](https://github.com/CuyZ/NotiZ/issues/190)*
+
+> Further versions of this extension will not support TYPO3 7.6 anymore.
+</details>
+
+### Others
+
+<details>
+<summary>Fix wrong locallang reference for notifications listing</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *22 Jan 2019 / [e31cd20](https://github.com/CuyZ/NotiZ/commit/e31cd20d67116ab9c1907860e897e66e2792173a) / [#189](https://github.com/CuyZ/NotiZ/issues/189)*
+
+> 
+</details>
+
+<details>
+<summary>Change line feed character in locallang files</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *22 Jan 2019 / [273c01a](https://github.com/CuyZ/NotiZ/commit/273c01a34a6e7bd39b697a0f18176a59ecdbec05) / [#188](https://github.com/CuyZ/NotiZ/issues/188)*
+
+> 
+</details>
+
+<details>
+<summary>Fix wrong locallang reference for notifications listing</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *22 Jan 2019 / [9ea07ef](https://github.com/CuyZ/NotiZ/commit/9ea07efad666bb02c1d9ee8e66d15df58093dc00) / [#187](https://github.com/CuyZ/NotiZ/issues/187)*
+
+> 
+</details>
+
+## v1.1.0 - 20 January 2019
+
+> ℹ️ *Click on a changelog entry to see more details.*
+
+### New features
+
+<details>
+<summary>Assign notification and event instances to email view</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *21 Dec 2018 / [af8cb88](https://github.com/CuyZ/NotiZ/commit/af8cb881221ca2e777aad5d4d5cd3c6205eada19) / [#176](https://github.com/CuyZ/NotiZ/issues/176)*
+
+> Two new variables become accessible in the template of an email:
+> 
+> - `{notification}` – contains the notification instance
+> - `{event}` – contains the event instance
+</details>
+
+<details>
+<summary>Handle priority for file definition sources</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *21 Dec 2018 / [911c135](https://github.com/CuyZ/NotiZ/commit/911c1359be3aebdb119891fc12f7bbf5c585beea) / [#173](https://github.com/CuyZ/NotiZ/issues/173)*
+
+> The file definition sources are now sorted by the priority they are
+> given.
+> 
+> Default definition files have a high priority, to easily allow other
+> files to override definition values.
+</details>
+
+### Bugs fixed
+
+<details>
+<summary>Distinct TCA processors and data providers</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *20 Jan 2019 / [a339bf1](https://github.com/CuyZ/NotiZ/commit/a339bf1604779a7591b80b2b50230e62dc380d4e) / [#184](https://github.com/CuyZ/NotiZ/issues/184)*
+
+> Some data providers were actually not acting on an actual notification
+> record, but modifying global TCA configuration instead.
+> 
+> Because of this, TYPO3 core would misunderstand things, like FlexForm
+> configuration done dynamically. This would result in strange behaviour
+> like empty paragraph added on text columns with RTE inside FlexForm
+> fields.
+> 
+> This commit separates these processors in a distinct namespace, with a
+> brand new role and interface.
+> 
+> Fixes [#181](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/181)
+</details>
+
+<details>
+<summary>Show message when CKEditor preset is missing in slot</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *20 Jan 2019 / [fb61c9b](https://github.com/CuyZ/NotiZ/commit/fb61c9b50110ba9416b58f3df3de5ff90afcec0a) / [#182](https://github.com/CuyZ/NotiZ/issues/182)*
+
+> 
+</details>
+
+<details>
+<summary>Make email property handle multiple email addresses</summary>
+
+> *by [ogrosko](mailto:ogrosko@gmail.com)* on *18 Dec 2018 / [82a78b9](https://github.com/CuyZ/NotiZ/commit/82a78b9cea8783afb03b7bf4e3dc40c12a02c6f9) / [#171](https://github.com/CuyZ/NotiZ/issues/171)*
+
+> closes [#170](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/170)
+</details>
+
+### Others
+
+<details>
+<summary>Add documentation on how to add custom config to events</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *20 Jan 2019 / [9296c10](https://github.com/CuyZ/NotiZ/commit/9296c1073d0a67ec91813fb2d0a8f3c9510b19cb) / [#185](https://github.com/CuyZ/NotiZ/issues/185)*
+
+> 
+</details>
+
+<details>
+<summary>Fix wrong locallang references for scheduler events</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *20 Jan 2019 / [9fba3d5](https://github.com/CuyZ/NotiZ/commit/9fba3d5daa99e499d02dffa238e8fcf2550c53ac) / [#183](https://github.com/CuyZ/NotiZ/issues/183)*
+
+> 
+</details>
+
+<details>
+<summary>Hide columns of notification entity when no event is selected</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *20 Jan 2019 / [cf28edd](https://github.com/CuyZ/NotiZ/commit/cf28eddae73c6d6b843c82d9797a962586f6419b) / [#178](https://github.com/CuyZ/NotiZ/issues/178)*
+
+> Closes [#31](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/31)
+</details>
+
+<details>
+<summary>Change line feeds in localization files</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *20 Jan 2019 / [a35699e](https://github.com/CuyZ/NotiZ/commit/a35699edea32ccfd0a1af7b7daedbfcd19987717) / [#177](https://github.com/CuyZ/NotiZ/issues/177)*
+
+> 
+</details>
+
+<details>
+<summary>Fix a typo in the admin module language file</summary>
+
+> *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *21 Dec 2018 / [6282982](https://github.com/CuyZ/NotiZ/commit/628298206d1b0e95b99b59d9b8c5cffa0fe8c9ce) / [#175](https://github.com/CuyZ/NotiZ/issues/175)*
+
+> 
+</details>
+
+<details>
+<summary>Add <code>.idea</code> to <code>.gitignore</code></summary>
+
+> *by [ogrosko](mailto:ogrosko@gmail.com)* on *18 Dec 2018 / [9ca335d](https://github.com/CuyZ/NotiZ/commit/9ca335d3acd259a262ed39e49b971faccfb4f64f) / [#172](https://github.com/CuyZ/NotiZ/issues/172)*
+
+> 
+</details>
+
 ## v1.0.1 - 11 December 2018
 
 > ℹ️ *Click on a changelog entry to see more details.*

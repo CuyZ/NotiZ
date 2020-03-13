@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -40,7 +41,7 @@ class InvalidTypeException extends NotizException
      * @param mixed $notifications
      * @return self
      */
-    public static function notificationContainerArrayInvalidType($notifications)
+    public static function notificationContainerArrayInvalidType($notifications): self
     {
         return self::makeNewInstance(
             self::NOTIFICATION_CONTAINER_ARRAY_INVALID_TYPE,
@@ -55,7 +56,7 @@ class InvalidTypeException extends NotizException
      * @param NotificationDefinition $notificationDefinition
      * @return self
      */
-    public static function notificationContainerEntryInvalidType($key, $notification, NotificationDefinition $notificationDefinition)
+    public static function notificationContainerEntryInvalidType(string $key, $notification, NotificationDefinition $notificationDefinition): self
     {
         return self::makeNewInstance(
             self::NOTIFICATION_CONTAINER_ENTRY_INVALID_TYPE,
@@ -72,7 +73,7 @@ class InvalidTypeException extends NotizException
      * @param string $channelClassName
      * @return self
      */
-    public static function channelSupportedNotificationsWrongType($channelClassName)
+    public static function channelSupportedNotificationsWrongType(string $channelClassName): self
     {
         return self::makeNewInstance(
             self::CHANNEL_SUPPORTED_NOTIFICATIONS_WRONG_TYPE,
@@ -86,7 +87,7 @@ class InvalidTypeException extends NotizException
      * @param array $invalidListEntries
      * @return self
      */
-    public static function channelSupportedNotificationsInvalidListEntries($channelClassName, array $invalidListEntries)
+    public static function channelSupportedNotificationsInvalidListEntries(string $channelClassName, array $invalidListEntries): self
     {
         return self::makeNewInstance(
             self::CHANNEL_SUPPORTED_NOTIFICATIONS_INVALID_LIST_ENTRIES,
@@ -103,7 +104,7 @@ class InvalidTypeException extends NotizException
      * @param NotificationDefinition $notification
      * @return self
      */
-    public static function channelUnsupportedNotificationDispatched(Channel $channel, NotificationDefinition $notification)
+    public static function channelUnsupportedNotificationDispatched(Channel $channel, NotificationDefinition $notification): self
     {
         return self::makeNewInstance(
             self::CHANNEL_UNSUPPORTED_NOTIFICATION_DISPATCHED,
@@ -119,7 +120,7 @@ class InvalidTypeException extends NotizException
      * @param mixed $value
      * @return self
      */
-    public static function definitionValidationWrongType($value)
+    public static function definitionValidationWrongType($value): self
     {
         return self::makeNewInstance(
             self::DEFINITION_VALIDATION_WRONG_TYPE,
@@ -136,7 +137,7 @@ class InvalidTypeException extends NotizException
      * @param array $allowedTypes
      * @return self
      */
-    public static function eventConnectionWrongType($type, array $allowedTypes)
+    public static function eventConnectionWrongType(string $type, array $allowedTypes): self
     {
         return self::makeNewInstance(
             self::EVENT_CONNECTION_WRONG_TYPE,

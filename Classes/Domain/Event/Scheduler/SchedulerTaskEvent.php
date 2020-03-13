@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -47,7 +48,7 @@ abstract class SchedulerTaskEvent extends AbstractEvent implements ProvidesExamp
 
     /**
      * @marker
-     * @label Event/Scheduler/Scheduler:task.marker.data
+     * @label Event/Scheduler:task.marker.data
      *
      * @var array
      */
@@ -84,7 +85,7 @@ abstract class SchedulerTaskEvent extends AbstractEvent implements ProvidesExamp
     /**
      * @return array
      */
-    public function getExampleProperties()
+    public function getExampleProperties(): array
     {
         return [
             'uid' => '42',

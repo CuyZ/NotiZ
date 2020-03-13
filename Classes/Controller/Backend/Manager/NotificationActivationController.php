@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -18,16 +19,15 @@ namespace CuyZ\Notiz\Controller\Backend\Manager;
 
 use CuyZ\Notiz\Controller\Backend\Menu;
 use CuyZ\Notiz\Core\Notification\Activable;
-use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 
 class NotificationActivationController extends ManagerController
 {
     /**
      * @param string $notificationType
      * @param string $notificationIdentifier
-     * @param string $filterEvent
+     * @param string|null $filterEvent
      */
-    public function processAction($notificationType, $notificationIdentifier, $filterEvent = null)
+    public function processAction(string $notificationType, string $notificationIdentifier, string $filterEvent = null)
     {
         $definition = $this->getDefinition();
 
@@ -62,10 +62,9 @@ class NotificationActivationController extends ManagerController
 
     /**
      * @param string $notificationType
-     * @param string $filterEvent
-     * @throws StopActionException
+     * @param string|null $filterEvent [PHP 7.1]
      */
-    private function returnToList($notificationType, $filterEvent)
+    private function returnToList(string $notificationType, $filterEvent)
     {
         $this->forward(
             'process',
@@ -81,7 +80,7 @@ class NotificationActivationController extends ManagerController
     /**
      * @return string
      */
-    protected function getMenu()
+    protected function getMenu(): string
     {
         return Menu::MANAGER_NOTIFICATIONS;
     }

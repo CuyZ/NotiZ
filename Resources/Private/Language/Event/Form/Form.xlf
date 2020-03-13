@@ -8,9 +8,7 @@
                 <source>A form was submitted</source>
             </trans-unit>
             <trans-unit id="dispatch_form_notification.description">
-                <source><![CDATA[
-                    This event will be triggered whenever a form is submitted by a user.
-                ]]></source>
+                <source>This event will be triggered whenever a form is submitted by a user.</source>
             </trans-unit>
 
             <trans-unit id="dispatch_form_notification.flex_form.form_definition.label">

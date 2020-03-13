@@ -8,11 +8,7 @@
                 <source>Configuration error</source>
             </trans-unit>
             <trans-unit id="exception_occurred.body">
-                <source><![CDATA[
-                An error occurred, the notification can not be edited.
-
-                If the problem persists, contact your administrator.
-                ]]></source>
+                <source>An error occurred, the notification can not be edited. #LF# If the problem persists, contact your administrator.</source>
             </trans-unit>
 
             <!--####################################-->

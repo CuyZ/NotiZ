@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -36,7 +37,7 @@ abstract class Slot
      *
      * @throws WrongFormatException
      */
-    public function __construct($name, $label)
+    public function __construct(string $name, string $label)
     {
         if (!preg_match('/[a-z]+[a-z0-9-_]*/i', $name)) {
             throw WrongFormatException::slotNameWrongFormat($name);
@@ -49,7 +50,7 @@ abstract class Slot
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -57,7 +58,7 @@ abstract class Slot
     /**
      * @return string
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         return $this->label ?: $this->name;
     }
@@ -65,12 +66,12 @@ abstract class Slot
     /**
      * @return string
      */
-    abstract public function getFlexFormConfiguration();
+    abstract public function getFlexFormConfiguration(): string;
 
     /**
      * @return string
      */
-    public function getFlexFormAdditionalConfiguration()
+    public function getFlexFormAdditionalConfiguration(): string
     {
         return '';
     }

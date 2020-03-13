@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -44,7 +45,7 @@ class SlotContainer
      * @param string $name
      * @return bool
      */
-    public function has($name)
+    public function has(string $name): bool
     {
         return isset($this->slots[$name]);
     }
@@ -52,7 +53,7 @@ class SlotContainer
     /**
      * @return Slot[]
      */
-    public function getList()
+    public function getList(): array
     {
         return $this->slots;
     }

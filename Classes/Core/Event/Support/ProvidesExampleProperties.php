@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -45,5 +46,5 @@ interface ProvidesExampleProperties
      *
      * @return array
      */
-    public function getExampleProperties();
+    public function getExampleProperties(): array;
 }

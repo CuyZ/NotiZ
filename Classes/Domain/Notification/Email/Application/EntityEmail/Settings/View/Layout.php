@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -44,7 +45,7 @@ class Layout extends AbstractDefinitionComponent
      * @param string $identifier
      * @param string $path
      */
-    public function __construct($identifier, $path)
+    public function __construct(string $identifier, string $path)
     {
         $this->identifier = $identifier;
         $this->path = $path;
@@ -53,7 +54,7 @@ class Layout extends AbstractDefinitionComponent
     /**
      * @return string
      */
-    public function getIdentifier()
+    public function getIdentifier(): string
     {
         return $this->identifier;
     }
@@ -61,7 +62,7 @@ class Layout extends AbstractDefinitionComponent
     /**
      * @return bool
      */
-    public function hasLabel()
+    public function hasLabel(): bool
     {
         return strlen(trim($this->label)) > 0;
     }
@@ -69,7 +70,7 @@ class Layout extends AbstractDefinitionComponent
     /**
      * @return string
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         return LocalizationService::localize($this->label);
     }
@@ -77,7 +78,7 @@ class Layout extends AbstractDefinitionComponent
     /**
      * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }

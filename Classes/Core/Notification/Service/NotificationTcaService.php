@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -111,15 +112,14 @@ abstract class NotificationTcaService implements SingletonInterface
      * @param array $row
      * @return EventDefinition
      */
-    protected function getSelectedEvent(array $row)
+    protected function getSelectedEvent(array $row): EventDefinition
     {
         $definition = $this->getDefinition();
 
         // The first configured event is selected by default.
         $event = $definition->getFirstEventGroup()->getFirstEvent();
 
-        if (isset($row['event'])) {
-            // @PHP7
+        if (isset($row['event']) && !empty($row['event'])) {
             $eventValue = is_array($row['event'])
                 ? $row['event'][0]
                 : $row['event'];
@@ -139,7 +139,7 @@ abstract class NotificationTcaService implements SingletonInterface
      * @param array $parameters
      * @return string
      */
-    public function getMarkersLabel(array &$parameters)
+    public function getMarkersLabel(array &$parameters): string
     {
         if ($this->definitionHasErrors()) {
             return '';
@@ -196,36 +196,19 @@ HTML;
     }
 
     /**
-     * If a RTE is using a missing CKEditor preset, a message is shown to the
-     * user to help him fix it.
-     *
-     * @param array $parent
-     * @return string
-     */
-    public function showCKEditorPresetMissing(array $parent)
-    {
-        $preset = $parent['parameters']['preset'];
-
-        $message = LocalizationService::localize('Notification/Entity:field.rte.ck_editor_preset_missing', [$preset]);
-        $message = StringService::mark($message, '<code>$1</code>');
-
-        return '<span class="bg-danger">' . $message . '</span>';
-    }
-
-    /**
      * Returns a notification object based on an array containing the
      * notification properties.
      *
      * @param array $row
      * @return Notification
      */
-    protected function getNotification(array $row)
+    protected function getNotification(array $row): Notification
     {
         $hash = json_encode($row);
 
         if (!isset($this->notification[$hash])) {
             $this->notification[$hash] = isset($row['uid']) && is_integer($row['uid'])
-                ? $this->getNotificationDefinition()->getProcessor()->getNotificationFromIdentifier($row['uid'])
+                ? $this->getNotificationDefinition()->getProcessor()->getNotificationFromIdentifier((string)$row['uid'])
                 : reset($this->dataMapper->map($this->getNotificationDefinition()->getClassName(), [$row]));
         }
 
@@ -244,7 +227,7 @@ HTML;
     /**
      * @return string
      */
-    public function getNotificationIconPath()
+    public function getNotificationIconPath(): string
     {
         if ($this->definitionService->getValidationResult()->hasErrors()) {
             return NotizConstants::EXTENSION_ICON_DEFAULT;
@@ -256,7 +239,7 @@ HTML;
     /**
      * @return Definition
      */
-    public function getDefinition()
+    public function getDefinition(): Definition
     {
         return $this->definitionService->getDefinition();
     }
@@ -264,7 +247,7 @@ HTML;
     /**
      * @return NotificationDefinition
      */
-    protected function getNotificationDefinition()
+    protected function getNotificationDefinition(): NotificationDefinition
     {
         return $this->getDefinition()->getNotification($this->getDefinitionIdentifier());
     }
@@ -276,7 +259,7 @@ HTML;
      * @return string
      * @throws NotImplementedException
      */
-    protected function getDefinitionIdentifier()
+    protected function getDefinitionIdentifier(): string
     {
         throw NotImplementedException::tcaServiceNotificationIdentifierMissing(__METHOD__);
     }
@@ -284,7 +267,7 @@ HTML;
     /**
      * @return bool
      */
-    public function definitionHasErrors()
+    public function definitionHasErrors(): bool
     {
         return $this->definitionService->getValidationResult()->hasErrors();
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -14,19 +15,18 @@
  * http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace CuyZ\Notiz\Backend\FormEngine\DataProvider;
+namespace CuyZ\Notiz\Core\Notification\TCA\Processor;
 
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ViewService;
-use Exception;
 use Throwable;
-use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * This provider must be used to complete the TCA of entity notifications, for
+ * This processor must be used to complete the TCA of entity notifications, for
  * parts that require complex logic that may be failing under certain
  * circumstances (meaning an exception can be thrown for any reason).
  *
@@ -34,12 +34,12 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * and put in cache, because if something fails it would crash for the whole
  * backend.
  *
- * Using this graceful provider, if something breaks during the execution of the
- * child provider, the error is caught in order to prevent showing the fatal
- * error to the user; instead, a message is displayed with some information about
- * the exception.
+ * Using this graceful processor, if something breaks during the execution of
+ * the child processor, the error is caught in order to prevent showing the
+ * fatal error to the user; instead, a message is displayed with some
+ * information about the exception.
  */
-abstract class GracefulProvider implements FormDataProviderInterface
+abstract class GracefulProcessor implements SingletonInterface
 {
     /**
      * @var DefinitionService
@@ -61,48 +61,41 @@ abstract class GracefulProvider implements FormDataProviderInterface
     }
 
     /**
-     * @param array $result
-     * @return array
+     * @param string $tableName
      * @throws Throwable
      */
-    final public function addData(array $result)
+    final public function process(string $tableName)
     {
         if ($this->definitionService->getValidationResult()->hasErrors()) {
-            return $result;
+            return;
         }
+
+        $exception = null;
 
         try {
-            return $this->process($result);
+            $this->doProcess($tableName);
         } catch (Throwable $exception) {
-        } catch (Exception $exception) {
-            // @PHP7
-        }
-
-        if ($exception) {
             if (GeneralUtility::_GET('showException')) {
                 throw $exception;
             }
 
             ArrayUtility::mergeRecursiveWithOverrule(
-                $GLOBALS['TCA'][$result['tableName']],
+                $GLOBALS['TCA'][$tableName],
                 $this->getDefinitionErrorTca($exception)
             );
         }
-
-        return $result;
     }
 
     /**
-     * @param array $result
-     * @return array
+     * @param string $tableName
      */
-    abstract protected function process(array $result);
+    abstract protected function doProcess(string $tableName);
 
     /**
      * @param Throwable $exception
      * @return array
      */
-    private function getDefinitionErrorTca($exception)
+    private function getDefinitionErrorTca(Throwable $exception): array
     {
         return [
             'types' => [
@@ -128,7 +121,7 @@ abstract class GracefulProvider implements FormDataProviderInterface
      * @param array $arguments
      * @return string
      */
-    public function getErrorMessage($arguments)
+    public function getErrorMessage($arguments): string
     {
         $view = $this->viewService->getStandaloneView('Backend/TCA/ErrorMessage');
 

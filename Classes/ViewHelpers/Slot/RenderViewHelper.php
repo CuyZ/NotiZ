@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -23,12 +24,11 @@ use CuyZ\Notiz\Domain\Property\Marker;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\View\Slot\SlotContainer;
 use CuyZ\Notiz\View\Slot\SlotView;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
-use TYPO3\CMS\Fluid\Core\Compiler\TemplateCompiler;
-use TYPO3\CMS\Fluid\Core\Parser\SyntaxTree\AbstractNode;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 use TYPO3\CMS\Fluid\Core\ViewHelper\ViewHelperVariableContainer;
+use TYPO3Fluid\Fluid\Core\Compiler\TemplateCompiler;
+use TYPO3Fluid\Fluid\Core\Parser\SyntaxTree\ViewHelperNode;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Will process and render the wanted slot, by getting the value filled by the
@@ -93,13 +93,6 @@ class RenderViewHelper extends AbstractConditionViewHelper
     protected static $currentVariableContainer;
 
     /**
-     * @deprecated Must be removed when TYPO3 v7 is not supported anymore.
-     *
-     * @var AbstractNode[]
-     */
-    private $childNodesLegacy = [];
-
-    /**
      * @inheritdoc
      */
     public function initializeArguments()
@@ -108,10 +101,6 @@ class RenderViewHelper extends AbstractConditionViewHelper
 
         $this->registerArgument('name', 'string', 'Name of the slot that will be rendered.', true);
         $this->registerArgument('markers', 'array', 'Additional markers that will be added to the slot and can be used within the FlexForm.', false, []);
-
-        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '>=')) {
-            unset($this->argumentDefinitions['condition']);
-        }
     }
 
     /**
@@ -119,13 +108,7 @@ class RenderViewHelper extends AbstractConditionViewHelper
      */
     public function render()
     {
-        if (empty($this->childNodesLegacy)) {
-            return self::getSlotValue($this->arguments, $this->renderingContext);
-        } else {
-            self::addSlotValueToVariables($this->arguments, $this->renderingContext);
-
-            return parent::render();
-        }
+        return self::getSlotValue($this->arguments, $this->renderingContext);
     }
 
     /**
@@ -149,20 +132,13 @@ class RenderViewHelper extends AbstractConditionViewHelper
     {
         $slotValue = self::getSlotValue($arguments, $renderingContext);
 
-        /**
-         * @deprecated Must be removed when TYPO3 v7 is not supported anymore.
-         */
-        if ($renderingContext->getTemplateVariableContainer()->exists('slotValue')) {
-            $renderingContext->getTemplateVariableContainer()->remove('slotValue');
-        }
-
-        $renderingContext->getTemplateVariableContainer()->add('slotValue', $slotValue);
+        $renderingContext->getVariableProvider()->add('slotValue', $slotValue);
     }
 
     /**
      * @inheritdoc
      */
-    public function compile($argumentsName, $closureName, &$initializationPhpCode, AbstractNode $node, TemplateCompiler $compiler)
+    public function compile($argumentsName, $closureName, &$initializationPhpCode, ViewHelperNode $node, TemplateCompiler $compiler)
     {
         if (empty($node->getChildNodes())) {
             return sprintf(
@@ -185,7 +161,7 @@ class RenderViewHelper extends AbstractConditionViewHelper
      *
      * @throws DuplicateEntryException
      */
-    public static function getSlotValue(array $arguments, RenderingContextInterface $renderingContext)
+    public static function getSlotValue(array $arguments, RenderingContextInterface $renderingContext): string
     {
         self::$currentVariableContainer = $renderingContext->getViewHelperVariableContainer();
 
@@ -225,27 +201,15 @@ class RenderViewHelper extends AbstractConditionViewHelper
      * @param array $arguments
      * @return bool
      */
-    protected static function evaluateCondition($arguments = null)
+    protected static function evaluateCondition($arguments = null): bool
     {
         return self::getSlotContainer()->has($arguments['name']);
     }
 
     /**
-     * @deprecated Must be removed when TYPO3 v7 is not supported anymore.
-     *
-     * @param array $childNodes
-     */
-    public function setChildNodes(array $childNodes)
-    {
-        $this->childNodesLegacy = $childNodes;
-
-        parent::setChildNodes($childNodes);
-    }
-
-    /**
      * @return SlotContainer
      */
-    protected static function getSlotContainer()
+    protected static function getSlotContainer(): SlotContainer
     {
         return self::$currentVariableContainer->get(SlotView::class, SlotView::SLOT_CONTAINER);
     }
@@ -253,7 +217,7 @@ class RenderViewHelper extends AbstractConditionViewHelper
     /**
      * @return array
      */
-    protected static function getSlotValues()
+    protected static function getSlotValues(): array
     {
         return self::$currentVariableContainer->get(SlotView::class, SlotView::SLOT_VALUES);
     }
@@ -261,7 +225,7 @@ class RenderViewHelper extends AbstractConditionViewHelper
     /**
      * @return array
      */
-    protected static function getMarkers()
+    protected static function getMarkers(): array
     {
         return self::$currentVariableContainer->get(SlotView::class, SlotView::MARKERS);
     }

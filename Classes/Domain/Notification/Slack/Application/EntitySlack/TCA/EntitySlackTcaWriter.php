@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -17,7 +18,6 @@
 namespace CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\TCA;
 
 use CuyZ\Notiz\Core\Notification\TCA\EntityTcaWriter;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 class EntitySlackTcaWriter extends EntityTcaWriter
 {
@@ -26,10 +26,10 @@ class EntitySlackTcaWriter extends EntityTcaWriter
     /**
      * @return array
      */
-    protected function buildTcaArray()
+    protected function buildTcaArray(): array
     {
         return [
-            'ctrl' => $this->getCtrl(),
+            'ctrl' => $this->getDefaultCtrl(),
 
             'palettes' => [
                 'content' => [
@@ -54,7 +54,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 '0' => [
                     'showitem' => '
                 error_message,
-                title, description, sys_language_uid, hidden,
+                title, description, hidden,
                 --div--;' . self::LLL . ':tab.event,
                     event, event_configuration_flex,
                 --div--;' . self::LLL . ':tab.channel,
@@ -85,6 +85,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.custom_bot',
                     'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->hasDefinedBot',
+                    'onChange' => 'reload',
                     'config' => [
                         'type' => 'check',
                         'default' => 1,
@@ -102,6 +103,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     ],
                     'config' => [
                         'type' => 'select',
+                        'renderType' => 'selectSingle',
                         'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getBotsList',
                         'size' => 1,
                         'maxitems' => 1,
@@ -126,24 +128,12 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 'name' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.name',
-                    'displayCond' => call_user_func(function () {
-                        /**
-                         * @deprecated First level "AND" must be removed when
-                         *             TYPO3 v7 is not supported anymore.
-                         */
-                        $result = [
-                            'OR' => [
-                                'FIELD:custom_bot:=:1',
-                                'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedBot',
-                            ],
-                        ];
-
-                        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')) {
-                            $result = ['AND' => $result];
-                        }
-
-                        return $result;
-                    }),
+                    'displayCond' => [
+                        'OR' => [
+                            'FIELD:custom_bot:=:1',
+                            'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedBot',
+                        ],
+                    ],
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
@@ -154,24 +144,12 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                 'avatar' => [
                     'exclude' => 1,
                     'label' => self::SLACK_LLL . ':field.avatar',
-                    'displayCond' => call_user_func(function () {
-                        /**
-                         * @deprecated First level "AND" must be removed when
-                         *             TYPO3 v7 is not supported anymore.
-                         */
-                        $result = [
-                            'OR' => [
-                                'FIELD:custom_bot:=:1',
-                                'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedBot',
-                            ],
-                        ];
-
-                        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')) {
-                            $result = ['AND' => $result];
-                        }
-
-                        return $result;
-                    }),
+                    'displayCond' => [
+                        'OR' => [
+                            'FIELD:custom_bot:=:1',
+                            'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedBot',
+                        ],
+                    ],
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
@@ -207,7 +185,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
-                        'eval' => 'trim,required',
+                        'eval' => 'trim',
                     ],
                 ],
 
@@ -217,7 +195,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'config' => [
                         'type' => 'input',
                         'size' => 255,
-                        'eval' => 'trim,required',
+                        'eval' => 'trim',
                     ],
                 ],
 
@@ -226,21 +204,9 @@ class EntitySlackTcaWriter extends EntityTcaWriter
     }
 
     /**
-     * @return array
-     */
-    protected function getCtrl()
-    {
-        $ctrl = $this->getDefaultCtrl();
-
-        $ctrl['requestUpdate'] .= ',custom_bot';
-
-        return $ctrl;
-    }
-
-    /**
      * @return string
      */
-    protected function getNotificationTcaServiceClass()
+    protected function getNotificationTcaServiceClass(): string
     {
         return EntitySlackTcaService::class;
     }
@@ -248,7 +214,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
     /**
      * @return string
      */
-    protected function getEntityTitle()
+    protected function getEntityTitle(): string
     {
         return self::SLACK_LLL . ':title';
     }

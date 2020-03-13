@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -18,6 +19,7 @@ namespace CuyZ\Notiz\Backend\FormEngine\DataProvider;
 
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
+use CuyZ\Notiz\Core\Notification\TCA\EntityTcaWriter;
 use CuyZ\Notiz\Service\Container;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -38,7 +40,7 @@ class DefaultEventFromGet implements FormDataProviderInterface
      * @param array $result
      * @return array
      */
-    public function addData(array $result)
+    public function addData(array $result): array
     {
         // This feature is available for new records only.
         if ($result['command'] !== 'new') {
@@ -46,7 +48,7 @@ class DefaultEventFromGet implements FormDataProviderInterface
         }
 
         // The feature needs to be enabled in the `ctrl` section of the TCA.
-        if (!isset($result['processedTca']['ctrl'][self::ENABLE_DEFAULT_VALUE])) {
+        if (!isset($result['processedTca']['ctrl'][EntityTcaWriter::NOTIFICATION_ENTITY]['dataProvider'][self::ENABLE_DEFAULT_VALUE])) {
             return $result;
         }
 
@@ -72,7 +74,7 @@ class DefaultEventFromGet implements FormDataProviderInterface
     /**
      * @return Definition
      */
-    protected function getDefinition()
+    protected function getDefinition(): Definition
     {
         /** @var DefinitionService $definitionService */
         $definitionService = Container::get(DefinitionService::class);

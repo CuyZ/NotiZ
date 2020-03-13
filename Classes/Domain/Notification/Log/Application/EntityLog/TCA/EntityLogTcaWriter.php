@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -25,7 +26,7 @@ class EntityLogTcaWriter extends EntityTcaWriter
     /**
      * @return string
      */
-    protected function getNotificationTcaServiceClass()
+    protected function getNotificationTcaServiceClass(): string
     {
         return EntityLogTcaService::class;
     }
@@ -33,7 +34,7 @@ class EntityLogTcaWriter extends EntityTcaWriter
     /**
      * @return string
      */
-    protected function getChannelLabel()
+    protected function getChannelLabel(): string
     {
         return self::LOG_LLL . ':field.logger';
     }
@@ -41,7 +42,7 @@ class EntityLogTcaWriter extends EntityTcaWriter
     /**
      * @inheritdoc
      */
-    protected function buildTcaArray()
+    protected function buildTcaArray(): array
     {
         return [
             'ctrl' => $this->getDefaultCtrl(),
@@ -61,7 +62,7 @@ class EntityLogTcaWriter extends EntityTcaWriter
                 '0' => [
                     'showitem' => '
                         error_message,
-                        title, description, sys_language_uid, hidden,
+                        title, description, hidden,
                         --div--;' . self::LLL . ':tab.event,
                             event, event_configuration_flex,
                         --div--;' . self::LLL . ':tab.channel,
@@ -113,7 +114,7 @@ class EntityLogTcaWriter extends EntityTcaWriter
     /**
      * @return string
      */
-    protected function getEntityTitle()
+    protected function getEntityTitle(): string
     {
         return self::LOG_LLL . ':title';
     }

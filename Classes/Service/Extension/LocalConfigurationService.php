@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -18,19 +19,21 @@ namespace CuyZ\Notiz\Service\Extension;
 
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefaultEventFromGet;
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefinitionError;
-use CuyZ\Notiz\Backend\FormEngine\DataProvider\EventConfigurationProvider;
-use CuyZ\Notiz\Backend\FormEngine\DataProvider\BodySlotsProvider;
+use CuyZ\Notiz\Backend\FormEngine\DataProvider\HideColumns;
 use CuyZ\Notiz\Backend\ToolBarItems\NotificationsToolbarItem;
 use CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder;
+use CuyZ\Notiz\Core\Notification\TCA\Processor\GracefulProcessorRunner;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Domain\Definition\Builder\Component\DefaultDefinitionComponents;
+use CuyZ\Notiz\Domain\Event\Blog\Processor\BlogNotificationProcessor;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use CuyZ\Notiz\Service\Hook\EventDefinitionRegisterer;
-use CuyZ\Notiz\Service\Hook\NotificationFlexFormProcessor;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
+use Doctrine\Common\Annotations\AnnotationReader;
+use T3G\AgencyPack\Blog\Notification\CommentAddedNotification;
+use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseEditRow;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRecordOverrideValues;
-use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowDefaultValues;
 use TYPO3\CMS\Backend\Form\FormDataProvider\InitializeProcessedTca;
 use TYPO3\CMS\Core\Cache\Backend\FileBackend;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
@@ -41,7 +44,6 @@ use TYPO3\CMS\Core\Imaging\IconRegistry;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 use TYPO3\CMS\Scheduler\Scheduler;
 
@@ -87,12 +89,14 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
         $this->registerLaterProcessHook();
         $this->registerDefinitionComponents();
         $this->registerEventDefinitionHook();
-        $this->registerNotificationFlexFormProcessorHook();
         $this->registerInternalCache();
         $this->registerIcons();
+        $this->registerNotificationProcessorRunner();
         $this->registerFormEngineComponents();
         $this->resetTypeConvertersArray();
         $this->overrideScheduler();
+        $this->ignoreDoctrineAnnotation();
+        $this->registerBlogNotificationProcessors();
     }
 
     /**
@@ -144,16 +148,6 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
     }
 
     /**
-     * @deprecated Must be removed when TYPO3 v7 is not supported anymore.
-     */
-    protected function registerNotificationFlexFormProcessorHook()
-    {
-        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')) {
-            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass'][] = NotificationFlexFormProcessor::class;
-        }
-    }
-
-    /**
      * Internal cache used by the extension.
      */
     protected function registerInternalCache()
@@ -188,10 +182,6 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
             ],
         ];
 
-        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<')) {
-            $iconsList[FontawesomeIconProvider::class]['actions-pagetree'] = ['name' => 'list-ul'];
-        }
-
         foreach ($iconsList as $provider => $icons) {
             foreach ($icons as $name => $configuration) {
                 $this->iconRegistry->registerIcon($name, $provider, $configuration);
@@ -219,7 +209,7 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
      *
      * @link https://forge.typo3.org/issues/82651
      *
-     * @deprecated This method should be removed when the patch has been merged.
+     * @deprecated Must be removed when TYPO3 v8 is not supported anymore.
      */
     protected function resetTypeConvertersArray()
     {
@@ -240,6 +230,16 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
     }
 
     /**
+     * Registers the notification processor runner.
+     *
+     * @see \CuyZ\Notiz\Core\Notification\TCA\Processor\GracefulProcessorRunner
+     */
+    protected function registerNotificationProcessorRunner()
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['extTablesInclusion-PostProcessing'][] = GracefulProcessorRunner::class;
+    }
+
+    /**
      * Registers components for TYPO3 form engine.
      */
     protected function registerFormEngineComponents()
@@ -251,9 +251,7 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
          * notification record, if an argument `selectedEvent` exists in the
          * request and matches a valid event identifier.
          */
-        $databaseRowDefaultValues = $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DatabaseRowDefaultValues::class];
-
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DefaultEventFromGet::class] = $databaseRowDefaultValues;
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DefaultEventFromGet::class] = ['depends' => [DatabaseEditRow::class]];
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][DatabaseRecordOverrideValues::class]['depends'][] = DefaultEventFromGet::class;
 
         /*
@@ -265,17 +263,34 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = DefinitionError::class;
 
         /*
-         * A data provider is used to dynamically configure the event
-         * configuration fields, that depends on the definition.
+         * A data provider is used to hide all columns when no event has been
+         * selected for a notification entity.
          */
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][EventConfigurationProvider::class] = [];
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = EventConfigurationProvider::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][HideColumns::class] = [];
+    }
 
-        /*
-         * A data provider is used to dynamically configure the body of the mail
-         * notification, which depends on the slots used in its template.
-         */
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][BodySlotsProvider::class] = [];
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][InitializeProcessedTca::class]['depends'][] = BodySlotsProvider::class;
+    /**
+     * Some annotations are used by this extension and can be confusing for
+     * Doctrine.
+     */
+    protected function ignoreDoctrineAnnotation()
+    {
+        if (class_exists(AnnotationReader::class)) {
+            AnnotationReader::addGlobalIgnoredName('label');
+            AnnotationReader::addGlobalIgnoredName('marker');
+            AnnotationReader::addGlobalIgnoredName('email');
+        }
+    }
+
+    /**
+     * Registering a blog processor for each notification it provides.
+     */
+    protected function registerBlogNotificationProcessors()
+    {
+        if (ExtensionManagementUtility::isLoaded('blog')
+            && version_compare(ExtensionManagementUtility::getExtensionVersion('blog'), '9.0.0', '>')
+        ) {
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['Blog']['notificationRegistry'][CommentAddedNotification::class][] = BlogNotificationProcessor::class;
+        }
     }
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /*
  * Copyright (C) 2018
@@ -81,10 +82,7 @@ class DispatchFormNotificationEventPropertyBuilder implements PropertyBuilder, S
 
         $eventConfiguration = $notification->getEventConfiguration();
 
-        // @PHP7
-        $identifier = isset($eventConfiguration['formDefinition'])
-            ? $eventConfiguration['formDefinition']
-            : null;
+        $identifier = $eventConfiguration['formDefinition'] ?? null;
 
         if (!$identifier) {
             return;
@@ -113,7 +111,7 @@ class DispatchFormNotificationEventPropertyBuilder implements PropertyBuilder, S
      * @param string $identifier
      * @return FormDefinition
      */
-    protected function getFormDefinition($identifier)
+    protected function getFormDefinition(string $identifier): FormDefinition
     {
         $formDefinitionArray = $this->formPersistenceManager->load($identifier);
 
