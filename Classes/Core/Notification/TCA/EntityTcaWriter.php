@@ -175,6 +175,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                     'renderType' => 'selectSingle',
                     'foreign_table' => 'sys_language',
                     'foreign_table_where' => 'ORDER BY sys_language.title',
+                    'default' => 0,
                     'items' => [
                         ['LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1],
                         ['LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0],
@@ -300,6 +301,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'label' => self::LLL . ':field.event_configuration',
                 'config' => [
                     'type' => 'flex',
+                    'default' => '',
                     'ds_pointerField' => 'event',
                     'behaviour' => [
                         'allowLanguageSynchronization' => true,
