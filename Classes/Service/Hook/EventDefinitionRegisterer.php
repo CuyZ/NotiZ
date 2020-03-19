@@ -32,6 +32,9 @@ use TYPO3\CMS\Core\SingletonInterface;
  *
  * We get there to register events (signals, hooks) that were added to the
  * definition.
+ *
+ * @deprecated Must be moved when TYPO3 v8 is not supported anymore.
+ * @see \CuyZ\Notiz\Middleware\EventDefinitionRegistererMiddleware
  */
 class EventDefinitionRegisterer implements SingletonInterface, TableConfigurationPostProcessingHookInterface
 {
