@@ -40,7 +40,6 @@
     }
   },
   "replace": {
-    "notiz": "self.version",
     "typo3-ter/notiz": "self.version"
   },
   "extra": {
