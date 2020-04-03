@@ -79,6 +79,7 @@ class EntityLogTcaWriter extends EntityTcaWriter
                     'label' => self::LOG_LLL . ':field.message',
                     'config' => [
                         'type' => 'input',
+                        'default' => '',
                         'size' => 255,
                         'eval' => 'trim,required',
                     ],

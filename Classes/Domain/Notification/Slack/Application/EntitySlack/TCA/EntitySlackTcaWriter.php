@@ -76,6 +76,7 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'label' => self::SLACK_LLL . ':field.message',
                     'config' => [
                         'type' => 'text',
+                        'default' => '',
                         'size' => 4000,
                         'eval' => 'trim,required',
                     ],

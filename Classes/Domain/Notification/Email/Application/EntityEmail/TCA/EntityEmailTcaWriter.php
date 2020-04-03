@@ -134,6 +134,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                     'label' => self::EMAIL_LLL . ':field.body',
                     'config' => [
                         'type' => 'flex',
+                        'default' => '',
                         'ds_pointerField' => 'event',
                         'behaviour' => [
                             'allowLanguageSynchronization' => true,
@@ -195,6 +196,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                     'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->shouldShowProvidedRecipientsSelect',
                     'config' => [
                         'type' => 'select',
+                        'default' => '',
                         'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getRecipientsList',
                         'renderType' => 'selectMultipleSideBySide',
                         'size' => 5,
@@ -219,6 +221,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                     'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->shouldShowProvidedRecipientsSelect',
                     'config' => [
                         'type' => 'select',
+                        'default' => '',
                         'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getRecipientsList',
                         'renderType' => 'selectMultipleSideBySide',
                         'size' => 5,
@@ -243,6 +246,7 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                     'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->shouldShowProvidedRecipientsSelect',
                     'config' => [
                         'type' => 'select',
+                        'default' => '',
                         'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getRecipientsList',
                         'renderType' => 'selectMultipleSideBySide',
                         'size' => 5,
