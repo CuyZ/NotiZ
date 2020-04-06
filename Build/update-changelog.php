@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -100,7 +100,7 @@ $bugfix";
             $changelog .= "
 ### Important
 
-**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:** 
+**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:**
 $important";
         }
 

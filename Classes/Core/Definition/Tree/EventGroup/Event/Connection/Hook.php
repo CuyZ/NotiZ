@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -162,8 +162,8 @@ class $className $implements
     public function $method(...\$arguments)
     {
         \$eventRunner = $eventRunnerContainerClass::getInstance()->get('{$eventRunner->getEventDefinition()->getFullIdentifier()}');
-         
-        call_user_func_array(\$eventRunner->getCallable(), \$arguments);       
+
+        call_user_func_array(\$eventRunner->getCallable(), \$arguments);
     }
 }
 PHP;
