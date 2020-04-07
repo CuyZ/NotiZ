@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -169,8 +169,8 @@ XML;
         <config>
             {$slot->getFlexFormConfiguration()}
         </config>
-        
-        {$slot->getFlexFormAdditionalConfiguration()}  
+
+        {$slot->getFlexFormAdditionalConfiguration()}
     </TCEforms>
 </{$slot->getName()}>
 XML;
