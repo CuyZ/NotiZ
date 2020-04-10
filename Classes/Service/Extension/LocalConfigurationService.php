@@ -44,8 +44,11 @@ use TYPO3\CMS\Core\Imaging\IconRegistry;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 use TYPO3\CMS\Scheduler\Scheduler;
+
+use function version_compare;
 
 /**
  * This class replaces the old-school procedural way of handling configuration
@@ -143,8 +146,10 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
      */
     protected function registerEventDefinitionHook()
     {
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['extTablesInclusion-PostProcessing'][] = EventDefinitionRegisterer::class;
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['checkAlternativeIdMethods-PostProc'][] = EventDefinitionRegisterer::class . '->processData';
+        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '9.5.0', '<')) {
+            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['extTablesInclusion-PostProcessing'][] = EventDefinitionRegisterer::class;
+            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['checkAlternativeIdMethods-PostProc'][] = EventDefinitionRegisterer::class . '->processData';
+        }
     }
 
     /**
