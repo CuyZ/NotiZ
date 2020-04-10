@@ -4,7 +4,7 @@ $EM_CONF[$_EXTKEY] = [
     'title' => 'NotiZ • Powerful notification dispatcher',
     'description' => 'Handle any type of notification in TYPO3 with ease: emails, SMS, Slack and more. Listen to your own events or provided ones (scheduler task finishing, extension installed, etc…).',
 
-    'version' => '2.1.0',
+    'version' => '2.1.1',
     'state' => 'stable',
 
     'author' => 'Romain Canon, Nathan Boiron',

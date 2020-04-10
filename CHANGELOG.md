@@ -1,5 +1,54 @@
 # ![NotiZ](ext_icon.svg) NotiZ – ChangeLog
 
+## v2.1.1 - 10 April 2020
+
+> ℹ️ *Click on a changelog entry to see more details.*
+### Bugs fixed
+
+<details>
+<summary>Use middleware for event definition registration</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *10 avr 2020 / [abccf91](https://github.com/CuyZ/NotiZ/commit/abccf9185b52d36de876e7c7c5b513551e6648ac) / [#213](https://github.com/CuyZ/NotiZ/issues/213)*
+
+> With TYPO3 v9.5+ hooks have been deprecated in favor of middleware
+> usage. Some hooks would event not run as they used to in former
+> versions.
+> 
+> This commit introduces a new middleware (which is used both in frontend
+> and backend) to register the event definitions.
+</details>
+
+<details>
+<summary>Add default values to TCA entries</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *04 avr 2020 / [85d28ea](https://github.com/CuyZ/NotiZ/commit/85d28eaaab7aa0225b28f633bbdd2c53f8d25bf4) / [#211](https://github.com/CuyZ/NotiZ/issues/211)*
+
+> This solves an issue which would display an error message when trying to
+> create a notification with MySQL strict mode enabled.
+> 
+> The "solution" that was written in the documentation was a work around
+> and not adapted at all, as explained in this post:
+> https://stackoverflow.com/a/50138799
+</details>
+
+### Others
+
+<details>
+<summary>Remove year from copyright header</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *08 avr 2020 / [fba2218](https://github.com/CuyZ/NotiZ/commit/fba2218cf211eadd234f705ec5a70705c55901db) / [#216](https://github.com/CuyZ/NotiZ/issues/216)*
+
+> 
+</details>
+
+<details>
+<summary>Fix Composer schema validation</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *04 avr 2020 / [5111006](https://github.com/CuyZ/NotiZ/commit/511100667923e64d2c3ad1542046dd1b31b4fe1e) / [#212](https://github.com/CuyZ/NotiZ/issues/212)*
+
+> `composer validate`
+</details>
+
 ## v2.1.0 - 01 July 2019
 
 > ℹ️ *Click on a changelog entry to see more details.*
