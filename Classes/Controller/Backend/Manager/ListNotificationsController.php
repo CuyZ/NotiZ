@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -29,7 +30,7 @@ class ListNotificationsController extends ManagerController
      * @param string $notificationIdentifier
      * @param string $filterEvent
      */
-    public function processAction($notificationIdentifier, $filterEvent = null)
+    public function processAction(string $notificationIdentifier, string $filterEvent = null)
     {
         $definition = $this->getDefinition();
 
@@ -69,17 +70,17 @@ class ListNotificationsController extends ManagerController
     /**
      * @return string
      */
-    protected function getMenu()
+    protected function getMenu(): string
     {
         return Menu::MANAGER_NOTIFICATIONS;
     }
 
     /**
      * @param string $notificationIdentifier
-     * @param string|null $filterEvent
+     * @param string|null $filterEvent [PHP 7.1]
      * @return Notification[]
      */
-    private function getNotifications($notificationIdentifier, $filterEvent)
+    private function getNotifications(string $notificationIdentifier, $filterEvent): array
     {
         $definition = $this->getDefinition();
 

@@ -52,7 +52,7 @@
                 <f:link.action controller="Backend\Administration\ShowDefinition"
                                title="{nz:t(key: 'Backend/Module/Administration:index.block.definition_tree.action.show')}"
                                class="btn {f:if(condition: '{result.flattenedErrors}', then: 'btn-danger', else: 'btn-default')}">
-                    <nz:core.icon identifier="actions-pagetree" />
+                    <core:icon identifier="actions-pagetree" />
                     <nz:t key="Backend/Module/Administration:index.block.definition_tree.action.show" />
                     <f:if condition="{result.flattenedErrors}">
                         ({nz:t(key: 'Backend/Module/Administration:definition.error.errors_count', args: '{0: \'{result.flattenedErrors -> f:count()}\'}')})
@@ -62,7 +62,7 @@
                 <f:link.external uri="{docAddDefinitionUrl}"
                                  class="btn btn-default"
                                  target="_blank">
-                    <nz:core.icon identifier="actions-system-help-open" />
+                    <core:icon identifier="actions-system-help-open" />
                     <nz:t key="Backend/Module/Administration:index.block.definition_tree.action.doc_add_definition" />
                 </f:link.external>
             </div>
@@ -98,7 +98,7 @@
                                  title="{nz:t(key: 'Backend/Module/Administration:index.block.definition_tree.action.documentation_url')}"
                                  target="_blank"
                                  class="btn btn-default">
-                    <nz:core.icon identifier="actions-system-extension-documentation" />
+                    <core:icon identifier="actions-system-extension-documentation" />
                     <nz:t key="Backend/Module/Administration:index.block.definition_tree.action.documentation_url" />
                 </f:link.external>
             </div>
@@ -126,7 +126,7 @@
                 <a href="{extensionConfigurationUri}"
                    title="{nz:t(key: 'Backend/Module/Administration:index.block.configuration.action.configure')}"
                    class="btn btn-default">
-                    <nz:core.icon identifier="actions-system-extension-configure" />
+                    <core:icon identifier="actions-system-extension-configure" />
                     <nz:t key="Backend/Module/Administration:index.block.configuration.action.configure" />
                 </a>
             </div>
@@ -156,7 +156,7 @@
                                  title="{nz:t(key: 'Backend/Module/Administration:index.block.feedback.action.report')}"
                                  target="_blank"
                                  class="btn btn-default">
-                    <nz:core.icon identifier="actions-document-open" />
+                    <core:icon identifier="actions-document-open" />
                     <nz:t key="Backend/Module/Administration:index.block.feedback.action.report" />
                 </f:link.external>
             </div>
@@ -184,7 +184,7 @@
                         <nz:t key="Backend/Module/Administration:index.block.support.action.github" />
 
                         <span class="pull-right">
-                            <nz:core.icon identifier="github" />
+                            <core:icon identifier="github" />
                        </span>
                     </f:link.external>
 
@@ -194,7 +194,7 @@
                         <nz:t key="Backend/Module/Administration:index.block.support.action.email" />
 
                         <span class="pull-right">
-                            <nz:core.icon identifier="envelope" />
+                            <core:icon identifier="envelope" />
                         </span>
                     </f:link.external>
 
@@ -210,11 +210,11 @@
                               data-html="true"
                               title="{nz:t(key: 'Backend/Module/Administration:index.block.support.action.slack.popover.title')}"
                               data-content="{nz:t(key: 'Backend/Module/Administration:index.block.support.action.slack.popover.content', args: {0: '<a href=\'https://my.typo3.org/index.php?id=35#c49\' target=\'_blank\'>my.typo3.org</a>'})}">
-                            <nz:core.icon identifier="info-circle" />
+                            <core:icon identifier="info-circle" />
                         </span>
 
                         <span class="pull-right">
-                            <nz:core.icon identifier="slack" />
+                            <core:icon identifier="slack" />
                         </span>
                     </f:link.external>
 
@@ -225,7 +225,7 @@
                         <nz:t key="Backend/Module/Administration:index.block.support.action.twitter_rommsteinz" />
 
                         <span class="pull-right">
-                            <nz:core.icon identifier="twitter" />
+                            <core:icon identifier="twitter" />
                         </span>
                     </f:link.external>
 
@@ -236,7 +236,7 @@
                         <nz:t key="Backend/Module/Administration:index.block.support.action.twitter_lopom" />
 
                         <span class="pull-right">
-                            <nz:core.icon identifier="twitter" />
+                            <core:icon identifier="twitter" />
                         </span>
                     </f:link.external>
                 </div>

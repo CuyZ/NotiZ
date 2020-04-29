@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -32,7 +33,7 @@ class DuplicateEntryException extends NotizException
      * @param string $propertyType
      * @return self
      */
-    public static function propertyEntryDuplication($name, $eventClassName, $propertyType)
+    public static function propertyEntryDuplication(string $name, string $eventClassName, string $propertyType): self
     {
         return self::makeNewInstance(
             self::PROPERTY_ENTRY_DUPLICATION,
@@ -47,7 +48,7 @@ class DuplicateEntryException extends NotizException
      * @param string $assignedPropertyType
      * @return self
      */
-    public static function tagServiceIdentifierDuplication($identifier, $propertyType, $assignedPropertyType)
+    public static function tagServiceIdentifierDuplication(string $identifier, string $propertyType, string $assignedPropertyType): self
     {
         return self::makeNewInstance(
             self::TAG_SERVICE_IDENTIFIER_DUPLICATION,
@@ -60,7 +61,7 @@ class DuplicateEntryException extends NotizException
      * @param string $name
      * @return self
      */
-    public static function slotContainerDuplication($name)
+    public static function slotContainerDuplication(string $name): self
     {
         return self::makeNewInstance(
             self::SLOT_CONTAINER_DUPLICATION,
@@ -74,7 +75,7 @@ class DuplicateEntryException extends NotizException
      * @param string $slot
      * @return self
      */
-    public static function markerAlreadyDefined($marker, $slot)
+    public static function markerAlreadyDefined(string $marker, string $slot): self
     {
         return self::makeNewInstance(
             self::MARKER_ALREADY_DEFINED,

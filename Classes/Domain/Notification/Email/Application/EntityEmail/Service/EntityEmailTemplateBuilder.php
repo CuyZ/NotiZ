@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -79,7 +80,7 @@ class EntityEmailTemplateBuilder
     /**
      * @return string
      */
-    public function getSubject()
+    public function getSubject(): string
     {
         return $this->markerParser->replaceMarkers(
             $this->notification->getSubject(),
@@ -90,7 +91,7 @@ class EntityEmailTemplateBuilder
     /**
      * @return string
      */
-    public function getBody()
+    public function getBody(): string
     {
         $eventDefinition = $this->event->getDefinition();
         $viewSettings = $this->notificationSettings->getView();
@@ -101,6 +102,8 @@ class EntityEmailTemplateBuilder
 
         $view->assign('layout', $layout->getPath());
         $view->assign('markers', $this->markers);
+        $view->assign('notification', $this->notification);
+        $view->assign('event', $this->event);
 
         return $view->renderWithSlots($this->notification->getBodySlots(), $this->markers);
     }

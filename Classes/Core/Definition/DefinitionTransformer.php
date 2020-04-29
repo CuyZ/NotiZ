@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -45,7 +46,7 @@ class DefinitionTransformer implements SingletonInterface
      *
      * @return array
      */
-    public function getDefinitionArray()
+    public function getDefinitionArray(): array
     {
         return $this->transformDefinition(
             $this->definitionService->getDefinitionArray(),
@@ -59,7 +60,7 @@ class DefinitionTransformer implements SingletonInterface
      * @param array $path
      * @return array
      */
-    protected function transformDefinition(array $definition, Result $result, array $path = [])
+    protected function transformDefinition(array $definition, Result $result, array $path = []): array
     {
         $newDefinition = [];
 

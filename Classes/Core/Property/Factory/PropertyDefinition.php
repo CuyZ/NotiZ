@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -72,7 +73,7 @@ class PropertyDefinition
      * @param string $eventClassName
      * @param string $propertyType
      */
-    public function __construct($eventClassName, $propertyType)
+    public function __construct(string $eventClassName, string $propertyType)
     {
         $this->eventClassName = $eventClassName;
         $this->propertyType = $propertyType;
@@ -81,7 +82,7 @@ class PropertyDefinition
     /**
      * @return string
      */
-    public function getEventClassName()
+    public function getEventClassName(): string
     {
         return $this->eventClassName;
     }
@@ -89,7 +90,7 @@ class PropertyDefinition
     /**
      * @return string
      */
-    public function getPropertyType()
+    public function getPropertyType(): string
     {
         return $this->propertyType;
     }
@@ -100,7 +101,7 @@ class PropertyDefinition
      *
      * @throws DuplicateEntryException
      */
-    public function addEntry($name)
+    public function addEntry(string $name): PropertyEntry
     {
         if ($this->hasEntry($name)) {
             throw DuplicateEntryException::propertyEntryDuplication($name, $this->eventClassName, $this->propertyType);
@@ -115,7 +116,7 @@ class PropertyDefinition
      * @param string $name
      * @return bool
      */
-    public function hasEntry($name)
+    public function hasEntry(string $name): bool
     {
         return isset($this->properties[$name]);
     }
@@ -126,7 +127,7 @@ class PropertyDefinition
      *
      * @throws EntryNotFoundException
      */
-    public function getEntry($name)
+    public function getEntry(string $name): PropertyEntry
     {
         if (false === $this->hasEntry($name)) {
             throw EntryNotFoundException::propertyEntryNotFound($name, $this->eventClassName, $this->propertyType, $this);
@@ -138,7 +139,7 @@ class PropertyDefinition
     /**
      * @return PropertyEntry[]
      */
-    public function getEntries()
+    public function getEntries(): array
     {
         return $this->properties;
     }

@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -46,7 +47,7 @@ interface Channel
      * @param NotificationDefinition $notification
      * @return bool
      */
-    public static function supportsNotification(NotificationDefinition $notification);
+    public static function supportsNotification(NotificationDefinition $notification): bool;
 
     /**
      * Must return a class name that implements:
@@ -55,5 +56,5 @@ interface Channel
      *
      * @return string
      */
-    public static function getSettingsClassName();
+    public static function getSettingsClassName(): string;
 }

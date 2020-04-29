@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -24,7 +25,7 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
 class SchedulerTaskWasExecutedEvent extends SchedulerTaskEvent
 {
     /**
-     * @label Event/Scheduler/Scheduler:task.execution_done.marker.result
+     * @label Event/Scheduler:task.execution_done.marker.result
      * @marker
      *
      * @var bool
@@ -35,7 +36,7 @@ class SchedulerTaskWasExecutedEvent extends SchedulerTaskEvent
      * @param AbstractTask $task
      * @param bool $result
      */
-    public function run(AbstractTask $task, $result)
+    public function run(AbstractTask $task, bool $result)
     {
         $this->checkTaskFilter($task);
         $this->fillTaskData($task);
@@ -46,7 +47,7 @@ class SchedulerTaskWasExecutedEvent extends SchedulerTaskEvent
     /**
      * @return array
      */
-    public function getExampleProperties()
+    public function getExampleProperties(): array
     {
         return parent::getExampleProperties() +
             [

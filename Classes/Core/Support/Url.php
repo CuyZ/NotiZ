@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -32,7 +33,7 @@ class Url
     /**
      * @return string
      */
-    public static function documentation()
+    public static function documentation(): string
     {
         return self::build(self::DOCUMENTATION_ROOT);
     }
@@ -40,7 +41,7 @@ class Url
     /**
      * @return string
      */
-    public static function documentationCreateCustomEvent()
+    public static function documentationCreateCustomEvent(): string
     {
         return self::build(self::DOCUMENTATION_CREATE_CUSTOM_EVENT);
     }
@@ -48,7 +49,7 @@ class Url
     /**
      * @return string
      */
-    public static function documentationTypoScriptDefinition()
+    public static function documentationTypoScriptDefinition(): string
     {
         return self::build(self::DOCUMENTATION_ADD_TYPOSCRIPT_DEFINITION);
     }
@@ -56,7 +57,7 @@ class Url
     /**
      * @return string
      */
-    public static function repository()
+    public static function repository(): string
     {
         return self::REPOSITORY;
     }
@@ -64,7 +65,7 @@ class Url
     /**
      * @return string
      */
-    public static function newIssue()
+    public static function newIssue(): string
     {
         return self::NEW_ISSUE;
     }
@@ -72,7 +73,7 @@ class Url
     /**
      * @return string
      */
-    public static function slackChannel()
+    public static function slackChannel(): string
     {
         return self::SLACK_CHANNEL;
     }
@@ -81,7 +82,7 @@ class Url
      * @param string $url
      * @return string
      */
-    private static function build($url)
+    private static function build(string $url): string
     {
         return vsprintf(
             $url,

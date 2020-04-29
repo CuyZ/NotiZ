@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -21,7 +22,7 @@ class AdministrationModuleHandler extends ModuleHandler
     /**
      * @return string
      */
-    public function getDefaultControllerName()
+    public function getDefaultControllerName(): string
     {
         return 'Backend\\Administration\\Index';
     }
@@ -29,7 +30,7 @@ class AdministrationModuleHandler extends ModuleHandler
     /**
      * @return string
      */
-    public function getModuleName()
+    public function getModuleName(): string
     {
         return 'NotizNotiz_NotizNotizAdministration';
     }

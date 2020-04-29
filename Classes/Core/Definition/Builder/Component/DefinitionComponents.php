@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -70,7 +71,7 @@ class DefinitionComponents
      * @throws ClassNotFoundException
      * @throws InvalidClassException
      */
-    public function addSource($className)
+    public function addSource(string $className): DefinitionSource
     {
         if (!$this->hasSource($className)) {
             if (!class_exists($className)) {
@@ -91,7 +92,7 @@ class DefinitionComponents
      * @param string $className
      * @return bool
      */
-    public function hasSource($className)
+    public function hasSource(string $className): bool
     {
         return true === isset($this->sources[$className]);
     }
@@ -102,7 +103,7 @@ class DefinitionComponents
      *
      * @throws EntryNotFoundException
      */
-    public function getSource($className)
+    public function getSource(string $className): DefinitionSource
     {
         if (false === $this->hasSource($className)) {
             throw EntryNotFoundException::definitionSourceNotFound($className);
@@ -114,7 +115,7 @@ class DefinitionComponents
     /**
      * @return DefinitionSource[]
      */
-    public function getSources()
+    public function getSources(): array
     {
         return $this->sources;
     }
@@ -133,7 +134,7 @@ class DefinitionComponents
      * @throws ClassNotFoundException
      * @throws InvalidClassException
      */
-    public function addProcessor($className)
+    public function addProcessor(string $className): DefinitionProcessor
     {
         if (false === $this->hasProcessor($className)) {
             if (!class_exists($className)) {
@@ -154,7 +155,7 @@ class DefinitionComponents
      * @param string $className
      * @return bool
      */
-    public function hasProcessor($className)
+    public function hasProcessor(string $className): bool
     {
         return true === isset($this->processors[$className]);
     }
@@ -165,7 +166,7 @@ class DefinitionComponents
      *
      * @throws EntryNotFoundException
      */
-    public function getProcessor($className)
+    public function getProcessor(string $className): DefinitionProcessor
     {
         if (false === $this->hasProcessor($className)) {
             throw EntryNotFoundException::definitionProcessorNotFound($className);
@@ -177,7 +178,7 @@ class DefinitionComponents
     /**
      * @return DefinitionProcessor[]
      */
-    public function getProcessors()
+    public function getProcessors(): array
     {
         return $this->processors;
     }

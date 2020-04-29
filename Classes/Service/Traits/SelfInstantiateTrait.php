@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -21,10 +22,11 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 trait SelfInstantiateTrait
 {
     /**
-     * @return static|object
+     * @return static
      */
-    public static function get()
+    public static function get(): self
     {
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
         return GeneralUtility::makeInstance(static::class);
     }
 }

@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -45,12 +46,10 @@ abstract class ModuleHandler implements SingletonInterface
     /**
      * Returns the manager instance for the given module.
      *
-     * @PHP7 rename method to `for`
-     *
      * @param string $module
      * @return ModuleHandler
      */
-    public static function forModule($module)
+    public static function for(string $module): ModuleHandler
     {
         /** @var ModuleHandler $moduleHandler */
         $moduleHandler = Container::get(__NAMESPACE__ . '\\' . $module . 'ModuleHandler');
@@ -61,7 +60,7 @@ abstract class ModuleHandler implements SingletonInterface
     /**
      * @return UriBuilder
      */
-    public function getUriBuilder()
+    public function getUriBuilder(): UriBuilder
     {
         return $this->uriBuilder;
     }
@@ -69,7 +68,7 @@ abstract class ModuleHandler implements SingletonInterface
     /**
      * @return bool
      */
-    public function canBeAccessed()
+    public function canBeAccessed(): bool
     {
         return Container::getBackendUser()->modAccess($GLOBALS['TBE_MODULES']['_configuration'][$this->getModuleName()], false);
     }
@@ -77,10 +76,10 @@ abstract class ModuleHandler implements SingletonInterface
     /**
      * @return string
      */
-    abstract public function getDefaultControllerName();
+    abstract public function getDefaultControllerName(): string;
 
     /**
      * @return string
      */
-    abstract public function getModuleName();
+    abstract public function getModuleName(): string;
 }

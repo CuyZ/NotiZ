@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -24,7 +25,6 @@ use CuyZ\Notiz\View\Slot\SlotView;
 use CuyZ\Notiz\View\ViewPathsAware;
 use Generator;
 use TYPO3\CMS\Core\SingletonInterface;
-use TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException;
 
 class SlotViewService implements SingletonInterface
 {
@@ -53,7 +53,7 @@ class SlotViewService implements SingletonInterface
      * @param ViewPathsAware $viewPaths
      * @return SlotView
      */
-    public function buildView(EventDefinition $eventDefinition, ViewPathsAware $viewPaths)
+    public function buildView(EventDefinition $eventDefinition, ViewPathsAware $viewPaths): SlotView
     {
         /** @var SlotView $view */
         $view = Container::get(SlotView::class, $eventDefinition);
@@ -61,15 +61,7 @@ class SlotViewService implements SingletonInterface
         $view->setLayoutRootPaths($viewPaths->getLayoutRootPaths());
         $view->setTemplateRootPaths($viewPaths->getTemplateRootPaths());
         $view->setPartialRootPaths($viewPaths->getPartialRootPaths());
-
-        try {
-            $view->setTemplate($this->getEventTemplatePath($eventDefinition));
-        } catch (InvalidTemplateResourceException $exception) {
-            /**
-             * @deprecated This try/catch block can be removed when TYPO3 v7 is
-             *             not supported anymore.
-             */
-        }
+        $view->setTemplate($this->getEventTemplatePath($eventDefinition));
 
         if (!$view->hasTemplate()) {
             $view->setTemplate('Default');
@@ -85,7 +77,7 @@ class SlotViewService implements SingletonInterface
      * @param ViewPathsAware $viewPaths
      * @return Generator
      */
-    public function getEventsViews(ViewPathsAware $viewPaths)
+    public function getEventsViews(ViewPathsAware $viewPaths): Generator
     {
         if ($this->definitionService->getValidationResult()->hasErrors()) {
             return;
@@ -104,7 +96,7 @@ class SlotViewService implements SingletonInterface
      * @param ViewPathsAware $viewPaths
      * @return Generator
      */
-    public function getEventsWithSlots(ViewPathsAware $viewPaths)
+    public function getEventsWithSlots(ViewPathsAware $viewPaths): Generator
     {
         foreach ($this->getEventsViews($viewPaths) as $event => $view) {
             /** @var SlotView $view */
@@ -116,9 +108,9 @@ class SlotViewService implements SingletonInterface
 
     /**
      * @param ViewPathsAware $viewPaths
-     * @return Generator
+     * @return Generator|SlotView[]
      */
-    public function getEventsWithoutSlots(ViewPathsAware $viewPaths)
+    public function getEventsWithoutSlots(ViewPathsAware $viewPaths): Generator
     {
         foreach ($this->getEventsViews($viewPaths) as $event => $view) {
             /** @var SlotView $view */
@@ -139,7 +131,7 @@ class SlotViewService implements SingletonInterface
      * @param EventDefinition $eventDefinition
      * @return string
      */
-    protected function getEventTemplatePath(EventDefinition $eventDefinition)
+    protected function getEventTemplatePath(EventDefinition $eventDefinition): string
     {
         $groupPath = $this->stringService->upperCamelCase($eventDefinition->getGroup()->getIdentifier());
         $eventPath = $this->stringService->upperCamelCase($eventDefinition->getIdentifier());

@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -66,7 +67,7 @@ class ExtensionInstalledEvent extends AbstractEvent implements ProvidesExamplePr
     /**
      * @param string $extensionKey
      */
-    public function run($extensionKey)
+    public function run(string $extensionKey)
     {
         $extension = $this->getExtensionData($extensionKey);
 
@@ -80,7 +81,7 @@ class ExtensionInstalledEvent extends AbstractEvent implements ProvidesExamplePr
      * @param string $extensionKey
      * @return array
      */
-    protected function getExtensionData($extensionKey)
+    protected function getExtensionData(string $extensionKey): array
     {
         $extensionPackage = $this->listUtility->getExtension($extensionKey);
 
@@ -105,7 +106,7 @@ class ExtensionInstalledEvent extends AbstractEvent implements ProvidesExamplePr
     /**
      * @return array
      */
-    public function getExampleProperties()
+    public function getExampleProperties(): array
     {
         return [
             'key' => 'my_extension',

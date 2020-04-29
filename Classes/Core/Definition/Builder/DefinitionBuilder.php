@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -150,7 +151,7 @@ class DefinitionBuilder implements SingletonInterface
      *
      * @return ConfigurationObjectInstance
      */
-    public function buildDefinition()
+    public function buildDefinition(): ConfigurationObjectInstance
     {
         if (null === $this->definitionObject) {
             if ($this->cacheService->has(NotizConstants::CACHE_KEY_DEFINITION_OBJECT)) {
@@ -190,7 +191,7 @@ class DefinitionBuilder implements SingletonInterface
      *
      * @return ConfigurationObjectInstance
      */
-    protected function buildDefinitionInternal()
+    protected function buildDefinitionInternal(): ConfigurationObjectInstance
     {
         $arrayDefinition = [];
 

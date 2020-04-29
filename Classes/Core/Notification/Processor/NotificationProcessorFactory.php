@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -57,7 +58,7 @@ class NotificationProcessorFactory implements SingletonInterface
      * @param Notification $notification
      * @return NotificationProcessor
      */
-    public function getFromNotification(Notification $notification)
+    public function getFromNotification(Notification $notification): NotificationProcessor
     {
         return $this->getFromNotificationClassName(get_class($notification));
     }
@@ -69,7 +70,7 @@ class NotificationProcessorFactory implements SingletonInterface
      * @throws ClassNotFoundException
      * @throws InvalidClassException
      */
-    public function getFromNotificationClassName($className)
+    public function getFromNotificationClassName(string $className): NotificationProcessor
     {
         $className = $this->objectContainer->getImplementationClassName($className);
 
@@ -97,7 +98,7 @@ class NotificationProcessorFactory implements SingletonInterface
      * @throws ClassNotFoundException
      * @throws InvalidClassException
      */
-    protected function getProcessorClassNameFromNotificationClassName($notificationClassName)
+    protected function getProcessorClassNameFromNotificationClassName(string $notificationClassName): string
     {
         /** @var Notification $notificationClassName */
         $processorClassName = $notificationClassName::getProcessorClassName();

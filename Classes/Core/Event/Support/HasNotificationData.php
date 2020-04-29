@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -59,5 +60,5 @@ interface HasNotificationData
      *
      * @return array
      */
-    public function getNotificationData();
+    public function getNotificationData(): array;
 }

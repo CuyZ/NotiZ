@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -44,7 +45,7 @@ class EventRunnerContainer implements SingletonInterface
      * @param EventDefinition $eventDefinition
      * @return EventRunner
      */
-    public function add(EventDefinition $eventDefinition)
+    public function add(EventDefinition $eventDefinition): EventRunner
     {
         $identifier = $eventDefinition->getFullIdentifier();
 
@@ -62,7 +63,7 @@ class EventRunnerContainer implements SingletonInterface
      * @param string $identifier
      * @return bool
      */
-    public function has($identifier)
+    public function has(string $identifier): bool
     {
         return isset($this->entries[$identifier]);
     }
@@ -73,7 +74,7 @@ class EventRunnerContainer implements SingletonInterface
      *
      * @throws EntryNotFoundException
      */
-    public function get($identifier)
+    public function get(string $identifier): EventRunner
     {
         if (false === $this->has($identifier)) {
             throw EntryNotFoundException::eventRunnerEntryNotFound($identifier);

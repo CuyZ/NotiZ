@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -25,15 +26,15 @@ interface Viewable
     /**
      * @return bool
      */
-    public static function isListable();
+    public static function isListable(): bool;
 
     /**
      * @return bool
      */
-    public function isViewable();
+    public function isViewable(): bool;
 
     /**
      * @return string
      */
-    public function getViewUri();
+    public function getViewUri(): string;
 }

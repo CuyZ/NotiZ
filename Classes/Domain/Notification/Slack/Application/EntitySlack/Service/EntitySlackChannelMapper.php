@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -48,7 +49,7 @@ class EntitySlackChannelMapper
      *
      * @return SlackChannel[]
      */
-    public function getChannels()
+    public function getChannels(): array
     {
         $channels = [];
 

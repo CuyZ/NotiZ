@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -52,7 +53,7 @@ class ShowEntitySlackController extends ShowNotificationController
     /**
      * @return string
      */
-    public function getNotificationDefinitionIdentifier()
+    public function getNotificationDefinitionIdentifier(): string
     {
         return EntitySlackNotification::getDefinitionIdentifier();
     }

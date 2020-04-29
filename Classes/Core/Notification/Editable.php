@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -25,10 +26,10 @@ interface Editable
     /**
      * @return bool
      */
-    public function isEditable();
+    public function isEditable(): bool;
 
     /**
      * @return string
      */
-    public function getEditionUri();
+    public function getEditionUri(): string;
 }

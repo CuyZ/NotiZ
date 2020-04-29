@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -24,7 +25,6 @@ use CuyZ\Notiz\Core\Event\Service\EventFactory;
 use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Notification\NotificationDispatcher;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
-use Exception;
 use Throwable;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
@@ -140,11 +140,6 @@ class EventRunner
                 [$event, $notification]
             );
         } catch (Throwable $exception) {
-        } catch (Exception $exception) {
-            // @PHP7
-        }
-
-        if ($exception) {
             $this->signalDispatcher->dispatch(
                 self::class,
                 self::SIGNAL_EVENT_DISPATCH_ERROR,
@@ -162,7 +157,7 @@ class EventRunner
     /**
      * @return callable
      */
-    public function getCallable()
+    public function getCallable(): callable
     {
         return [$this, 'process'];
     }
@@ -170,7 +165,7 @@ class EventRunner
     /**
      * @return EventDefinition
      */
-    public function getEventDefinition()
+    public function getEventDefinition(): EventDefinition
     {
         return $this->eventDefinition;
     }
@@ -185,7 +180,7 @@ class EventRunner
      *
      * @return array
      */
-    public function __sleep()
+    public function __sleep(): array
     {
         return [];
     }

@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -44,7 +45,7 @@ class ClassNotFoundException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function definitionSourceClassNotFound($className)
+    public static function definitionSourceClassNotFound(string $className): self
     {
         return self::makeNewInstance(
             self::DEFINITION_SOURCE_CLASS_NOT_FOUND,
@@ -57,7 +58,7 @@ class ClassNotFoundException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function definitionProcessorClassNotFound($className)
+    public static function definitionProcessorClassNotFound(string $className): self
     {
         return self::makeNewInstance(
             self::DEFINITION_PROCESSOR_CLASS_NOT_FOUND,
@@ -70,7 +71,7 @@ class ClassNotFoundException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function eventClassNotFound($className)
+    public static function eventClassNotFound(string $className): self
     {
         return self::makeNewInstance(
             self::EVENT_CLASS_NOT_FOUND,
@@ -84,7 +85,7 @@ class ClassNotFoundException extends NotizException
      * @param string $identifier
      * @return self
      */
-    public static function tagServicePropertyClassNotFound($propertyType, $identifier)
+    public static function tagServicePropertyClassNotFound(string $propertyType, string $identifier): self
     {
         return self::makeNewInstance(
             self::TAG_SERVICE_PROPERTY_CLASS_NOT_FOUND,
@@ -97,7 +98,7 @@ class ClassNotFoundException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function notificationClassNotFound($className)
+    public static function notificationClassNotFound(string $className): self
     {
         return self::makeNewInstance(
             self::NOTIFICATION_CLASS_NOT_FOUND,
@@ -111,7 +112,7 @@ class ClassNotFoundException extends NotizException
      * @param string $processorClassName
      * @return self
      */
-    public static function notificationProcessorClassNotFound($notificationClassName, $processorClassName)
+    public static function notificationProcessorClassNotFound(string $notificationClassName, string $processorClassName): self
     {
         return self::makeNewInstance(
             self::NOTIFICATION_PROCESSOR_CLASS_NOT_FOUND,
@@ -124,7 +125,7 @@ class ClassNotFoundException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function notificationSettingsClassNotFound($className)
+    public static function notificationSettingsClassNotFound(string $className): self
     {
         return self::makeNewInstance(
             self::NOTIFICATION_SETTINGS_CLASS_NOT_FOUND,
@@ -138,7 +139,7 @@ class ClassNotFoundException extends NotizException
      * @param Hook $hook
      * @return self
      */
-    public static function eventHookInterfaceNotFound($interface, Hook $hook)
+    public static function eventHookInterfaceNotFound(string $interface, Hook $hook): self
     {
         return self::makeNewInstance(
             self::EVENT_HOOK_INTERFACE_NOT_FOUND,
@@ -154,7 +155,7 @@ class ClassNotFoundException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function eventConfigurationFlexFormProviderClassNotFound($className)
+    public static function eventConfigurationFlexFormProviderClassNotFound(string $className): self
     {
         return self::makeNewInstance(
             self::EVENT_CONFIGURATION_FLEX_FORM_PROVIDER_CLASS_NOT_FOUND,
@@ -167,7 +168,7 @@ class ClassNotFoundException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function channelSettingsClassNotFound($className)
+    public static function channelSettingsClassNotFound(string $className): self
     {
         return self::makeNewInstance(
             self::CHANNEL_SETTINGS_CLASS_NOT_FOUND,

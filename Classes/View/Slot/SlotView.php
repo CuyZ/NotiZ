@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -20,7 +21,6 @@ use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\ViewHelpers\Slot\SlotViewHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class SlotView extends StandaloneView
@@ -55,7 +55,7 @@ class SlotView extends StandaloneView
      *
      * @return SlotContainer
      */
-    public function getSlots()
+    public function getSlots(): SlotContainer
     {
         if (!$this->slots) {
             $this->slots = GeneralUtility::makeInstance(SlotContainer::class);
@@ -69,18 +69,7 @@ class SlotView extends StandaloneView
                 'definition' => DefinitionService::get()->getDefinition(),
             ];
 
-            if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '>=')) {
-                $this->renderSection('Slots', $variables, true);
-            } else {
-                /**
-                 * @deprecated Must be removed when TYPO3 v7 is not supported anymore.
-                 */
-                $parsedTemplate = $this->templateParser->parse($this->getTemplateSource());
-
-                $this->startRendering(self::RENDERING_TEMPLATE, $parsedTemplate, $this->baseRenderingContext);
-                $this->renderSection('Slots', $variables, true);
-                $this->stopRendering();
-            }
+            $this->renderSection('Slots', $variables, true);
         }
 
         return $this->slots;
@@ -91,7 +80,7 @@ class SlotView extends StandaloneView
      * @param array $markers
      * @return string
      */
-    public function renderWithSlots(array $slotsValues, array $markers)
+    public function renderWithSlots(array $slotsValues, array $markers): string
     {
         $viewHelperVariableContainer = $this->baseRenderingContext->getViewHelperVariableContainer();
 
@@ -105,7 +94,7 @@ class SlotView extends StandaloneView
     /**
      * @return EventDefinition
      */
-    public function getEventDefinition()
+    public function getEventDefinition(): EventDefinition
     {
         return $this->eventDefinition;
     }

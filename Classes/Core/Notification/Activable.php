@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -23,11 +24,11 @@ interface Activable
     /**
      * @return bool
      */
-    public function isActive();
+    public function isActive(): bool;
 
     /**
-     * @param EventDefinition|null $eventDefinition
+     * @param EventDefinition|null $eventDefinition [PHP 7.1]
      * @return string
      */
-    public function getSwitchActivationUri(EventDefinition $eventDefinition = null);
+    public function getSwitchActivationUri(EventDefinition $eventDefinition = null): string;
 }

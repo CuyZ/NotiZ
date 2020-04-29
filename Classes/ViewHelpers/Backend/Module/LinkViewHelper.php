@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -80,7 +81,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     {
         $content = $this->renderChildren();
 
-        $moduleHandler = ModuleHandler::forModule($this->arguments['module']);
+        $moduleHandler = ModuleHandler::for($this->arguments['module']);
 
         if (!$moduleHandler->canBeAccessed()) {
             return $content;

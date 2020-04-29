@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -75,7 +76,7 @@ abstract class BackendController extends ActionController
      *
      * @return string
      */
-    abstract protected function getMenu();
+    abstract protected function getMenu(): string;
 
     /**
      * If the definition contain errors, the request is forwarded. If the user
@@ -117,7 +118,7 @@ abstract class BackendController extends ActionController
      * @param string $key
      * @param mixed ...$arguments
      */
-    protected function addErrorMessage($key, ...$arguments)
+    protected function addErrorMessage(string $key, ...$arguments)
     {
         $this->addFlashMessage(
             LocalizationService::localize($key, $arguments),
@@ -129,7 +130,7 @@ abstract class BackendController extends ActionController
     /**
      * @return Definition
      */
-    protected function getDefinition()
+    protected function getDefinition(): Definition
     {
         return $this->definitionService->getDefinition();
     }

@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -49,7 +50,7 @@ class Recipient extends AbstractDefinitionComponent implements DataPreProcessorI
     /**
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -57,7 +58,7 @@ class Recipient extends AbstractDefinitionComponent implements DataPreProcessorI
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name ?: $this->email;
     }
@@ -65,7 +66,7 @@ class Recipient extends AbstractDefinitionComponent implements DataPreProcessorI
     /**
      * @return string
      */
-    public function getRawValue()
+    public function getRawValue(): string
     {
         return $this->rawValue;
     }
@@ -73,7 +74,7 @@ class Recipient extends AbstractDefinitionComponent implements DataPreProcessorI
     /**
      * @return string
      */
-    public function getIdentifier()
+    public function getIdentifier(): string
     {
         return self::IDENTIFIER_PREFIX . $this->getArrayIndex();
     }

@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -41,7 +42,7 @@ class ShowEntityLogController extends ShowNotificationController
      *
      * @return string
      */
-    protected function getPreview()
+    protected function getPreview(): string
     {
         /** @var EntityLogMessageBuilder $entityLogMessageBuilder */
         $entityLogMessageBuilder = $this->objectManager->get(EntityLogMessageBuilder::class, $this->getPreviewPayload());
@@ -52,7 +53,7 @@ class ShowEntityLogController extends ShowNotificationController
     /**
      * @return string
      */
-    public function getNotificationDefinitionIdentifier()
+    public function getNotificationDefinitionIdentifier(): string
     {
         return EntityLogNotification::getDefinitionIdentifier();
     }

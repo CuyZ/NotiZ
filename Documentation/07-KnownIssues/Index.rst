@@ -6,11 +6,18 @@ Known issues
 .. contents::
     :local:
 
-SQL error: 'Field 'xxx' doesn't have a default value'
------------------------------------------------------
+Notification translation is not working
+---------------------------------------
 
-If this error occurs, a parameter must be changed in the Install Tool.
+Unfortunately, TYPO3 8.7 provides inconsistent behaviour with entities
+translations, meaning you may encounter issues when working with translated
+notifications.
 
-In the ``All configuration`` menu, search for ``setDBinit``.
+At the moment, we do not provide a working solution for this for TYPO3 8.7
+instances. If this is a concern for you, please consider contacting us to
+try to find a solution together.
 
-In the ``[SYS][setDBinit]`` textarea, put ``SET SESSION sql_mode=''`` and save.
+.. note::
+
+    TYPO3 9.5 instances are not affected by this issue, notification translation
+    should work fine on these instances.

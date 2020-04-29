@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -24,7 +25,7 @@ class InputViewHelper extends SlotViewHelper
     /**
      * @return Slot
      */
-    protected function getSlot()
+    protected function getSlot(): Slot
     {
         return new InputSlot(
             $this->getSlotName(),

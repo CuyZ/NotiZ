@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -38,7 +39,7 @@ class Bot extends AbstractDefinitionComponent
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -46,7 +47,7 @@ class Bot extends AbstractDefinitionComponent
     /**
      * @return string
      */
-    public function getAvatar()
+    public function getAvatar(): string
     {
         return $this->avatar;
     }
@@ -54,7 +55,7 @@ class Bot extends AbstractDefinitionComponent
     /**
      * @return string
      */
-    public function getIdentifier()
+    public function getIdentifier(): string
     {
         return self::IDENTIFIER_PREFIX . $this->getArrayIndex();
     }

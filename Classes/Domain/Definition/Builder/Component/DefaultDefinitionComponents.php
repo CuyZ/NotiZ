@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -23,7 +24,6 @@ use CuyZ\Notiz\Domain\Definition\Builder\Component\Source\TypoScriptDefinitionSo
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /**
  * Service used for registration of default definition components supplied by
@@ -31,6 +31,8 @@ use TYPO3\CMS\Core\Utility\VersionNumberUtility;
  */
 class DefaultDefinitionComponents implements SingletonInterface
 {
+    const DEFAULT_DEFINITION_FILE_PRIORITY = 1337;
+
     /**
      * @var bool
      */
@@ -66,26 +68,41 @@ class DefaultDefinitionComponents implements SingletonInterface
         /** @var TypoScriptDefinitionSource $typoScriptDefinitionSource */
         $typoScriptDefinitionSource = $components->addSource(DefinitionSource::SOURCE_TYPOSCRIPT);
 
-        // Default channels.
-        $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Channel/Channels.Default.typoscript');
+        foreach ($this->getDefaultFiles() as $file) {
+            $typoScriptDefinitionSource->addFilePath($file, self::DEFAULT_DEFINITION_FILE_PRIORITY);
+        }
+    }
 
-        // Default notifications.
-        $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Notification/Notifications.typoscript');
+    /**
+     * @return array
+     */
+    private function getDefaultFiles(): array
+    {
+        $defaultFiles = [
+            NotizConstants::TYPOSCRIPT_PATH . 'Channel/Channels.Default.typoscript',
+            NotizConstants::TYPOSCRIPT_PATH . 'Notification/Notifications.typoscript',
+        ];
 
         // TYPO3 events can be enabled/disabled in the extension configuration.
         if ($this->extensionConfigurationService->getConfigurationValue('events.typo3')) {
-            $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.TYPO3.typoscript');
+            $defaultFiles[] = NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.TYPO3.typoscript';
 
             if (ExtensionManagementUtility::isLoaded('scheduler')) {
-                $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Scheduler.typoscript');
+                $defaultFiles[] = NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Scheduler.typoscript';
             }
         }
 
         // The core extension "form" can dispatch events.
-        if (ExtensionManagementUtility::isLoaded('form')
-            && version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '>=')
-        ) {
-            $typoScriptDefinitionSource->addFilePath(NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Form.typoscript');
+        if (ExtensionManagementUtility::isLoaded('form')) {
+            $defaultFiles[] = NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Form.typoscript';
         }
+
+        if (ExtensionManagementUtility::isLoaded('blog')
+            && version_compare(ExtensionManagementUtility::getExtensionVersion('blog'), '9.0.0', '>')
+        ) {
+            $defaultFiles[] = NotizConstants::TYPOSCRIPT_PATH . 'Event/Events.Blog.typoscript';
+        }
+
+        return $defaultFiles;
     }
 }

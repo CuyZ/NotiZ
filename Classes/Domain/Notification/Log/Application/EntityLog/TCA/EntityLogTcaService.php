@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -43,7 +44,7 @@ class EntityLogTcaService extends NotificationTcaService
     /**
      * @return string
      */
-    public function getLogLevelsDescriptions()
+    public function getLogLevelsDescriptions(): string
     {
         $lll = 'Notification/Log';
 
@@ -77,7 +78,7 @@ HTML;
     /**
      * @return array
      */
-    private function getLevels()
+    private function getLevels(): array
     {
         return [
             LogLevel::DEBUG,
@@ -94,7 +95,7 @@ HTML;
     /**
      * @return string
      */
-    protected function getDefinitionIdentifier()
+    protected function getDefinitionIdentifier(): string
     {
         return EntityLogNotification::getDefinitionIdentifier();
     }

@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -143,7 +144,7 @@ class PropertyFactory implements SingletonInterface
      * @param Notification $notification
      * @return PropertyDefinition
      */
-    public function getPropertyDefinition($propertyClassName, EventDefinition $eventDefinition, Notification $notification)
+    public function getPropertyDefinition(string $propertyClassName, EventDefinition $eventDefinition, Notification $notification): PropertyDefinition
     {
         $propertyClassName = $this->objectContainer->getImplementationClassName($propertyClassName);
 
@@ -168,7 +169,7 @@ class PropertyFactory implements SingletonInterface
      * @param Event $event
      * @return PropertyContainer
      */
-    public function getPropertyContainer($propertyClassName, Event $event)
+    public function getPropertyContainer(string $propertyClassName, Event $event): PropertyContainer
     {
         $propertyClassName = $this->objectContainer->getImplementationClassName($propertyClassName);
 
@@ -187,7 +188,7 @@ class PropertyFactory implements SingletonInterface
      * @param Event $event
      * @return PropertyEntry[]
      */
-    public function getProperties($propertyClassName, Event $event)
+    public function getProperties(string $propertyClassName, Event $event): array
     {
         return $this->getPropertyContainer($propertyClassName, $event)->getEntries();
     }
@@ -198,7 +199,7 @@ class PropertyFactory implements SingletonInterface
      * @param Notification $notification
      * @return PropertyDefinition
      */
-    protected function buildPropertyDefinition($propertyClassName, EventDefinition $eventDefinition, Notification $notification)
+    protected function buildPropertyDefinition(string $propertyClassName, EventDefinition $eventDefinition, Notification $notification): PropertyDefinition
     {
         /** @var PropertyDefinition $propertyDefinition */
         $propertyDefinition = $this->objectManager->get(PropertyDefinition::class, $eventDefinition->getClassName(), $propertyClassName);
@@ -222,7 +223,7 @@ class PropertyFactory implements SingletonInterface
      * @param Event|HasProperties $event
      * @return PropertyContainer
      */
-    protected function buildPropertyContainer($propertyClassName, Event $event)
+    protected function buildPropertyContainer(string $propertyClassName, Event $event): PropertyContainer
     {
         $propertyDefinition = $this->getPropertyDefinition($propertyClassName, $event->getDefinition(), $event->getNotification());
 
@@ -288,7 +289,7 @@ class PropertyFactory implements SingletonInterface
      * @param EventDefinition $eventDefinition
      * @return bool
      */
-    protected function eventHasProperties(EventDefinition $eventDefinition)
+    protected function eventHasProperties(EventDefinition $eventDefinition): bool
     {
         return in_array(HasProperties::class, class_implements($eventDefinition->getClassName()));
     }

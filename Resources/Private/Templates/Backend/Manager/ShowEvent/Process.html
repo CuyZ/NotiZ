@@ -23,7 +23,7 @@
             <f:link.action controller="Backend\Manager\ListEvents"
                            class="btn btn-default"
                            title="{nz:t(key: 'Backend/Module/Manager:global.show_list_view')}">
-            <nz:core.icon identifier="actions-view-go-back" />
+            <core:icon identifier="actions-view-go-back" />
                 <nz:t key="Backend/Module/Manager:global.show_list_view" />
             </f:link.action>
         </p>
@@ -42,7 +42,7 @@
             <f:for each="{notifications}" as="notification">
                 <tr>
                     <td width="32">
-                        <nz:core.icon identifier="{notification.definition.iconIdentifier}" />
+                        <core:icon identifier="{notification.definition.iconIdentifier}" />
                     </td>
 
                     <td>
@@ -61,7 +61,7 @@
                                                                 eventDefinition="{eventDefinition}"
                                                                 class="btn btn-default"
                                                                 title="{nz:t(key: 'Backend/Module/Manager:global.create_notification')}">
-                                <nz:core.icon identifier="actions-add" />
+                                <core:icon identifier="actions-add" />
                                 {notificationDefinition.label}
                             </nz:notification.link.create>
 
@@ -69,7 +69,7 @@
                                            arguments="{notificationIdentifier: notification.definition.identifier, filterEvent: eventDefinition.identifier}"
                                            class="btn btn-default"
                                            title="{nz:t(key: 'Backend/Module/Manager:show_event.show_notifications_bound_to_event', args: '{0: notification.definition.label}')}">
-                                <nz:core.icon identifier="actions-view" />
+                                <core:icon identifier="actions-view" />
                             </f:link.action>
                         </div>
                     </td>

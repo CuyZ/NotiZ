@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -59,7 +60,7 @@ abstract class AbstractDefinitionComponent
      * @param string $property
      * @param string $name
      */
-    protected static function forceIdentifierForProperty(DataPreProcessor $processor, $property, $name = 'identifier')
+    protected static function forceIdentifierForProperty(DataPreProcessor $processor, string $property, string $name = 'identifier')
     {
         $data = $processor->getData();
         $data = is_array($data)

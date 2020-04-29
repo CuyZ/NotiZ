@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -24,7 +25,7 @@ class NotImplementedException extends NotizException
      * @param string $methodName
      * @return self
      */
-    public static function tcaServiceNotificationIdentifierMissing($methodName)
+    public static function tcaServiceNotificationIdentifierMissing(string $methodName): self
     {
         return self::makeNewInstance(
             self::TCA_SERVICE_NOTIFICATION_IDENTIFIER_MISSING,

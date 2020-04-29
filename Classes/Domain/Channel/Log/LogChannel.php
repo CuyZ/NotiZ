@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -66,7 +67,7 @@ abstract class LogChannel extends AbstractChannel
      *
      * @return LoggerInterface
      */
-    abstract protected function getLoggerInstance();
+    abstract protected function getLoggerInstance(): LoggerInterface;
 
     /**
      * The logging itself is done here using the provided logger.

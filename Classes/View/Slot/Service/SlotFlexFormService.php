@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -53,7 +54,7 @@ class SlotFlexFormService implements SingletonInterface
      * @param ViewPathsAware $viewPaths
      * @return array
      */
-    public function getNotificationFlexFormList(ViewPathsAware $viewPaths)
+    public function getNotificationFlexFormList(ViewPathsAware $viewPaths): array
     {
         $flexFormList = ['default' => $this->getDefaultFlexForm()];
 
@@ -71,7 +72,7 @@ class SlotFlexFormService implements SingletonInterface
      * @param SlotView $view
      * @return string
      */
-    public function getSlotViewFlexForm(SlotView $view)
+    public function getSlotViewFlexForm(SlotView $view): string
     {
         $hash = $this->getViewCacheHash($view);
 
@@ -92,7 +93,7 @@ class SlotFlexFormService implements SingletonInterface
      * For each slot, a text field will be added to the FlexForm.
      *
      * @param SlotView $view
-     * @return string
+     * @return string|null [PHP 7.1]
      */
     protected function buildSlotViewFlexForm(SlotView $view)
     {
@@ -117,7 +118,7 @@ class SlotFlexFormService implements SingletonInterface
      * @param string $sheets
      * @return string
      */
-    protected function getBase($sheets)
+    protected function getBase(string $sheets): string
     {
         return <<<XML
 <T3DataStructure>
@@ -136,7 +137,7 @@ XML;
      * @param string $slots
      * @return string
      */
-    protected function getSheet($identifier, $slots)
+    protected function getSheet(string $identifier, string $slots): string
     {
         return <<<XML
 <$identifier>
@@ -157,7 +158,7 @@ XML;
      * @param Slot $slot
      * @return string
      */
-    protected function getSlot(Slot $slot)
+    protected function getSlot(Slot $slot): string
     {
         $label = htmlspecialchars($slot->getLabel());
 
@@ -168,8 +169,8 @@ XML;
         <config>
             {$slot->getFlexFormConfiguration()}
         </config>
-        
-        {$slot->getFlexFormAdditionalConfiguration()}  
+
+        {$slot->getFlexFormAdditionalConfiguration()}
     </TCEforms>
 </{$slot->getName()}>
 XML;
@@ -178,7 +179,7 @@ XML;
     /**
      * @return string
      */
-    protected function getDefaultFlexForm()
+    protected function getDefaultFlexForm(): string
     {
         return <<<XML
 <T3DataStructure>
@@ -205,7 +206,7 @@ XML;
      * @param SlotView $view
      * @return string
      */
-    protected function getViewCacheHash(SlotView $view)
+    protected function getViewCacheHash(SlotView $view): string
     {
         return 'slots-' . sha1(serialize([
                 $view->getTemplatePathAndFilename(),

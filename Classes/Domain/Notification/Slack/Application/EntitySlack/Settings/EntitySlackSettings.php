@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -37,7 +38,7 @@ class EntitySlackSettings extends AbstractDefinitionComponent implements Notific
     /**
      * @return Bots\Bot[]
      */
-    public function getBots()
+    public function getBots(): array
     {
         return $this->bots;
     }
@@ -45,7 +46,7 @@ class EntitySlackSettings extends AbstractDefinitionComponent implements Notific
     /**
      * @return Channels\Channel[]
      */
-    public function getChannels()
+    public function getChannels(): array
     {
         return $this->channels;
     }
@@ -54,7 +55,7 @@ class EntitySlackSettings extends AbstractDefinitionComponent implements Notific
      * @param string $identifier
      * @return bool
      */
-    public function hasChannel($identifier)
+    public function hasChannel(string $identifier): bool
     {
         return isset($this->channels[$identifier]);
     }
@@ -62,8 +63,10 @@ class EntitySlackSettings extends AbstractDefinitionComponent implements Notific
     /**
      * @param string $identifier
      * @return Channels\Channel
+     *
+     * @throws EntryNotFoundException
      */
-    public function getChannel($identifier)
+    public function getChannel(string $identifier): Channels\Channel
     {
         if (!$this->hasChannel($identifier)) {
             throw EntryNotFoundException::entitySlackChannelDefinitionNotFound($identifier);

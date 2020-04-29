@@ -168,3 +168,10 @@ notifications:
 
 .. figure:: /Images/06-Administrator/02-CustomEvent/custom-event.png
     :alt: Custom event
+
+.. toctree::
+    :hidden:
+    :titlesonly:
+    :glob:
+
+    *

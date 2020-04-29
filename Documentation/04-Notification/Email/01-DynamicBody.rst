@@ -82,6 +82,12 @@ The template below can now be created.
       template; see chapter “:ref:`events-property-marker`” for more
       information.
 
+    - ``{notification}`` – contains the notification instance; see chapter
+      “:ref:`administrator-objects-notification`” for more information.
+
+    - ``{event}`` – contains the event instance; see chapter
+      “:ref:`administrator-objects-event`” for more information.
+
 .. code-block:: html
     :caption: ``EXT:my_extension/Resources/Private/Templates/Mail/ContactEvents/MessageSent.html``
 

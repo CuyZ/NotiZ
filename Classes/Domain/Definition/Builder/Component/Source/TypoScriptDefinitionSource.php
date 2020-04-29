@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -19,8 +20,8 @@ namespace CuyZ\Notiz\Domain\Definition\Builder\Component\Source;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use Romm\ConfigurationObject\ConfigurationObjectInstance;
 use TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
 
 /**
  * This definition source component is used to fetch a definition array from
@@ -88,11 +89,11 @@ class TypoScriptDefinitionSource extends FileDefinitionSource
      *
      * @return array
      */
-    public function getDefinitionArray()
+    public function getDefinitionArray(): array
     {
         $content = '';
 
-        foreach ($this->filePaths as $path) {
+        foreach ($this->filePaths() as $path) {
             $content .= GeneralUtility::getUrl($path) . LF;
         }
 

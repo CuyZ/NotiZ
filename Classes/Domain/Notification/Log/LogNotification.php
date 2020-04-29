@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -24,10 +25,10 @@ interface LogNotification extends Notification, MultipleChannelsNotification
     /**
      * @return string
      */
-    public function getLevel();
+    public function getLevel(): string;
 
     /**
      * @return string
      */
-    public function getMessage();
+    public function getMessage(): string;
 }

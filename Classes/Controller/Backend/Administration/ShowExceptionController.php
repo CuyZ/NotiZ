@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -49,7 +50,7 @@ class ShowExceptionController extends BackendController
     /**
      * @inheritdoc
      */
-    protected function getMenu()
+    protected function getMenu(): string
     {
         return Menu::ADMINISTRATION_DEFINITION;
     }

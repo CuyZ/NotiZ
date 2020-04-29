@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -21,7 +22,7 @@ class InputSlot extends Slot
     /**
      * @return string
      */
-    public function getFlexFormConfiguration()
+    public function getFlexFormConfiguration(): string
     {
         return <<<XML
     <type>input</type>

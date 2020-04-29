@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -22,7 +23,6 @@ use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use CuyZ\Notiz\Service\LocalizationService;
 use CuyZ\Notiz\Service\ViewService;
-use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Throwable;
@@ -30,7 +30,6 @@ use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
@@ -99,7 +98,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return bool
      */
-    public function checkAccess()
+    public function checkAccess(): bool
     {
         return $this->managerModuleHandler->canBeAccessed();
     }
@@ -107,7 +106,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return string
      */
-    public function getItem()
+    public function getItem(): string
     {
         return $this->getFluidTemplateObject('Backend/ToolBar/NotificationToolBarItem')->render();
     }
@@ -115,7 +114,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return bool
      */
-    public function hasDropDown()
+    public function hasDropDown(): bool
     {
         return true;
     }
@@ -123,16 +122,13 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return string
      */
-    public function getDropDown()
+    public function getDropDown(): string
     {
         try {
             return $this->getDropDownFromDefinition();
         } catch (Throwable $exception) {
-        } catch (Exception $exception) {
-            // @PHP7
+            return $this->getErrorDropDown($exception);
         }
-
-        return $this->getErrorDropDown($exception);
     }
 
     /**
@@ -142,7 +138,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
      * @param ResponseInterface $response
      * @return ResponseInterface
      */
-    public function renderMenuAction(ServerRequestInterface $request, ResponseInterface $response)
+    public function renderMenuAction(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
         $this->fullMenu = true;
 
@@ -154,7 +150,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return string
      */
-    protected function getDropDownFromDefinition()
+    protected function getDropDownFromDefinition(): string
     {
         $view = $this->getFluidTemplateObject('Backend/ToolBar/NotificationToolBarDropDown');
 
@@ -189,7 +185,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
      * @param Throwable $exception
      * @return string
      */
-    protected function getErrorDropDown($exception)
+    protected function getErrorDropDown(Throwable $exception): string
     {
         $view = $this->getFluidTemplateObject('Backend/ToolBar/NotificationToolBarDropDownError');
         $view->assign('exception', $exception);
@@ -201,7 +197,7 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return array
      */
-    public function getAdditionalAttributes()
+    public function getAdditionalAttributes(): array
     {
         return [];
     }
@@ -209,11 +205,11 @@ class NotificationsToolbarItem implements ToolbarItemInterface
     /**
      * @return int
      */
-    public function getIndex()
+    public function getIndex(): int
     {
         $index = $this->extensionConfigurationService->getConfigurationValue('toolbar.index');
 
-        return max(min($index, 100), 0);
+        return (int)max(min($index, 100), 0);
     }
 
     /**
@@ -235,23 +231,21 @@ class NotificationsToolbarItem implements ToolbarItemInterface
      * @param string $templateName
      * @return StandaloneView
      */
-    protected function getFluidTemplateObject($templateName)
+    protected function getFluidTemplateObject(string $templateName): StandaloneView
     {
         $view = $this->viewService->getStandaloneView($templateName);
 
         $view->assign('result', $this->definitionService->getValidationResult());
 
-        $legacyLayout = version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.0.0', '<');
-        $view->assign('legacyLayout', $legacyLayout);
-
         return $view;
     }
 
     /**
-     * @return PageRenderer|object
+     * @return PageRenderer
      */
-    protected function getPageRenderer()
+    protected function getPageRenderer(): PageRenderer
     {
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
         return GeneralUtility::makeInstance(PageRenderer::class);
     }
 }

@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -41,7 +42,7 @@ class Signal extends AbstractDefinitionComponent implements Connection
      * @param string $className
      * @param string $name
      */
-    public function __construct($className, $name)
+    public function __construct(string $className, string $name)
     {
         $this->className = $className;
         $this->name = $name;
@@ -67,7 +68,7 @@ class Signal extends AbstractDefinitionComponent implements Connection
     /**
      * @return string
      */
-    public function getClassName()
+    public function getClassName(): string
     {
         return $this->className;
     }
@@ -75,7 +76,7 @@ class Signal extends AbstractDefinitionComponent implements Connection
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }

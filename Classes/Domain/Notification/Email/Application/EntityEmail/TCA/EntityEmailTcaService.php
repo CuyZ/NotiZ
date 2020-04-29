@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -109,7 +110,7 @@ class EntityEmailTcaService extends NotificationTcaService
     /**
      * @return string
      */
-    public function getDefaultSender()
+    public function getDefaultSender(): string
     {
         if ($this->definitionHasErrors()) {
             return '';
@@ -125,7 +126,7 @@ class EntityEmailTcaService extends NotificationTcaService
      * @param array $parameters
      * @return bool
      */
-    public function shouldShowProvidedRecipientsSelect(array $parameters)
+    public function shouldShowProvidedRecipientsSelect(array $parameters): bool
     {
         if ($this->definitionHasErrors()) {
             return false;
@@ -148,7 +149,7 @@ class EntityEmailTcaService extends NotificationTcaService
     /**
      * @return EntityEmailSettings|NotificationSettings
      */
-    protected function getNotificationSettings()
+    protected function getNotificationSettings(): EntityEmailSettings
     {
         return $this->getNotificationDefinition()->getSettings();
     }
@@ -156,7 +157,7 @@ class EntityEmailTcaService extends NotificationTcaService
     /**
      * @return string
      */
-    protected function getDefinitionIdentifier()
+    protected function getDefinitionIdentifier(): string
     {
         return EntityEmailNotification::getDefinitionIdentifier();
     }

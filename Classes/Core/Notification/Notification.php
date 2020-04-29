@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -27,6 +28,8 @@ use CuyZ\Notiz\Core\Exception\EntryNotFoundException;
 interface Notification
 {
     /**
+     * [PHP 7.1]
+     *
      * @return string|null
      */
     public function getTitle();
@@ -38,17 +41,17 @@ interface Notification
      *
      * @return string
      */
-    public static function getProcessorClassName();
+    public static function getProcessorClassName(): string;
 
     /**
      * @return NotificationDefinition
      */
-    public function getNotificationDefinition();
+    public function getNotificationDefinition(): NotificationDefinition;
 
     /**
      * @return bool
      */
-    public function hasEventDefinition();
+    public function hasEventDefinition(): bool;
 
     /**
      * Must return the event definition this notification is bound to.
@@ -57,7 +60,7 @@ interface Notification
      *
      * @throws EntryNotFoundException
      */
-    public function getEventDefinition();
+    public function getEventDefinition(): EventDefinition;
 
     /**
      * Must return a configuration array that will be used by the event during
@@ -68,5 +71,5 @@ interface Notification
      *
      * @return array
      */
-    public function getEventConfiguration();
+    public function getEventConfiguration(): array;
 }

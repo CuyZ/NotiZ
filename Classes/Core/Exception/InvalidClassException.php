@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -53,7 +54,7 @@ class InvalidClassException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function definitionSourceHasMissingInterface($className)
+    public static function definitionSourceHasMissingInterface(string $className): self
     {
         return self::makeNewInstance(
             self::DEFINITION_SOURCE_MISSING_INTERFACE,
@@ -66,7 +67,7 @@ class InvalidClassException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function definitionProcessorHasMissingInterface($className)
+    public static function definitionProcessorHasMissingInterface(string $className): self
     {
         return self::makeNewInstance(
             self::DEFINITION_PROCESSOR_MISSING_INTERFACE,
@@ -79,7 +80,7 @@ class InvalidClassException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function eventHasMissingInterface($className)
+    public static function eventHasMissingInterface(string $className): self
     {
         return self::makeNewInstance(
             self::EVENT_CLASS_MISSING_INTERFACE,
@@ -93,7 +94,7 @@ class InvalidClassException extends NotizException
      * @param string $identifier
      * @return self
      */
-    public static function tagServicePropertyWrongParent($propertyType, $identifier)
+    public static function tagServicePropertyWrongParent(string $propertyType, string $identifier): self
     {
         return self::makeNewInstance(
             self::TAG_SERVICE_PROPERTY_WRONG_PARENT,
@@ -106,7 +107,7 @@ class InvalidClassException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function notificationMissingInterface($className)
+    public static function notificationMissingInterface(string $className): self
     {
         return self::makeNewInstance(
             self::NOTIFICATION_MISSING_INTERFACE,
@@ -120,7 +121,7 @@ class InvalidClassException extends NotizException
      * @param string $processorClassName
      * @return self
      */
-    public static function notificationProcessorWrongParent($notificationClassName, $processorClassName)
+    public static function notificationProcessorWrongParent(string $notificationClassName, string $processorClassName): self
     {
         return self::makeNewInstance(
             self::NOTIFICATION_PROCESSOR_WRONG_PARENT,
@@ -133,7 +134,7 @@ class InvalidClassException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function notificationSettingsMissingInterface($className)
+    public static function notificationSettingsMissingInterface(string $className): self
     {
         return self::makeNewInstance(
             self::NOTIFICATION_SETTINGS_MISSING_INTERFACE,
@@ -146,7 +147,7 @@ class InvalidClassException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function eventConfigurationFlexFormProviderMissingInterface($className)
+    public static function eventConfigurationFlexFormProviderMissingInterface(string $className): self
     {
         return self::makeNewInstance(
             self::EVENT_CONFIGURATION_FLEX_FORM_PROVIDER_MISSING_INTERFACE,
@@ -159,7 +160,7 @@ class InvalidClassException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function channelSettingsMissingInterface($className)
+    public static function channelSettingsMissingInterface(string $className): self
     {
         return self::makeNewInstance(
             self::CHANNEL_SETTINGS_MISSING_INTERFACE,
@@ -172,7 +173,7 @@ class InvalidClassException extends NotizException
      * @param string $className
      * @return self
      */
-    public static function eventPropertyBuilderMissingInterface($className)
+    public static function eventPropertyBuilderMissingInterface(string $className): self
     {
         return self::makeNewInstance(
             self::EVENT_PROPERTY_BUILDER_MISSING_INTERFACE,

@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -38,5 +39,5 @@ interface MultipleChannelsNotification
      * @param ChannelDefinition $definition
      * @return bool
      */
-    public function shouldDispatch(ChannelDefinition $definition);
+    public function shouldDispatch(ChannelDefinition $definition): bool;
 }

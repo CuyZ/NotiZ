@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -29,11 +30,11 @@ class StringService implements SingletonInterface
      *
      * @see \CuyZ\Notiz\Service\StringService::doMark
      *
-     * @param string $content
+     * @param mixed $content
      * @param string $replacement
      * @return string
      */
-    public static function mark($content, $replacement = '<samp class="bg-info">$1</samp>')
+    public static function mark($content, string $replacement = '<samp class="bg-info">$1</samp>'): string
     {
         return self::get()->doMark($content, $replacement);
     }
@@ -50,16 +51,16 @@ class StringService implements SingletonInterface
      *
      * > Look at <samp class="bg-info">foo</samp> lorem ipsum...
      *
-     * @param string $content
+     * @param mixed $content
      * @param string $replacement
      * @return string
      */
-    public function doMark($content, $replacement)
+    public function doMark($content, string $replacement): string
     {
         return preg_replace(
             '/`([^`]+)`/',
             $replacement,
-            $content
+            (string)$content
         );
     }
 
@@ -88,7 +89,7 @@ class StringService implements SingletonInterface
      * @param string $email
      * @return array
      */
-    public function formatEmailAddress($email)
+    public function formatEmailAddress(string $email): array
     {
         if (preg_match('#([^<]+) <([^>]+)>#', $email, $matches)) {
             return [
@@ -107,7 +108,7 @@ class StringService implements SingletonInterface
      * @param string $string
      * @return string
      */
-    public function upperCamelCase($string)
+    public function upperCamelCase(string $string): string
     {
         return GeneralUtility::underscoredToUpperCamelCase(GeneralUtility::camelCaseToLowerCaseUnderscored($string));
     }
@@ -118,12 +119,14 @@ class StringService implements SingletonInterface
      * @param $text
      * @return string
      */
-    public function wrapLines($text)
+
+    public function wrapLines($text): string
     {
         $pad = function ($line) {
             return "<p>$line</p>";
         };
 
+        $text = preg_replace('/ ?#LF# ?/', "\n", $text);
         $lines = explode("\n", $text);
         $lines = array_map('trim', $lines);
         $lines = array_filter($lines);

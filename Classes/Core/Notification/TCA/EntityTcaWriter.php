@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -17,8 +18,8 @@
 namespace CuyZ\Notiz\Core\Notification\TCA;
 
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefaultEventFromGet;
-use CuyZ\Notiz\Backend\FormEngine\DataProvider\EventConfigurationProvider;
 use CuyZ\Notiz\Core\Notification\Service\NotificationTcaService;
+use CuyZ\Notiz\Core\Notification\TCA\Processor\EventConfigurationProcessor;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
@@ -28,7 +29,7 @@ abstract class EntityTcaWriter implements SingletonInterface
 {
     use SelfInstantiateTrait;
 
-    const ENTITY_NOTIFICATION = '__entityNotification';
+    const NOTIFICATION_ENTITY = 'notificationEntity';
 
     const LLL = 'LLL:EXT:notiz/Resources/Private/Language/Notification/Entity/Entity.xlf';
 
@@ -66,7 +67,7 @@ abstract class EntityTcaWriter implements SingletonInterface
      *
      * @return array
      */
-    abstract protected function buildTcaArray();
+    abstract protected function buildTcaArray(): array;
 
     /**
      * This method builds a TCA array and returns it to be used in a
@@ -75,7 +76,7 @@ abstract class EntityTcaWriter implements SingletonInterface
      * @param string $tableName
      * @return array
      */
-    final public function getTcaArray($tableName)
+    final public function getTcaArray(string $tableName): array
     {
         $this->tableName = $tableName;
 
@@ -97,21 +98,21 @@ abstract class EntityTcaWriter implements SingletonInterface
      *
      * @return string
      */
-    abstract protected function getNotificationTcaServiceClass();
+    abstract protected function getNotificationTcaServiceClass(): string;
 
     /**
      * Returns the title of the entity, can be a LLL reference.
      *
      * @return string
      */
-    abstract protected function getEntityTitle();
+    abstract protected function getEntityTitle(): string;
 
     /**
      * This method returns the LLL string to use for the `channel` column.
      *
      * @return string
      */
-    protected function getChannelLabel()
+    protected function getChannelLabel(): string
     {
         return self::LLL . ':field.channel';
     }
@@ -119,7 +120,7 @@ abstract class EntityTcaWriter implements SingletonInterface
     /**
      * @return array
      */
-    protected function getDefaultCtrl()
+    protected function getDefaultCtrl(): array
     {
         return [
             'title' => $this->getEntityTitle(),
@@ -137,8 +138,6 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'ignoreRootLevelRestriction' => true,
             ],
 
-            'requestUpdate' => 'event',
-
             'languageField' => 'sys_language_uid',
             'transOrigPointerField' => 'l10n_parent',
             'transOrigDiffSourceField' => 'l10n_diffsource',
@@ -151,10 +150,14 @@ abstract class EntityTcaWriter implements SingletonInterface
             'searchFields' => 'title,event',
             'iconfile' => $this->service->getNotificationIconPath(),
 
-            self::ENTITY_NOTIFICATION => true,
-
-            DefaultEventFromGet::ENABLE_DEFAULT_VALUE => true,
-            EventConfigurationProvider::COLUMN => 'event_configuration_flex',
+            self::NOTIFICATION_ENTITY => [
+                'processor' => [
+                    EventConfigurationProcessor::class,
+                ],
+                'dataProvider' => [
+                    DefaultEventFromGet::ENABLE_DEFAULT_VALUE => true,
+                ]
+            ],
         ];
     }
 
@@ -169,8 +172,10 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
                 'config' => [
                     'type' => 'select',
+                    'renderType' => 'selectSingle',
                     'foreign_table' => 'sys_language',
                     'foreign_table_where' => 'ORDER BY sys_language.title',
+                    'default' => 0,
                     'items' => [
                         ['LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1],
                         ['LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0],
@@ -184,6 +189,7 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'l10n_display' => 'defaultAsReadonly',
                 'config' => [
                     'type' => 'select',
+                    'renderType' => 'selectSingle',
                     'foreign_table' => $this->tableName,
                     'foreign_table_where' => "AND {$this->tableName}.pid=###CURRENT_PID### AND {$this->tableName}.sys_language_uid IN (-1,0)",
                     'items' => [
@@ -213,35 +219,29 @@ abstract class EntityTcaWriter implements SingletonInterface
             ],
             'starttime' => [
                 'exclude' => 1,
-                'l10n_mode' => 'mergeIfNotBlank',
                 'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
                 'config' => [
                     'type' => 'input',
-                    'size' => 13,
-                    'max' => 20,
+                    'renderType' => 'inputDateTime',
                     'eval' => 'datetime',
-                    'checkbox' => 0,
                     'default' => 0,
-                    'range' => [
-                        'lower' => mktime(0, 0, 0, (int)date('m'), (int)date('d'), (int)date('Y')),
-                    ],
-                ],
+                    'behaviour' => [
+                        'allowLanguageSynchronization' => true,
+                    ]
+                ]
             ],
             'endtime' => [
                 'exclude' => 1,
-                'l10n_mode' => 'mergeIfNotBlank',
                 'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
                 'config' => [
                     'type' => 'input',
-                    'size' => 13,
-                    'max' => 20,
+                    'renderType' => 'inputDateTime',
                     'eval' => 'datetime',
-                    'checkbox' => 0,
                     'default' => 0,
-                    'range' => [
-                        'lower' => mktime(0, 0, 0, (int)date('m'), (int)date('d'), (int)date('Y')),
-                    ],
-                ],
+                    'behaviour' => [
+                        'allowLanguageSynchronization' => true,
+                    ]
+                ]
             ],
         ];
 
@@ -283,9 +283,10 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'exclude' => 1,
                 'label' => self::LLL . ":field.event",
                 'l10n_mode' => 'exclude',
-                'l10n_display' => 'defaultAsReadonly',
+                'onChange' => 'reload',
                 'config' => [
                     'type' => 'select',
+                    'renderType' => 'selectSingle',
                     'size' => 8,
                     'itemsProcFunc' => $this->getNotificationTcaServiceClass() . '->getEventsList',
                     'eval' => 'required',
@@ -294,12 +295,13 @@ abstract class EntityTcaWriter implements SingletonInterface
 
             /**
              * This FlexForm field is fully configured in:
-             * @see \CuyZ\Notiz\Backend\FormEngine\DataProvider\EventConfigurationProvider
+             * @see \CuyZ\Notiz\Core\Notification\TCA\Processor\EventConfigurationProcessor
              */
             'event_configuration_flex' => [
                 'label' => self::LLL . ':field.event_configuration',
                 'config' => [
                     'type' => 'flex',
+                    'default' => '',
                     'ds_pointerField' => 'event',
                     'behaviour' => [
                         'allowLanguageSynchronization' => true,

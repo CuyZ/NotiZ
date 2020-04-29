@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -72,7 +73,7 @@ class PropertyContainer
     /**
      * @return string
      */
-    public function getPropertyType()
+    public function getPropertyType(): string
     {
         return $this->definition->getPropertyType();
     }
@@ -81,7 +82,7 @@ class PropertyContainer
      * @param string $name
      * @return bool
      */
-    public function hasEntry($name)
+    public function hasEntry(string $name): bool
     {
         return isset($this->properties[$name]);
     }
@@ -92,7 +93,7 @@ class PropertyContainer
      *
      * @throws EntryNotFoundException
      */
-    public function getEntry($name)
+    public function getEntry(string $name): PropertyEntry
     {
         if (false === $this->hasEntry($name)) {
             throw EntryNotFoundException::propertyEntryNotFound($name, $this->definition->getEventClassName(), $this->getPropertyType(), $this);
@@ -104,7 +105,7 @@ class PropertyContainer
     /**
      * @return PropertyEntry[]
      */
-    public function getEntries()
+    public function getEntries(): array
     {
         return $this->properties;
     }

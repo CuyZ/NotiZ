@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -71,7 +72,7 @@ class Payload
     /**
      * @return Notification
      */
-    public function getNotification()
+    public function getNotification(): Notification
     {
         return $this->notification;
     }
@@ -79,7 +80,7 @@ class Payload
     /**
      * @return NotificationDefinition
      */
-    public function getNotificationDefinition()
+    public function getNotificationDefinition(): NotificationDefinition
     {
         return $this->notificationDefinition;
     }
@@ -87,7 +88,7 @@ class Payload
     /**
      * @return Event
      */
-    public function getEvent()
+    public function getEvent(): Event
     {
         return $this->event;
     }
@@ -95,7 +96,7 @@ class Payload
     /**
      * @return NotificationProcessor
      */
-    public function getNotificationProcessor()
+    public function getNotificationProcessor(): NotificationProcessor
     {
         return $this->notificationProcessor;
     }

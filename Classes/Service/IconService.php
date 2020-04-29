@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -50,7 +51,7 @@ class IconService implements SingletonInterface
      * @param NotificationDefinition $notification
      * @return string
      */
-    public function registerNotificationIcon(NotificationDefinition $notification)
+    public function registerNotificationIcon(NotificationDefinition $notification): string
     {
         $iconIdentifier = 'tx-notiz-icon-notification-' . $notification->getIdentifier();
 

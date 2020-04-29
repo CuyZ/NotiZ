@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -101,7 +102,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getLayout()
+    public function getLayout(): string
     {
         return $this->layout;
     }
@@ -109,7 +110,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @param string $layout
      */
-    public function setLayout($layout)
+    public function setLayout(string $layout)
     {
         $this->layout = $layout;
     }
@@ -117,7 +118,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getSender()
+    public function getSender(): string
     {
         return $this->sender;
     }
@@ -125,7 +126,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @param string $sender
      */
-    public function setSender($sender)
+    public function setSender(string $sender)
     {
         $this->sender = $sender;
     }
@@ -133,7 +134,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return bool
      */
-    public function isSenderCustom()
+    public function isSenderCustom(): bool
     {
         return $this->senderCustom;
     }
@@ -141,7 +142,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @param bool $senderCustom
      */
-    public function setSenderCustom($senderCustom)
+    public function setSenderCustom(bool $senderCustom)
     {
         $this->senderCustom = $senderCustom;
     }
@@ -149,7 +150,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getSendTo()
+    public function getSendTo(): string
     {
         return $this->sendTo;
     }
@@ -157,7 +158,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @param string $sendTo
      */
-    public function setSendTo($sendTo)
+    public function setSendTo(string $sendTo)
     {
         $this->sendTo = $sendTo;
     }
@@ -165,7 +166,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getSendToProvided()
+    public function getSendToProvided(): string
     {
         return $this->sendToProvided;
     }
@@ -173,7 +174,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return Email[]
      */
-    public function getSelectedSendToProvided()
+    public function getSelectedSendToProvided(): array
     {
         return $this->getSelectedProvidedRecipients($this->sendToProvided);
     }
@@ -181,7 +182,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @param string $sendToProvided
      */
-    public function setSendToProvided($sendToProvided)
+    public function setSendToProvided(string $sendToProvided)
     {
         $this->sendToProvided = $sendToProvided;
     }
@@ -189,7 +190,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getSendCc()
+    public function getSendCc(): string
     {
         return $this->sendCc;
     }
@@ -197,7 +198,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @param string $sendCc
      */
-    public function setSendCc($sendCc)
+    public function setSendCc(string $sendCc)
     {
         $this->sendCc = $sendCc;
     }
@@ -205,7 +206,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getSendCcProvided()
+    public function getSendCcProvided(): string
     {
         return $this->sendCcProvided;
     }
@@ -213,7 +214,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return Email[]
      */
-    public function getSelectedSendCcProvided()
+    public function getSelectedSendCcProvided(): array
     {
         return $this->getSelectedProvidedRecipients($this->sendCcProvided);
     }
@@ -221,7 +222,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @param string $sendCcProvided
      */
-    public function setSendCcProvided($sendCcProvided)
+    public function setSendCcProvided(string $sendCcProvided)
     {
         $this->sendCcProvided = $sendCcProvided;
     }
@@ -229,7 +230,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getSendBcc()
+    public function getSendBcc(): string
     {
         return $this->sendBcc;
     }
@@ -237,7 +238,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @param string $sendBcc
      */
-    public function setSendBcc($sendBcc)
+    public function setSendBcc(string $sendBcc)
     {
         $this->sendBcc = $sendBcc;
     }
@@ -245,7 +246,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getSendBccProvided()
+    public function getSendBccProvided(): string
     {
         return $this->sendBccProvided;
     }
@@ -253,7 +254,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return Email[]
      */
-    public function getSelectedSendBccProvided()
+    public function getSelectedSendBccProvided(): array
     {
         return $this->getSelectedProvidedRecipients($this->sendBccProvided);
     }
@@ -261,7 +262,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @param string $sendBccProvided
      */
-    public function setSendBccProvided($sendBccProvided)
+    public function setSendBccProvided(string $sendBccProvided)
     {
         $this->sendBccProvided = $sendBccProvided;
     }
@@ -269,7 +270,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getSubject()
+    public function getSubject(): string
     {
         return $this->subject;
     }
@@ -277,7 +278,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @param string $subject
      */
-    public function setSubject($subject)
+    public function setSubject(string $subject)
     {
         $this->subject = $subject;
     }
@@ -285,7 +286,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public function getBody()
+    public function getBody(): string
     {
         return $this->body;
     }
@@ -293,7 +294,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return array
      */
-    public function getBodySlots()
+    public function getBodySlots(): array
     {
         if (empty($this->bodySlots)) {
             /** @var FlexFormService $flexFormService */
@@ -308,7 +309,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @param string $body
      */
-    public function setBody($body)
+    public function setBody(string $body)
     {
         $this->body = $body;
     }
@@ -316,7 +317,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public static function getProcessorClassName()
+    public static function getProcessorClassName(): string
     {
         return EntityEmailNotificationProcessor::class;
     }
@@ -324,7 +325,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public static function getDefinitionIdentifier()
+    public static function getDefinitionIdentifier(): string
     {
         return 'entityEmail';
     }
@@ -332,7 +333,7 @@ class EntityEmailNotification extends EntityNotification implements
     /**
      * @return string
      */
-    public static function getSettingsClassName()
+    public static function getSettingsClassName(): string
     {
         return EntityEmailSettings::class;
     }
@@ -341,7 +342,7 @@ class EntityEmailNotification extends EntityNotification implements
      * @param string $providedRecipients
      * @return Email[]
      */
-    protected function getSelectedProvidedRecipients($providedRecipients)
+    protected function getSelectedProvidedRecipients(string $providedRecipients): array
     {
         if (!$this->hasEventDefinition()) {
             return [];

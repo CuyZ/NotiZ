@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -44,12 +45,12 @@ abstract class SlotViewHelper extends AbstractViewHelper
     /**
      * @return Slot
      */
-    abstract protected function getSlot();
+    abstract protected function getSlot(): Slot;
 
     /**
      * @return string
      */
-    protected function getSlotName()
+    protected function getSlotName(): string
     {
         return $this->arguments['name'];
     }
@@ -57,7 +58,7 @@ abstract class SlotViewHelper extends AbstractViewHelper
     /**
      * @return string
      */
-    protected function getSlotLabel()
+    protected function getSlotLabel(): string
     {
         $label = $this->arguments['label'];
 
@@ -65,13 +66,13 @@ abstract class SlotViewHelper extends AbstractViewHelper
             $label = $this->renderChildren();
         }
 
-        return $label;
+        return (string)$label;
     }
 
     /**
      * @return SlotContainer
      */
-    protected function getSlotContainer()
+    protected function getSlotContainer(): SlotContainer
     {
         return $this->viewHelperVariableContainer->get(__CLASS__, self::SLOT_CONTAINER);
     }

@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -18,7 +19,12 @@ namespace CuyZ\Notiz\Service;
 
 use CuyZ\Notiz\Core\Exception\EntryNotFoundException;
 use CuyZ\Notiz\Core\Support\NotizConstants;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility;
 
 /**
@@ -28,41 +34,57 @@ use TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility;
 class ExtensionConfigurationService implements SingletonInterface
 {
     /**
-     * @var array[]
-     */
-    protected $configuration;
-
-    /**
-     * @param ConfigurationUtility $configurationUtility
-     */
-    public function __construct(ConfigurationUtility $configurationUtility)
-    {
-        $this->configuration = $configurationUtility->getCurrentConfiguration(NotizConstants::EXTENSION_KEY);
-    }
-
-    /**
      * @param string $key
-     * @return array
+     * @return mixed
      *
      * @throws EntryNotFoundException
      */
-    public function getConfiguration($key)
+    public function getConfigurationValue(string $key)
     {
-        if (!isset($this->configuration[$key])) {
+        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '9.0.0', '<')) {
+            return $this->getConfigurationValueLegacy($key);
+        }
+
+        /*
+         * @deprecated When TYPO3 v8 is not supported anymore, inject this
+         * service in constructor and fill a class property `$configuration`
+         * for memoization.
+         */
+        $extensionConfiguration = $this->objectManager()->get(ExtensionConfiguration::class);
+
+        $configuration = $extensionConfiguration->get(NotizConstants::EXTENSION_KEY);
+
+        if (!ArrayUtility::isValidPath($configuration, $key, '.')) {
             throw EntryNotFoundException::extensionConfigurationEntryNotFound($key);
         }
 
-        return $this->configuration[$key];
+        return ArrayUtility::getValueByPath($configuration, $key, '.');
     }
 
     /**
      * @param string $key
      * @return mixed
+     *
+     * @throws EntryNotFoundException
      */
-    public function getConfigurationValue($key)
+    private function getConfigurationValueLegacy(string $key)
     {
-        $configuration = $this->getConfiguration($key);
+        $configurationUtility = $this->objectManager()->get(ConfigurationUtility::class);
+        $configuration = $configurationUtility->getCurrentConfiguration(NotizConstants::EXTENSION_KEY);
 
-        return $configuration['value'];
+        if (!isset($configuration[$key]['value'])) {
+            throw EntryNotFoundException::extensionConfigurationEntryNotFound($key);
+        }
+
+        return $configuration[$key]['value'];
+    }
+
+    /**
+     * @return ObjectManager
+     */
+    private function objectManager(): ObjectManager
+    {
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
+        return GeneralUtility::makeInstance(ObjectManager::class);
     }
 }

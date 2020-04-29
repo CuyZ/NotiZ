@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -59,7 +60,7 @@ class NotificationDispatcher implements SingletonInterface
      * @param EventDefinition $eventDefinition
      * @return Generator
      */
-    public function fetchNotifications(EventDefinition $eventDefinition)
+    public function fetchNotifications(EventDefinition $eventDefinition): Generator
     {
         $notificationTypes = $this->definition->getNotifications();
 
@@ -79,7 +80,7 @@ class NotificationDispatcher implements SingletonInterface
      * @param NotificationDefinition $notificationDefinition
      * @return Closure
      */
-    protected function getDispatchCallback(Notification $notification, NotificationDefinition $notificationDefinition)
+    protected function getDispatchCallback(Notification $notification, NotificationDefinition $notificationDefinition): Closure
     {
         return function (Event $event) use ($notification, $notificationDefinition) {
             /** @var Payload $payload */
@@ -103,7 +104,7 @@ class NotificationDispatcher implements SingletonInterface
      * @param NotificationDefinition $notificationDefinition
      * @return NotificationContainer
      */
-    protected function getNotificationContainer(NotificationDefinition $notificationDefinition)
+    protected function getNotificationContainer(NotificationDefinition $notificationDefinition): NotificationContainer
     {
         /** @var NotificationContainer $notificationContainer */
         $notificationContainer = GeneralUtility::makeInstance(NotificationContainer::class, $notificationDefinition);
@@ -119,7 +120,7 @@ class NotificationDispatcher implements SingletonInterface
      * @param NotificationDefinition $definition
      * @return ChannelDefinition[]
      */
-    protected function getChannels(Notification $notification, NotificationDefinition $definition)
+    protected function getChannels(Notification $notification, NotificationDefinition $definition): array
     {
         if ($notification instanceof MultipleChannelsNotification) {
             /*

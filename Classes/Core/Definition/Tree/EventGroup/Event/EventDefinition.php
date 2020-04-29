@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -75,7 +76,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
      * @param string $identifier
      * @param string $className
      */
-    public function __construct($identifier, $className)
+    public function __construct(string $identifier, string $className)
     {
         $this->identifier = $identifier;
         $this->className = $className;
@@ -84,7 +85,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     /**
      * @return string
      */
-    public function getIdentifier()
+    public function getIdentifier(): string
     {
         return $this->identifier;
     }
@@ -95,7 +96,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
      *
      * @return string
      */
-    public function getFullIdentifier()
+    public function getFullIdentifier(): string
     {
         return $this->getGroup()->getIdentifier() . '.' . $this->identifier;
     }
@@ -103,7 +104,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     /**
      * @return string
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         return LocalizationService::localize($this->label);
     }
@@ -111,7 +112,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return LocalizationService::localize($this->description);
     }
@@ -119,7 +120,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     /**
      * @return string
      */
-    public function getClassName()
+    public function getClassName(): string
     {
         return $this->className;
     }
@@ -127,7 +128,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     /**
      * @return EventConfiguration
      */
-    public function getConfiguration()
+    public function getConfiguration(): EventConfiguration
     {
         return $this->configuration;
     }
@@ -135,7 +136,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     /**
      * @return Connection
      */
-    public function getConnection()
+    public function getConnection(): Connection
     {
         return $this->connection;
     }
@@ -143,7 +144,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     /**
      * @return EventGroup
      */
-    public function getGroup()
+    public function getGroup(): EventGroup
     {
         /** @var EventGroup $eventGroup */
         $eventGroup = $this->getFirstParent(EventGroup::class);
@@ -156,7 +157,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
      * @param Notification $notification
      * @return PropertyDefinition
      */
-    public function getPropertyDefinition($propertyClassName, Notification $notification)
+    public function getPropertyDefinition(string $propertyClassName, Notification $notification): PropertyDefinition
     {
         return PropertyFactory::get()->getPropertyDefinition($propertyClassName, $this, $notification);
     }
@@ -166,7 +167,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
      *
      * @return int
      */
-    public function getNotificationNumber()
+    public function getNotificationNumber(): int
     {
         $counter = 0;
 

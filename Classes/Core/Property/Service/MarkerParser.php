@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -30,7 +31,7 @@ class MarkerParser implements SingletonInterface
      * @param Marker[] $markers
      * @return string
      */
-    public function replaceMarkers($string, array $markers)
+    public function replaceMarkers(string $string, array $markers): string
     {
         if (empty($markers)) {
             return $string;
@@ -64,7 +65,7 @@ class MarkerParser implements SingletonInterface
      * @param array $markers
      * @return array
      */
-    private function keyMarkersByName(array $markers)
+    private function keyMarkersByName(array $markers): array
     {
         $aux = [];
 
@@ -82,7 +83,7 @@ class MarkerParser implements SingletonInterface
      * @param $string
      * @return array
      */
-    private function matchMarkers($string)
+    private function matchMarkers($string): array
     {
         preg_match_all(
             '/{
@@ -104,7 +105,7 @@ class MarkerParser implements SingletonInterface
      * @param Marker $marker
      * @return mixed
      */
-    protected function getVariableValue($variable, $root, Marker $marker)
+    protected function getVariableValue(string $variable, string $root, Marker $marker)
     {
         // We need to have the root name to allow the ObjectAccess class to
         // retrieve the value.

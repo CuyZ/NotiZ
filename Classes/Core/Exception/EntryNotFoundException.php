@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -53,7 +54,7 @@ class EntryNotFoundException extends NotizException
      * @param string $identifier
      * @return self
      */
-    public static function definitionSourceNotFound($identifier)
+    public static function definitionSourceNotFound(string $identifier): self
     {
         return self::makeNewInstance(
             self::DEFINITION_SOURCE_NOT_FOUND,
@@ -66,7 +67,7 @@ class EntryNotFoundException extends NotizException
      * @param string $identifier
      * @return self
      */
-    public static function definitionProcessorNotFound($identifier)
+    public static function definitionProcessorNotFound(string $identifier): self
     {
         return self::makeNewInstance(
             self::DEFINITION_PROCESSOR_NOT_FOUND,
@@ -79,7 +80,7 @@ class EntryNotFoundException extends NotizException
      * @param string $identifier
      * @return self
      */
-    public static function definitionEventGroupNotFound($identifier)
+    public static function definitionEventGroupNotFound(string $identifier): self
     {
         return self::makeNewInstance(
             self::DEFINITION_EVENT_GROUP_NOT_FOUND,
@@ -92,7 +93,7 @@ class EntryNotFoundException extends NotizException
      * @param string $identifier
      * @return self
      */
-    public static function definitionEventNotFound($identifier)
+    public static function definitionEventNotFound(string $identifier): self
     {
         return self::makeNewInstance(
             self::DEFINITION_EVENT_NOT_FOUND,
@@ -105,7 +106,7 @@ class EntryNotFoundException extends NotizException
      * @param string $fullIdentifier
      * @return self
      */
-    public static function definitionEventFullIdentifierNotFound($fullIdentifier)
+    public static function definitionEventFullIdentifierNotFound(string $fullIdentifier): self
     {
         return self::makeNewInstance(
             self::DEFINITION_EVENT_FULL_IDENTIFIER_NOT_FOUND,
@@ -118,7 +119,7 @@ class EntryNotFoundException extends NotizException
      * @param string $identifier
      * @return self
      */
-    public static function definitionNotificationNotFound($identifier)
+    public static function definitionNotificationNotFound(string $identifier): self
     {
         return self::makeNewInstance(
             self::DEFINITION_NOTIFICATION_NOT_FOUND,
@@ -131,7 +132,7 @@ class EntryNotFoundException extends NotizException
      * @param string $identifier
      * @return self
      */
-    public static function entityEmailViewLayoutNotFound($identifier)
+    public static function entityEmailViewLayoutNotFound(string $identifier): self
     {
         return self::makeNewInstance(
             self::ENTITY_EMAIL_VIEW_LAYOUT_NOT_FOUND,
@@ -147,7 +148,7 @@ class EntryNotFoundException extends NotizException
      * @param object $object
      * @return self
      */
-    public static function propertyEntryNotFound($name, $eventClassName, $propertyType, $object)
+    public static function propertyEntryNotFound(string $name, string $eventClassName, string $propertyType, $object): self
     {
         return self::makeNewInstance(
             self::PROPERTY_ENTRY_NOT_FOUND,
@@ -160,7 +161,7 @@ class EntryNotFoundException extends NotizException
      * @param string $key
      * @return self
      */
-    public static function extensionConfigurationEntryNotFound($key)
+    public static function extensionConfigurationEntryNotFound(string $key): self
     {
         return self::makeNewInstance(
             self::EXTENSION_CONFIGURATION_ENTRY_NOT_FOUND,
@@ -173,7 +174,7 @@ class EntryNotFoundException extends NotizException
      * @param string $key
      * @return self
      */
-    public static function eventRunnerEntryNotFound($key)
+    public static function eventRunnerEntryNotFound(string $key): self
     {
         return self::makeNewInstance(
             self::EVENT_RUNNER_ENTRY_NOT_FOUND,
@@ -186,7 +187,7 @@ class EntryNotFoundException extends NotizException
      * @param array $allowedTypes
      * @return self
      */
-    public static function eventConnectionTypeMissing(array $allowedTypes)
+    public static function eventConnectionTypeMissing(array $allowedTypes): self
     {
         return self::makeNewInstance(
             self::EVENT_CONNECTION_TYPE_MISSING,
@@ -199,7 +200,7 @@ class EntryNotFoundException extends NotizException
      * @param string $botIdentifier
      * @return self
      */
-    public static function entitySlackBotNotFound($botIdentifier)
+    public static function entitySlackBotNotFound(string $botIdentifier): self
     {
         return self::makeNewInstance(
             self::ENTITY_SLACK_BOT_NOT_FOUND,
@@ -212,7 +213,7 @@ class EntryNotFoundException extends NotizException
      * @param string $identifier
      * @return self
      */
-    public static function entitySlackChannelDefinitionNotFound($identifier)
+    public static function entitySlackChannelDefinitionNotFound(string $identifier): self
     {
         return self::makeNewInstance(
             self::ENTITY_SLACK_CHANNEL_DEFINITION_NOT_FOUND,

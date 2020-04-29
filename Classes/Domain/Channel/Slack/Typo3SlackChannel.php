@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -23,7 +24,6 @@ use CuyZ\Notiz\Domain\Notification\Slack\Application\EntitySlack\Service\EntityS
 use CuyZ\Notiz\Domain\Notification\Slack\SlackNotification;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 class Typo3SlackChannel extends AbstractChannel
 {
@@ -85,12 +85,6 @@ class Typo3SlackChannel extends AbstractChannel
         $bot = $this->botMapper->getBot();
         $channels = $this->channelMapper->getChannels();
 
-        $callSlack = 'callSlack';
-
-        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '8.1.0', '<')) {
-            $callSlack = 'callSlackLegacy';
-        }
-
         foreach ($channels as $channel) {
             $webhookUrl = $channel->getWebhookUrl();
 
@@ -105,7 +99,7 @@ class Typo3SlackChannel extends AbstractChannel
                 $iconKey => $bot->getAvatar(),
             ];
 
-            $this->$callSlack($webhookUrl, $data);
+            $this->callSlack($webhookUrl, $data);
         }
     }
 
@@ -113,7 +107,7 @@ class Typo3SlackChannel extends AbstractChannel
      * @param string $webhookUrl
      * @param array $data
      */
-    protected function callSlack($webhookUrl, array $data)
+    protected function callSlack(string $webhookUrl, array $data)
     {
         /** @var RequestFactory $factory */
         $factory = GeneralUtility::makeInstance(RequestFactory::class);
@@ -131,31 +125,5 @@ class Typo3SlackChannel extends AbstractChannel
                 'body' => $data,
             ]
         );
-    }
-
-    /**
-     * @param string $webhookUrl
-     * @param array $data
-     */
-    protected function callSlackLegacy($webhookUrl, array $data)
-    {
-        $data = json_encode($data);
-
-        $curl = curl_init($webhookUrl);
-
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-        curl_setopt(
-            $curl,
-            CURLOPT_HTTPHEADER,
-            [
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen($data),
-            ]
-        );
-
-        curl_exec($curl);
     }
 }

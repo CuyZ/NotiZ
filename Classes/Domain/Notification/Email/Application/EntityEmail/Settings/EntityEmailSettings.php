@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -44,7 +45,7 @@ class EntityEmailSettings extends AbstractDefinitionComponent implements Notific
     /**
      * @return string
      */
-    public function getDefaultSender()
+    public function getDefaultSender(): string
     {
         return $this->defaultSender;
     }
@@ -52,7 +53,7 @@ class EntityEmailSettings extends AbstractDefinitionComponent implements Notific
     /**
      * @return GlobalRecipients\GlobalRecipients
      */
-    public function getGlobalRecipients()
+    public function getGlobalRecipients(): GlobalRecipients\GlobalRecipients
     {
         return $this->globalRecipients;
     }
@@ -60,7 +61,7 @@ class EntityEmailSettings extends AbstractDefinitionComponent implements Notific
     /**
      * @return View
      */
-    public function getView()
+    public function getView(): View
     {
         return $this->view;
     }

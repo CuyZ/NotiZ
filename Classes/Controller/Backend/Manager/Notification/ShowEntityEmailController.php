@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -19,7 +20,6 @@ namespace CuyZ\Notiz\Controller\Backend\Manager\Notification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\EntityEmailNotification;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Service\EntityEmailTemplateBuilder;
 use CuyZ\Notiz\Domain\Property\Email;
-use Exception;
 use Throwable;
 
 class ShowEntityEmailController extends ShowNotificationController
@@ -51,18 +51,15 @@ class ShowEntityEmailController extends ShowNotificationController
      * by the notification. Example values may be added to simulate fake markers
      * in the view.
      *
-     * @return string
+     * @return string|null [PHP 7.1]
      */
     public function previewAction()
     {
         try {
             return $this->getEmailPreview();
         } catch (Throwable $e) {
-        } catch (Exception $e) {
-            // @PHP7
+            return null;
         }
-
-        return null;
     }
 
     /**
@@ -76,7 +73,7 @@ class ShowEntityEmailController extends ShowNotificationController
     /**
      * @return string
      */
-    protected function getEmailPreview()
+    protected function getEmailPreview(): string
     {
         if (!$this->notification->hasEventDefinition()) {
             return $this->notification->getBody();
@@ -91,7 +88,7 @@ class ShowEntityEmailController extends ShowNotificationController
     /**
      * @return string
      */
-    public function getNotificationDefinitionIdentifier()
+    public function getNotificationDefinitionIdentifier(): string
     {
         return EntityEmailNotification::getDefinitionIdentifier();
     }

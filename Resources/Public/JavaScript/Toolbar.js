@@ -2,18 +2,23 @@ define([
     'jquery',
     'TYPO3/CMS/Backend/Icons',
     'TYPO3/CMS/Backend/Notification',
-    'TYPO3/CMS/Backend/Storage'
-], function ($, Icons, Notification, Storage) {
+    // @deprecated Must be removed when TYPO3 v8 is not supported anymore.
+    require.defined('TYPO3/CMS/Backend/Storage/Persistent')
+        ? 'TYPO3/CMS/Backend/Storage/Persistent'
+        : 'TYPO3/CMS/Backend/Storage',
+    'TYPO3/CMS/Backend/Viewport'
+], function ($, Icons, Notification, Storage, Viewport) {
     'use strict';
+
+    // @deprecated Must be removed when TYPO3 v8 is not supported anymore.
+    if (Storage.Persistent) {
+        Storage = Storage.Persistent;
+    }
 
     var selector = {
         toolbarContainer: '#cuyz-notiz-backend-toolbaritems-notificationstoolbaritem',
         menuContainer: '.dropdown-menu',
         toolbarIcon: '.toolbar-item-icon .t3js-icon',
-        /**
-         * @deprecated Must be removed when TYPO3 v7 is not supported anymore.
-         */
-        legacyToolbarIcon: '.dropdown-toggle span.icon',
         dataContainer: '.t3js-notiz-data-container',
         iconContainer: '.t3js-notiz-icon'
     };
@@ -70,7 +75,7 @@ define([
                     })
                     .fail(menu.error)
                     .always(function () {
-                        if (typeof callback !== 'undefined') {
+                        if (typeof callback === 'function') {
                             callback();
                         }
                     });
@@ -208,15 +213,11 @@ define([
                             return;
                         }
 
-                        var lastType = Storage.Persistent.isset(typeKey)
-                            ? Storage.Persistent.get(typeKey)
-                            : null;
-
                         /*
                          * We display the message only if it was not displayed
                          * previously.
                          */
-                        if (lastType === type) {
+                        if (Storage.get(typeKey) === type) {
                             return;
                         }
 
@@ -226,30 +227,17 @@ define([
                             Notification.success(title, body, 10);
                         }
 
-                        Storage.Persistent.set(typeKey, type);
+                        Storage.set(typeKey, type);
                     }
                 }
             }
         }
     })();
 
-    try {
-        /**
-         * Registers the menu update as an event for the whole TYPO3 toolbar.
-         */
-        TYPO3.Backend.Topbar.Toolbar.registerEvent(menu.update);
-    } catch (e) {
-        /**
-         * @deprecated Must be removed when TYPO3 v7 is not supported anymore.
-         *
-         * Steps to follow:
-         * - Add `TYPO3/CMS/Backend/Viewport` as dependency in the RequireJS
-         *   section of this file.
-         * - Use the following statement instead of this try/catch block:
-         *   `Viewport.Topbar.Toolbar.registerEvent(menu.update);`
-         */
-        $(menu.update);
-    }
+    /**
+     * Registers the menu update as an event for the whole TYPO3 toolbar.
+     */
+    Viewport.Topbar.Toolbar.registerEvent(menu.update);
 
     /**
      * Public API of this module.

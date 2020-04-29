@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /*
- * Copyright (C) 2018
+ * Copyright (C)
  * Nathan Boiron <nathan.boiron@gmail.com>
  * Romain Canon <romain.hydrocanon@gmail.com>
  *
@@ -25,9 +26,10 @@ use CuyZ\Notiz\Core\Property\PropertyEntry;
 use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Reflection\ClassReflection;
-use TYPO3\CMS\Extbase\Reflection\PropertyReflection;
+use TYPO3\CMS\Extbase\Reflection\ReflectionService;
 
 /**
  * This service allows filling properties entry in a property definition, from
@@ -137,6 +139,51 @@ class TagsPropertyService implements SingletonInterface
      */
     public function fillPropertyDefinition(PropertyDefinition $definition)
     {
+        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '9.0.0', '<')) {
+            $this->fillPropertyDefinitionLegacy($definition);
+            return;
+        }
+
+        $identifier = $this->getPropertyTagIdentifier($definition);
+
+        /** @var ReflectionService $reflectionService */
+        $reflectionService = $this->objectManager->get(ReflectionService::class);
+
+        $classSchema = $reflectionService->getClassSchema($definition->getEventClassName());
+
+        foreach ($classSchema->getProperties() as $name => $property) {
+            if (!isset($property['tags'][$identifier])) {
+                continue;
+            }
+
+            $entry = $definition->addEntry($name);
+
+            $label = $property['tags']['label'][0] ?? '';
+            $entry->setLabel($label);
+
+            /*
+             * @deprecated Must be removed when TYPO3 v9 is not supported
+             * anymore.
+             *
+             * @see https://review.typo3.org/c/58923/
+             */
+            $defaultProperty = isset($property['defaultValue'])
+                ? $property['defaultValue']
+                : (new \ReflectionClass($definition->getEventClassName()))->getDefaultProperties()[$name];
+
+            if ($defaultProperty) {
+                $entry->setValue($defaultProperty);
+            }
+        }
+    }
+
+    /**
+     * @param PropertyDefinition $definition
+     *
+     * @deprecated Must be removed when TYPO3 v8 is not supported anymore.
+     */
+    private function fillPropertyDefinitionLegacy(PropertyDefinition $definition)
+    {
         $identifier = $this->getPropertyTagIdentifier($definition);
 
         /** @var ClassReflection $eventReflection */
@@ -146,15 +193,21 @@ class TagsPropertyService implements SingletonInterface
         $eventDefaultProperties = $eventReflection->getDefaultProperties();
 
         foreach ($eventProperties as $classProperty) {
-            if ($classProperty->isTaggedWith($identifier)) {
-                $name = $classProperty->getName();
-                $entry = $definition->addEntry($name);
+            if (!$classProperty->isTaggedWith($identifier)) {
+                continue;
+            }
 
-                $entry->setLabel($this->getPropertyLabel($classProperty));
+            $name = $classProperty->getName();
+            $entry = $definition->addEntry($name);
 
-                if (null !== $eventDefaultProperties[$name]) {
-                    $entry->setValue($eventDefaultProperties[$name]);
-                }
+            $label = $classProperty->isTaggedWith('label')
+                ? reset($classProperty->getTagValues('label'))
+                : '';
+
+            $entry->setLabel($label);
+
+            if (null !== $eventDefaultProperties[$name]) {
+                $entry->setValue($eventDefaultProperties[$name]);
             }
         }
     }
@@ -171,7 +224,7 @@ class TagsPropertyService implements SingletonInterface
      * @throws InvalidClassException
      * @throws WrongFormatException
      */
-    public function setPropertyTagIdentifier($propertyType, $identifier)
+    public function setPropertyTagIdentifier(string $propertyType, string $identifier)
     {
         if (false === class_exists($propertyType)) {
             throw ClassNotFoundException::tagServicePropertyClassNotFound($propertyType, $identifier);
@@ -201,21 +254,10 @@ class TagsPropertyService implements SingletonInterface
     }
 
     /**
-     * @param PropertyReflection $property
-     * @return string
-     */
-    protected function getPropertyLabel(PropertyReflection $property)
-    {
-        return $property->isTaggedWith('label')
-            ? reset($property->getTagValues('label'))
-            : '';
-    }
-
-    /**
      * @param PropertyDefinition $definition
      * @return string
      */
-    protected function getPropertyTagIdentifier(PropertyDefinition $definition)
+    protected function getPropertyTagIdentifier(PropertyDefinition $definition): string
     {
         $type = $definition->getPropertyType();
 
@@ -228,7 +270,7 @@ class TagsPropertyService implements SingletonInterface
      * @param string $identifier
      * @return string
      */
-    private function getFormattedIdentifier($identifier)
+    private function getFormattedIdentifier(string $identifier): string
     {
         // Converting case: `fooBar` will become `foo_bar`.
         $identifier = GeneralUtility::camelCaseToLowerCaseUnderscored($identifier);
@@ -244,7 +286,7 @@ class TagsPropertyService implements SingletonInterface
      * @param string $className
      * @return string
      */
-    private function getClassShortName($className)
+    private function getClassShortName(string $className): string
     {
         // Getting the last backslash of the class name.
         $className = strrchr($className, '\\');
