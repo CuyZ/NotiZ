@@ -66,7 +66,7 @@
                             </nz:notification.link.create>
 
                             <f:link.action controller="Backend\Manager\ListNotifications"
-                                           arguments="{notificationIdentifier: notification.definition.identifier, filterEvent: eventDefinition.identifier}"
+                                           arguments="{notificationIdentifier: notification.definition.identifier, filterEvent: eventDefinition.fullIdentifier}"
                                            class="btn btn-default"
                                            title="{nz:t(key: 'Backend/Module/Manager:show_event.show_notifications_bound_to_event', args: '{0: notification.definition.label}')}">
                                 <core:icon identifier="actions-view" />
