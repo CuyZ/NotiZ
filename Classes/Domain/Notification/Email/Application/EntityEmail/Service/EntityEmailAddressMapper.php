@@ -184,7 +184,7 @@ class EntityEmailAddressMapper
 
         foreach ($this->eventRecipients as $recipient) {
             if (in_array($recipient->getName(), $recipientsIdentifiers)) {
-                $recipients = $this->recipientStringToArray($recipient->getValue());
+                $recipients = \array_merge($recipients, $this->recipientStringToArray($recipient->getValue()));
             }
         }
 
