@@ -1,5 +1,55 @@
 # ![NotiZ](ext_icon.svg) NotiZ – ChangeLog
 
+## v2.1.2 - 27 July 2020
+
+> ℹ️ *Click on a changelog entry to see more details.*
+### Bugs fixed
+
+<details>
+<summary>Fix editor access to notifications on root page</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *27 Jul 2020 / [aed0d0f](https://github.com/CuyZ/NotiZ/commit/aed0d0fd436771c828ba7a5cdf61f26fc956939b) / [#223](https://github.com/CuyZ/NotiZ/issues/223)*
+
+> 
+</details>
+
+<details>
+<summary>Send notification to all email recipients</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *30 Apr 2020 / [abb23d2](https://github.com/CuyZ/NotiZ/commit/abb23d22a240dfba30e1dafa2a5f2e2dfac968d1) / [#220](https://github.com/CuyZ/NotiZ/issues/220)*
+
+> When multiple event email recipients are selected, only one of them was
+> mapped. Fixes wrong array assignment and merges recipients.
+</details>
+
+<details>
+<summary>Fix event filter button</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *30 Apr 2020 / [59ec8f8](https://github.com/CuyZ/NotiZ/commit/59ec8f8ed5a7daacddb1742b54951409738815f2) / [#218](https://github.com/CuyZ/NotiZ/issues/218)*
+
+> 
+</details>
+
+### Others
+
+<details>
+<summary>Fix button label</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *27 Jul 2020 / [4cf5032](https://github.com/CuyZ/NotiZ/commit/4cf50322c744f065431472ea9966573ab3e4ee3b) / [#224](https://github.com/CuyZ/NotiZ/issues/224)*
+
+> 
+</details>
+
+<details>
+<summary>Increase required TYPO3 core version</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *12 Jun 2020 / [49b2c6a](https://github.com/CuyZ/NotiZ/commit/49b2c6ae19d247ea8576350ffe1b5efc83b8ece5) / [#221](https://github.com/CuyZ/NotiZ/issues/221)*
+
+> See advisory:
+> 
+> https://github.com/advisories/GHSA-pqg8-crx9-g8m4
+</details>
+
 ## v2.1.1 - 10 April 2020
 
 > ℹ️ *Click on a changelog entry to see more details.*
