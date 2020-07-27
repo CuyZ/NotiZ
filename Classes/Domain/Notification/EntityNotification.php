@@ -292,13 +292,18 @@ abstract class EntityNotification extends AbstractEntity implements Notification
             return false;
         }
 
+        if (!$backendUser->recordEditAccessInternals(self::getTableName(), $this->uid)) {
+            return false;
+        }
+
+        if ($this->pid === 0) {
+            return true;
+        }
+
         $page = Container::getPageRepository()->getPage($this->pid);
         $userPermissionOnPage = $backendUser->calcPerms($page);
 
-        return $backendUser->recordEditAccessInternals(self::getTableName(), $this->uid)
-            && ($this->pid === 0
-                || (bool)($userPermissionOnPage & Permission::CONTENT_EDIT)
-            );
+        return (bool)($userPermissionOnPage & Permission::CONTENT_EDIT);
     }
 
     /**
