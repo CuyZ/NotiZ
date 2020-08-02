@@ -173,9 +173,8 @@ abstract class AbstractChannel implements Channel
         $wrongNotificationClassNames = array_filter(
             static::$supportedNotifications,
             function ($supportedNotification) {
-                return !(class_exists($supportedNotification)
-                        || interface_exists($supportedNotification)
-                    ) || !in_array(Notification::class, class_implements($supportedNotification));
+                return !(class_exists($supportedNotification) || interface_exists($supportedNotification))
+                    || !in_array(Notification::class, class_implements($supportedNotification));
             }
         );
 
