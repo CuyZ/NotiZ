@@ -21,7 +21,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 class Url
 {
-    const DOCUMENTATION_ROOT = 'https://docs.typo3.org/typo3cms/extensions/notiz/%s/';
+    const DOCUMENTATION_ROOT = 'https://docs.typo3.org/p/cuyz/notiz/%s/en-us/';
     const DOCUMENTATION_CREATE_CUSTOM_EVENT = self::DOCUMENTATION_ROOT . '06-Administrator/02-CustomEvent/Index.html';
     const DOCUMENTATION_ADD_TYPOSCRIPT_DEFINITION = self::DOCUMENTATION_ROOT . '06-Administrator/01-Definition/02-AddFileDefinition.html';
 
