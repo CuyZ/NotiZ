@@ -12,7 +12,7 @@
                 <el>
                     <allowedCommands>
                         <TCEforms>
-                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/TYPO3/TYPO3.xlf:flex_form.allowed_commands.label</label>
+                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/TYPO3/TYPO3.xlf:cache_cleared.flex_form.allowed_commands.label</label>
                             <config>
                                 <type>select</type>
                                 <minitems>0</minitems>
