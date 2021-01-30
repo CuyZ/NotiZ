@@ -11,6 +11,13 @@
                 <source>An error occurred, the notification can not be edited. #LF# If the problem persists, contact your administrator.</source>
             </trans-unit>
 
+            <trans-unit id="regex_error.title">
+                <source>Invalid regex</source>
+            </trans-unit>
+            <trans-unit id="regex_error.description">
+                <source>The regex `%s` is invalid, please check the syntax again.</source>
+            </trans-unit>
+
             <!--####################################-->
             <!--###  SLACK TCA - NO BOT DEFINED  ###-->
             <!--####################################-->

@@ -29,6 +29,7 @@ use CuyZ\Notiz\Domain\Event\Blog\Processor\BlogNotificationProcessor;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use CuyZ\Notiz\Service\Hook\EventDefinitionRegisterer;
+use CuyZ\Notiz\Service\TCA\TcaRegexEval;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use Doctrine\Common\Annotations\AnnotationReader;
 use T3G\AgencyPack\Blog\Notification\CommentAddedNotification;
@@ -100,6 +101,7 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
         $this->overrideScheduler();
         $this->ignoreDoctrineAnnotation();
         $this->registerBlogNotificationProcessors();
+        $this->registerTcaEvalClasses();
     }
 
     /**
@@ -297,5 +299,10 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
         ) {
             $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['Blog']['notificationRegistry'][CommentAddedNotification::class][] = BlogNotificationProcessor::class;
         }
+    }
+
+    protected function registerTcaEvalClasses()
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][TcaRegexEval::class] = '';
     }
 }

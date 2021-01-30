@@ -74,6 +74,7 @@ final class RecordCreatedEvent extends AbstractEvent implements ProvidesExampleP
         }
 
         if ($table === 'tt_content'
+            && !empty($this->configuration['ctype'])
             && !preg_match($this->configuration['ctype'], $this->record['CType'])
         ) {
             $this->cancelDispatch();

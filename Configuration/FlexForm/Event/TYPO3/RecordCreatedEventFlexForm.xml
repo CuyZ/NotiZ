@@ -30,6 +30,7 @@
                             <displayCond>FIELD:table:=:tt_content</displayCond>
                             <config>
                                 <type>input</type>
+                                <eval>CuyZ\Notiz\Service\TCA\TcaRegexEval</eval>
                             </config>
                         </TCEforms>
                     </ctype>
