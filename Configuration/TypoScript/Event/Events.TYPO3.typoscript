@@ -52,6 +52,27 @@ notiz {
                         path = t3lib/class.t3lib_tcemain.php|clearCachePostProc
                     }
                 }
+
+                recordCreated {
+                    label = Event/TYPO3:record_created.title
+                    description = Event/TYPO3:record_created.description
+
+                    className = CuyZ\Notiz\Domain\Event\TYPO3\RecordCreatedEvent
+
+                    configuration {
+                        flexForm {
+                            file = EXT:notiz/Configuration/FlexForm/Event/TYPO3/RecordCreatedEventFlexForm.xml
+                        }
+                    }
+
+                    connection {
+                        type = hook
+
+                        path = t3lib/class.t3lib_tcemain.php|processDatamapClass
+
+                        method = processDatamap_afterDatabaseOperations
+                    }
+                }
             }
         }
     }

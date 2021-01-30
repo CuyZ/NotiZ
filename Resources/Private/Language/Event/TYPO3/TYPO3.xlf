@@ -43,6 +43,33 @@
                 <source>Version of the extension, for instance `1.4.2`.</source>
             </trans-unit>
 
+            <trans-unit id="record_created.title">
+                <source>Record created or updated</source>
+            </trans-unit>
+            <trans-unit id="record_created.description">
+                <source>This event will be triggered when any record is created or updated.</source>
+            </trans-unit>
+
+            <trans-unit id="record_created.flex_form.table.label">
+                <source>Record table</source>
+            </trans-unit>
+            <trans-unit id="record_created.flex_form.ctype.label">
+                <source>Filter on the content type (CType). Must be a valid regex, for instance `/text(pic)?/`</source>
+            </trans-unit>
+
+            <trans-unit id="record_created.marker.status">
+                <source>Save status (`new` or `update`)</source>
+            </trans-unit>
+            <trans-unit id="record_created.marker.table">
+                <source>Record table, for instance `tt_content`</source>
+            </trans-unit>
+            <trans-unit id="record_created.marker.uid">
+                <source>Record uid</source>
+            </trans-unit>
+            <trans-unit id="record_created.marker.record">
+                <source>Raw record array</source>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

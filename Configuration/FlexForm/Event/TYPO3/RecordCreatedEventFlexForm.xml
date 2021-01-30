@@ -1,0 +1,40 @@
+<T3DataStructure>
+    <meta>
+        <langChildren>0</langChildren>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Event: record created</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <table>
+                        <TCEforms>
+                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/TYPO3/TYPO3.xlf:record_created.flex_form.table.label</label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <itemsProcFunc>CuyZ\Notiz\Service\TCAService->getTablesList</itemsProcFunc>
+                                <size>10</size>
+                                <eval>required</eval>
+                            </config>
+                        </TCEforms>
+                    </table>
+
+                    <ctype>
+                        <TCEforms>
+                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/TYPO3/TYPO3.xlf:record_created.flex_form.ctype.label</label>
+                            <displayCond>FIELD:table:=:tt_content</displayCond>
+                            <config>
+                                <type>input</type>
+                            </config>
+                        </TCEforms>
+                    </ctype>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>
