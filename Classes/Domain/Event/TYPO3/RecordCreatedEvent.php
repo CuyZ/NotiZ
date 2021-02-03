@@ -20,7 +20,6 @@ namespace CuyZ\Notiz\Domain\Event\TYPO3;
 use CuyZ\Notiz\Core\Event\AbstractEvent;
 use CuyZ\Notiz\Core\Event\Support\ProvidesExampleProperties;
 use InvalidArgumentException;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 
 final class RecordCreatedEvent extends AbstractEvent implements ProvidesExampleProperties
@@ -65,13 +64,13 @@ final class RecordCreatedEvent extends AbstractEvent implements ProvidesExampleP
 
         if ($status === 'new') {
             $this->uid = $dataHandler->substNEWwithIDs[$recordId];
-            $this->record = $updatedFields;
         } elseif ($status === 'update') {
             $this->uid = $recordId;
-            $this->record = BackendUtility::getRecord($table, $recordId);
         } else {
             throw new InvalidArgumentException('$status must be `new` or `update`');
         }
+
+        $this->record = $dataHandler->recordInfo($table, $this->uid, '*');
 
         if ($table === 'tt_content'
             && !empty($this->configuration['ctype'])
