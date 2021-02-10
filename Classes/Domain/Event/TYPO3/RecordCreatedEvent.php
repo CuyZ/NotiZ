@@ -19,7 +19,6 @@ namespace CuyZ\Notiz\Domain\Event\TYPO3;
 
 use CuyZ\Notiz\Core\Event\AbstractEvent;
 use CuyZ\Notiz\Core\Event\Support\ProvidesExampleProperties;
-use InvalidArgumentException;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 
 final class RecordCreatedEvent extends AbstractEvent implements ProvidesExampleProperties
@@ -62,19 +61,20 @@ final class RecordCreatedEvent extends AbstractEvent implements ProvidesExampleP
             $this->cancelDispatch();
         }
 
-        if ($status === 'new') {
-            $this->uid = $dataHandler->substNEWwithIDs[$recordId];
-        } elseif ($status === 'update') {
-            $this->uid = $recordId;
-        } else {
-            throw new InvalidArgumentException('$status must be `new` or `update`');
-        }
-
+        $this->uid = $this->findUid($recordId, $table, $status, $dataHandler);
         $this->record = $dataHandler->recordInfo($table, $this->uid, '*');
+
+        $actualCType = '';
+
+        if (isset($updatedFields['CType']) && is_string($updatedFields['CType'])) {
+            $actualCType = $updatedFields['CType'];
+        } elseif (isset($this->record['CType']) && is_string($this->record['CType'])) {
+            $actualCType = $this->record['CType'];
+        }
 
         if ($table === 'tt_content'
             && !empty($this->configuration['ctype'])
-            && !preg_match($this->configuration['ctype'], $this->record['CType'])
+            && !preg_match($this->configuration['ctype'], $actualCType)
         ) {
             $this->cancelDispatch();
         }
@@ -95,5 +95,25 @@ final class RecordCreatedEvent extends AbstractEvent implements ProvidesExampleP
                 'starttime' => 1612014706,
             ],
         ];
+    }
+
+    private function findUid($id, $table, $status, DataHandler $dataHandler)
+    {
+        $uid = $id;
+
+        if ($status === 'new') {
+            if (!$dataHandler->substNEWwithIDs[$id]) {
+                //postProcessFieldArray
+                $uid = 0;
+            } else {
+                //afterDatabaseOperations
+                $uid = $dataHandler->substNEWwithIDs[$id];
+                if (isset($dataHandler->autoVersionIdMap[$table][$uid])) {
+                    $uid = $dataHandler->autoVersionIdMap[$table][$uid];
+                }
+            }
+        }
+
+        return (int)$uid;
     }
 }
