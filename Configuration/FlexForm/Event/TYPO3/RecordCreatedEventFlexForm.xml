@@ -34,6 +34,28 @@
                             </config>
                         </TCEforms>
                     </ctype>
+
+                    <statuses>
+                        <TCEforms>
+                            <label>LLL:EXT:notiz/Resources/Private/Language/Event/TYPO3/TYPO3.xlf:record_created.flex_form.statuses.label</label>
+                            <config>
+                                <type>select</type>
+                                <minitems>0</minitems>
+                                <maxitems>2</maxitems>
+                                <size>2</size>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:notiz/Resources/Private/Language/Event/TYPO3/TYPO3.xlf:record_created.flex_form.statuses.new.label</numIndex>
+                                        <numIndex index="1">new</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:notiz/Resources/Private/Language/Event/TYPO3/TYPO3.xlf:record_created.flex_form.statuses.update.label</numIndex>
+                                        <numIndex index="1">update</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </statuses>
                 </el>
             </ROOT>
         </sDEF>

@@ -56,6 +56,15 @@
             <trans-unit id="record_created.flex_form.ctype.label">
                 <source>Filter on the content type (CType). Must be a valid regex, for instance `/text(pic)?/`</source>
             </trans-unit>
+            <trans-unit id="record_created.flex_form.statuses.label">
+                <source>Save type (both by default)</source>
+            </trans-unit>
+            <trans-unit id="record_created.flex_form.statuses.new.label">
+                <source>Creation</source>
+            </trans-unit>
+            <trans-unit id="record_created.flex_form.statuses.update.label">
+                <source>Update</source>
+            </trans-unit>
 
             <trans-unit id="record_created.marker.status">
                 <source>Save status (`new` or `update`)</source>

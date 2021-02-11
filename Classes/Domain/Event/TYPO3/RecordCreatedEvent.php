@@ -18,6 +18,7 @@ declare(strict_types=1);
 namespace CuyZ\Notiz\Domain\Event\TYPO3;
 
 use CuyZ\Notiz\Core\Event\AbstractEvent;
+use CuyZ\Notiz\Core\Event\Exception\CancelEventDispatch;
 use CuyZ\Notiz\Core\Event\Support\ProvidesExampleProperties;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 
@@ -60,6 +61,8 @@ final class RecordCreatedEvent extends AbstractEvent implements ProvidesExampleP
         if ($table !== $this->configuration['table']) {
             $this->cancelDispatch();
         }
+
+        $this->checkStatus($status);
 
         $this->uid = $this->findUid($recordId, $table, $status, $dataHandler);
         $this->record = $dataHandler->recordInfo($table, $this->uid, '*');
@@ -115,5 +118,32 @@ final class RecordCreatedEvent extends AbstractEvent implements ProvidesExampleP
         }
 
         return (int)$uid;
+    }
+
+    /**
+     * @param string $status Either "new" or "update"
+     * @throws CancelEventDispatch
+     */
+    private function checkStatus($status)
+    {
+        if (!isset($this->configuration['statuses'])
+            || !is_string($this->configuration['statuses'])
+        ) {
+            return;
+        }
+
+        if (strlen($this->configuration['statuses']) === 0) {
+            return;
+        }
+
+        $statuses = explode(',', $this->configuration['statuses']);
+
+        if (empty($statuses)) {
+            return;
+        }
+
+        if (!in_array($status, $statuses)) {
+            $this->cancelDispatch();
+        }
     }
 }
