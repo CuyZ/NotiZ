@@ -21,6 +21,9 @@ use CuyZ\Notiz\Core\Event\AbstractEvent;
 use CuyZ\Notiz\Core\Event\Exception\CancelEventDispatch;
 use CuyZ\Notiz\Core\Event\Support\ProvidesExampleProperties;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\RootlineUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 final class RecordCreatedEvent extends AbstractEvent implements ProvidesExampleProperties
 {
@@ -81,6 +84,8 @@ final class RecordCreatedEvent extends AbstractEvent implements ProvidesExampleP
         ) {
             $this->cancelDispatch();
         }
+
+        $this->checkPid();
 
         $this->status = $status;
         $this->table = $table;
@@ -145,5 +150,40 @@ final class RecordCreatedEvent extends AbstractEvent implements ProvidesExampleP
         if (!in_array($status, $statuses)) {
             $this->cancelDispatch();
         }
+    }
+
+    private function checkPid()
+    {
+        if (!isset($this->configuration['pids'])) {
+            return;
+        }
+
+        if (!is_string($this->configuration['pids'])) {
+            return;
+        }
+
+        $authorizedPids = explode(',', $this->configuration['pids']);
+
+        $currentPid = $this->record['pid'];
+
+        /** @var ObjectManager $objectManager */
+        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+
+        /** @var RootlineUtility $rootlineUtility */
+        $rootlineUtility = $objectManager->get(RootlineUtility::class, $currentPid);
+
+        $rootline = array_map(function ($page) {
+            return $page['pid'];
+        }, $rootlineUtility->get());
+
+        $rootline[] = $currentPid;
+
+        foreach ($rootline as $rootlinePid) {
+            if (in_array($rootlinePid, $authorizedPids)) {
+                return;
+            }
+        }
+
+        $this->cancelDispatch();
     }
 }
