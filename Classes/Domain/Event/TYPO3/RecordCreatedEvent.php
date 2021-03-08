@@ -164,7 +164,19 @@ final class RecordCreatedEvent extends AbstractEvent implements ProvidesExampleP
 
         $authorizedPids = explode(',', $this->configuration['pids']);
 
-        $currentPid = $this->record['pid'];
+        $currentPid = (int)$this->record['pid'];
+
+        if ($currentPid === 0) {
+            if (count($authorizedPids) === 0) {
+                return;
+            }
+
+            if (in_array($currentPid, $authorizedPids)) {
+                return;
+            }
+
+            $this->cancelDispatch();
+        }
 
         /** @var ObjectManager $objectManager */
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
