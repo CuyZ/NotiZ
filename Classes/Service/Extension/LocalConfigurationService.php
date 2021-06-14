@@ -146,10 +146,8 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
      */
     protected function registerEventDefinitionHook()
     {
-        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '9.5.0', '<')) {
-            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['extTablesInclusion-PostProcessing'][] = EventDefinitionRegisterer::class;
-            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['checkAlternativeIdMethods-PostProc'][] = EventDefinitionRegisterer::class . '->processData';
-        }
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['extTablesInclusion-PostProcessing'][] = EventDefinitionRegisterer::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['checkAlternativeIdMethods-PostProc'][] = EventDefinitionRegisterer::class . '->processData';
     }
 
     /**
