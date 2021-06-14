@@ -18,6 +18,7 @@ declare(strict_types=1);
 namespace CuyZ\Notiz\Core\Support;
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 class Url
 {
@@ -84,9 +85,12 @@ class Url
      */
     private static function build(string $url): string
     {
+        $version = ExtensionManagementUtility::getExtensionVersion(NotizConstants::EXTENSION_KEY);
+        $versionArray = VersionNumberUtility::convertVersionStringToArray($version);
+
         return vsprintf(
             $url,
-            [ExtensionManagementUtility::getExtensionVersion(NotizConstants::EXTENSION_KEY)]
+            [$versionArray['version_main'] . '.' . $versionArray['version_sub']]
         );
     }
 }
