@@ -1,5 +1,57 @@
 # ![NotiZ](ext_icon.svg) NotiZ – ChangeLog
 
+## v2.1.3 - 14 June 2021
+
+> ℹ️ *Click on a changelog entry to see more details.*
+### Bugs fixed
+
+<details>
+<summary>Trigger event definition registration in more contexts</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *14 Jun 2021 / [5e4f479](https://github.com/CuyZ/NotiZ/commit/5e4f4793be51d5b01514d0a81e0297a615a8afd1) / [#235](https://github.com/CuyZ/NotiZ/issues/235)*
+
+> In some context — for instance in a CLI request — middlewares do not
+> run, meaning the event definition registration is not done. Because the
+> initialization will be run only once in any case, old hooks are used to
+> ensure a proper registration.
+> 
+> Fixes [#234](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/234)
+</details>
+
+<details>
+<summary>Fix links to the official extension documentation</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *14 Jun 2021 / [e685438](https://github.com/CuyZ/NotiZ/commit/e68543814e541c576418af85d31de79b989b7638) / [#233](https://github.com/CuyZ/NotiZ/issues/233)*
+
+> 
+</details>
+
+### Others
+
+<details>
+<summary>Fix <code>Caches cleared</code> event configuration label</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *14 Jun 2021 / [876f6f8](https://github.com/CuyZ/NotiZ/commit/876f6f843ed07ebf70565c75ae2f334ef37b4aab) / [#231](https://github.com/CuyZ/NotiZ/issues/231)*
+
+> 
+</details>
+
+<details>
+<summary>Update link to documentation</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *18 Nov 2020 / [f70e0e3](https://github.com/CuyZ/NotiZ/commit/f70e0e3885c77ff3f51d99af7537313fc1e5b071) / [#227](https://github.com/CuyZ/NotiZ/issues/227)*
+
+> 
+</details>
+
+<details>
+<summary>Update code style</summary>
+
+> *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *02 Aug 2020 / [5d32722](https://github.com/CuyZ/NotiZ/commit/5d32722867d31ffbf434b319feb8426094d14d07) / [#228](https://github.com/CuyZ/NotiZ/issues/228)*
+
+> 
+</details>
+
 ## v2.1.2 - 27 July 2020
 
 > ℹ️ *Click on a changelog entry to see more details.*
@@ -10,7 +62,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *27 Jul 2020 / [aed0d0f](https://github.com/CuyZ/NotiZ/commit/aed0d0fd436771c828ba7a5cdf61f26fc956939b) / [#223](https://github.com/CuyZ/NotiZ/issues/223)*
 
-> 
+>
 </details>
 
 <details>
@@ -27,7 +79,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *30 Apr 2020 / [59ec8f8](https://github.com/CuyZ/NotiZ/commit/59ec8f8ed5a7daacddb1742b54951409738815f2) / [#218](https://github.com/CuyZ/NotiZ/issues/218)*
 
-> 
+>
 </details>
 
 ### Others
@@ -37,7 +89,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *27 Jul 2020 / [4cf5032](https://github.com/CuyZ/NotiZ/commit/4cf50322c744f065431472ea9966573ab3e4ee3b) / [#224](https://github.com/CuyZ/NotiZ/issues/224)*
 
-> 
+>
 </details>
 
 <details>
@@ -46,7 +98,7 @@
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *12 Jun 2020 / [49b2c6a](https://github.com/CuyZ/NotiZ/commit/49b2c6ae19d247ea8576350ffe1b5efc83b8ece5) / [#221](https://github.com/CuyZ/NotiZ/issues/221)*
 
 > See advisory:
-> 
+>
 > https://github.com/advisories/GHSA-pqg8-crx9-g8m4
 </details>
 
@@ -63,7 +115,7 @@
 > With TYPO3 v9.5+ hooks have been deprecated in favor of middleware
 > usage. Some hooks would event not run as they used to in former
 > versions.
-> 
+>
 > This commit introduces a new middleware (which is used both in frontend
 > and backend) to register the event definitions.
 </details>
@@ -75,7 +127,7 @@
 
 > This solves an issue which would display an error message when trying to
 > create a notification with MySQL strict mode enabled.
-> 
+>
 > The "solution" that was written in the documentation was a work around
 > and not adapted at all, as explained in this post:
 > https://stackoverflow.com/a/50138799
@@ -88,7 +140,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *08 avr 2020 / [fba2218](https://github.com/CuyZ/NotiZ/commit/fba2218cf211eadd234f705ec5a70705c55901db) / [#216](https://github.com/CuyZ/NotiZ/issues/216)*
 
-> 
+>
 </details>
 
 <details>
@@ -112,7 +164,7 @@
 
 > A new event is added, it is triggered whenever a user submits a new
 > comment on a blog post.
-> 
+>
 > Both the comment and the post data can be used within a notification.
 </details>
 
@@ -125,7 +177,7 @@
 
 > Some love has been given to the notification translation inside TYPO3
 > backend.
-> 
+>
 > Unfortunately, since 2ee9d93 the translation is broken on TYPO3 8.7
 > instances. Because this issue is already fixed with TYPO3 9.5, no fix
 > has been done yet. Instead, a new section inside the "Known issues"
@@ -142,7 +194,7 @@
 > Because another field (`slack_channel`) can be used to select a channel
 > where to send the Slack message, the additional channel has no reason to
 > be required.
-> 
+>
 > Fixes [#204](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/204)
 </details>
 
@@ -192,12 +244,12 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *25 Jan 2019 / [383ad51](https://github.com/CuyZ/NotiZ/commit/383ad511c933b2e0a71e3fc87148be0740b41842)*
 
-> 
+>
 </details>
 
 ### Important
 
-**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:** 
+**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:**
 
 <details>
 <summary>Use strict types for PHP classes</summary>
@@ -205,7 +257,7 @@
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Jan 2019 / [f143481](https://github.com/CuyZ/NotiZ/commit/f143481e26877aea7598b2492e20df1b093dd263) / [#191](https://github.com/CuyZ/NotiZ/issues/191)*
 
 > The extension now uses PHP 7.0 strict types in its API.
-> 
+>
 > Third-party extensions which extend classes of the core may have to
 > adapt their code to follow the new methods signatures.
 </details>
@@ -225,7 +277,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *22 Jan 2019 / [e31cd20](https://github.com/CuyZ/NotiZ/commit/e31cd20d67116ab9c1907860e897e66e2792173a) / [#189](https://github.com/CuyZ/NotiZ/issues/189)*
 
-> 
+>
 </details>
 
 <details>
@@ -233,7 +285,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *22 Jan 2019 / [273c01a](https://github.com/CuyZ/NotiZ/commit/273c01a34a6e7bd39b697a0f18176a59ecdbec05) / [#188](https://github.com/CuyZ/NotiZ/issues/188)*
 
-> 
+>
 </details>
 
 <details>
@@ -241,7 +293,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *22 Jan 2019 / [9ea07ef](https://github.com/CuyZ/NotiZ/commit/9ea07efad666bb02c1d9ee8e66d15df58093dc00) / [#187](https://github.com/CuyZ/NotiZ/issues/187)*
 
-> 
+>
 </details>
 
 ## v1.1.0 - 20 January 2019
@@ -256,7 +308,7 @@
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *21 Dec 2018 / [af8cb88](https://github.com/CuyZ/NotiZ/commit/af8cb881221ca2e777aad5d4d5cd3c6205eada19) / [#176](https://github.com/CuyZ/NotiZ/issues/176)*
 
 > Two new variables become accessible in the template of an email:
-> 
+>
 > - `{notification}` – contains the notification instance
 > - `{event}` – contains the event instance
 </details>
@@ -268,7 +320,7 @@
 
 > The file definition sources are now sorted by the priority they are
 > given.
-> 
+>
 > Default definition files have a high priority, to easily allow other
 > files to override definition values.
 </details>
@@ -282,15 +334,15 @@
 
 > Some data providers were actually not acting on an actual notification
 > record, but modifying global TCA configuration instead.
-> 
+>
 > Because of this, TYPO3 core would misunderstand things, like FlexForm
 > configuration done dynamically. This would result in strange behaviour
 > like empty paragraph added on text columns with RTE inside FlexForm
 > fields.
-> 
+>
 > This commit separates these processors in a distinct namespace, with a
 > brand new role and interface.
-> 
+>
 > Fixes [#181](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/181)
 </details>
 
@@ -299,7 +351,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *20 Jan 2019 / [fb61c9b](https://github.com/CuyZ/NotiZ/commit/fb61c9b50110ba9416b58f3df3de5ff90afcec0a) / [#182](https://github.com/CuyZ/NotiZ/issues/182)*
 
-> 
+>
 </details>
 
 <details>
@@ -317,7 +369,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *20 Jan 2019 / [9296c10](https://github.com/CuyZ/NotiZ/commit/9296c1073d0a67ec91813fb2d0a8f3c9510b19cb) / [#185](https://github.com/CuyZ/NotiZ/issues/185)*
 
-> 
+>
 </details>
 
 <details>
@@ -325,7 +377,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *20 Jan 2019 / [9fba3d5](https://github.com/CuyZ/NotiZ/commit/9fba3d5daa99e499d02dffa238e8fcf2550c53ac) / [#183](https://github.com/CuyZ/NotiZ/issues/183)*
 
-> 
+>
 </details>
 
 <details>
@@ -341,7 +393,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *20 Jan 2019 / [a35699e](https://github.com/CuyZ/NotiZ/commit/a35699edea32ccfd0a1af7b7daedbfcd19987717) / [#177](https://github.com/CuyZ/NotiZ/issues/177)*
 
-> 
+>
 </details>
 
 <details>
@@ -349,7 +401,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *21 Dec 2018 / [6282982](https://github.com/CuyZ/NotiZ/commit/628298206d1b0e95b99b59d9b8c5cffa0fe8c9ce) / [#175](https://github.com/CuyZ/NotiZ/issues/175)*
 
-> 
+>
 </details>
 
 <details>
@@ -357,7 +409,7 @@
 
 > *by [ogrosko](mailto:ogrosko@gmail.com)* on *18 Dec 2018 / [9ca335d](https://github.com/CuyZ/NotiZ/commit/9ca335d3acd259a262ed39e49b971faccfb4f64f) / [#172](https://github.com/CuyZ/NotiZ/issues/172)*
 
-> 
+>
 </details>
 
 ## v1.0.1 - 11 December 2018
@@ -370,7 +422,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *11 Dec 2018 / [947af7e](https://github.com/CuyZ/NotiZ/commit/947af7e5ce5cc4f779826e1b1593b013d4f00823) / [#167](https://github.com/CuyZ/NotiZ/issues/167)*
 
-> 
+>
 </details>
 
 ## v1.0.0 - 10 December 2018
@@ -384,7 +436,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *26 nov 2018 / [eb40888](https://github.com/CuyZ/NotiZ/commit/eb408888ac5abb8d337b68a26e4364d4bd1e23b4) / [#159](https://github.com/CuyZ/NotiZ/issues/159)*
 
-> 
+>
 </details>
 
 <details>
@@ -392,7 +444,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *20 nov 2018 / [c2c83c6](https://github.com/CuyZ/NotiZ/commit/c2c83c6f3fdec122d17b2b7df6aff16fac3a0bd8) / [#158](https://github.com/CuyZ/NotiZ/issues/158)*
 
-> 
+>
 </details>
 
 <details>
@@ -403,24 +455,24 @@
 > Files containing definition values can now be added in a dramatically
 > more simple way: registering a definition component service is not
 > absolutely needed anymore.
-> 
+>
 > One can just add the following piece of code to the `ext_localconf.php`
 > file of his/her extension:
-> 
+>
 > ```
 > $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['NotiZ']['Definition']['Source'][\CuyZ\Notiz\Domain\Definition\Builder\Component\Source\TypoScriptDefinitionSource::class][]
 >     = 'EXT:my_extension/Configuration/TypoScript/MyCustomDefinition.typoscript';
 > ```
-> 
+>
 > Please note that the following method has been renamed. Calls to this
 > method must be changed as well.
-> 
+>
 > ```
 > \CuyZ\Notiz\Domain\Definition\Builder\Component\Source\TypoScriptDefinitionSource::addTypoScriptFilePath($path)
 > ```
-> 
+>
 > now becomes:
-> 
+>
 > ```
 > \CuyZ\Notiz\Domain\Definition\Builder\Component\Source\TypoScriptDefinitionSource::addFilePath($path)
 > ```
@@ -433,7 +485,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *06 déc 2018 / [ef0032a](https://github.com/CuyZ/NotiZ/commit/ef0032a62fefa067c851eec22dddb86b7061e27e) / [#165](https://github.com/CuyZ/NotiZ/issues/165)*
 
-> 
+>
 </details>
 
 <details>
@@ -441,7 +493,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *06 déc 2018 / [3e832c4](https://github.com/CuyZ/NotiZ/commit/3e832c4a404b137f28d76af07017339a5235bd4f) / [#163](https://github.com/CuyZ/NotiZ/issues/163)*
 
-> 
+>
 </details>
 
 <details>
@@ -458,7 +510,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *26 nov 2018 / [77a8bce](https://github.com/CuyZ/NotiZ/commit/77a8bcea0d1901b0fc11f8426bc4a388dae3e1cc) / [#160](https://github.com/CuyZ/NotiZ/issues/160)*
 
-> 
+>
 </details>
 
 <details>
@@ -473,7 +525,7 @@
 >     ['foo' => 'value 1'],
 > ];
 > ```
-> 
+>
 > It is now possible to use this marker: `{data.0.foo}`
 </details>
 
@@ -482,7 +534,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *12 nov 2018 / [e49cebf](https://github.com/CuyZ/NotiZ/commit/e49cebfa4306a367255e2870649fd293b605215c) / [#152](https://github.com/CuyZ/NotiZ/issues/152)*
 
-> 
+>
 </details>
 
 <details>
@@ -498,7 +550,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *24 oct 2018 / [662d569](https://github.com/CuyZ/NotiZ/commit/662d5696ba839659a2f8214e76e378ebd36e68b1) / [#147](https://github.com/CuyZ/NotiZ/issues/147)*
 
-> 
+>
 </details>
 
 <details>
@@ -520,7 +572,7 @@
 
 ### Important
 
-**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:** 
+**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:**
 
 <details>
 <summary>Merge languages files</summary>
@@ -529,7 +581,7 @@
 
 > The project started to have too many language files and it became hard
 > to understand where to put translations.
-> 
+>
 > Other languages were removed to instead use the TYPO3 translation
 > server: https://translation.typo3.org/
 </details>
@@ -541,13 +593,13 @@
 
 > Adding new definition components (source or processor) doesn't require
 > an identifier anymore.
-> 
+>
 > Because these components are actually classes that must implement their
 > own interfaces, the class name itself is a unique identifier.
-> 
+>
 > Current code that uses the following methods should remove the first
 > parameter and leave the second one:
-> 
+>
 > ```
 > \CuyZ\Notiz\Core\Definition\Builder\Component\DefinitionComponents::addSource($className)
 > \CuyZ\Notiz\Core\Definition\Builder\Component\DefinitionComponents::addProcessor($className)
@@ -569,7 +621,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *25 oct 2018 / [d163c65](https://github.com/CuyZ/NotiZ/commit/d163c6591aff1adc95cac64000c4310ec90cfa31) / [#149](https://github.com/CuyZ/NotiZ/issues/149)*
 
-> 
+>
 </details>
 
 <details>
@@ -577,7 +629,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *18 oct 2018 / [74e2834](https://github.com/CuyZ/NotiZ/commit/74e2834f0180e819c575b5688b30fe8b50f5dd9b) / [#145](https://github.com/CuyZ/NotiZ/issues/145)*
 
-> 
+>
 </details>
 
 <details>
@@ -587,10 +639,10 @@
 
 > Changes the way the definition error is handled within entity
 > notifications.
-> 
+>
 > The old way consisted in adding display conditions to every field to
 > check if the definition contains error.
-> 
+>
 > Now, a data provider does the same job, and replaces the whole TCA if an
 > error is found.
 </details>
@@ -616,7 +668,7 @@
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *01 Oct 2018 / [a1f6baf](https://github.com/CuyZ/NotiZ/commit/a1f6bafe6f45f31c2ca62dee7fd5e225f8450bfc) / [#105](https://github.com/CuyZ/NotiZ/issues/105)*
 
 > Adds an entry to the status report handled by TYPO3.
-> 
+>
 > If an error is found in the definition, an error report is added to the
 > queue, making it easier for administrators to see that something is
 > wrong with the extension.
@@ -630,11 +682,11 @@
 > This module gives access to different views, where notifications and
 > events can be managed easily. The usefulness is to centralise every
 > notification-related operation in a single place.
-> 
+>
 > Editors can now create and edit notifications in a very simple and
 > intuitive way. They can also see a detailed view of each existing
 > record, including a preview area.
-> 
+>
 > It is advised to configure editors right access to the new module, as
 > well as their abilities to create/see every type of notification.
 </details>
@@ -644,7 +696,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *19 Sep 2018 / [ae87c82](https://github.com/CuyZ/NotiZ/commit/ae87c82df28e87793d2f446222505c105b94b4a4) / [#115](https://github.com/CuyZ/NotiZ/issues/115)*
 
-> 
+>
 </details>
 
 <details>
@@ -655,15 +707,15 @@
 > A periodic asynchronous refresh has been added to the notification
 > toolbar. These Ajax request will reload notification information every
 > 5 minutes in normal time, and every 30 seconds if an error occurred.
-> 
+>
 > Buttons have been added in the toolbar, allowing a manual refresh.
-> 
+>
 > One thing to note is that the first rendering of the toolbar (done
 > during the TYPO3 backend rendering) does not contain information about
 > existing notifications anymore (they will be fetched asynchronously).
 > This can slightly improve performance when a lot of notifications were
 > to be listed.
-> 
+>
 > Co-authored-by: Nathan Boiron <nathan.boiron@gmail.com>
 </details>
 
@@ -672,9 +724,9 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *12 Sep 2018 / [5a20a0b](https://github.com/CuyZ/NotiZ/commit/5a20a0b1193b0b96748b2c0dbb83125d02ed76c2) / [#107](https://github.com/CuyZ/NotiZ/issues/107)*
 
-> This view-helper is needed to stay compatible with TYPO3 v7 and v8 
+> This view-helper is needed to stay compatible with TYPO3 v7 and v8
 > without having to check the version every time.
-> 
+>
 > In TYPO3 v7: `<f:be.buttons.icon icon="foo" />`
 > In TYPO3 v8: `<core:icon identifier="foo" />`
 > This ViewHelper: `<nz:core.icon identifier="foo" />`
@@ -704,7 +756,7 @@
 
 > The old `BackendUriBuilder` has been removed for a module manager to
 > take its place.
-> 
+>
 > This will help new incoming backend modules to have their own handlers.
 </details>
 
@@ -713,7 +765,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *18 May 2018 / [5256b85](https://github.com/CuyZ/NotiZ/commit/5256b85e4ef942f5d4f94027372d0cc57b5616bd) / [#90](https://github.com/CuyZ/NotiZ/issues/90)*
 
-> 
+>
 </details>
 
 <details>
@@ -722,7 +774,7 @@
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *18 May 2018 / [af3c379](https://github.com/CuyZ/NotiZ/commit/af3c3797d829ad9bce57e0e488c6a1de61c1fa92) / [#89](https://github.com/CuyZ/NotiZ/issues/89)*
 
 > Can be used for instance to add markers to every notification.
-> 
+>
 > See documentation for more information.
 </details>
 
@@ -751,7 +803,7 @@
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *08 May 2018 / [1e4b2d1](https://github.com/CuyZ/NotiZ/commit/1e4b2d1abba9068926aa37a1fcc9491fbc60afbb) / [#80](https://github.com/CuyZ/NotiZ/issues/80)*
 
 > Allows getting more information about a notification.
-> 
+>
 > A description text has been added for existing notifications.
 </details>
 
@@ -761,7 +813,7 @@
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *08 May 2018 / [ffa1cbf](https://github.com/CuyZ/NotiZ/commit/ffa1cbf340d6b07f478bae143763e380f49ec778) / [#79](https://github.com/CuyZ/NotiZ/issues/79)*
 
 > Allows getting more information about an event.
-> 
+>
 > A description text has been added for existing events.
 </details>
 
@@ -782,7 +834,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Sep 2018 / [affb6c4](https://github.com/CuyZ/NotiZ/commit/affb6c474f878e0830cd9bab4ea35c0bec6bdaf8) / [#128](https://github.com/CuyZ/NotiZ/issues/128)*
 
-> 
+>
 </details>
 
 <details>
@@ -790,7 +842,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *26 Sep 2018 / [7bc4999](https://github.com/CuyZ/NotiZ/commit/7bc4999cc401eaa700f530a1b116cc7c62f8a090) / [#126](https://github.com/CuyZ/NotiZ/issues/126)*
 
-> 
+>
 </details>
 
 <details>
@@ -798,7 +850,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *25 Sep 2018 / [48f7481](https://github.com/CuyZ/NotiZ/commit/48f74816817eea0861b7f29203853ce86b6d58c8) / [#123](https://github.com/CuyZ/NotiZ/issues/123)*
 
-> 
+>
 </details>
 
 <details>
@@ -806,7 +858,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *05 Sep 2018 / [97805e5](https://github.com/CuyZ/NotiZ/commit/97805e5ab2859ea517f17f537cbc9947acefd058) / [#103](https://github.com/CuyZ/NotiZ/issues/103)*
 
-> 
+>
 </details>
 
 <details>
@@ -814,7 +866,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *05 Sep 2018 / [02e23f4](https://github.com/CuyZ/NotiZ/commit/02e23f43f392e17c3c93dd37649634eac661ca0f) / [#102](https://github.com/CuyZ/NotiZ/issues/102)*
 
-> 
+>
 </details>
 
 <details>
@@ -830,7 +882,7 @@
 
 ### Important
 
-**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:** 
+**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:**
 
 <details>
 <summary>Add way to check if notification has event definition</summary>
@@ -838,7 +890,7 @@
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *26 Sep 2018 / [a28b914](https://github.com/CuyZ/NotiZ/commit/a28b914e7d4ed8417fda3a6becd96fd3577ddb97) / [#127](https://github.com/CuyZ/NotiZ/issues/127)*
 
 > This patch adds a method to check if a notification has an event definition bound to it.
-> 
+>
 > In addition, the getter now throws an exception if the notification doesn't have an event definition.
 </details>
 
@@ -847,7 +899,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *05 Sep 2018 / [a48ee7e](https://github.com/CuyZ/NotiZ/commit/a48ee7e1279c94824e859d6a31a0373d0b7de103) / [#104](https://github.com/CuyZ/NotiZ/issues/104)*
 
-> 
+>
 </details>
 
 <details>
@@ -884,9 +936,9 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *01 Oct 2018 / [f489900](https://github.com/CuyZ/NotiZ/commit/f48990070f1229cfa8f2dbdfcf74ac11a722e476) / [#137](https://github.com/CuyZ/NotiZ/issues/137)*
 
-> The format of the automatic changelog script has changed, for a better 
+> The format of the automatic changelog script has changed, for a better
 > rendering on GitHub.
-> 
+>
 > Existing changelog entries have been updated as well.
 </details>
 
@@ -895,7 +947,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *30 Sep 2018 / [6d85f7a](https://github.com/CuyZ/NotiZ/commit/6d85f7a92f0ccf9440fe83692605419fcaed68bf) / [#136](https://github.com/CuyZ/NotiZ/issues/136)*
 
-> 
+>
 </details>
 
 <details>
@@ -903,7 +955,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Sep 2018 / [22188ac](https://github.com/CuyZ/NotiZ/commit/22188ac95709c71118388c02c70a4b207cdb8a2d) / [#134](https://github.com/CuyZ/NotiZ/issues/134)*
 
-> 
+>
 </details>
 
 <details>
@@ -911,7 +963,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Sep 2018 / [2ee9d93](https://github.com/CuyZ/NotiZ/commit/2ee9d933e03167bca451a94ab404d4c04857053a) / [#133](https://github.com/CuyZ/NotiZ/issues/133)*
 
-> 
+>
 </details>
 
 <details>
@@ -919,7 +971,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Sep 2018 / [8d7930a](https://github.com/CuyZ/NotiZ/commit/8d7930a7e9abdf251de1c19554e20bbec9b24d39) / [#132](https://github.com/CuyZ/NotiZ/issues/132)*
 
-> 
+>
 </details>
 
 <details>
@@ -935,7 +987,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Sep 2018 / [b8e7c41](https://github.com/CuyZ/NotiZ/commit/b8e7c41647b929c7bd9a64697def15e6816977a7) / [#130](https://github.com/CuyZ/NotiZ/issues/130)*
 
-> 
+>
 </details>
 
 <details>
@@ -943,7 +995,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *29 Sep 2018 / [9f58f53](https://github.com/CuyZ/NotiZ/commit/9f58f538a6dc72c6182bc64ea322ea8446bffbca) / [#129](https://github.com/CuyZ/NotiZ/issues/129)*
 
-> 
+>
 </details>
 
 <details>
@@ -951,7 +1003,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *25 Sep 2018 / [cdae4b6](https://github.com/CuyZ/NotiZ/commit/cdae4b6782d024cc920d580460a5d939c3d10962) / [#125](https://github.com/CuyZ/NotiZ/issues/125)*
 
-> 
+>
 </details>
 
 <details>
@@ -959,7 +1011,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *25 Sep 2018 / [8ce03cb](https://github.com/CuyZ/NotiZ/commit/8ce03cb4f7089bce824c310f855b6114b614bcb1) / [#124](https://github.com/CuyZ/NotiZ/issues/124)*
 
-> 
+>
 </details>
 
 <details>
@@ -967,7 +1019,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *25 Sep 2018 / [8e746ea](https://github.com/CuyZ/NotiZ/commit/8e746ea084f943788121247eed68905ba33262b0) / [#122](https://github.com/CuyZ/NotiZ/issues/122)*
 
-> 
+>
 </details>
 
 <details>
@@ -975,7 +1027,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *25 Sep 2018 / [e9c972a](https://github.com/CuyZ/NotiZ/commit/e9c972a817a7e2588a0bfae53ca75335991d2362) / [#121](https://github.com/CuyZ/NotiZ/issues/121)*
 
-> 
+>
 </details>
 
 <details>
@@ -983,7 +1035,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *25 Sep 2018 / [ddad7d2](https://github.com/CuyZ/NotiZ/commit/ddad7d214decbcbc4accbc44e6d62d4024a8cff7) / [#120](https://github.com/CuyZ/NotiZ/issues/120)*
 
-> 
+>
 </details>
 
 <details>
@@ -991,7 +1043,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *23 Sep 2018 / [8c9c0f6](https://github.com/CuyZ/NotiZ/commit/8c9c0f66aba089c6eca6879b3a8538ad7d3c7495) / [#119](https://github.com/CuyZ/NotiZ/issues/119)*
 
-> 
+>
 </details>
 
 <details>
@@ -999,7 +1051,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *23 Sep 2018 / [4258a99](https://github.com/CuyZ/NotiZ/commit/4258a99b9c7d8bdfb60d02b4bb201aeca992dd19) / [#118](https://github.com/CuyZ/NotiZ/issues/118)*
 
-> 
+>
 </details>
 
 <details>
@@ -1007,7 +1059,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *23 Sep 2018 / [7720b6c](https://github.com/CuyZ/NotiZ/commit/7720b6c0c36c5c72a943a4ba8eeead013907d70d) / [#117](https://github.com/CuyZ/NotiZ/issues/117)*
 
-> 
+>
 </details>
 
 <details>
@@ -1015,7 +1067,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *23 Sep 2018 / [c45523a](https://github.com/CuyZ/NotiZ/commit/c45523a2ef5d7be49b012a1c396af652aa6d824b) / [#116](https://github.com/CuyZ/NotiZ/issues/116)*
 
-> 
+>
 </details>
 
 <details>
@@ -1023,7 +1075,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *19 Sep 2018 / [1d8ec75](https://github.com/CuyZ/NotiZ/commit/1d8ec758ccdab6c1278d805943e303580c7b3402) / [#114](https://github.com/CuyZ/NotiZ/issues/114)*
 
-> 
+>
 </details>
 
 <details>
@@ -1031,7 +1083,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *19 Sep 2018 / [3544658](https://github.com/CuyZ/NotiZ/commit/35446589d9375a7c26394b8914020143239e770d) / [#113](https://github.com/CuyZ/NotiZ/issues/113)*
 
-> 
+>
 </details>
 
 <details>
@@ -1039,7 +1091,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *19 Sep 2018 / [e3e513c](https://github.com/CuyZ/NotiZ/commit/e3e513cb9da1361292edaeb05c70958509c0cc2f) / [#112](https://github.com/CuyZ/NotiZ/issues/112)*
 
-> 
+>
 </details>
 
 <details>
@@ -1055,7 +1107,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *19 Sep 2018 / [08f33a2](https://github.com/CuyZ/NotiZ/commit/08f33a22081190a565d7a7722c11a49a2b58a7fd) / [#110](https://github.com/CuyZ/NotiZ/issues/110)*
 
-> 
+>
 </details>
 
 <details>
@@ -1063,7 +1115,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *19 Sep 2018 / [b44614b](https://github.com/CuyZ/NotiZ/commit/b44614ba16a3cf9f332379b5d94f871a9d951b76) / [#109](https://github.com/CuyZ/NotiZ/issues/109)*
 
-> 
+>
 </details>
 
 <details>
@@ -1079,7 +1131,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *30 Aug 2018 / [359439c](https://github.com/CuyZ/NotiZ/commit/359439c41b0b5be16339fe5505248486f5169b29) / [#98](https://github.com/CuyZ/NotiZ/issues/98)*
 
-> 
+>
 </details>
 
 <details>
@@ -1087,7 +1139,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *28 Aug 2018 / [8d09171](https://github.com/CuyZ/NotiZ/commit/8d09171c5b0433fdab7049ebeca1d48a86347bf2) / [#96](https://github.com/CuyZ/NotiZ/issues/96)*
 
-> 
+>
 </details>
 
 <details>
@@ -1095,7 +1147,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *28 Aug 2018 / [2c7da20](https://github.com/CuyZ/NotiZ/commit/2c7da20eb379bfe7b6497be7250e295325e981aa) / [#95](https://github.com/CuyZ/NotiZ/issues/95)*
 
-> 
+>
 </details>
 
 <details>
@@ -1103,7 +1155,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *28 Aug 2018 / [94c9d2f](https://github.com/CuyZ/NotiZ/commit/94c9d2fe3a7155585e0e997e8b5e2e2ef6bbc3fc) / [#94](https://github.com/CuyZ/NotiZ/issues/94)*
 
-> 
+>
 </details>
 
 <details>
@@ -1111,7 +1163,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *28 Aug 2018 / [1fda232](https://github.com/CuyZ/NotiZ/commit/1fda2329c4e2208f58dfccd4ea42ce96e856e0c6) / [#93](https://github.com/CuyZ/NotiZ/issues/93)*
 
-> 
+>
 </details>
 
 <details>
@@ -1119,7 +1171,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *08 May 2018 / [706de34](https://github.com/CuyZ/NotiZ/commit/706de34409e414dc29decb54f10bccb448b0565e) / [#86](https://github.com/CuyZ/NotiZ/issues/86)*
 
-> 
+>
 </details>
 
 <details>
@@ -1127,7 +1179,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *02 May 2018 / [9deb43a](https://github.com/CuyZ/NotiZ/commit/9deb43a414972381806103a8564073de793cede7) / [#84](https://github.com/CuyZ/NotiZ/issues/84)*
 
-> 
+>
 </details>
 
 <details>
@@ -1151,16 +1203,16 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *25 Apr 2018 / [6454dbe](https://github.com/CuyZ/NotiZ/commit/6454dbe85da09d6e44d549326549461c1f54ab7b) / [#75](https://github.com/CuyZ/NotiZ/issues/75)*
 
-> This new notification type can be used in the TYPO3 backend in the same 
+> This new notification type can be used in the TYPO3 backend in the same
 > way as the email and log notifications.
-> 
-> You may send your messages in channels or to specific users of your 
-> Slack instance, whenever any pre-configured event is triggered and 
+>
+> You may send your messages in channels or to specific users of your
+> Slack instance, whenever any pre-configured event is triggered and
 > dispatched by NotiZ.
-> 
-> You will need to properly configure the definition to bind your Slack 
+>
+> You will need to properly configure the definition to bind your Slack
 > instance with NotiZ, please read documentation for more details.
-> 
+>
 > Co-authored-by: Simon Praetorius <simon@praetorius.me>
 </details>
 
@@ -1171,13 +1223,13 @@
 
 > You may need to use NotiZ definition to initialize things in your own
 > extension.
-> 
+>
 > A signal will be dispatched when the definition object is complete,
 > **only when no error was found when it was built**.
-> 
+>
 > Note that you won't be able to modify the definition, only access its
 > values.
-> 
+>
 > More information in the documentation.
 </details>
 
@@ -1190,14 +1242,14 @@
 
 > The notifications that were disabled in the backend were showing a fatal
 > error on edition.
-> 
+>
 > This commit fixes the issue and disabled notifications can now be edited
 > properly again.
 </details>
 
 ### Important
 
-**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:** 
+**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:**
 
 <details>
 <summary>Separate properties handling from events</summary>
@@ -1205,41 +1257,41 @@
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *25 Apr 2018 / [278ea81](https://github.com/CuyZ/NotiZ/commit/278ea81f6b95cbc152560d66abb44729336cc01f) / [#77](https://github.com/CuyZ/NotiZ/issues/77)*
 
 > Some events may exist without the need of having properties handling.
-> 
+>
 > Methods in the event interface concerning the properties have been moved
 > to a new interface `HasProperties` which slightly alter how the system
 > works.
-> 
+>
 > This interface is implemented by default in the `AbstractEvent`, so this
 > changes nothing for events that extend this class (unless they override
 > old methods that have been changed/deleted).
-> 
+>
 > Some major refactoring works have been made so this might break your
 > installation. In this case, please read carefully the class
 > documentation blocks.
-> 
+>
 > **Deleted methods**
-> 
+>
 > - `\CuyZ\Notiz\Core\Event\Event::getProperties`
-> 
+>
 >   This method was unnecessary and won't be replaced.
-> 
+>
 > - `\CuyZ\Notiz\Core\Event\Event::buildPropertyDefinition`
-> 
+>
 >   A new way of building the property definition is done using:
 >   `\CuyZ\Notiz\Core\Event\Support\HasProperties::getPropertyBuilder`
-> 
+>
 > **Moved methods**
-> 
+>
 > - `\CuyZ\Notiz\Core\Event\Event::fillPropertyEntries`
-> 
+>
 >   This method has been moved to:
 >   `\CuyZ\Notiz\Core\Event\Support\HasProperties::fillPropertyEntries`
-> 
+>
 > **Moved classes**
-> 
+>
 > - `\CuyZ\Notiz\Core\Property\Support\PropertyBuilder`
-> 
+>
 >   This class has been moved to:
 >   `\CuyZ\Notiz\Core\Property\Builder\PropertyBuilder`
 </details>
@@ -1251,7 +1303,7 @@
 
 > *by [Lukas Niestroj](mailto:niestrojlukas@gmail.com)* on *14 Mar 2018 / [5ff61f4](https://github.com/CuyZ/NotiZ/commit/5ff61f496abeb25e4fee01b35af1de657677c980) / [#73](https://github.com/CuyZ/NotiZ/issues/73)*
 
-> 
+>
 </details>
 
 <details>
@@ -1259,7 +1311,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *09 Mar 2018 / [687d8f9](https://github.com/CuyZ/NotiZ/commit/687d8f9e4e56daf1fdecbbf398dd840525e7f594) / [#69](https://github.com/CuyZ/NotiZ/issues/69)*
 
-> 
+>
 </details>
 
 <details>
@@ -1267,7 +1319,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *09 Mar 2018 / [6fc8753](https://github.com/CuyZ/NotiZ/commit/6fc87537f383d787427a4fa4d9f4c2085f44feba) / [#68](https://github.com/CuyZ/NotiZ/issues/68)*
 
-> 
+>
 </details>
 
 <details>
@@ -1275,7 +1327,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *04 Mar 2018 / [cd36f7d](https://github.com/CuyZ/NotiZ/commit/cd36f7d1841d8f1ecc2b8180be08f06cbfc80d98) / [#67](https://github.com/CuyZ/NotiZ/issues/67)*
 
-> 
+>
 </details>
 
 ## v0.4.0 - 01 March 2018
@@ -1291,7 +1343,7 @@
 
 > Adds a new finisher "Dispatch a notification" that can be added to a
 > form definition (accessible in the form editor backend module).
-> 
+>
 > A new event "A form was submitted" is now accessible for notifications,
 > and provides several markers as well as email recipients based on
 > the submitted form values.
@@ -1304,13 +1356,13 @@
 
 > This interface must be implemented by classes intended to build property
 > definitions for a given event.
-> 
+>
 > To create a new builder, you need to have a class with the same name as
 > your event at which you append `PropertyBuilder`. The method `build` of
 > your builder will then be automatically called when needed.
-> 
+>
 > Example:
-> 
+>
 > `MyVendor\MyExtension\Domain\Event\MyEvent` -> Event
 > `MyVendor\MyExtension\Domain\Event\MyEventPropertyBuilder` -> Builder
 </details>
@@ -1322,15 +1374,15 @@
 
 > If you need to do advanced modification on your mail, you can use a PHP
 > signal. Register the slot in your `ext_localconf.php` file :
-> 
+>
 > ```php
 > <?php
 > // my_extension/ext_localconf.php
-> 
+>
 > $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
 >     \TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class
 > );
-> 
+>
 > $dispatcher->connect(
 >     \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::class,
 >     \CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder::COMPONENTS_SIGNAL,
@@ -1338,20 +1390,20 @@
 >     'registerDefinitionComponents'
 > );
 > ```
-> 
+>
 > Then modify your mail object as you need:
-> 
+>
 > ```php
 > <?php
 > // my_extension/Classes/Service/Mail/MailTransformer.php
-> 
+>
 > namespace Vendor\MyExtension\Service\Mail;
-> 
+>
 > use CuyZ\Notiz\Core\Channel\Payload;
 > use TYPO3\CMS\Core\Mail\MailMessage;
 > use TYPO3\CMS\Core\SingletonInterface;
 > use TYPO3\CMS\Core\Utility\GeneralUtility;
-> 
+>
 > class MailTransformer implements SingletonInterface
 > {
 >     /**
@@ -1361,16 +1413,16 @@
 >     public function transform(MailMessage $mailMessage, Payload $payload)
 >     {
 >         $applicationContext = GeneralUtility::getApplicationContext();
-> 
+>
 >         // We don't change anything in production.
 >         if ($applicationContext->isProduction()) {
 >             return;
 >         }
-> 
+>
 >         // Add a prefix to the mail subject, containing the application context.
 >         $subject = "[$applicationContext][NotiZ] " . $mailMessage->getSubject();
 >         $mailMessage->setSubject($subject);
-> 
+>
 >         // When not in production, we want the mail to be sent only to us.
 >         $mailMessage->setTo('webmaster@acme.com');
 >         $mailMessage->setCc([]);
@@ -1386,37 +1438,37 @@
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *21 Feb 2018 / [858391b](https://github.com/CuyZ/NotiZ/commit/858391b54e236e77bc33f5b6f3a991f1d6801495) / [#52](https://github.com/CuyZ/NotiZ/issues/52)*
 
 > A new interface `HasNotificationData` is introduced and can be
-> implemented by an object given to an event, when it needs to transfer 
+> implemented by an object given to an event, when it needs to transfer
 > arbitrary data to a notification during dispatching.
-> 
+>
 > For instance, you can implement this interface in a custom scheduler
 > task:
-> 
+>
 > ```php
 > class MyCustomTask extends AbstractTask implements HasNotificationData
 > {
 >     protected $notificationData = [];
-> 
+>
 >     public function execute()
 >     {
 >         // Do things…
-> 
+>
 >         $this->notificationData['foo'] = 'bar';
-> 
+>
 >         // Do more things…
-> 
+>
 >         return true;
 >     }
-> 
+>
 >     public function getNotificationData()
 >     {
 >         return $this->notificationData;
 >     }
 > }
 > ```
-> 
+>
 > You can then use the marker `{data}` in your notification:
-> 
+>
 > `The task has been executed with "{data.foo}".`
 </details>
 
@@ -1427,7 +1479,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *27 Feb 2018 / [c629888](https://github.com/CuyZ/NotiZ/commit/c6298888f43f7fb529a1a1058c5d8e14589dbbcf) / [#58](https://github.com/CuyZ/NotiZ/issues/58)*
 
-> 
+>
 </details>
 
 <details>
@@ -1435,7 +1487,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *27 Feb 2018 / [c06253f](https://github.com/CuyZ/NotiZ/commit/c06253f5ce0e920c4bb58f697bceac869000e658) / [#57](https://github.com/CuyZ/NotiZ/issues/57)*
 
-> 
+>
 </details>
 
 <details>
@@ -1443,7 +1495,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *26 Feb 2018 / [6670bc0](https://github.com/CuyZ/NotiZ/commit/6670bc0b462f628be0f9a7f374c9ab8e4a96d404) / [#55](https://github.com/CuyZ/NotiZ/issues/55)*
 
-> 
+>
 </details>
 
 <details>
@@ -1470,7 +1522,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *28 Feb 2018 / [54bf3ee](https://github.com/CuyZ/NotiZ/commit/54bf3ee2f5dd2fabbcbcb571e8bce113b1dbc4f6) / [#64](https://github.com/CuyZ/NotiZ/issues/64)*
 
-> 
+>
 </details>
 
 <details>
@@ -1486,7 +1538,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *27 Feb 2018 / [b8fbdf3](https://github.com/CuyZ/NotiZ/commit/b8fbdf3c8cc3a7b2a69f8b8bb3dae6110c3ef9fd) / [#60](https://github.com/CuyZ/NotiZ/issues/60)*
 
-> 
+>
 </details>
 
 <details>
@@ -1494,7 +1546,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *27 Feb 2018 / [4fcae8a](https://github.com/CuyZ/NotiZ/commit/4fcae8aca73abec0e02be092e6ae208cec0f858c) / [#59](https://github.com/CuyZ/NotiZ/issues/59)*
 
-> 
+>
 </details>
 
 <details>
@@ -1502,7 +1554,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *27 Feb 2018 / [6c51f13](https://github.com/CuyZ/NotiZ/commit/6c51f1356fde64ee0d1c942545393556fd522c48) / [#56](https://github.com/CuyZ/NotiZ/issues/56)*
 
-> 
+>
 </details>
 
 ## v0.3.0 - 16 February 2018
@@ -1518,24 +1570,24 @@
 
 > This view-helper can now use two new features, for a total of three ways
 > to render a slot.
-> 
+>
 > **Inline**
-> 
+>
 > The processed slot value will be returned.
-> 
+>
 > ```html
 > <nz:slot.render name="MySlot"
 >                 markers="{foo: 'bar'}" />
 > ```
-> 
+>
 > **Conditional**
-> 
+>
 > Can be used to check whether the slot exists, and do something if it
 > doesn't. When using this way, a variable `slotValue` becomes accessible
 > within the view-helper, that contains the processed value of the slot.
 > However, this variable is filled only when the slot exists and can be
 > processed.
-> 
+>
 > ```html
 > <nz:slot.render name="SomeOptionalSlot">
 >     <f:then>
@@ -1546,12 +1598,12 @@
 >     </f:else>
 > </nz:slot.render>
 > ```
-> 
+>
 > **Wrapping**
-> 
+>
 > You may need to add HTML around the slot value only when the slot
 > exists.
-> 
+>
 > ```html
 > <nz:slot.render name="SomeOptionalSlot">
 >     <hr />
@@ -1568,27 +1620,27 @@
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *13 Feb 2018 / [4595aae](https://github.com/CuyZ/NotiZ/commit/4595aae7ca8a5493c97e72b3d352214db14df673) / [#46](https://github.com/CuyZ/NotiZ/issues/46)*
 
 > Text slots can now use RTE mode like this:
-> 
+>
 > ```html
 > <nz:slot.text name="MySlot"
 >               label="My slot"
 >               rte="true"
 >               rteMode="my-ckeditor-preset" />
 > ```
-> 
+>
 > You can use your own CKEditor preset by filling the argument `rteMode`.
-> 
+>
 > Don't forget to wrap the rendering of your slot like this:
-> 
+>
 > ```html
 > <f:format.html>
 >     <nz:slot.render name="MySlot" />
 > </f:format.html>
 > ```
-> 
+>
 > A legacy mode is also introduced, allowing old configuration from
 > EXT:rtehtmlarea to work as well in the `rteMode` argument.
-> 
+>
 > Closes [#24](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/24)
 </details>
 
@@ -1599,7 +1651,7 @@
 
 > *by [Nathan Boiron](mailto:nathan.boiron@gmail.com)* on *16 Feb 2018 / [e48a8ec](https://github.com/CuyZ/NotiZ/commit/e48a8ec9f889f1deebed9f94f305330338a20b19) / [#49](https://github.com/CuyZ/NotiZ/issues/49)*
 
-> 
+>
 </details>
 
 <details>
@@ -1607,12 +1659,12 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *14 Feb 2018 / [29e0042](https://github.com/CuyZ/NotiZ/commit/29e004201723c1340b97a6dea1578878c1af7d02) / [#48](https://github.com/CuyZ/NotiZ/issues/48)*
 
-> 
+>
 </details>
 
 ### Important
 
-**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:** 
+**⚠ Please pay attention to the changes below as they might break your TYPO3 installation:**
 
 <details>
 <summary>Change PHP classes architecture</summary>
@@ -1620,7 +1672,7 @@
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *13 Feb 2018 / [20e07bb](https://github.com/CuyZ/NotiZ/commit/20e07bbe7381d4898d39719833230bcf3f597ac7) / [#47](https://github.com/CuyZ/NotiZ/issues/47)*
 
 > A new folder level has been added, to ease the code readability.
-> 
+>
 > You should check if your code does rely on classes that have been moved!
 </details>
 
@@ -1631,10 +1683,10 @@
 
 > The namespace root for NotiZ definition has been changed from
 > `config.tx_notiz` to `notiz`
-> 
+>
 > For instance, events may now be added to the definition by using the
 > following namespace: `notiz.eventGroups.myGroup.events.myEvent`
-> 
+>
 > Closes [#28](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/28)
 </details>
 
@@ -1645,7 +1697,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *11 Feb 2018 / [7e0f402](https://github.com/CuyZ/NotiZ/commit/7e0f402555e8df373b640e806647ddfabc917707) / [#43](https://github.com/CuyZ/NotiZ/issues/43)*
 
-> 
+>
 </details>
 
 ## v0.2.0 - 03 February 2018
@@ -1663,24 +1715,24 @@
 > composed of dynamic fields, that are managed by so-called "slots". This
 > allows editors to handle several sections of the mail body, while the
 > templating itself stays in the Fluid view.
-> 
+>
 > The slots can be registered in the template of the mail, in a Fluid
 > section named `Slots`. Two view-helpers are provided out of the box:
-> 
+>
 > - `<nz:slot.text>` will register a new textarea field.
 > - `<nz:slot.input>` will register a new text-input field.
-> 
+>
 > Because the registration happens in Fluid, basic operations like loops
 > and conditions can be used.
-> 
+>
 > Slots can then be rendered within the template by using the following
 > view-helper: `<nz:slot.render>`. Additional markers may be added to the
 > slot by using the arguments `markers`.
-> 
+>
 > See documentation for more information about this feature.
-> 
+>
 > ---
-> 
+>
 > Closes [#26](https:\/\/github.com\/CuyZ\/NotiZ\/issues\/26)
 </details>
 
@@ -1721,7 +1773,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *03 Feb 2018 / [e0721a4](https://github.com/CuyZ/NotiZ/commit/e0721a4b8576b2f18fa5ac86afc29d179f7e941e) / [#39](https://github.com/CuyZ/NotiZ/issues/39)*
 
-> 
+>
 </details>
 
 <details>
@@ -1729,7 +1781,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *03 Feb 2018 / [ebf0cd2](https://github.com/CuyZ/NotiZ/commit/ebf0cd27f1ae90b43f75633c069df77b743f3c28) / [#38](https://github.com/CuyZ/NotiZ/issues/38)*
 
-> 
+>
 </details>
 
 <details>
@@ -1738,7 +1790,7 @@
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *02 Feb 2018 / [4123174](https://github.com/CuyZ/NotiZ/commit/41231742e7044ae01ebcbdffae2304726830bd4c) / [#37](https://github.com/CuyZ/NotiZ/issues/37)*
 
 > Happy new year! 🍾
-> 
+>
 > (sorry I'm late)
 </details>
 
@@ -1747,7 +1799,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *02 Feb 2018 / [53adc33](https://github.com/CuyZ/NotiZ/commit/53adc3320ce1c2f6bdb61b4c730ba745854b831a) / [#36](https://github.com/CuyZ/NotiZ/issues/36)*
 
-> 
+>
 </details>
 
 <details>
@@ -1755,7 +1807,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *02 Feb 2018 / [97c47b4](https://github.com/CuyZ/NotiZ/commit/97c47b4cef805e02436626244aef213e41c90f57) / [#22](https://github.com/CuyZ/NotiZ/issues/22)*
 
-> 
+>
 </details>
 
 <details>
@@ -1763,7 +1815,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *02 Feb 2018 / [4692bd2](https://github.com/CuyZ/NotiZ/commit/4692bd243ddaf8ae35a7490f9c106eb98edda582) / [#34](https://github.com/CuyZ/NotiZ/issues/34)*
 
-> 
+>
 </details>
 
 <details>
@@ -1771,7 +1823,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *02 Feb 2018 / [04c86c2](https://github.com/CuyZ/NotiZ/commit/04c86c2dbda060b721320274de4ffc8f31c8162f) / [#33](https://github.com/CuyZ/NotiZ/issues/33)*
 
-> 
+>
 </details>
 
 <details>
@@ -1779,7 +1831,7 @@
 
 > *by [Romain Canon](mailto:romain.hydrocanon@gmail.com)* on *29 Jan 2018 / [16bd2b0](https://github.com/CuyZ/NotiZ/commit/16bd2b0f0c0879a230e43c7381ad7b3e32c9371a) / [#29](https://github.com/CuyZ/NotiZ/issues/29)*
 
-> 
+>
 </details>
 
 ## v0.1.0 - 21 January 2018
