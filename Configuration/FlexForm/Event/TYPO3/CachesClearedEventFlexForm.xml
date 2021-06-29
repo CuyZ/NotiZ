@@ -15,6 +15,7 @@
                             <label>LLL:EXT:notiz/Resources/Private/Language/Event/TYPO3/TYPO3.xlf:flex_form.allowed_commands.label</label>
                             <config>
                                 <type>select</type>
+                                <renderType>selectMultipleSideBySide</renderType>
                                 <minitems>0</minitems>
                                 <maxitems>4</maxitems>
                                 <size>4</size>

@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Core\Definition\Tree\Notification;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
 use CuyZ\Notiz\Core\Definition\Tree\Notification\Channel\ChannelDefinition;
 use CuyZ\Notiz\Core\Exception\ClassNotFoundException;
@@ -41,7 +42,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     /**
      * @var string
      *
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $identifier;
 
@@ -58,8 +59,8 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     /**
      * @var string
      *
-     * @validate NotEmpty
-     * @validate Romm.ConfigurationObject:ClassImplements(interface=CuyZ\Notiz\Core\Notification\Notification)
+     * @Extbase\Validate("NotEmpty")
+     * @Extbase\Validate("Romm\ConfigurationObject\Validation\Validator\ClassImplementsValidator", options={"interface": "CuyZ\Notiz\Core\Notification\Notification"})
      */
     protected $className;
 
@@ -73,21 +74,21 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
     /**
      * @var \CuyZ\Notiz\Core\Definition\Tree\Notification\Channel\ChannelDefinition[]
      *
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $channels = [];
 
     /**
      * @var string
      *
-     * @validate Romm.ConfigurationObject:FileExists
+     * @Extbase\Validate("Romm\ConfigurationObject\Validation\Validator\FileExistsValidator")
      */
     protected $iconPath;
 
     /**
      * @param string $identifier
      */
-    public function __construct(string $identifier)
+    public function __construct(string $identifier = null)
     {
         $this->identifier = $identifier;
     }
@@ -227,7 +228,7 @@ class NotificationDefinition extends AbstractDefinitionComponent implements Data
      */
     protected static function fetchSettingsClassName(array $data): array
     {
-        $notificationClassName = $data['className'] ?? null;
+        $notificationClassName = $data['className'] ?? '';
 
         if (class_exists($notificationClassName)
             && in_array(CustomSettingsNotification::class, class_implements($notificationClassName))

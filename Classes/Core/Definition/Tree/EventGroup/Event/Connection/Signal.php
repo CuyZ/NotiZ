@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Connection;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
 use CuyZ\Notiz\Core\Event\Runner\EventRunner;
 use CuyZ\Notiz\Service\Container;
@@ -27,14 +28,14 @@ class Signal extends AbstractDefinitionComponent implements Connection
     /**
      * @var string
      *
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $className;
 
     /**
      * @var string
      *
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $name;
 

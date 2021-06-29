@@ -195,8 +195,6 @@ abstract class AbstractChannel implements Channel
         $reflectionService = Container::get(ReflectionService::class);
 
         $settingsProperty = $reflectionService->getClassSchema(static::class)->getProperty('settings');
-        $settingsClassName = $settingsProperty['type'];
-
-        return $settingsClassName;
+        return $settingsProperty->getType();
     }
 }

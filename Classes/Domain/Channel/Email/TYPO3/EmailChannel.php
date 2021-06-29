@@ -126,12 +126,12 @@ class EmailChannel extends AbstractChannel
 
         $mailMessage
             ->setSubject($this->templateBuilder->getSubject())
-            ->setBody($this->templateBuilder->getBody())
+            ->text($this->templateBuilder->getBody())
             ->setFrom($this->addressMapper->getSender())
             ->setTo($this->addressMapper->getSendTo())
             ->setCc($this->addressMapper->getSendCc())
             ->setBcc($this->addressMapper->getSendBcc())
-            ->setContentType('text/html');
+            ;
 
         $this->dispatchEmailSignal($mailMessage);
 

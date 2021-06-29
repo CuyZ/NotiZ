@@ -17,6 +17,8 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Domain\Notification;
 
+use TYPO3\CMS\Core\Service\FlexFormService;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use CuyZ\Notiz\Backend\Module\ManagerModuleHandler;
 use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
@@ -28,12 +30,10 @@ use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Service\Container;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
-use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Domain\Model\BackendUser;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use TYPO3\CMS\Extbase\Service\FlexFormService;
+use TYPO3\CMS\Extbase\Persistence\ClassesConfigurationFactory;
 
 abstract class EntityNotification extends AbstractEntity implements Notification, MultipleChannelsNotification
 {
@@ -69,7 +69,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
 
     /**
      * @var \TYPO3\CMS\Extbase\Domain\Model\BackendUser
-     * @lazy
+     * @Extbase\ORM\Lazy
      */
     protected $backendUser;
 
@@ -225,9 +225,7 @@ abstract class EntityNotification extends AbstractEntity implements Notification
     public function getEventConfiguration(): array
     {
         if (null === $this->eventConfiguration) {
-            /** @var FlexFormService $flexFormService */
             $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
-
             $this->eventConfiguration = $flexFormService->convertFlexFormContentToArray($this->eventConfigurationFlex);
         }
 
@@ -382,15 +380,17 @@ abstract class EntityNotification extends AbstractEntity implements Notification
      */
     public static function getTableName(): string
     {
-        /** @var ConfigurationManagerInterface $configurationManager */
-        $configurationManager = Container::get(ConfigurationManagerInterface::class);
-        $configuration = $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        /** @var ClassesConfigurationFactory $configurationManager */
+        $classesConfigurationFactory = Container::get(ClassesConfigurationFactory::class);
+
 
         $className = self::getDefinition()
             ->getNotification(static::getDefinitionIdentifier())
             ->getClassName();
 
-        return ArrayUtility::getValueByPath($configuration, "persistence/classes/$className/mapping/tableName");
+        $config = $classesConfigurationFactory->createClassesConfiguration()->getConfigurationFor($className);
+
+        return $config['tableName'];
     }
 
     /**

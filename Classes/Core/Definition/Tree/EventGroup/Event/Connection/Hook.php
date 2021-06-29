@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Connection;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use Closure;
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
 use CuyZ\Notiz\Core\Event\Runner\EventRunner;
@@ -33,21 +34,21 @@ class Hook extends AbstractDefinitionComponent implements Connection
     /**
      * @var string
      *
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $path;
 
     /**
      * @var string
      *
-     * @validate Romm.ConfigurationObject:ClassExists
+     * @Extbase\Validate("Romm\ConfigurationObject\Validation\Validator\ClassExistsValidator")
      */
     protected $interface;
 
     /**
      * @var string
      *
-     * @validate RegularExpression(regularExpression=/^[_a-zA-Z]+\w*$/)
+     * @Extbase\Validate("RegularExpression", options={"regularExpression": "/^[_a-zA-Z]+\w*$/"})
      */
     protected $method;
 

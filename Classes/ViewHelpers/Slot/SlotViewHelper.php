@@ -19,7 +19,7 @@ namespace CuyZ\Notiz\ViewHelpers\Slot;
 
 use CuyZ\Notiz\View\Slot\Application\Slot;
 use CuyZ\Notiz\View\Slot\SlotContainer;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 abstract class SlotViewHelper extends AbstractViewHelper
 {

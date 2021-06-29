@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\View;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
 use CuyZ\Notiz\Service\LocalizationService;
 
@@ -25,7 +26,7 @@ class Layout extends AbstractDefinitionComponent
     /**
      * @var string
      *
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $identifier;
 
@@ -37,7 +38,7 @@ class Layout extends AbstractDefinitionComponent
     /**
      * @var string
      *
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $path;
 

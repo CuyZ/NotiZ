@@ -40,7 +40,6 @@ abstract class ModuleHandler implements SingletonInterface
     public function __construct(DefinitionService $definitionService)
     {
         $this->definitionService = $definitionService;
-        $this->uriBuilder = Container::get(UriBuilder::class, $this);
     }
 
     /**
@@ -62,6 +61,9 @@ abstract class ModuleHandler implements SingletonInterface
      */
     public function getUriBuilder(): UriBuilder
     {
+        if ($this->uriBuilder === null) {
+            $this->uriBuilder = Container::get(UriBuilder::class, $this);
+        }
         return $this->uriBuilder;
     }
 

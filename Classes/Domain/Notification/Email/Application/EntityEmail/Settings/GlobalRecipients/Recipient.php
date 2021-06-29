@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\GlobalRecipients;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
 use CuyZ\Notiz\Service\StringService;
 use Romm\ConfigurationObject\Service\Items\DataPreProcessor\DataPreProcessor;
@@ -32,8 +33,8 @@ class Recipient extends AbstractDefinitionComponent implements DataPreProcessorI
     /**
      * @var string
      *
-     * @validate NotEmpty
-     * @validate EmailAddress
+     * @Extbase\Validate("NotEmpty")
+     * @Extbase\Validate("EmailAddress")
      */
     protected $email;
 

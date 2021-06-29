@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Core\Event\Configuration\FlexForm;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 /**
  * Default implementation of a FlexForm provider, it does nothing more than
  * returning the path to the given file, so TCA can handle the FlexForm file
@@ -27,7 +28,7 @@ class DefaultEventFlexFormProvider implements EventFlexFormProvider
     /**
      * @var string
      *
-     * @validate Romm.ConfigurationObject:FileExists
+     * @Extbase\Validate("Romm\ConfigurationObject\Validation\Validator\FileExistsValidator")
      */
     protected $file;
 

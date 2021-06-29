@@ -18,7 +18,7 @@ declare(strict_types=1);
 namespace CuyZ\Notiz\ViewHelpers\Notification;
 
 use CuyZ\Notiz\Core\Notification\Notification;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class HasEventViewHelper extends AbstractViewHelper
 {

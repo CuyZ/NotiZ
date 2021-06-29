@@ -86,7 +86,7 @@ class ExtensionInstalledEvent extends AbstractEvent implements ProvidesExamplePr
         $extensionPackage = $this->listUtility->getExtension($extensionKey);
 
         $data = [
-            'siteRelPath' => PathUtility::getRelativePath(PATH_site, $extensionPackage->getPackagePath()),
+            'siteRelPath' => PathUtility::getRelativePath(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/', $extensionPackage->getPackagePath()),
             'key' => $extensionKey,
         ];
 

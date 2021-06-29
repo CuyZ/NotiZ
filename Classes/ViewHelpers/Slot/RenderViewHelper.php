@@ -24,11 +24,11 @@ use CuyZ\Notiz\Domain\Property\Marker;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\View\Slot\SlotContainer;
 use CuyZ\Notiz\View\Slot\SlotView;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
-use TYPO3\CMS\Fluid\Core\ViewHelper\ViewHelperVariableContainer;
 use TYPO3Fluid\Fluid\Core\Compiler\TemplateCompiler;
 use TYPO3Fluid\Fluid\Core\Parser\SyntaxTree\ViewHelperNode;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperVariableContainer;
 
 /**
  * Will process and render the wanted slot, by getting the value filled by the

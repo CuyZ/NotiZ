@@ -19,7 +19,7 @@ namespace CuyZ\Notiz\ViewHelpers\Notification\Link;
 
 use CuyZ\Notiz\Core\Notification\Editable;
 use CuyZ\Notiz\Core\Notification\Notification;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
 class EditViewHelper extends AbstractTagBasedViewHelper
 {

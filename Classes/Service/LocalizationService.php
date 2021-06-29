@@ -19,7 +19,9 @@ namespace CuyZ\Notiz\Service;
 
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
+use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
@@ -153,7 +155,8 @@ class LocalizationService implements SingletonInterface
                  *
                  * For example, the path `Foo/Bar` will generate the path `Foo/Bar/Bar.xlf`
                  */
-                $file = $file . '/' . end(explode('/', $file));
+                $array = explode('/', $file);
+                $file = $file . '/' . end($array);
 
                 return 'LLL:EXT:' . $extensionKey . '/Resources/Private/Language/' . $file . '.xlf:' . $key;
             },
@@ -170,6 +173,10 @@ class LocalizationService implements SingletonInterface
      */
     protected function localizeInternal(string $key, array $arguments)
     {
+        if ($GLOBALS['LANG'] === null) {
+            $GLOBALS['LANG'] = GeneralUtility::makeInstance(LanguageServiceFactory::class)->create('default');
+        }
+
         return LocalizationUtility::translate(
             $key,
             NotizConstants::EXTENSION_KEY,

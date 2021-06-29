@@ -24,11 +24,10 @@ use CuyZ\Notiz\Core\Exception\WrongFormatException;
 use CuyZ\Notiz\Core\Property\Factory\PropertyDefinition;
 use CuyZ\Notiz\Core\Property\PropertyEntry;
 use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
+use Romm\ConfigurationObject\Legacy\Reflection\ClassReflection;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extbase\Reflection\ClassReflection;
 use TYPO3\CMS\Extbase\Reflection\ReflectionService;
 
 /**
@@ -139,76 +138,23 @@ class TagsPropertyService implements SingletonInterface
      */
     public function fillPropertyDefinition(PropertyDefinition $definition)
     {
-        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '9.0.0', '<')) {
-            $this->fillPropertyDefinitionLegacy($definition);
-            return;
-        }
-
         $identifier = $this->getPropertyTagIdentifier($definition);
 
-        /** @var ReflectionService $reflectionService */
-        $reflectionService = $this->objectManager->get(ReflectionService::class);
+        /** @var \Romm\ConfigurationObject\Core\Service\ReflectionService $reflectionService */
+        $reflectionService = $this->objectManager->get(\Romm\ConfigurationObject\Core\Service\ReflectionService::class);
 
-        $classSchema = $reflectionService->getClassSchema($definition->getEventClassName());
+        $classSchema = $reflectionService->getClassReflection($definition->getEventClassName());
 
-        foreach ($classSchema->getProperties() as $name => $property) {
-            if (!isset($property['tags'][$identifier])) {
+        foreach ($classSchema->getProperties() as $property) {
+            $tags = $property->getTagsValues();
+            if (!isset($tags[$identifier])) {
                 continue;
             }
 
-            $entry = $definition->addEntry($name);
+            $entry = $definition->addEntry($property->getName());
 
-            $label = $property['tags']['label'][0] ?? '';
+            $label = $tags['label'][0] ?? '';
             $entry->setLabel($label);
-
-            /*
-             * @deprecated Must be removed when TYPO3 v9 is not supported
-             * anymore.
-             *
-             * @see https://review.typo3.org/c/58923/
-             */
-            $defaultProperty = isset($property['defaultValue'])
-                ? $property['defaultValue']
-                : (new \ReflectionClass($definition->getEventClassName()))->getDefaultProperties()[$name];
-
-            if ($defaultProperty) {
-                $entry->setValue($defaultProperty);
-            }
-        }
-    }
-
-    /**
-     * @param PropertyDefinition $definition
-     *
-     * @deprecated Must be removed when TYPO3 v8 is not supported anymore.
-     */
-    private function fillPropertyDefinitionLegacy(PropertyDefinition $definition)
-    {
-        $identifier = $this->getPropertyTagIdentifier($definition);
-
-        /** @var ClassReflection $eventReflection */
-        $eventReflection = $this->objectManager->get(ClassReflection::class, $definition->getEventClassName());
-
-        $eventProperties = $eventReflection->getProperties();
-        $eventDefaultProperties = $eventReflection->getDefaultProperties();
-
-        foreach ($eventProperties as $classProperty) {
-            if (!$classProperty->isTaggedWith($identifier)) {
-                continue;
-            }
-
-            $name = $classProperty->getName();
-            $entry = $definition->addEntry($name);
-
-            $label = $classProperty->isTaggedWith('label')
-                ? reset($classProperty->getTagValues('label'))
-                : '';
-
-            $entry->setLabel($label);
-
-            if (null !== $eventDefaultProperties[$name]) {
-                $entry->setValue($eventDefaultProperties[$name]);
-            }
         }
     }
 

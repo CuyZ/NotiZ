@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
 use CuyZ\Notiz\Core\Notification\Settings\NotificationSettings;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Settings\View\View;
@@ -28,7 +29,7 @@ class EntityEmailSettings extends AbstractDefinitionComponent implements Notific
     /**
      * @var string
      *
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $defaultSender;
 

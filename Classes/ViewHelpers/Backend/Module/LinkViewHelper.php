@@ -18,7 +18,7 @@ declare(strict_types=1);
 namespace CuyZ\Notiz\ViewHelpers\Backend\Module;
 
 use CuyZ\Notiz\Backend\Module\ModuleHandler;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
 class LinkViewHelper extends AbstractTagBasedViewHelper
 {

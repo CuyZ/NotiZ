@@ -17,15 +17,11 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Service\Extension;
 
-use CuyZ\Notiz\Backend\Report\NotificationStatus;
-use CuyZ\Notiz\Backend\FormEngine\ButtonBar\ShowNotificationDetailsButton;
 use CuyZ\Notiz\Backend\Module\ManagerModuleHandler;
+use CuyZ\Notiz\Backend\Report\NotificationStatus;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
-use TYPO3\CMS\Backend\Controller\EditDocumentController;
 use TYPO3\CMS\Core\SingletonInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 /**
@@ -46,7 +42,7 @@ class TablesConfigurationService implements SingletonInterface
     /**
      * Main processing methods that will call every method of this class.
      */
-    public function process()
+    public static function process()
     {
         self::registerBackendModule();
         self::registerEntityNotificationControllers();
@@ -57,10 +53,10 @@ class TablesConfigurationService implements SingletonInterface
      * Registers the main backend module used to display notifications,
      * definition and more.
      */
-    protected function registerBackendModule()
+    protected static function registerBackendModule()
     {
         ExtensionUtility::registerModule(
-            'CuyZ.Notiz',
+            'Notiz',
             'notiz',
             '',
             '',
@@ -69,44 +65,44 @@ class TablesConfigurationService implements SingletonInterface
                 'access' => '',
                 'icon' => '',
                 'iconIdentifier' => 'tx-notiz-icon-main-module',
-                'labels' => "LLL:EXT:{$this->extensionKey}/Resources/Private/Language/Backend/Module/Main/Main.xlf",
+                'labels' => "LLL:EXT:" . NotizConstants::EXTENSION_KEY . "/Resources/Private/Language/Backend/Module/Main/Main.xlf",
                 'sub' => []
             ]
         );
 
         ExtensionUtility::registerModule(
-            'CuyZ.Notiz',
+            'Notiz',
             'notiz',
             'notiz_manager',
             '',
             [
-                'Backend\Manager\ListNotificationTypes' => 'process',
-                'Backend\Manager\ListNotifications' => 'process',
-                'Backend\Manager\NotificationActivation' => 'process',
-                'Backend\Manager\ListEvents' => 'process',
-                'Backend\Manager\ShowEvent' => 'process',
+                \CuyZ\Notiz\Controller\Backend\Manager\ListNotificationTypesController::class => 'process',
+                \CuyZ\Notiz\Controller\Backend\Manager\ListNotificationsController::class => 'process',
+                \CuyZ\Notiz\Controller\Backend\Manager\NotificationActivationController::class => 'process',
+                \CuyZ\Notiz\Controller\Backend\Manager\ListEventsController::class => 'process',
+                \CuyZ\Notiz\Controller\Backend\Manager\ShowEventController::class => 'process',
             ],
             [
                 'access' => 'user,group',
                 'icon' => NotizConstants::EXTENSION_ICON_PATH_MODULE_MANAGER,
-                'labels' => "LLL:EXT:{$this->extensionKey}/Resources/Private/Language/Backend/Module/Manager/Manager.xlf",
+                'labels' => "LLL:EXT:" . NotizConstants::EXTENSION_KEY . "/Resources/Private/Language/Backend/Module/Manager/Manager.xlf",
             ]
         );
 
         ExtensionUtility::registerModule(
-            'CuyZ.Notiz',
+            'Notiz',
             'notiz',
             'notiz_administration',
             '',
             [
-                'Backend\Administration\Index' => 'process',
-                'Backend\Administration\ShowDefinition' => 'process',
-                'Backend\Administration\ShowException' => 'process',
+                \CuyZ\Notiz\Controller\Backend\Administration\IndexController::class => 'process',
+                \CuyZ\Notiz\Controller\Backend\Administration\ShowDefinitionController::class => 'process',
+                \CuyZ\Notiz\Controller\Backend\Administration\ShowExceptionController::class => 'process',
             ],
             [
                 'access' => 'admin',
                 'icon' => NotizConstants::EXTENSION_ICON_PATH_MODULE_ADMINISTRATION,
-                'labels' => "LLL:EXT:{$this->extensionKey}/Resources/Private/Language/Backend/Module/Administration/Administration.xlf",
+                'labels' => "LLL:EXT:" . NotizConstants::EXTENSION_KEY . "/Resources/Private/Language/Backend/Module/Administration/Administration.xlf",
             ]
         );
     }
@@ -114,7 +110,7 @@ class TablesConfigurationService implements SingletonInterface
     /**
      * Dynamically registers the controllers for existing entity notifications.
      */
-    protected function registerEntityNotificationControllers()
+    protected static function registerEntityNotificationControllers()
     {
         ManagerModuleHandler::get()->registerEntityNotificationControllers();
     }
@@ -122,7 +118,7 @@ class TablesConfigurationService implements SingletonInterface
     /**
      * @see \CuyZ\Notiz\Backend\Report\NotificationStatus
      */
-    protected function registerReportStatus()
+    protected static function registerReportStatus()
     {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports']['tx_reports']['status']['providers']['NotiZ'][] = NotificationStatus::class;
     }

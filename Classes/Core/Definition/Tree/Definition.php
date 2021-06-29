@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Core\Definition\Tree;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\EventGroup;
 use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
@@ -43,7 +44,7 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
     /**
      * @var \CuyZ\Notiz\Core\Definition\Tree\EventGroup\EventGroup[]
      *
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $eventGroups = [];
 
@@ -130,7 +131,8 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
      */
     public function getFirstEventGroup(): EventGroup
     {
-        return array_pop(array_reverse($this->getEventGroups()));
+        $array = array_reverse($this->getEventGroups());
+        return array_pop($array);
     }
 
     /**
@@ -184,8 +186,6 @@ class Definition extends AbstractDefinitionComponent implements ConfigurationObj
     public static function getConfigurationObjectServices()
     {
         return ServiceFactory::getInstance()
-            ->attach(ServiceInterface::SERVICE_CACHE)
-            ->setOption(CacheService::OPTION_CACHE_NAME, NotizConstants::CACHE_KEY_DEFINITION_OBJECT)
             ->attach(ServiceInterface::SERVICE_PARENTS)
             ->attach(ServiceInterface::SERVICE_DATA_PRE_PROCESSOR)
             ->attach(ServiceInterface::SERVICE_MIXED_TYPES);

@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Core\Definition\Tree\EventGroup;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Exception\EntryNotFoundException;
@@ -29,7 +30,7 @@ class EventGroup extends AbstractDefinitionComponent implements DataPreProcessor
     /**
      * @var string
      *
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $identifier;
 
@@ -41,14 +42,14 @@ class EventGroup extends AbstractDefinitionComponent implements DataPreProcessor
     /**
      * @var \CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition[]
      *
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $events = [];
 
     /**
      * @param string $identifier
      */
-    public function __construct(string $identifier)
+    public function __construct(string $identifier = null)
     {
         $this->identifier = $identifier;
     }
@@ -106,7 +107,8 @@ class EventGroup extends AbstractDefinitionComponent implements DataPreProcessor
      */
     public function getFirstEvent(): EventDefinition
     {
-        return array_pop(array_reverse($this->getEvents()));
+        $array = array_reverse($this->getEvents());
+        return array_pop($array);
     }
 
     /**

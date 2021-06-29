@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Core\Definition\Tree\Notification\Channel;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use CuyZ\Notiz\Core\Channel\Channel;
 use CuyZ\Notiz\Core\Channel\Settings\ChannelSettings;
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
@@ -33,15 +34,15 @@ class ChannelDefinition extends AbstractDefinitionComponent implements DataPrePr
     /**
      * @var string
      *
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $identifier;
 
     /**
      * @var string
      *
-     * @validate NotEmpty
-     * @validate Romm.ConfigurationObject:ClassImplements(interface=CuyZ\Notiz\Core\Channel\Channel)
+     * @Extbase\Validate("NotEmpty")
+     * @Extbase\Validate("Romm\ConfigurationObject\Validation\Validator\ClassImplementsValidator", options={"interface": "CuyZ\Notiz\Core\Channel\Channel"})
      */
     protected $className;
 

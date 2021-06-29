@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Configuration\EventConfiguration;
@@ -37,7 +38,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     /**
      * @var string
      *
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $identifier;
 
@@ -54,7 +55,7 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     /**
      * @var string
      *
-     * @validate Romm.ConfigurationObject:ClassImplements(interface=CuyZ\Notiz\Core\Event\Event)
+     * @Extbase\Validate("Romm\ConfigurationObject\Validation\Validator\ClassImplementsValidator", options={"interface": "CuyZ\Notiz\Core\Event\Event"})
      */
     protected $className;
 
@@ -66,9 +67,9 @@ class EventDefinition extends AbstractDefinitionComponent implements DataPreProc
     /**
      * @var \CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Connection\Connection
      *
-     * @validate NotEmpty
      *
      * @mixedTypesResolver \CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Connection\ConnectionResolver
+     * @Extbase\Validate("NotEmpty")
      */
     protected $connection;
 
