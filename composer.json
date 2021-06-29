@@ -23,7 +23,7 @@
   ],
   "require": {
     "typo3/cms-core": "^10.4.0",
-    "romm/configuration-object": "dev-master"
+    "romm/configuration-object": "dev-development"
   },
   "require-dev": {
     "phpunit/phpunit": "^4.7 || ^5.6",
