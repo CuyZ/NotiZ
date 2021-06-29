@@ -160,7 +160,10 @@ class EntityEmailTcaWriter extends EntityTcaWriter
                     'displayCond' => 'FIELD:sender_custom:=:0',
                     'config' => [
                         'type' => 'user',
-                        'userFunc' => $this->getNotificationTcaServiceClass() . '->getDefaultSender',
+                        'renderType' => 'notizDefaultSender',
+                        'parameters' => [
+                            'serviceClass' => $this->getNotificationTcaServiceClass()
+                        ]
                     ],
                 ],
 

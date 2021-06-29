@@ -136,16 +136,15 @@ abstract class NotificationTcaService implements SingletonInterface
      * Loads all markers for the current selected event and formats them as a
      * list to be displayed on the edit form.
      *
-     * @param array $parameters
+     * @param array $row
      * @return string
      */
-    public function getMarkersLabel(array &$parameters): string
+    public function getMarkersLabel(array $row): string
     {
         if ($this->definitionHasErrors()) {
             return '';
         }
 
-        $row = $parameters['row'];
         $eventDefinition = $this->getSelectedEvent($row);
         $notification = $this->getNotification($row);
 
@@ -207,9 +206,10 @@ HTML;
         $hash = json_encode($row);
 
         if (!isset($this->notification[$hash])) {
+            $map = $this->dataMapper->map($this->getNotificationDefinition()->getClassName(), [$row]);
             $this->notification[$hash] = isset($row['uid']) && is_integer($row['uid'])
                 ? $this->getNotificationDefinition()->getProcessor()->getNotificationFromIdentifier((string)$row['uid'])
-                : reset($this->dataMapper->map($this->getNotificationDefinition()->getClassName(), [$row]));
+                : reset($map);
         }
 
         return $this->notification[$hash];

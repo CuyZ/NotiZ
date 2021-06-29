@@ -21,14 +21,11 @@ use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefaultEventFromGet;
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\DefinitionError;
 use CuyZ\Notiz\Backend\FormEngine\DataProvider\HideColumns;
 use CuyZ\Notiz\Backend\ToolBarItems\NotificationsToolbarItem;
-use CuyZ\Notiz\Core\Definition\Builder\DefinitionBuilder;
 use CuyZ\Notiz\Core\Notification\TCA\Processor\GracefulProcessorRunner;
 use CuyZ\Notiz\Core\Support\NotizConstants;
-use CuyZ\Notiz\Domain\Definition\Builder\Component\DefaultDefinitionComponents;
 use CuyZ\Notiz\Domain\Event\Blog\Processor\BlogNotificationProcessor;
 use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
-use CuyZ\Notiz\Service\Hook\EventDefinitionRegisterer;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use Doctrine\Common\Annotations\AnnotationReader;
 use T3G\AgencyPack\Blog\Notification\CommentAddedNotification;
@@ -44,7 +41,6 @@ use TYPO3\CMS\Core\Imaging\IconRegistry;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 use TYPO3\CMS\Scheduler\Scheduler;
 
@@ -88,10 +84,11 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
         $this->registerIcons();
         $this->registerNotificationProcessorRunner();
         $this->registerFormEngineComponents();
-        $this->resetTypeConvertersArray();
         $this->overrideScheduler();
         $this->ignoreDoctrineAnnotation();
         $this->registerBlogNotificationProcessors();
+        $this->registerCache();
+        $this->registerNodeElements();
     }
 
     /**
@@ -174,21 +171,6 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
     }
 
     /**
-     * Because of some core issue concerning the type converters registration,
-     * we need to make sure the array containing the entries is valid.
-     *
-     * See the ticket below for more information:
-     *
-     * @link https://forge.typo3.org/issues/82651
-     *
-     * @deprecated Must be removed when TYPO3 v8 is not supported anymore.
-     */
-    protected function resetTypeConvertersArray()
-    {
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase']['typeConverters'] = array_unique($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase']['typeConverters']);
-    }
-
-    /**
      * Registering a xClass that overrides core scheduler, to have access to
      * signals for when tasks are executed.
      *
@@ -264,5 +246,55 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
         ) {
             $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['Blog']['notificationRegistry'][CommentAddedNotification::class][] = BlogNotificationProcessor::class;
         }
+    }
+
+    protected function registerCache()
+    {
+        if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['notiz_definition_object'])) {
+            $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['notiz_definition_object'] = [
+                'backend'  => \TYPO3\CMS\Core\Cache\Backend\FileBackend::class,
+                'frontend' => \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
+                'groups'   => ['all', 'system']
+            ];
+        }
+    }
+
+    protected function registerNodeElements()
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1624441436645] = [
+            'nodeName' => 'notizMarkerLabel',
+            'priority' => 40,
+            'class' => \CuyZ\Notiz\Form\Element\MarkerLabelElement::class,
+        ];
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1624442140118] = [
+            'nodeName' => 'notizDefaultSender',
+            'priority' => 40,
+            'class' => \CuyZ\Notiz\Form\Element\DefaultSenderElement::class,
+        ];
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1624443407523] = [
+            'nodeName' => 'notizDefinitionErrorMessage',
+            'priority' => 40,
+            'class' => \CuyZ\Notiz\Form\Element\DefinitionErrorMessageElement::class,
+        ];
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1624443410038] = [
+            'nodeName' => 'notizErrorMessage',
+            'priority' => 40,
+            'class' => \CuyZ\Notiz\Form\Element\ErrorMessageElement::class,
+        ];
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1624443412752] = [
+            'nodeName' => 'notizLogLevelsDescriptions',
+            'priority' => 40,
+            'class' => \CuyZ\Notiz\Form\Element\LogLevelsDescriptionsElement::class,
+        ];
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1624443415134] = [
+            'nodeName' => 'notizNoDefinedBotText',
+            'priority' => 40,
+            'class' => \CuyZ\Notiz\Form\Element\NoDefinedBotTextElement::class,
+        ];
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1624443458382] = [
+            'nodeName' => 'notizNoDefinedSlackChannelText',
+            'priority' => 40,
+            'class' => \CuyZ\Notiz\Form\Element\NoDefinedSlackChannelTextElement::class,
+        ];
     }
 }

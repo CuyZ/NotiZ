@@ -104,7 +104,7 @@ class EntityLogTcaWriter extends EntityTcaWriter
                     'l10n_display' => 'defaultAsReadonly',
                     'config' => [
                         'type' => 'user',
-                        'userFunc' => EntityLogTcaService::class . '->getLogLevelsDescriptions',
+                        'renderType' => 'notizLogLevelsDescriptions',
                     ],
                 ],
 

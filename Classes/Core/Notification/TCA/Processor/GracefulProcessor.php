@@ -107,9 +107,10 @@ abstract class GracefulProcessor implements SingletonInterface
                 'error_message' => [
                     'config' => [
                         'type' => 'user',
-                        'userFunc' => static::class . '->getErrorMessage',
+                        'renderType' => 'notizErrorMessage',
                         'parameters' => [
                             'exception' => $exception,
+                            'serviceClass' => \get_class($this)
                         ]
                     ],
                 ],
@@ -118,17 +119,17 @@ abstract class GracefulProcessor implements SingletonInterface
     }
 
     /**
-     * @param array $arguments
+     * @param array $exception
      * @return string
      */
-    public function getErrorMessage($arguments): string
+    public function getErrorMessage($exception): string
     {
         $view = $this->viewService->getStandaloneView('Backend/TCA/ErrorMessage');
 
         $frameSrc = GeneralUtility::getIndpEnv('REQUEST_URI') . '&showException=1';
 
         $view->assign('frameSrc', $frameSrc);
-        $view->assign('exception', $arguments['parameters']['exception']);
+        $view->assign('exception', $exception);
 
         return $view->render();
     }

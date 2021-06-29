@@ -122,7 +122,10 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     ],
                     'config' => [
                         'type' => 'user',
-                        'userFunc' => $this->getNotificationTcaServiceClass() . '->getNoDefinedBotText',
+                        'renderType' => 'notizNoDefinedBotText',
+                        'parameters' => [
+                            'serviceClass' => $this->getNotificationTcaServiceClass()
+                        ]
                     ],
                 ],
 
@@ -163,7 +166,10 @@ class EntitySlackTcaWriter extends EntityTcaWriter
                     'displayCond' => 'USER:' . $this->getNotificationTcaServiceClass() . '->hasNoDefinedSlackChannel',
                     'config' => [
                         'type' => 'user',
-                        'userFunc' => $this->getNotificationTcaServiceClass() . '->getNoDefinedSlackChannelText',
+                        'renderType' => 'notizNoDefinedSlackChannelText',
+                        'parameters' => [
+                            'serviceClass' => $this->getNotificationTcaServiceClass()
+                        ]
                     ],
                 ],
 

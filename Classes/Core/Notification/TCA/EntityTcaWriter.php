@@ -332,7 +332,10 @@ abstract class EntityTcaWriter implements SingletonInterface
                 'l10n_display' => 'defaultAsReadonly',
                 'config' => [
                     'type' => 'user',
-                    'userFunc' => $this->getNotificationTcaServiceClass() . '->getMarkersLabel',
+                    'renderType' => 'notizMarkerLabel',
+                    'parameters' => [
+                        'serviceClass' => $this->getNotificationTcaServiceClass()
+                    ]
                 ],
             ],
         ];

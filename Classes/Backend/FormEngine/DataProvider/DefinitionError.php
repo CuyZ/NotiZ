@@ -83,7 +83,7 @@ class DefinitionError implements FormDataProviderInterface
                 'definition_error_message' => [
                     'config' => [
                         'type' => 'user',
-                        'userFunc' => self::class . '->getDefinitionErrorMessage',
+                        'renderType' => 'notizDefinitionErrorMessage',
                     ],
                 ],
             ],
