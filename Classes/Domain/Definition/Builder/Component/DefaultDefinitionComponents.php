@@ -19,6 +19,7 @@ namespace CuyZ\Notiz\Domain\Definition\Builder\Component;
 
 use CuyZ\Notiz\Core\Definition\Builder\Component\DefinitionComponents;
 use CuyZ\Notiz\Core\Definition\Builder\Component\Source\DefinitionSource;
+use CuyZ\Notiz\Core\Definition\Builder\Event\DefinitionBuilderManageComponentEvent;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Domain\Definition\Builder\Component\Source\TypoScriptDefinitionSource;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
@@ -55,10 +56,12 @@ class DefaultDefinitionComponents implements SingletonInterface
      * Default definition comes from TypoScript files, so a definition source
      * must be added to the definition builder and the files must be registered.
      *
-     * @param DefinitionComponents $components
+     * @param DefinitionBuilderManageComponentEvent $event
      */
-    public function register(DefinitionComponents $components)
+    public function register(DefinitionBuilderManageComponentEvent $event)
     {
+        $components = $event->getComponents();
+
         if ($this->registrationDone) {
             return;
         }

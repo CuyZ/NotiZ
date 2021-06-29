@@ -1,0 +1,30 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  CuyZ\Notiz\:
+    resource: '../Classes/*'
+    exclude:
+      - '../Classes/Domain/Event/Blog/*'
+      - '../Classes/Domain/Event/Form/*'
+      - '../Classes/Domain/Event/Scheduler/*'
+      - '../Classes/Domain/Event/TYPO3/*'
+
+  CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition:
+    autowire: false
+
+  CuyZ\Notiz\Backend\FormEngine\ButtonBar\ShowNotificationDetailsButton:
+    tags:
+      - name: event.listener
+        identifier: 'show-notification-details-button'
+        event: TYPO3\CMS\Backend\Controller\Event\AfterFormEnginePageInitializedEvent
+        method: addButton
+
+  CuyZ\Notiz\Domain\Definition\Builder\Component\DefaultDefinitionComponents:
+    tags:
+      - name: event.listener
+        identifier: 'default-definition-component'
+        event: CuyZ\Notiz\Core\Definition\Builder\Event\DefinitionBuilderManageComponentEvent
+        method: register

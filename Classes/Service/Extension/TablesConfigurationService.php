@@ -41,31 +41,16 @@ class TablesConfigurationService implements SingletonInterface
     /**
      * @var string
      */
-    protected $extensionKey;
-
-    /**
-     * @var Dispatcher
-     */
-    protected $dispatcher;
-
-    /**
-     * Manual dependency injection.
-     */
-    public function __construct()
-    {
-        $this->extensionKey = NotizConstants::EXTENSION_KEY;
-        $this->dispatcher = GeneralUtility::makeInstance(Dispatcher::class);
-    }
+    protected $extensionKey = NotizConstants::EXTENSION_KEY;
 
     /**
      * Main processing methods that will call every method of this class.
      */
     public function process()
     {
-        $this->registerBackendModule();
-        $this->registerDetailViewButton();
-        $this->registerEntityNotificationControllers();
-        $this->registerReportStatus();
+        self::registerBackendModule();
+        self::registerEntityNotificationControllers();
+        self::registerReportStatus();
     }
 
     /**
@@ -123,19 +108,6 @@ class TablesConfigurationService implements SingletonInterface
                 'icon' => NotizConstants::EXTENSION_ICON_PATH_MODULE_ADMINISTRATION,
                 'labels' => "LLL:EXT:{$this->extensionKey}/Resources/Private/Language/Backend/Module/Administration/Administration.xlf",
             ]
-        );
-    }
-
-    /**
-     * @see ShowNotificationDetailsButton
-     */
-    protected function registerDetailViewButton()
-    {
-        $this->dispatcher->connect(
-            EditDocumentController::class,
-            'initAfter',
-            ShowNotificationDetailsButton::class,
-            'addButton'
         );
     }
 

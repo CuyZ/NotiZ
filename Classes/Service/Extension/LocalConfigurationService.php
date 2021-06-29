@@ -66,11 +66,6 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
     protected $iconRegistry;
 
     /**
-     * @var Dispatcher
-     */
-    protected $dispatcher;
-
-    /**
      * @var ExtensionConfigurationService
      */
     protected $extensionConfigurationService;
@@ -80,7 +75,6 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
      */
     public function __construct()
     {
-        $this->dispatcher = GeneralUtility::makeInstance(Dispatcher::class);
         $this->iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
     }
 
@@ -90,8 +84,6 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
     public function process()
     {
         $this->registerLaterProcessHook();
-        $this->registerDefinitionComponents();
-        $this->registerEventDefinitionHook();
         $this->registerInternalCache();
         $this->registerIcons();
         $this->registerNotificationProcessorRunner();
@@ -125,31 +117,6 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
     protected function registerLaterProcessHook()
     {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['extTablesInclusion-PostProcessing'][] = static::class;
-    }
-
-    /**
-     * Connects a slot on the definition components customization signal.
-     */
-    protected function registerDefinitionComponents()
-    {
-        $this->dispatcher->connect(
-            DefinitionBuilder::class,
-            DefinitionBuilder::COMPONENTS_SIGNAL,
-            DefaultDefinitionComponents::class,
-            'register'
-        );
-    }
-
-    /**
-     * Hooking in TYPO3 early process to register all hooks/signals added to the
-     * event definition.
-     */
-    protected function registerEventDefinitionHook()
-    {
-        if (version_compare(VersionNumberUtility::getCurrentTypo3Version(), '9.5.0', '<')) {
-            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['extTablesInclusion-PostProcessing'][] = EventDefinitionRegisterer::class;
-            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['checkAlternativeIdMethods-PostProc'][] = EventDefinitionRegisterer::class . '->processData';
-        }
     }
 
     /**

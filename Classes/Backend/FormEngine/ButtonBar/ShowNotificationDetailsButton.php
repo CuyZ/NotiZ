@@ -24,6 +24,7 @@ use CuyZ\Notiz\Domain\Notification\EntityNotification;
 use CuyZ\Notiz\Service\LocalizationService;
 use ReflectionClass;
 use TYPO3\CMS\Backend\Controller\EditDocumentController;
+use TYPO3\CMS\Backend\Controller\Event\AfterFormEnginePageInitializedEvent;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Core\Imaging\Icon;
@@ -60,10 +61,12 @@ class ShowNotificationDetailsButton implements SingletonInterface
     }
 
     /**
-     * @param EditDocumentController $controller
+     * @param AfterFormEnginePageInitializedEvent $controller
      */
-    public function addButton(EditDocumentController $controller)
+    public function addButton(AfterFormEnginePageInitializedEvent $event)
     {
+        $controller = $event->getController();
+
         if ($this->definitionService->getValidationResult()->hasErrors()) {
             return;
         }
@@ -101,7 +104,8 @@ class ShowNotificationDetailsButton implements SingletonInterface
             return null;
         }
 
-        $uid = reset(array_keys($controller->editconf[$tableName]));
+        $array = array_keys($controller->editconf[$tableName]);
+        $uid = reset($array);
 
         // We show the button only for existing records being edited.
         if ($controller->editconf[$tableName][$uid] !== 'edit') {

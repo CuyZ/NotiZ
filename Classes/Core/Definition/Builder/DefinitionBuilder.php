@@ -18,11 +18,14 @@ declare(strict_types=1);
 namespace CuyZ\Notiz\Core\Definition\Builder;
 
 use CuyZ\Notiz\Core\Definition\Builder\Component\DefinitionComponents;
+use CuyZ\Notiz\Core\Definition\Builder\Event\DefinitionBuilderBuiltEvent;
+use CuyZ\Notiz\Core\Definition\Builder\Event\DefinitionBuilderManageComponentEvent;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
 use CuyZ\Notiz\Core\Support\NotizConstants;
 use CuyZ\Notiz\Service\CacheService;
 use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
 use CuyZ\Notiz\Validation\Validator\DefinitionValidator;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Romm\ConfigurationObject\ConfigurationObjectFactory;
 use Romm\ConfigurationObject\ConfigurationObjectInstance;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -106,7 +109,6 @@ class DefinitionBuilder implements SingletonInterface
     use ExtendedSelfInstantiateTrait;
 
     const COMPONENTS_SIGNAL = 'manageDefinitionComponents';
-    const DEFINITION_BUILT_SIGNAL = 'definitionBuilt';
 
     /**
      * @var DefinitionComponents
@@ -124,20 +126,20 @@ class DefinitionBuilder implements SingletonInterface
     protected $cacheService;
 
     /**
-     * @var Dispatcher
+     * @var EventDispatcherInterface
      */
-    protected $dispatcher;
+    protected $eventDispatcher;
 
     /**
      * @param DefinitionComponents $components
      * @param CacheService $cacheService
      * @param Dispatcher $dispatcher
      */
-    public function __construct(DefinitionComponents $components, CacheService $cacheService, Dispatcher $dispatcher)
+    public function __construct(DefinitionComponents $components, CacheService $cacheService, EventDispatcherInterface $eventDispatcher)
     {
         $this->components = $components;
         $this->cacheService = $cacheService;
-        $this->dispatcher = $dispatcher;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
@@ -230,13 +232,9 @@ class DefinitionBuilder implements SingletonInterface
      * Sends a signal to allow external API to manage their own definition
      * components.
      */
-    protected function sendComponentsSignal()
+    protected function sendComponentsSignal(): void
     {
-        $this->dispatcher->dispatch(
-            self::class,
-            self::COMPONENTS_SIGNAL,
-            [$this->components]
-        );
+        $this->eventDispatcher->dispatch(new DefinitionBuilderManageComponentEvent($this->components));
     }
 
     /**
@@ -245,14 +243,10 @@ class DefinitionBuilder implements SingletonInterface
      * Please be aware that this signal is sent only if no error was found when
      * the definition was built.
      */
-    protected function sendDefinitionBuiltSignal()
+    protected function sendDefinitionBuiltSignal(): void
     {
         if (!$this->definitionObject->getValidationResult()->hasErrors()) {
-            $this->dispatcher->dispatch(
-                self::class,
-                self::DEFINITION_BUILT_SIGNAL,
-                [$this->definitionObject->getObject()]
-            );
+            $this->eventDispatcher->dispatch(new DefinitionBuilderBuiltEvent($this->definitionObject->getObject()));
         }
     }
 }
