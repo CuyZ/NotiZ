@@ -27,6 +27,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Throwable;
 use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
+use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -135,12 +136,13 @@ class NotificationsToolbarItem implements ToolbarItemInterface
      * Action called periodically by Ajax (used to refresh the toolbar).
      *
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
      * @return ResponseInterface
      */
-    public function renderMenuAction(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
+    public function renderMenuAction(ServerRequestInterface $request): ResponseInterface
     {
         $this->fullMenu = true;
+
+        $response = new Response();
 
         $response->getBody()->write($this->getDropDown());
 
