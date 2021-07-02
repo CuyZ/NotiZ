@@ -17,7 +17,12 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Backend\Module;
 
+use CuyZ\Notiz\Controller\Backend\Manager\ListNotificationTypesController;
+use CuyZ\Notiz\Controller\Backend\Manager\Notification\ShowEntityEmailController;
+use CuyZ\Notiz\Controller\Backend\Manager\Notification\ShowEntityLogController;
+use CuyZ\Notiz\Controller\Backend\Manager\Notification\ShowEntitySlackController;
 use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 class ManagerModuleHandler extends ModuleHandler
 {
@@ -28,7 +33,7 @@ class ManagerModuleHandler extends ModuleHandler
      */
     public function getDefaultControllerName(): string
     {
-        return 'Backend\\Manager\\ListNotificationTypes';
+        return ListNotificationTypesController::class;
     }
 
     /**
@@ -36,7 +41,7 @@ class ManagerModuleHandler extends ModuleHandler
      */
     public function getModuleName(): string
     {
-        return 'NotizNotiz_NotizNotizManager';
+        return 'notiz_NotizNotizManager';
     }
 
     /**
@@ -45,21 +50,25 @@ class ManagerModuleHandler extends ModuleHandler
     public function registerEntityNotificationControllers()
     {
         $controllers = [
-            'Backend\\Manager\\Notification\\ShowEntityEmail' => [
+            ShowEntityEmailController::class => [
                 'show',
                 'preview',
                 'previewError',
             ],
-            'Backend\\Manager\\Notification\\ShowEntityLog' => [
+            ShowEntityLogController::class => [
                 'show',
             ],
-            'Backend\\Manager\\Notification\\ShowEntitySlack' => [
+            ShowEntitySlackController::class => [
                 'show',
             ],
         ];
 
         foreach ($controllers as $controller => $actions) {
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase']['extensions']['Notiz']['modules'][$this->getModuleName()]['controllers'][$controller] = ['actions' => $actions];
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase']['extensions']['Notiz']['modules'][$this->getModuleName()]['controllers'][$controller] = [
+                'actions' => $actions,
+                'className' => $controller,
+                'alias' => ExtensionUtility::resolveControllerAliasFromControllerClassName($controller)
+            ];
         }
     }
 }

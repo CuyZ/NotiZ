@@ -32,6 +32,6 @@ class AdministrationModuleHandler extends ModuleHandler
      */
     public function getModuleName(): string
     {
-        return 'NotizNotiz_NotizNotizAdministration';
+        return 'notiz_NotizNotizAdministration';
     }
 }
