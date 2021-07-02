@@ -72,7 +72,11 @@ abstract class ModuleHandler implements SingletonInterface
      */
     public function canBeAccessed(): bool
     {
-        return Container::getBackendUser()->modAccess($GLOBALS['TBE_MODULES']['_configuration'][$this->getModuleName()], false);
+        try {
+            return Container::getBackendUser()->modAccess($GLOBALS['TBE_MODULES']['_configuration'][$this->getModuleName()]);
+        } catch (\RuntimeException $exception) {
+            return false;
+        }
     }
 
     /**
