@@ -22,31 +22,10 @@ use CuyZ\Notiz\Core\Event\Event;
 use CuyZ\Notiz\Core\Exception\ClassNotFoundException;
 use CuyZ\Notiz\Core\Exception\InvalidClassException;
 use CuyZ\Notiz\Core\Notification\Notification;
-use TYPO3\CMS\Core\SingletonInterface;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class EventFactory implements SingletonInterface
+class EventFactory
 {
-    /**
-     * @var EventRegistry
-     */
-    protected $eventRegistry;
-
-    /**
-     * @var ObjectManager
-     */
-    protected $objectManager;
-
-    /**
-     * @param EventRegistry $eventRegistry
-     * @param ObjectManager $objectManager
-     */
-    public function __construct(EventRegistry $eventRegistry, ObjectManager $objectManager)
-    {
-        $this->eventRegistry = $eventRegistry;
-        $this->objectManager = $objectManager;
-    }
-
     /**
      * @param EventDefinition $eventDefinition
      * @param Notification $notification
@@ -55,7 +34,7 @@ class EventFactory implements SingletonInterface
      * @throws ClassNotFoundException
      * @throws InvalidClassException
      */
-    public function create(EventDefinition $eventDefinition, Notification $notification): Event
+    public static function create(EventDefinition $eventDefinition, Notification $notification): Event
     {
         $className = $eventDefinition->getClassName();
 
@@ -68,7 +47,7 @@ class EventFactory implements SingletonInterface
         }
 
         /** @var Event $event */
-        $event = $this->objectManager->get($className, $eventDefinition, $notification);
+        $event = GeneralUtility::makeInstance($className, ...[$eventDefinition, $notification]);
 
         return $event;
     }

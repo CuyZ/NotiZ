@@ -17,7 +17,7 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Connection;
 
-use CuyZ\Notiz\Core\Event\Runner\EventRunner;
+use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 
 interface Connection
 {
@@ -27,8 +27,7 @@ interface Connection
     /**
      * Registers the event connection.
      *
-     * @param EventRunner $eventRunner
      * @return void
      */
-    public function register(EventRunner $eventRunner);
+    public function register(EventDefinition $definition);
 }

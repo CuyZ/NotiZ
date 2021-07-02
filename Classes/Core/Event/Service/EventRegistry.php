@@ -86,9 +86,8 @@ class EventRegistry implements SingletonInterface
         $definition = $this->definitionService->getDefinition();
 
         foreach ($definition->getEvents() as $eventDefinition) {
-            $eventRunner = $this->eventRunnerContainer->add($eventDefinition);
-
-            $eventDefinition->getConnection()->register($eventRunner);
+            $eventDefinition = $this->eventRunnerContainer->add($eventDefinition);
+            $eventDefinition->getConnection()->register($eventDefinition);
         }
     }
 }

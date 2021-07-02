@@ -18,8 +18,8 @@ declare(strict_types=1);
 namespace CuyZ\Notiz\Core\Event\Runner;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
+use CuyZ\Notiz\Core\Event\NotizEvent;
 use CuyZ\Notiz\Core\Exception\EntryNotFoundException;
-use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
 
@@ -37,26 +37,33 @@ class EventRunnerContainer implements SingletonInterface
     }
 
     /**
-     * @var EventRunner[]
+     * @var EventDefinition[]
      */
-    protected $entries;
+    protected $eventDefinitions;
+
+    /**
+     * @var EventRunner
+     */
+    protected $eventRunner;
+
+    public function __construct(EventRunner $eventRunner)
+    {
+        $this->eventRunner = $eventRunner;
+    }
 
     /**
      * @param EventDefinition $eventDefinition
-     * @return EventRunner
+     * @return EventDefinition
      */
-    public function add(EventDefinition $eventDefinition): EventRunner
+    public function add(EventDefinition $eventDefinition): EventDefinition
     {
         $identifier = $eventDefinition->getFullIdentifier();
 
         if (false === $this->has($identifier)) {
-            /** @var EventRunner $runner */
-            $runner = Container::get(EventRunner::class, $eventDefinition);
-
-            $this->entries[$identifier] = $runner;
+            $this->eventDefinitions[$identifier] = $eventDefinition;
         }
 
-        return $this->entries[$identifier];
+        return $this->eventDefinitions[$identifier];
     }
 
     /**
@@ -65,21 +72,33 @@ class EventRunnerContainer implements SingletonInterface
      */
     public function has(string $identifier): bool
     {
-        return isset($this->entries[$identifier]);
+        return isset($this->eventDefinitions[$identifier]);
     }
 
     /**
      * @param string $identifier
-     * @return EventRunner
+     * @return EventDefinition
      *
      * @throws EntryNotFoundException
      */
-    public function get(string $identifier): EventRunner
+    public function get(string $identifier): EventDefinition
     {
         if (false === $this->has($identifier)) {
             throw EntryNotFoundException::eventRunnerEntryNotFound($identifier);
         }
 
-        return $this->entries[$identifier];
+        return $this->eventDefinitions[$identifier];
     }
+
+    public function __invoke(NotizEvent $notizEvent)
+    {
+        $identifier = $notizEvent->getIdentifier();
+        $args = $notizEvent->getArgs();
+
+        if ($this->has($identifier)) {
+            $eventDefinition = $this->get($identifier);
+            $this->eventRunner->process($eventDefinition, ...$args);
+        }
+    }
+
 }

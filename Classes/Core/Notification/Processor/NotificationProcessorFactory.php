@@ -104,11 +104,11 @@ class NotificationProcessorFactory implements SingletonInterface
         $processorClassName = $notificationClassName::getProcessorClassName();
 
         if (!class_exists($processorClassName)) {
-            throw ClassNotFoundException::notificationProcessorClassNotFound($notificationClassName, $processorClassName);
+            throw ClassNotFoundException::notificationProcessorClassNotFound((string)$notificationClassName, $processorClassName);
         }
 
         if (!in_array(NotificationProcessor::class, class_parents($processorClassName))) {
-            throw InvalidClassException::notificationProcessorWrongParent($notificationClassName, $processorClassName);
+            throw InvalidClassException::notificationProcessorWrongParent((string)$notificationClassName, $processorClassName);
         }
 
         return $processorClassName;

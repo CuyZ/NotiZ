@@ -28,7 +28,6 @@ use CuyZ\Notiz\Service\Container;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use Doctrine\Common\Annotations\AnnotationReader;
-use T3G\AgencyPack\Blog\Notification\CommentAddedNotification;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseEditRow;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRecordOverrideValues;
 use TYPO3\CMS\Backend\Form\FormDataProvider\InitializeProcessedTca;
@@ -42,7 +41,6 @@ use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Scheduler\Scheduler;
-
 use function version_compare;
 
 /**
@@ -243,7 +241,7 @@ class LocalConfigurationService implements SingletonInterface, TableConfiguratio
         if (ExtensionManagementUtility::isLoaded('blog')
             && version_compare(ExtensionManagementUtility::getExtensionVersion('blog'), '9.0.0', '>')
         ) {
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['Blog']['notificationRegistry'][CommentAddedNotification::class][] = BlogNotificationProcessor::class;
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['Blog']['notificationRegistry'][\T3G\AgencyPack\Blog\Notification\CommentAddedNotification::class][] = BlogNotificationProcessor::class;
         }
     }
 

@@ -24,10 +24,8 @@ use CuyZ\Notiz\Core\Exception\InvalidClassException;
 use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Property\Builder\PropertyBuilder;
 use CuyZ\Notiz\Core\Property\Factory\PropertyContainer;
-use CuyZ\Notiz\Core\Property\Factory\PropertyFactory;
 use CuyZ\Notiz\Domain\Property\Builder\TagsPropertyBuilder;
 use CuyZ\Notiz\Service\Container;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * Default event implementation provided by this extension, you can use it for
@@ -95,16 +93,6 @@ abstract class AbstractEvent implements Event, HasProperties
     protected $configuration = [];
 
     /**
-     * @var PropertyFactory
-     */
-    protected $propertyFactory;
-
-    /**
-     * @var ObjectManager
-     */
-    protected $objectManager;
-
-    /**
      * WARNING
      * -------
      *
@@ -113,16 +101,12 @@ abstract class AbstractEvent implements Event, HasProperties
      *
      * @param EventDefinition $eventDefinition
      * @param Notification $notification
-     * @param PropertyFactory $propertyFactory
-     * @param ObjectManager $objectManager
      */
-    public function __construct(EventDefinition $eventDefinition, Notification $notification, PropertyFactory $propertyFactory, ObjectManager $objectManager)
+    public function __construct(EventDefinition $eventDefinition, Notification $notification)
     {
         $this->eventDefinition = $eventDefinition;
         $this->notification = $notification;
         $this->configuration = $notification->getEventConfiguration();
-        $this->propertyFactory = $propertyFactory;
-        $this->objectManager = $objectManager;
     }
 
     /**

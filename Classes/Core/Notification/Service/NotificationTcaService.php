@@ -21,7 +21,6 @@ use CuyZ\Notiz\Core\Definition\DefinitionService;
 use CuyZ\Notiz\Core\Definition\Tree\Definition;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
-use CuyZ\Notiz\Core\Event\Service\EventFactory;
 use CuyZ\Notiz\Core\Exception\NotImplementedException;
 use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Support\NotizConstants;
@@ -38,11 +37,6 @@ use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
  */
 abstract class NotificationTcaService implements SingletonInterface
 {
-    /**
-     * @var EventFactory
-     */
-    protected $eventFactory;
-
     /**
      * @var DefinitionService
      */
@@ -68,7 +62,6 @@ abstract class NotificationTcaService implements SingletonInterface
      */
     public function __construct()
     {
-        $this->eventFactory = Container::get(EventFactory::class);
         $this->definitionService = Container::get(DefinitionService::class);
         $this->viewService = Container::get(ViewService::class);
         $this->dataMapper = Container::get(DataMapper::class);

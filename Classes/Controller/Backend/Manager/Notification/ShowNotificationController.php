@@ -42,11 +42,6 @@ abstract class ShowNotificationController extends ManagerController
     protected $notification;
 
     /**
-     * @var EventFactory
-     */
-    protected $eventFactory;
-
-    /**
      * @param ViewInterface $view
      */
     public function initializeView(ViewInterface $view)
@@ -118,7 +113,7 @@ abstract class ShowNotificationController extends ManagerController
      */
     protected function getPreviewPayload(): Payload
     {
-        $fakeEvent = $this->eventFactory->create($this->notification->getEventDefinition(), $this->notification);
+        $fakeEvent = EventFactory::create($this->notification->getEventDefinition(), $this->notification);
 
         if ($fakeEvent instanceof ProvidesExampleProperties) {
             GeneralUtility::makeInstance(ListenerProvider::class)
@@ -142,14 +137,6 @@ abstract class ShowNotificationController extends ManagerController
                 $property->setValue($exampleProperties[$property->getName()]);
             }
         }
-    }
-
-    /**
-     * @param EventFactory $eventFactory
-     */
-    public function injectEventFactory(EventFactory $eventFactory)
-    {
-        $this->eventFactory = $eventFactory;
     }
 
     /**

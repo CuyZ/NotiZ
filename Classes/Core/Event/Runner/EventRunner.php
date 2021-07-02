@@ -27,18 +27,14 @@ use CuyZ\Notiz\Core\Notification\NotificationDispatcher;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use Throwable;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
+use TYPO3\CMS\Core\SingletonInterface;
 
 /**
  * This class is used as a bridge between the trigger of an event and a
  * notification dispatch.
  */
-class EventRunner
+class EventRunner implements SingletonInterface
 {
-
-    /**
-     * @var EventDefinition
-     */
-    protected $eventDefinition;
 
     /**
      * @var ExtensionConfigurationService
@@ -56,40 +52,30 @@ class EventRunner
     protected $eventDispatcher;
 
     /**
-     * @var EventFactory
-     */
-    protected $eventFactory;
-
-    /**
-     * @param EventDefinition $eventDefinition
-     * @param EventFactory $eventFactory
      * @param NotificationDispatcher $notificationDispatcher
      * @param EventDispatcher $eventDispatcher
      * @param ExtensionConfigurationService $extensionConfigurationService
      */
     public function __construct(
-        EventDefinition $eventDefinition,
-        EventFactory $eventFactory,
         NotificationDispatcher $notificationDispatcher,
         EventDispatcher $eventDispatcher,
         ExtensionConfigurationService $extensionConfigurationService
     ) {
-        $this->eventDefinition = $eventDefinition;
-        $this->extensionConfigurationService = $extensionConfigurationService;
         $this->notificationDispatcher = $notificationDispatcher;
         $this->eventDispatcher = $eventDispatcher;
-        $this->eventFactory = $eventFactory;
+        $this->extensionConfigurationService = $extensionConfigurationService;
     }
 
     /**
+     * @param EventDefinition $eventDefinition
      * @param mixed ...$arguments
      */
-    public function process(...$arguments)
+    public function process(EventDefinition $eventDefinition, ...$arguments)
     {
-        $notifications = $this->notificationDispatcher->fetchNotifications($this->eventDefinition);
+        $notifications = $this->notificationDispatcher->fetchNotifications($eventDefinition);
 
         foreach ($notifications as $notification => $dispatchCallback) {
-            $event = $this->eventFactory->create($this->eventDefinition, $notification);
+            $event = EventFactory::create($eventDefinition, $notification);
             $doDispatch = true;
 
             if (is_callable([$event, 'run'])) {
@@ -142,19 +128,13 @@ class EventRunner
     }
 
     /**
-     * @return callable
+     * @return \Closure
      */
-    public function getCallable(): callable
+    public function getClosure(EventDefinition $definition): \Closure
     {
-        return [$this, 'process'];
-    }
-
-    /**
-     * @return EventDefinition
-     */
-    public function getEventDefinition(): EventDefinition
-    {
-        return $this->eventDefinition;
+        return function (...$args) use ($definition) {
+            $this->process($definition, ...$args);
+        };
     }
 
     /**

@@ -33,3 +33,9 @@ services:
         identifier: 'default-definition-component'
         event: CuyZ\Notiz\Core\Definition\Builder\Event\DefinitionBuilderManageComponentEvent
         method: register
+
+  CuyZ\Notiz\Core\Event\Runner\EventRunnerContainer:
+    tags:
+      - name: event.listener
+        identifier: 'notiz-event-listener'
+        event: CuyZ\Notiz\Core\Event\NotizEvent

@@ -17,10 +17,12 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Connection;
 
-use TYPO3\CMS\Extbase\Annotation as Extbase;
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
+use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Event\Runner\EventRunner;
 use CuyZ\Notiz\Service\Container;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 class Signal extends AbstractDefinitionComponent implements Connection
@@ -51,18 +53,19 @@ class Signal extends AbstractDefinitionComponent implements Connection
 
     /**
      * Registers the signal in TYPO3 signal slot dispatcher.
+     * TODO remove method body since signal slots are deprecated and replaced by NotizEvent wrapper
      *
      * @param EventRunner $eventRunner
      */
-    public function register(EventRunner $eventRunner)
+    public function register(EventDefinition $definition)
     {
         /** @var Dispatcher $signalSlotDispatcher */
         $signalSlotDispatcher = Container::get(Dispatcher::class);
-
+        $eventRunner = GeneralUtility::makeInstance(EventRunner::class);
         $signalSlotDispatcher->connect(
             $this->className,
             $this->name,
-            ...$eventRunner->getCallable()
+            $eventRunner->getClosure($definition)
         );
     }
 

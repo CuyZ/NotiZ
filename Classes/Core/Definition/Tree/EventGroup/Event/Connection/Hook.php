@@ -17,14 +17,16 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\Connection;
 
-use TYPO3\CMS\Extbase\Annotation as Extbase;
 use Closure;
 use CuyZ\Notiz\Core\Definition\Tree\AbstractDefinitionComponent;
+use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Event\Runner\EventRunner;
 use CuyZ\Notiz\Core\Event\Runner\EventRunnerContainer;
 use CuyZ\Notiz\Core\Exception\ClassNotFoundException;
 use CuyZ\Notiz\Core\Exception\WrongFormatException;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 class Hook extends AbstractDefinitionComponent implements Connection
@@ -68,19 +70,21 @@ class Hook extends AbstractDefinitionComponent implements Connection
      *
      * @param EventRunner $eventRunner
      */
-    public function register(EventRunner $eventRunner)
+    public function register(EventDefinition $definition)
     {
         if ($this->hookIsRegistered()) {
             return;
         }
 
+        $eventRunner = GeneralUtility::makeInstance(EventRunner::class);
+
         if (!empty($this->interface)
             || !empty($this->method)
         ) {
-            $closure = $this->preventEvalNeverIdealStuff($eventRunner);
+            $closure = $this->preventEvalNeverIdealStuff($definition);
         } else {
-            $closure = function () use ($eventRunner) {
-                return call_user_func_array($eventRunner->getCallable(), func_get_args());
+            $closure = function () use ($eventRunner, $definition) {
+                return call_user_func_array($eventRunner->getClosure($definition), func_get_args());
             };
         }
 
@@ -116,9 +120,9 @@ class Hook extends AbstractDefinitionComponent implements Connection
      * @throws ClassNotFoundException
      * @throws WrongFormatException
      */
-    protected function preventEvalNeverIdealStuff(EventRunner $eventRunner): string
+    protected function preventEvalNeverIdealStuff(EventDefinition $definition): string
     {
-        $className = 'notiz_hook_' . sha1($eventRunner->getEventDefinition()->getFullIdentifier());
+        $className = 'notiz_hook_' . sha1($definition->getFullIdentifier());
 
         $implements = $this->interface
             ? 'implements ' . $this->interface
@@ -136,7 +140,7 @@ class Hook extends AbstractDefinitionComponent implements Connection
             throw WrongFormatException::eventHookMethodNameWrongFormat($method, $this);
         }
 
-        $classPhpCode = $this->anotherNonUsefulSystem($className, $implements, $method, $eventRunner);
+        $classPhpCode = $this->anotherNonUsefulSystem($className, $implements, $method, $definition);
 
         // Please lord, forgive me.
         eval($classPhpCode);
@@ -153,7 +157,7 @@ class Hook extends AbstractDefinitionComponent implements Connection
      * @param EventRunner $eventRunner
      * @return string
      */
-    protected function anotherNonUsefulSystem(string $className, string $implements, string $method, EventRunner $eventRunner): string
+    protected function anotherNonUsefulSystem(string $className, string $implements, string $method, EventDefinition $eventDefinition): string
     {
         $eventRunnerContainerClass = EventRunnerContainer::class;
 
@@ -162,7 +166,7 @@ class $className $implements
 {
     public function $method(...\$arguments)
     {
-        \$eventRunner = $eventRunnerContainerClass::getInstance()->get('{$eventRunner->getEventDefinition()->getFullIdentifier()}');
+        \$eventRunner = $eventRunnerContainerClass::getInstance()->get('{$eventDefinition->getFullIdentifier()}');
 
         call_user_func_array(\$eventRunner->getCallable(), \$arguments);
     }
