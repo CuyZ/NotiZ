@@ -17,9 +17,9 @@ declare(strict_types=1);
 
 namespace CuyZ\Notiz\Service\Scheduler;
 
-use CuyZ\Notiz\Service\Container;
 use Throwable;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Scheduler\Task\AbstractTask;
 
 /**
@@ -31,7 +31,7 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
  * Signal: task was executed
  * -------------------------
  *
- * @see \CuyZ\Notiz\Service\Scheduler\Scheduler::SIGNAL_TASK_EXECUTED
+ * @see \CuyZ\Notiz\Service\Scheduler\SchedulerTaskExecutedEvent
  *
  * When a task was successfully executed.
  *
@@ -46,7 +46,7 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
  * Signal: task execution failed
  * -----------------------------
  *
- * @see \CuyZ\Notiz\Service\Scheduler\Scheduler::SIGNAL_TASK_FAILED
+ * @see \CuyZ\Notiz\Service\Scheduler\SchedulerTaskExecutionFailedEvent
  *
  * When something has gone wrong during the execution of the task (an exception
  * has been thrown).
@@ -61,12 +61,8 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
  */
 class Scheduler extends \TYPO3\CMS\Scheduler\Scheduler
 {
-    const SIGNAL_TASK_EXECUTED = 'taskWasExecuted';
-
-    const SIGNAL_TASK_FAILED = 'taskExecutionFailed';
-
     /**
-     * @var Dispatcher
+     * @var EventDispatcher
      */
     protected $dispatcher;
 
@@ -74,7 +70,7 @@ class Scheduler extends \TYPO3\CMS\Scheduler\Scheduler
     {
         parent::__construct();
 
-        $this->dispatcher = Container::get(Dispatcher::class);
+        $this->dispatcher = GeneralUtility::makeInstance(EventDispatcher::class);
     }
 
     /**
@@ -87,25 +83,12 @@ class Scheduler extends \TYPO3\CMS\Scheduler\Scheduler
      */
     public function executeTask(AbstractTask $task): bool
     {
-        $exception = null;
-
         try {
             $result = parent::executeTask($task);
-
-            $this->dispatcher->dispatch(
-                __CLASS__,
-                self::SIGNAL_TASK_EXECUTED,
-                [$task, $result]
-            );
-
+            $this->dispatcher->dispatch(new SchedulerTaskExecutedEvent($task, $result));
             return $result;
         } catch (Throwable $exception) {
-            $this->dispatcher->dispatch(
-                __CLASS__,
-                self::SIGNAL_TASK_FAILED,
-                [$task, $exception]
-            );
-
+            $this->dispatcher->dispatch(new SchedulerTaskExecutionFailedEvent($task, $exception));
             throw $exception;
         }
     }

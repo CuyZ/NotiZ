@@ -23,17 +23,17 @@ use CuyZ\Notiz\Core\Event\Support\HasProperties;
 use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Property\PropertyEntry;
 use CuyZ\Notiz\Service\Traits\ExtendedSelfInstantiateTrait;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\Container\Container;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
  * Factory for getting both properties definitions and values, that are defined
  * by events and used by notifications.
  *
- * Global properties manipulation
+ * Global properties manipulation TODO update docs
  * ------------------------------
  *
  * If you need to globally do things with properties (for instance markers), you
@@ -86,9 +86,6 @@ use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
  */
 class PropertyFactory implements SingletonInterface
 {
-    const SIGNAL_PROPERTY_BUILD_DEFINITION = 'propertyBuildDefinition';
-
-    const SIGNAL_PROPERTY_FILLING = 'propertyFilling';
 
     use ExtendedSelfInstantiateTrait;
 
@@ -113,20 +110,20 @@ class PropertyFactory implements SingletonInterface
     protected $objectContainer;
 
     /**
-     * @var Dispatcher
+     * @var EventDispatcher
      */
-    protected $slotDispatcher;
+    protected $eventDispatcher;
 
     /**
      * @param ObjectManager $objectManager
      * @param Container $objectContainer
-     * @param Dispatcher $slotDispatcher
+     * @param EventDispatcher $eventDispatcher
      */
-    public function __construct(ObjectManager $objectManager, Container $objectContainer, Dispatcher $slotDispatcher)
+    public function __construct(ObjectManager $objectManager, Container $objectContainer, EventDispatcher $eventDispatcher)
     {
         $this->objectManager = $objectManager;
         $this->objectContainer = $objectContainer;
-        $this->slotDispatcher = $slotDispatcher;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
@@ -254,14 +251,8 @@ class PropertyFactory implements SingletonInterface
         EventDefinition $eventDefinition,
         Notification $notification
     ) {
-        $this->slotDispatcher->dispatch(
-            self::class,
-            self::SIGNAL_PROPERTY_BUILD_DEFINITION,
-            [
-                $propertyDefinition,
-                $eventDefinition,
-                $notification,
-            ]
+        $this->eventDispatcher->dispatch(
+            new PropertyBuildDefinitionEvent($propertyDefinition, $eventDefinition,$notification)
         );
     }
 
@@ -275,14 +266,7 @@ class PropertyFactory implements SingletonInterface
      */
     protected function dispatchPropertyFillingSignal(PropertyContainer $propertyContainer, Event $event)
     {
-        $this->slotDispatcher->dispatch(
-            self::class,
-            self::SIGNAL_PROPERTY_FILLING,
-            [
-                $propertyContainer,
-                $event,
-            ]
-        );
+        $this->eventDispatcher->dispatch(new PropertyFillingEvent($propertyContainer, $event));
     }
 
     /**

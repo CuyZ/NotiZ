@@ -31,7 +31,6 @@ use Romm\ConfigurationObject\ConfigurationObjectInstance;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
  * This class is responsible for building a whole PHP definition object that can
@@ -65,7 +64,7 @@ use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
  *
  * ---
  *
- * Register new components
+ * Register new components TODO update docs
  * -----------------------
  *
  * To register new components in your own API, you first need to connect a class
@@ -107,8 +106,6 @@ use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 class DefinitionBuilder implements SingletonInterface
 {
     use ExtendedSelfInstantiateTrait;
-
-    const COMPONENTS_SIGNAL = 'manageDefinitionComponents';
 
     /**
      * @var DefinitionComponents

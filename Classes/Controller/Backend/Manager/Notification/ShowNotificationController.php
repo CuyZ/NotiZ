@@ -21,12 +21,12 @@ use CuyZ\Notiz\Controller\Backend\Manager\ManagerController;
 use CuyZ\Notiz\Controller\Backend\Menu;
 use CuyZ\Notiz\Core\Channel\Payload;
 use CuyZ\Notiz\Core\Definition\Tree\Notification\NotificationDefinition;
-use CuyZ\Notiz\Core\Event\Event;
 use CuyZ\Notiz\Core\Event\Service\EventFactory;
 use CuyZ\Notiz\Core\Event\Support\ProvidesExampleProperties;
 use CuyZ\Notiz\Core\Notification\Notification;
-use CuyZ\Notiz\Core\Property\Factory\PropertyContainer;
-use CuyZ\Notiz\Core\Property\Factory\PropertyFactory;
+use CuyZ\Notiz\Core\Property\Factory\PropertyFillingEvent;
+use TYPO3\CMS\Core\EventDispatcher\ListenerProvider;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
 abstract class ShowNotificationController extends ManagerController
@@ -121,26 +121,27 @@ abstract class ShowNotificationController extends ManagerController
         $fakeEvent = $this->eventFactory->create($this->notification->getEventDefinition(), $this->notification);
 
         if ($fakeEvent instanceof ProvidesExampleProperties) {
-            $this->signalSlotDispatcher->connect(
-                PropertyFactory::class,
-                PropertyFactory::SIGNAL_PROPERTY_FILLING,
-                function (PropertyContainer $container, Event $event) use ($fakeEvent) {
-                    if ($event !== $fakeEvent) {
-                        return;
-                    }
-
-                    $exampleProperties = $fakeEvent->getExampleProperties();
-
-                    foreach ($container->getEntries() as $property) {
-                        if (isset($exampleProperties[$property->getName()])) {
-                            $property->setValue($exampleProperties[$property->getName()]);
-                        }
-                    }
-                }
-            );
+            GeneralUtility::makeInstance(ListenerProvider::class)
+                ->addListener(PropertyFillingEvent::class, \get_class($this), 'onPropertyFilling');
         }
 
         return new Payload($this->notification, $this->notificationDefinition, $fakeEvent);
+    }
+
+    public function onPropertyFilling(PropertyFillingEvent $propertyFillingEvent)
+    {
+        $event = $propertyFillingEvent->getEvent();
+        $container = $propertyFillingEvent->getPropertyContainer();
+
+        if ($event instanceof ProvidesExampleProperties) {
+            $exampleProperties = $event->getExampleProperties();
+        }
+
+        foreach ($container->getEntries() as $property) {
+            if (isset($exampleProperties[$property->getName()])) {
+                $property->setValue($exampleProperties[$property->getName()]);
+            }
+        }
     }
 
     /**

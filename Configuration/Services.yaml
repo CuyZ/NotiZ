@@ -12,7 +12,12 @@ services:
       - '../Classes/Domain/Event/Scheduler/*'
       - '../Classes/Domain/Event/TYPO3/*'
 
+  CuyZ\Notiz\Core\Notification\Notification: '@CuyZ\Notiz\Domain\Notification\Log\Application\EntityLog\EntityLogNotification'
+
   CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition:
+    autowire: false
+
+  CuyZ\Notiz\Core\Event\AbstractEvent:
     autowire: false
 
   CuyZ\Notiz\Backend\FormEngine\ButtonBar\ShowNotificationDetailsButton:

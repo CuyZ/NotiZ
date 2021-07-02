@@ -26,7 +26,7 @@ use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Notification\NotificationDispatcher;
 use CuyZ\Notiz\Service\ExtensionConfigurationService;
 use Throwable;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
 /**
  * This class is used as a bridge between the trigger of an event and a
@@ -34,19 +34,11 @@ use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
  */
 class EventRunner
 {
-    const SIGNAL_EVENT_WAS_DISPATCHED = 'eventWasDispatched';
-
-    const SIGNAL_EVENT_DISPATCH_ERROR = 'eventDispatchError';
 
     /**
      * @var EventDefinition
      */
     protected $eventDefinition;
-
-    /**
-     * @var Dispatcher
-     */
-    protected $signalDispatcher;
 
     /**
      * @var ExtensionConfigurationService
@@ -59,6 +51,11 @@ class EventRunner
     protected $notificationDispatcher;
 
     /**
+     * @var EventDispatcher
+     */
+    protected $eventDispatcher;
+
+    /**
      * @var EventFactory
      */
     protected $eventFactory;
@@ -67,20 +64,20 @@ class EventRunner
      * @param EventDefinition $eventDefinition
      * @param EventFactory $eventFactory
      * @param NotificationDispatcher $notificationDispatcher
-     * @param Dispatcher $signalDispatcher
+     * @param EventDispatcher $eventDispatcher
      * @param ExtensionConfigurationService $extensionConfigurationService
      */
     public function __construct(
         EventDefinition $eventDefinition,
         EventFactory $eventFactory,
         NotificationDispatcher $notificationDispatcher,
-        Dispatcher $signalDispatcher,
+        EventDispatcher $eventDispatcher,
         ExtensionConfigurationService $extensionConfigurationService
     ) {
         $this->eventDefinition = $eventDefinition;
-        $this->signalDispatcher = $signalDispatcher;
         $this->extensionConfigurationService = $extensionConfigurationService;
         $this->notificationDispatcher = $notificationDispatcher;
+        $this->eventDispatcher = $eventDispatcher;
         $this->eventFactory = $eventFactory;
     }
 
@@ -118,33 +115,23 @@ class EventRunner
      * - When the dispatch ran well;
      * - If an error occurred during the dispatch.
      *
-     * @see \CuyZ\Notiz\Core\Event\Runner\EventRunner::SIGNAL_EVENT_WAS_DISPATCHED
-     * @see \CuyZ\Notiz\Core\Event\Runner\EventRunner::SIGNAL_EVENT_DISPATCH_ERROR
-     *
      * @param Closure $callback
      * @param Event $event
      * @param Notification $notification
      *
      * @throws Throwable
+     *@see \CuyZ\Notiz\Core\Event\Runner\DispatchedEvent
+     * @see \CuyZ\Notiz\Core\Event\Runner\DispatchErrorEvent
+     *
      */
     protected function dispatchEvent(Closure $callback, Event $event, Notification $notification)
     {
-        $exception = null;
-
         try {
             $callback($event);
 
-            $this->signalDispatcher->dispatch(
-                self::class,
-                self::SIGNAL_EVENT_WAS_DISPATCHED,
-                [$event, $notification]
-            );
+            $this->eventDispatcher->dispatch(new DispatchedEvent($event, $notification));
         } catch (Throwable $exception) {
-            $this->signalDispatcher->dispatch(
-                self::class,
-                self::SIGNAL_EVENT_DISPATCH_ERROR,
-                [$exception, $event, $notification]
-            );
+            $this->eventDispatcher->dispatch(new DispatchErrorEvent($exception, $event, $notification));
 
             $gracefulMode = $this->extensionConfigurationService->getConfigurationValue('dispatch.graceful_mode');
 

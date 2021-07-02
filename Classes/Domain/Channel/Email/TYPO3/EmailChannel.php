@@ -21,9 +21,9 @@ use CuyZ\Notiz\Core\Channel\AbstractChannel;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Service\EntityEmailAddressMapper;
 use CuyZ\Notiz\Domain\Notification\Email\Application\EntityEmail\Service\EntityEmailTemplateBuilder;
 use CuyZ\Notiz\Domain\Notification\Email\EmailNotification;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
  * Channel using the default `MailMessage` provided by the TYPO3 core.
@@ -83,8 +83,6 @@ use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
  */
 class EmailChannel extends AbstractChannel
 {
-    const EMAIL_SIGNAL = 'sendEmail';
-
     /**
      * @var array
      */
@@ -103,9 +101,17 @@ class EmailChannel extends AbstractChannel
     protected $addressMapper;
 
     /**
-     * @var Dispatcher
+     * @var EventDispatcher
      */
-    protected $slotDispatcher;
+    protected $dispatcher;
+
+    /**
+     * @param EventDispatcher $dispatcher
+     */
+    public function injectSlotDispatcher(EventDispatcher $dispatcher)
+    {
+        $this->dispatcher = $dispatcher;
+    }
 
     /**
      * Setting up services used by this channel.
@@ -131,33 +137,10 @@ class EmailChannel extends AbstractChannel
             ->setTo($this->addressMapper->getSendTo())
             ->setCc($this->addressMapper->getSendCc())
             ->setBcc($this->addressMapper->getSendBcc())
-            ;
+        ;
 
-        $this->dispatchEmailSignal($mailMessage);
+        $this->dispatcher->dispatch(new SendMailEvent($mailMessage, $this->payload));
 
         $mailMessage->send();
-    }
-
-    /**
-     * @param MailMessage $mailMessage
-     */
-    protected function dispatchEmailSignal(MailMessage $mailMessage)
-    {
-        $this->slotDispatcher->dispatch(
-            self::class,
-            self::EMAIL_SIGNAL,
-            [
-                $mailMessage,
-                $this->payload,
-            ]
-        );
-    }
-
-    /**
-     * @param Dispatcher $slotDispatcher
-     */
-    public function injectSlotDispatcher(Dispatcher $slotDispatcher)
-    {
-        $this->slotDispatcher = $slotDispatcher;
     }
 }
