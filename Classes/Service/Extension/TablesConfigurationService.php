@@ -55,18 +55,14 @@ class TablesConfigurationService implements SingletonInterface
      */
     protected static function registerBackendModule()
     {
-        ExtensionUtility::registerModule(
-            'Notiz',
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addModule(
             'notiz',
             '',
             '',
-            [],
+            null,
             [
-                'access' => '',
-                'icon' => '',
                 'iconIdentifier' => 'tx-notiz-icon-main-module',
                 'labels' => "LLL:EXT:" . NotizConstants::EXTENSION_KEY . "/Resources/Private/Language/Backend/Module/Main/Main.xlf",
-                'sub' => []
             ]
         );
 
