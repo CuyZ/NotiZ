@@ -18,7 +18,6 @@ declare(strict_types=1);
 namespace CuyZ\Notiz\Core\Event\Runner;
 
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
-use CuyZ\Notiz\Core\Event\NotizEvent;
 use CuyZ\Notiz\Core\Exception\EntryNotFoundException;
 use CuyZ\Notiz\Service\Traits\SelfInstantiateTrait;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -40,16 +39,6 @@ class EventRunnerContainer implements SingletonInterface
      * @var EventDefinition[]
      */
     protected $eventDefinitions;
-
-    /**
-     * @var EventRunner
-     */
-    protected $eventRunner;
-
-    public function __construct(EventRunner $eventRunner)
-    {
-        $this->eventRunner = $eventRunner;
-    }
 
     /**
      * @param EventDefinition $eventDefinition
@@ -88,17 +77,6 @@ class EventRunnerContainer implements SingletonInterface
         }
 
         return $this->eventDefinitions[$identifier];
-    }
-
-    public function __invoke(NotizEvent $notizEvent)
-    {
-        $identifier = $notizEvent->getIdentifier();
-        $args = $notizEvent->getArgs();
-
-        if ($this->has($identifier)) {
-            $eventDefinition = $this->get($identifier);
-            $this->eventRunner->process($eventDefinition, ...$args);
-        }
     }
 
 }

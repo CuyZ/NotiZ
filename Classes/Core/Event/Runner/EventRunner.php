@@ -21,6 +21,7 @@ use Closure;
 use CuyZ\Notiz\Core\Definition\Tree\EventGroup\Event\EventDefinition;
 use CuyZ\Notiz\Core\Event\Event;
 use CuyZ\Notiz\Core\Event\Exception\CancelEventDispatch;
+use CuyZ\Notiz\Core\Event\NotizEvent;
 use CuyZ\Notiz\Core\Event\Service\EventFactory;
 use CuyZ\Notiz\Core\Notification\Notification;
 use CuyZ\Notiz\Core\Notification\NotificationDispatcher;
@@ -52,6 +53,11 @@ class EventRunner implements SingletonInterface
     protected $eventDispatcher;
 
     /**
+     * @var EventRunnerContainer
+     */
+    protected $eventRunnerContainer;
+
+    /**
      * @param NotificationDispatcher $notificationDispatcher
      * @param EventDispatcher $eventDispatcher
      * @param ExtensionConfigurationService $extensionConfigurationService
@@ -59,11 +65,13 @@ class EventRunner implements SingletonInterface
     public function __construct(
         NotificationDispatcher $notificationDispatcher,
         EventDispatcher $eventDispatcher,
-        ExtensionConfigurationService $extensionConfigurationService
+        ExtensionConfigurationService $extensionConfigurationService,
+        EventRunnerContainer $eventRunnerContainer
     ) {
         $this->notificationDispatcher = $notificationDispatcher;
         $this->eventDispatcher = $eventDispatcher;
         $this->extensionConfigurationService = $extensionConfigurationService;
+        $this->eventRunnerContainer = $eventRunnerContainer;
     }
 
     /**
@@ -106,7 +114,7 @@ class EventRunner implements SingletonInterface
      * @param Notification $notification
      *
      * @throws Throwable
-     *@see \CuyZ\Notiz\Core\Event\Runner\DispatchedEvent
+     * @see \CuyZ\Notiz\Core\Event\Runner\DispatchedEvent
      * @see \CuyZ\Notiz\Core\Event\Runner\DispatchErrorEvent
      *
      */
@@ -151,4 +159,16 @@ class EventRunner implements SingletonInterface
     {
         return [];
     }
+
+    public function __invoke(NotizEvent $event)
+    {
+        $identifier = $event->getIdentifier();
+        $args = $event->getArgs();
+
+        if ($this->eventRunnerContainer->has($identifier)) {
+            $eventDefinition = $this->eventRunnerContainer->get($identifier);
+            $this->process($eventDefinition, ...$args);
+        }
+    }
+
 }

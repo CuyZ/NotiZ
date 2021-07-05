@@ -130,7 +130,7 @@ class DefinitionBuilder implements SingletonInterface
     /**
      * @param DefinitionComponents $components
      * @param CacheService $cacheService
-     * @param Dispatcher $dispatcher
+     * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(DefinitionComponents $components, CacheService $cacheService, EventDispatcherInterface $eventDispatcher)
     {
