@@ -1,3 +1,8 @@
+> [!IMPORTANT]  
+> Due to lack of time and motivation, and mostly because I stopped working with TYPO3 on a daily basis, **this project is not maintained anymore**. If anyone wants to maintain it, please feel free to contact me; [creating an issue](https://github.com/CuyZ/NotiZ/issues/new) seems to be the best way to discuss about it.
+
+---
+
 # ![NotiZ](ext_icon.svg) NotiZ • Powerful notification dispatcher
 
 > **“Handle any type of notification in TYPO3 with ease: emails, SMS, Slack and 
